@@ -1,7 +1,7 @@
 public void controlEvent(ControlEvent theEvent) {
  String bouton_name=theEvent.getController().getName();
  
-  if((bouton_name.equals("stepX"))||(bouton_name.equals("stepY"))||(bouton_name.equals("step"))||(bouton_name.equals("speed"))||(bouton_name.equals("nb"))){
+  if((bouton_name.equals("stepX"))||(bouton_name.equals("stepY"))||(bouton_name.equals("step"))||(bouton_name.equals("speed"))){
     theEvent.getController().setLabel(theEvent.getController().getName()+" "+theEvent.getController().getStringValue());
     
 
@@ -45,6 +45,49 @@ if (bouton_name.equals("lost")){
    
     
   }
+  
+  
+      if (bouton_name.equals("home")){
+    
+    on_home=boolean(int(theEvent.getController().getValue()));
+    
+    
+    if (on_home==true){
+    
+    if ((on_T_gauche==false)&&(on_T_ar==false)){
+      if (on_ligneH){
+      
+      dir="14";}
+      
+      if (on_ligneV){
+        
+        dir="17";}
+    }
+      
+   if ((on_T_gauche==true)&&(on_T_ar==false)){
+     dir="17";
+     
+   }
+   
+   if ((on_T_gauche==false)&&(on_T_ar==true)){
+       dir="14"; 
+     
+   }
+if ((on_T_gauche==true)&&(on_T_ar==true)){
+     dir="0";
+   on_home=false;
+   cp5.getController("home").setValue(0);
+   coordX=0;
+   coordY=0;
+   angle=0;
+              }
+   
+    dir_on_ligne=dir;
+ 
+ envoi=true;
+   
+    } 
+  }
 
 
 
@@ -87,7 +130,7 @@ if(go_on){
  }
   
   
- if (((bouton_name.equals("lost"))==false)&&((bouton_name.equals("GO"))==false)&&((bouton_name.equals("ligneH"))==false)&&((bouton_name.equals("ligneV"))==false)&&((bouton_name.equals("croisement"))==false)&&((bouton_name.equals("T"))==false)&&(bouton_name.equals("X")==false)&&(bouton_name.equals("Y")==false)&&(bouton_name.equals("step")==false)&&(bouton_name.equals("speed")==false)&&(bouton_name.equals("nb")==false)){
+ if (((bouton_name.equals("home"))==false)&&((bouton_name.equals("lost"))==false)&&((bouton_name.equals("GO"))==false)&&((bouton_name.equals("ligneH"))==false)&&((bouton_name.equals("ligneV"))==false)&&((bouton_name.equals("croisement"))==false)&&((bouton_name.equals("T"))==false)&&(bouton_name.equals("X")==false)&&(bouton_name.equals("Y")==false)&&(bouton_name.equals("step")==false)&&(bouton_name.equals("speed")==false)){
   println(bouton_name);
  dir=str(theEvent.getController().getValue());
  if ((step.equals("0"))&&(dir.equals("0.0")==false)){

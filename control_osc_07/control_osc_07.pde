@@ -1,4 +1,4 @@
-
+/////nicolas guichard 2021
 import oscP5.*;
 import netP5.*;
 import controlP5.*;
@@ -20,7 +20,7 @@ int dir_manette, dir_manette_temp;
 
 
 
-int seuil_qtr=127;
+int seuil_qtr=80;
 int seuil_sonar=7;
 boolean ligne_noire=true;
 
@@ -37,8 +37,10 @@ int qtr_calibrate_noir[]=new int[12];
 color qtr_color[]= new color[12];
 boolean envoi=false, alignement=false;
 int type_ligne=0, type_ligne_temp, type_T=0, type_coin=0;
-boolean on_T_ar=false,on_T_av=false,on_T_gauche=false,on_T_droite=false,go_on=false, on_T=false, on_croisement=false, on_ligneH=false, on_ligneV=false, ligne_ok=false, croisement_ok=false, coin_ok=false, T_ok=false, capteur_ok=false, perdu_temp=false, follow_ligne=false, calibrate_blanc=false, calibrate_noir=false;
+boolean on_home=false, on_T_ar=false,on_T_av=false,on_T_gauche=false,on_T_droite=false,go_on=false, on_T=false, on_croisement=false, on_ligneH=false, on_ligneV=false, ligne_ok=false, croisement_ok=false, coin_ok=false, T_ok=false, capteur_ok=false, perdu_temp=false, follow_ligne=false, calibrate_blanc=false, calibrate_noir=false;
 int capteur_max, capteur_max_temp, rotate=0;
+
+float coordX,coordY,angle;
 
 String stepX="0", stepY="0", step="0", dir="0", dir_temp, speed="0", speed_perdu="300", dir_on_ligne="0";
 
@@ -261,14 +263,16 @@ void setup() {
     ;
 
 
-  cp5.addTextfield("nb")
-    .setPosition(20, 500)
-    .setSize(100, 40)
-    .setFont(font)
-    .setFocus(true)
-    .setColor(color(255))
-    .setColorCaptionLabel(color(0))
-    ;  
+  PImage[] imgs_home = {loadImage("home_a.png"), loadImage("home_c.png")};
+  cp5.addToggle("home")
+    .setValue(false)
+    .setPosition(390, 500)
+    .setImages(imgs_home)
+    .updateSize()
+    ;
+
+
+
 
 
 
@@ -346,6 +350,8 @@ void draw() {
    on_T=true; 
     
   }
+  
+
  
 
   dessine_robot();

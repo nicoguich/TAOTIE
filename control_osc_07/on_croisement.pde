@@ -21,7 +21,7 @@ void F_on_croisement() {
 
     case 1 :
 
-
+    coordX=coordX-1;
       if (go_on) {
         stepX=str(int(stepX)+1);
         cp5.getController("stepX").setLabel(cp5.getController("stepX").getName()+" "+stepX);
@@ -50,6 +50,7 @@ void F_on_croisement() {
 
         on_T_gauche=true;
         cp5.getController("T").setValue(1);
+        coordX=0;
               }
         
         
@@ -58,10 +59,18 @@ void F_on_croisement() {
 else{
 
       if ((qtr_ok[9]==false)&&(qtr_ok[10]==false)&&(qtr_ok[11]==false)) {
-
+        coordX=0;
         on_T_gauche=true;
         cp5.getController("T").setValue(1);
         dir="0";
+        if ((on_home)&&(on_T_ar==false)){
+          dir="17";
+        dir_on_ligne=dir;}
+          else{
+         on_home=false;
+         cp5.getController("home").setValue(0);  
+            
+          }
         send_osc();
       }
 }
@@ -125,7 +134,7 @@ else{
     case 1 :
 
 
-
+      coordX=coordX+1;
 
       if (go_on) {
         stepX=str(int(stepX)-1);
@@ -229,7 +238,7 @@ else{
       break;
 
     case 1 :
-
+coordY=coordY+1;
       if (go_on) {
         stepY=str(int(stepY)-1);
         cp5.getController("stepY").setLabel(cp5.getController("stepY").getName()+" "+stepY);
@@ -344,7 +353,7 @@ else{
       break;
 
     case 1 :
-
+coordY=coordY-1;
       if (go_on) {      
         stepY=str(int(stepY)+1);
         cp5.getController("stepY").setLabel(cp5.getController("stepY").getName()+" "+stepY);
@@ -370,7 +379,7 @@ else{
         
         
               if ((qtr_ok[6]==false)&&(qtr_ok[7]==false)&&(qtr_ok[8]==false)) {
-
+coordY=0;
         on_T_ar=true;
         cp5.getController("T").setValue(1);
               }
@@ -380,10 +389,20 @@ else{
 
 else{
       if ((qtr_ok[6]==false)&&(qtr_ok[7]==false)&&(qtr_ok[8]==false)) {
-
+       coordY=0;
         on_T_ar=true;
         cp5.getController("T").setValue(1);
         dir="0";
+              if ((on_home)&&(on_T_gauche==false)){
+          dir="14";
+        dir_on_ligne=dir;}
+          else{
+         on_home=false;
+         cp5.getController("home").setValue(0);  
+            
+          }
+        
+        
         send_osc();
       }
 

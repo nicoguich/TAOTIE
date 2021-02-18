@@ -84,7 +84,7 @@ void dessine_robot() {
         if (T_ok){
      text(type_T,570,300);}
   */
-  
+  text("X: "+coordX+"  Y: "+coordY+ "  angle: "+ angle,300,400);
   text(etape_croisement,570,300);
   popMatrix();
   
