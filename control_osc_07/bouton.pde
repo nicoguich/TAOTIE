@@ -1,14 +1,30 @@
 public void controlEvent(ControlEvent theEvent) {
  String bouton_name=theEvent.getController().getName();
  
-  if((bouton_name.equals("stepX"))||(bouton_name.equals("stepY"))||(bouton_name.equals("step"))||(bouton_name.equals("speed"))){
+  if((bouton_name.equals("step"))||(bouton_name.equals("speed"))){
     theEvent.getController().setLabel(theEvent.getController().getName()+" "+theEvent.getController().getStringValue());
-    
 
+  }
+  
+  if(bouton_name.equals("stepX")){
     
     
+    stepX=str(int(int(stepX)-coordX));
+   
+    
+    cp5.getController("stepX").setLabel(cp5.getController("stepX").getName()+" "+stepX);
+     
     
   }
+  
+  if (bouton_name.equals("stepY")){
+    
+     stepY=str(int(int(stepY)-coordY));
+       cp5.getController("stepY").setLabel(cp5.getController("stepY").getName()+" "+stepY);
+    
+  }
+  
+  
 if (bouton_name.equals("lost")){
     
     alignement=boolean(int(theEvent.getController().getValue()));
