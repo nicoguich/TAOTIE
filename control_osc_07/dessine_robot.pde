@@ -88,7 +88,11 @@ void dessine_robot() {
   text(etape_croisement,570,300);
   popMatrix();
   
+  text("C "+dest_coordX,125,415);
+  text("S "+dest_stepX,125,435);
   
+    text("C "+dest_coordY,275,415);
+  text("S "+dest_stepY,275,435);
  
   
   

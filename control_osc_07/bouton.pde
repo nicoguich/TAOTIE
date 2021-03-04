@@ -7,20 +7,38 @@ public void controlEvent(ControlEvent theEvent) {
   }
   
   if(bouton_name.equals("stepX")){
+   String []list_temp=split(stepX, '.');
+    
+    dest_coordX=list_temp[0];
+    if (list_temp.length>1){
+      dest_stepX=list_temp[1];
+      
+    }
     
     
-    stepX=str(int(int(stepX)-coordX));
+    stepX=str(int(int(dest_coordX)-coordX));
    
     
-    cp5.getController("stepX").setLabel(cp5.getController("stepX").getName()+" "+stepX);
+   
+    
      
     
   }
   
   if (bouton_name.equals("stepY")){
     
-     stepY=str(int(int(stepY)-coordY));
-       cp5.getController("stepY").setLabel(cp5.getController("stepY").getName()+" "+stepY);
+       String []list_temp=split(stepY, '.');
+    
+    dest_coordY=list_temp[0];
+    if (list_temp.length>1){
+      dest_stepY=list_temp[1];
+      
+    }
+    
+    
+    
+     stepY=str(int(int(dest_coordY)-coordY));
+   cp5.getController("stepY").setLabel("coord "+coordY+"\n step "+micro_stepY);
     
   }
   

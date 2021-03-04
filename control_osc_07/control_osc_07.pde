@@ -42,7 +42,7 @@ int capteur_max, capteur_max_temp, rotate=0;
 
 float coordX,coordY,angle;
 
-String stepX="0", stepY="0", step="0", dir="0", dir_temp, speed="0", speed_perdu="300", dir_on_ligne="0";
+String dest_coordX="0", dest_coordY="0", dest_stepX="0", dest_stepY="0",stepX="0", stepY="0",micro_stepX="0",micro_stepY="0", step="0", dir="0", dir_temp, speed="0", speed_perdu="500", dir_on_ligne="0";
 
 int etape_perdu=0, etape_croisement=0, compteur_croisement, dir_change=0, etape_go=0;
 
@@ -75,6 +75,7 @@ void setup() {
     .setFocus(true)
     .setColor(color(255))
     .setColorCaptionLabel(color(0))
+    .setLabel("coord "+coordX+"\n step "+micro_stepX)
     ;
 
   cp5.addTextfield("stepY")
@@ -84,6 +85,7 @@ void setup() {
     .setFocus(true)
     .setColor(color(255))
     .setColorCaptionLabel(color(0))
+   .setLabel("coord "+coordY+"\n step "+micro_stepY)
     ;     
 
 

@@ -24,7 +24,7 @@ void F_on_croisement() {
     coordX=coordX-1;
       if (go_on) {
         stepX=str(int(stepX)+1);
-        cp5.getController("stepX").setLabel(cp5.getController("stepX").getName()+" "+stepX);
+         cp5.getController("stepX").setLabel("coord "+coordX+"\n step "+micro_stepX);
 
         if ((stepX.equals("0"))&&(stepY.equals("0"))) {
 
@@ -138,7 +138,7 @@ else{
 
       if (go_on) {
         stepX=str(int(stepX)-1);
-        cp5.getController("stepX").setLabel(cp5.getController("stepX").getName()+" "+stepX);
+         cp5.getController("stepX").setLabel("coord "+coordX+"\n step "+micro_stepX);
 
         if ((stepX.equals("0"))&&(stepY.equals("0"))) {
 
@@ -241,7 +241,7 @@ else{
 coordY=coordY+1;
       if (go_on) {
         stepY=str(int(stepY)-1);
-        cp5.getController("stepY").setLabel(cp5.getController("stepY").getName()+" "+stepY);
+         cp5.getController("stepY").setLabel("coord "+coordY+"\n step "+micro_stepY);
 
 
         if ((stepX.equals("0"))&&(stepY.equals("0"))) {
@@ -356,7 +356,7 @@ else{
 coordY=coordY-1;
       if (go_on) {      
         stepY=str(int(stepY)+1);
-        cp5.getController("stepY").setLabel(cp5.getController("stepY").getName()+" "+stepY);
+         cp5.getController("stepY").setLabel("coord "+coordY+"\n step "+micro_stepY);
 
         if ((stepX.equals("0"))&&(stepY.equals("0"))) {
           dir="0";
