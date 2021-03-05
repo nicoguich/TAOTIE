@@ -3,50 +3,57 @@
 
 void moveMotor() {
 
-  LeftFrontWheel.setSpeed(LeftFrontSpeed);
-  LeftBackWheel.setSpeed(LeftBackSpeed);
-  RightFrontWheel.setSpeed(RightFrontSpeed);
-  RightBackWheel.setSpeed(RightBackSpeed);
+  FrontWheel.setSpeed(FrontSpeed);
+  LeftWheel.setSpeed(LeftSpeed);
+  RightWheel.setSpeed(RightSpeed);
+  BackWheel.setSpeed(BackSpeed);
 
 
 
 
   if (m < 11) {
 
-    if (LeftFrontWheel.distanceToGo() == 0) {
-      LeftFrontWheel.setCurrentPosition(0);
+datawheel[0]= byte(LeftWheel.distanceToGo()>>8);
+datawheel[1]= byte(LeftWheel.distanceToGo()-((LeftWheel.distanceToGo()>>8)*256));
+datawheel[2]= byte(FrontWheel.distanceToGo()>>8);
+datawheel[3]= byte(FrontWheel.distanceToGo()-((FrontWheel.distanceToGo()>>8)*256));
+        
+Serial3.write(datawheel, 4);
+
+    if (FrontWheel.distanceToGo() == 0) {
+      FrontWheel.setCurrentPosition(0);
     }
     else {
-      LeftFrontWheel.runSpeed();
+      FrontWheel.runSpeed();
     }
 
-    if (LeftBackWheel.distanceToGo() == 0) {
-      LeftBackWheel.setCurrentPosition(0);
+    if (LeftWheel.distanceToGo() == 0) {
+      LeftWheel.setCurrentPosition(0);
     }
     else {
-      LeftBackWheel.runSpeed();
+      LeftWheel.runSpeed();
     }
 
-    if (RightFrontWheel.distanceToGo() == 0) {
-      RightFrontWheel.setCurrentPosition(0);
+    if (RightWheel.distanceToGo() == 0) {
+      RightWheel.setCurrentPosition(0);
     }
     else {
-      RightFrontWheel.runSpeed();
+      RightWheel.runSpeed();
     }
 
-    if (RightBackWheel.distanceToGo() == 0) {
-      RightBackWheel.setCurrentPosition(0);
+    if (BackWheel.distanceToGo() == 0) {
+      BackWheel.setCurrentPosition(0);
     }
     else {
-      RightBackWheel.runSpeed();
+      BackWheel.runSpeed();
     }
   }
 
   else {
-    LeftFrontWheel.runSpeed();
-    LeftBackWheel.runSpeed();
-    RightFrontWheel.runSpeed();
-    RightBackWheel.runSpeed();
+    FrontWheel.runSpeed();
+    LeftWheel.runSpeed();
+    RightWheel.runSpeed();
+    BackWheel.runSpeed();
   }
 
 
@@ -63,14 +70,14 @@ void moveForward() {
   digitalWrite(enable_right,LOW);
   digitalWrite(enable_back,HIGH);
 
-  LeftFrontWheel.moveTo(0);
-  LeftBackWheel.moveTo(pos);
-  RightFrontWheel.moveTo(-pos);
-  RightBackWheel.moveTo(0);
-  LeftFrontSpeed = 0;
-  LeftBackSpeed = wheelSpeed;
-  RightFrontSpeed = -wheelSpeed;
-  RightBackSpeed = 0;
+  FrontWheel.moveTo(0);
+  LeftWheel.moveTo(pos);
+  RightWheel.moveTo(-pos);
+  BackWheel.moveTo(0);
+  FrontSpeed = 0;
+  LeftSpeed = wheelSpeed;
+  RightSpeed = -wheelSpeed;
+  BackSpeed = 0;
 
 
 }
@@ -84,14 +91,14 @@ void moveBackward() {
   digitalWrite(enable_back,HIGH);
 
   
-  LeftFrontSpeed = 0;
-  LeftBackSpeed = -wheelSpeed;
-  RightFrontSpeed = wheelSpeed;
-  RightBackSpeed = 0;
-  LeftFrontWheel.moveTo(0);
-  LeftBackWheel.moveTo(-pos);
-  RightFrontWheel.moveTo(pos);
-  RightBackWheel.moveTo(0);
+  FrontSpeed = 0;
+  LeftSpeed = -wheelSpeed;
+  RightSpeed = wheelSpeed;
+  BackSpeed = 0;
+  FrontWheel.moveTo(0);
+  LeftWheel.moveTo(-pos);
+  RightWheel.moveTo(pos);
+  BackWheel.moveTo(0);
 
 
 }
@@ -106,14 +113,14 @@ void moveSidewaysRight() {
   digitalWrite(enable_back,LOW);
 
   
-  LeftFrontSpeed = wheelSpeed;
-  LeftBackSpeed = 0;
-  RightFrontSpeed = 0;
-  RightBackSpeed = -wheelSpeed;
-  LeftFrontWheel.moveTo(pos);
-  LeftBackWheel.moveTo(0);
-  RightFrontWheel.moveTo(0);
-  RightBackWheel.moveTo(-pos);
+  FrontSpeed = wheelSpeed;
+  LeftSpeed = 0;
+  RightSpeed = 0;
+  BackSpeed = -wheelSpeed;
+  FrontWheel.moveTo(pos);
+  LeftWheel.moveTo(0);
+  RightWheel.moveTo(0);
+  BackWheel.moveTo(-pos);
 
 }
 
@@ -128,14 +135,14 @@ void moveSidewaysLeft() {
 
 
   
-  LeftFrontSpeed = -wheelSpeed;
-  LeftBackSpeed = 0;
-  RightFrontSpeed = 0;
-  RightBackSpeed = wheelSpeed;
-  LeftFrontWheel.moveTo(-pos);
-  LeftBackWheel.moveTo(0);
-  RightFrontWheel.moveTo(0);
-  RightBackWheel.moveTo(pos);
+  FrontSpeed = -wheelSpeed;
+  LeftSpeed = 0;
+  RightSpeed = 0;
+  BackSpeed = wheelSpeed;
+  FrontWheel.moveTo(-pos);
+  LeftWheel.moveTo(0);
+  RightWheel.moveTo(0);
+  BackWheel.moveTo(pos);
 
 }
 
@@ -150,14 +157,14 @@ void rotateLeft() {
 
 
   
-  LeftFrontSpeed = -wheelSpeed;
-  LeftBackSpeed = -wheelSpeed;
-  RightFrontSpeed = -wheelSpeed;
-  RightBackSpeed = -wheelSpeed;
-  LeftFrontWheel.moveTo(-pos);
-  LeftBackWheel.moveTo(-pos);
-  RightFrontWheel.moveTo(-pos);
-  RightBackWheel.moveTo(-pos);
+  FrontSpeed = -wheelSpeed;
+  LeftSpeed = -wheelSpeed;
+  RightSpeed = -wheelSpeed;
+  BackSpeed = -wheelSpeed;
+  FrontWheel.moveTo(-pos);
+  LeftWheel.moveTo(-pos);
+  RightWheel.moveTo(-pos);
+  BackWheel.moveTo(-pos);
 
 }
 
@@ -170,14 +177,14 @@ void rotateRight() {
   digitalWrite(enable_right,LOW);
   digitalWrite(enable_back,LOW);
   
-  LeftFrontSpeed = wheelSpeed;
-  LeftBackSpeed = wheelSpeed;
-  RightFrontSpeed = wheelSpeed;
-  RightBackSpeed = wheelSpeed;
-  LeftFrontWheel.moveTo(pos);
-  LeftBackWheel.moveTo(pos);
-  RightFrontWheel.moveTo(pos);
-  RightBackWheel.moveTo(pos);
+  FrontSpeed = wheelSpeed;
+  LeftSpeed = wheelSpeed;
+  RightSpeed = wheelSpeed;
+  BackSpeed = wheelSpeed;
+  FrontWheel.moveTo(pos);
+  LeftWheel.moveTo(pos);
+  RightWheel.moveTo(pos);
+  BackWheel.moveTo(pos);
 
 }
 
@@ -191,15 +198,15 @@ void moveRightForward() {
   digitalWrite(enable_back,LOW);
 
   
-  LeftFrontSpeed = wheelSpeed;
-  LeftBackSpeed = wheelSpeed;
-  RightFrontSpeed = -wheelSpeed;
-  RightBackSpeed = -wheelSpeed;
-  LeftFrontWheel.moveTo(pos);
-  LeftBackWheel.moveTo(pos);
-  RightFrontWheel.moveTo(-pos);
+  FrontSpeed = wheelSpeed;
+  LeftSpeed = wheelSpeed;
+  RightSpeed = -wheelSpeed;
+  BackSpeed = -wheelSpeed;
+  FrontWheel.moveTo(pos);
+  LeftWheel.moveTo(pos);
+  RightWheel.moveTo(-pos);
 
-  RightBackWheel.moveTo(-pos);
+  BackWheel.moveTo(-pos);
 
 }
 
@@ -213,15 +220,15 @@ void moveRightBackward() {
   digitalWrite(enable_back,LOW);
 
   
-  LeftFrontSpeed = wheelSpeed;
-  LeftBackSpeed = -wheelSpeed;
-  RightFrontSpeed = wheelSpeed;
-  RightBackSpeed = -wheelSpeed;
+  FrontSpeed = wheelSpeed;
+  LeftSpeed = -wheelSpeed;
+  RightSpeed = wheelSpeed;
+  BackSpeed = -wheelSpeed;
 
-  LeftFrontWheel.moveTo(pos);
-  LeftBackWheel.moveTo(-pos);
-  RightFrontWheel.moveTo(pos);
-  RightBackWheel.moveTo(-pos);
+  FrontWheel.moveTo(pos);
+  LeftWheel.moveTo(-pos);
+  RightWheel.moveTo(pos);
+  BackWheel.moveTo(-pos);
 
 }
 
@@ -235,14 +242,14 @@ void moveLeftForward() {
   digitalWrite(enable_back,LOW);
 
   
-  LeftFrontSpeed = -wheelSpeed;
-  LeftBackSpeed = wheelSpeed;
-  RightFrontSpeed = -wheelSpeed;
-  RightBackSpeed = wheelSpeed;
-  LeftFrontWheel.moveTo(-pos);
-  LeftBackWheel.moveTo(pos);
-  RightFrontWheel.moveTo(-pos);
-  RightBackWheel.moveTo(pos);
+  FrontSpeed = -wheelSpeed;
+  LeftSpeed = wheelSpeed;
+  RightSpeed = -wheelSpeed;
+  BackSpeed = wheelSpeed;
+  FrontWheel.moveTo(-pos);
+  LeftWheel.moveTo(pos);
+  RightWheel.moveTo(-pos);
+  BackWheel.moveTo(pos);
 
 }
 
@@ -258,15 +265,15 @@ void moveLeftBackward() {
   digitalWrite(enable_back,LOW);
 
   
-  LeftFrontSpeed = -wheelSpeed;
-  LeftBackSpeed = -wheelSpeed;
-  RightFrontSpeed = wheelSpeed;
-  RightBackSpeed = wheelSpeed;
+  FrontSpeed = -wheelSpeed;
+  LeftSpeed = -wheelSpeed;
+  RightSpeed = wheelSpeed;
+  BackSpeed = wheelSpeed;
 
-  LeftFrontWheel.moveTo(-pos);
-  LeftBackWheel.moveTo(-pos);
-  RightFrontWheel.moveTo(pos);
-  RightBackWheel.moveTo(pos);
+  FrontWheel.moveTo(-pos);
+  LeftWheel.moveTo(-pos);
+  RightWheel.moveTo(pos);
+  BackWheel.moveTo(pos);
 
 }
 
@@ -281,17 +288,17 @@ void stopMoving() {
   digitalWrite(enable_back,HIGH);
 
   
-  LeftFrontWheel.setSpeed(0);
-  LeftBackWheel.setSpeed(0);
-  RightFrontWheel.setSpeed(0);
-  RightBackWheel.setSpeed(0);
-  LeftBackWheel.setCurrentPosition(0);
-  LeftFrontWheel.setCurrentPosition(0);
-  RightBackWheel.setCurrentPosition(0);
-  RightFrontWheel.setCurrentPosition(0);
-  LeftFrontWheel.moveTo(0);
-  LeftBackWheel.moveTo(0);
-  RightFrontWheel.moveTo(0);
-  RightBackWheel.moveTo(0);
+  FrontWheel.setSpeed(0);
+  LeftWheel.setSpeed(0);
+  RightWheel.setSpeed(0);
+  BackWheel.setSpeed(0);
+  LeftWheel.setCurrentPosition(0);
+  FrontWheel.setCurrentPosition(0);
+  BackWheel.setCurrentPosition(0);
+  RightWheel.setCurrentPosition(0);
+  FrontWheel.moveTo(0);
+  LeftWheel.moveTo(0);
+  RightWheel.moveTo(0);
+  BackWheel.moveTo(0);
 
 }

@@ -11,7 +11,7 @@ long timer;
 uint16_t position_av, position_ar, position_gauche, position_droite;
 const uint8_t SensorCount = 3;
 uint16_t sensorValues_av[SensorCount], sensorValues_ar[SensorCount], sensorValues_gauche[SensorCount], sensorValues_droite[SensorCount];
-byte dataSensor[5], dataIn[5];
+byte dataSensor[5], dataIn[5], datawheel[4];
 
 int trigPin_av= 6, echoPin_av=11;
 int trigPin_ar= 0, echoPin_ar=1;
@@ -141,6 +141,13 @@ void loop() {
   }
 
 
+  //RECEIVE DATA MOTOR FROM teensy3.5 and send to OSC 8266
+  if (Serial2.available() > 0) {
+    Serial2.readBytes(datawheel, 4);
+ 
+  }
+
+
 
   //RECEIVE DATA MOTOR FROM OSC 8266
   if (Serial3.available() > 0) {
@@ -158,8 +165,4 @@ void loop() {
   delay(20);
 
 
-
-
-
-  delay(50);
 }

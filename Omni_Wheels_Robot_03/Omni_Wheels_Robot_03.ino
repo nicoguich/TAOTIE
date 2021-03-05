@@ -2,22 +2,23 @@
 #include <AccelStepper.h>
 
 // Define the stepper motors and the pins the will use
-AccelStepper LeftBackWheel(1, 42, 43);   // (Type:driver, STEP, DIR) - Stepper1
-AccelStepper LeftFrontWheel(1, 40, 41);  // Stepper2
-AccelStepper RightBackWheel(1, 44, 45);  // Stepper3
-AccelStepper RightFrontWheel(1, 46, 47); // Stepper4
 
+AccelStepper FrontWheel(1, 3, 4);  // Stepper1 // (Type:driver, STEP, DIR) -
+AccelStepper RightWheel(1, 6, 9); // Stepper2
+AccelStepper BackWheel(1, 11, 12);  // Stepper3
+AccelStepper LeftWheel(1, 14, 15);   // Stepper4
 
 
 
 int wheelSpeed = 5000;
-int LeftBackSpeed, LeftFrontSpeed, RightBackSpeed, RightFrontSpeed;
+int LeftSpeed, FrontSpeed, BackSpeed, RightSpeed;
 
 int dataIn, m = -1, dir, compteurdata;
 long pos, timer;
 byte data2[5];
+byte datawheel[4];
 int led = 14;
-int enable_front=5,enable_back=2,enable_left=3,enable_right=4;
+int enable_front=2,enable_back=10,enable_left=13,enable_right=5;
 
 
 
@@ -25,19 +26,19 @@ int enable_front=5,enable_back=2,enable_left=3,enable_right=4;
 void setup() {
 
   Serial.begin(9600);
-  Serial2.begin(9600);
+  Serial3.begin(9600);
 
   // Set initial seed values for the steppers
-  LeftFrontWheel.setMaxSpeed(wheelSpeed);
-  LeftBackWheel.setMaxSpeed(wheelSpeed);
-  RightFrontWheel.setMaxSpeed(wheelSpeed);
-  RightBackWheel.setMaxSpeed(wheelSpeed);
+  FrontWheel.setMaxSpeed(wheelSpeed);
+  LeftWheel.setMaxSpeed(wheelSpeed);
+  RightWheel.setMaxSpeed(wheelSpeed);
+  BackWheel.setMaxSpeed(wheelSpeed);
 
 
-  LeftBackWheel.setCurrentPosition(0);
-  LeftFrontWheel.setCurrentPosition(0);
-  RightBackWheel.setCurrentPosition(0);
-  RightFrontWheel.setCurrentPosition(0);
+  LeftWheel.setCurrentPosition(0);
+  FrontWheel.setCurrentPosition(0);
+  BackWheel.setCurrentPosition(0);
+  RightWheel.setCurrentPosition(0);
 
   pinMode (led, OUTPUT);
   pinMode(enable_front,OUTPUT);
@@ -59,8 +60,8 @@ void loop() {
 
   // Check for incoming data
 
-  if (Serial2.available() > 0) {
-    Serial2.readBytes(data2, 5); // Read the data
+  if (Serial3.available() > 0) {
+    Serial3.readBytes(data2, 5); // Read the data
 
 
 
