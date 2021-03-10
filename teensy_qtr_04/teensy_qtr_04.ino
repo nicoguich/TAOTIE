@@ -5,7 +5,7 @@ QTRSensors qtr_av, qtr_ar, qtr_gauche, qtr_droite;
 
 
 
-
+int batterie_pin = A18;
 boolean print_sensor = false;
 long timer;
 uint16_t position_av, position_ar, position_gauche, position_droite;
@@ -13,21 +13,22 @@ const uint8_t SensorCount = 3;
 uint16_t sensorValues_av[SensorCount], sensorValues_ar[SensorCount], sensorValues_gauche[SensorCount], sensorValues_droite[SensorCount];
 byte dataSensor[5], dataIn[5], datawheel[4];
 
-int trigPin_av= 6, echoPin_av=11;
-int trigPin_ar= 0, echoPin_ar=1;
-int trigPin_gauche= 4, echoPin_gauche=5;
-int trigPin_droite= 2, echoPin_droite=3;
+int trigPin_av= 11, echoPin_av=12;
+int trigPin_ar= 26, echoPin_ar=27;
+int trigPin_gauche= 28, echoPin_gauche=29;
+int trigPin_droite= 24, echoPin_droite=25;
 
 
 long duration_av,duration_ar,duration_droite,duration_gauche;
 int distance_av,distance_ar,distance_droite,distance_gauche;
-
+int led1=2,led2=3,led3=4,led4=5;
+int batterie_value=0;
 
 
 
 void setup() {
   timer = millis();
- if(print_sensor){ Serial.begin(9600);}
+  Serial.begin(9600);
   Serial2.begin(9600);
   Serial3.begin(9600);
 
@@ -36,80 +37,31 @@ void setup() {
 
   qtr_av.setTypeRC();
   qtr_av.setSensorPins((const uint8_t[]) {
-    21, 22, 23
+    23, 22, 21
   }, SensorCount);
-  qtr_av.setEmitterPin(29);
+  qtr_av.setEmitterPin(38);
 
   qtr_ar.setTypeRC();
   qtr_ar.setSensorPins((const uint8_t[]) {
-    15, 16, 17
+    17, 16, 15
   }, SensorCount);
-  qtr_ar.setEmitterPin(29);
+  qtr_ar.setEmitterPin(38);
 
   qtr_droite.setTypeRC();
   qtr_droite.setSensorPins((const uint8_t[]) {
     18, 19, 20
   }, SensorCount);
-  qtr_droite.setEmitterPin(29);
+  qtr_droite.setEmitterPin(38);
 
 
   qtr_gauche.setTypeRC();
   qtr_gauche.setSensorPins((const uint8_t[]) {
-    14, 13, 12
+    39, 13, 14
   }, SensorCount);
-  qtr_gauche.setEmitterPin(29);
+  qtr_gauche.setEmitterPin(38);
 
-  delay(500);
+ // delay(500);
 
-/*
-  for (uint16_t i = 0; i < 5; i++)
-  {
-    qtr_av.calibrate();
-    qtr_ar.calibrate();
-    qtr_gauche.calibrate();
-    qtr_droite.calibrate();
-  }
-
-
-  qtr_av.calibrationOn.minimum[0] = 70;
-  qtr_av.calibrationOn.maximum[0] = 450;
-  qtr_ar.calibrationOn.minimum[0] = 70;
-  qtr_ar.calibrationOn.maximum[0] = 450;
-
-  qtr_av.calibrationOn.minimum[1] = 70;
-  qtr_av.calibrationOn.maximum[1] = 450;
-  qtr_ar.calibrationOn.minimum[1] = 70;
-  qtr_ar.calibrationOn.maximum[1] = 450;
-
-  qtr_av.calibrationOn.minimum[2] = 70;
-  qtr_av.calibrationOn.maximum[2] = 450;
-  qtr_ar.calibrationOn.minimum[2] = 70;
-  qtr_ar.calibrationOn.maximum[2] = 450;
-
-
-
-  qtr_gauche.calibrationOn.minimum[0] = 70;
-  qtr_gauche.calibrationOn.maximum[0] = 450;
-  qtr_droite.calibrationOn.minimum[0] = 70;
-  qtr_droite.calibrationOn.maximum[0] = 450;
-
-
-
-  qtr_gauche.calibrationOn.minimum[1] = 70;
-  qtr_gauche.calibrationOn.maximum[1] = 450;
-  qtr_droite.calibrationOn.minimum[1] = 70;
-  qtr_droite.calibrationOn.maximum[1] = 450;
-
-
-
-  qtr_gauche.calibrationOn.minimum[2] = 70;
-  qtr_gauche.calibrationOn.maximum[2] = 450;
-  qtr_droite.calibrationOn.minimum[2] = 70;
-  qtr_droite.calibrationOn.maximum[2] = 450;
-
-*/
-
-  delay(500);
 
 
 pinMode(trigPin_av, OUTPUT); 
@@ -120,6 +72,18 @@ pinMode(trigPin_gauche, OUTPUT);
 pinMode(echoPin_gauche, INPUT);
 pinMode(trigPin_droite, OUTPUT); 
 pinMode(echoPin_droite, INPUT);
+
+
+
+pinMode(led1,OUTPUT);
+pinMode(led2,OUTPUT);
+pinMode(led3,OUTPUT);
+pinMode(led4,OUTPUT);
+
+
+digitalWrite(led3,HIGH);
+
+
 }
 
 
@@ -140,8 +104,10 @@ void loop() {
     imprim_sensor();
   }
 
+batterie_value=analogRead(batterie_pin);
+Serial.println(batterie_value);
 
-  //RECEIVE DATA MOTOR FROM teensy3.5 and send to OSC 8266
+  //RECEIVE DATA MOTOR FROM teensy3.2 and send to OSC 8266
   if (Serial2.available() > 0) {
     Serial2.readBytes(datawheel, 4);
  
@@ -162,7 +128,7 @@ void loop() {
   //SEND DATA CAPTEUR TO OSC 8266
 
   Serial3.write(dataSensor, 16);
-  delay(20);
+  delay(80);
 
 
 }

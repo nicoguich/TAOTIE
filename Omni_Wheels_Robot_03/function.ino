@@ -62,7 +62,7 @@ Serial3.write(datawheel, 4);
 
 
 
-void moveForward() {
+void moveBackward() {
 
 
   digitalWrite(enable_front,HIGH);
@@ -83,7 +83,7 @@ void moveForward() {
 }
 
 
-void moveBackward() {
+void moveForward() {
 
   digitalWrite(enable_front,HIGH);
   digitalWrite(enable_left,LOW);
@@ -105,7 +105,7 @@ void moveBackward() {
 
 
 
-void moveSidewaysRight() {
+void moveSidewaysLeft() {
 
   digitalWrite(enable_front,LOW);
   digitalWrite(enable_left,HIGH);
@@ -125,7 +125,7 @@ void moveSidewaysRight() {
 }
 
 
-void moveSidewaysLeft() {
+void moveSidewaysRight() {
 
 
   digitalWrite(enable_front,LOW);
@@ -190,7 +190,7 @@ void rotateRight() {
 
 
 
-void moveRightForward() {
+void moveLeftBackward() {
 
   digitalWrite(enable_front,LOW);
   digitalWrite(enable_left,LOW);
@@ -212,7 +212,7 @@ void moveRightForward() {
 
 
 
-void moveRightBackward() {
+void moveLeftForward() {
 
   digitalWrite(enable_front,LOW);
   digitalWrite(enable_left,LOW);
@@ -233,7 +233,7 @@ void moveRightBackward() {
 }
 
 
-void moveLeftForward() {
+void moveRightBackward() {
 
 
   digitalWrite(enable_front,LOW);
@@ -256,7 +256,7 @@ void moveLeftForward() {
 
 
 
-void moveLeftBackward() {
+void moveRightForward() {
 
 
   digitalWrite(enable_front,LOW);
