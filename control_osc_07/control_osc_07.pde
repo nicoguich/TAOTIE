@@ -20,7 +20,7 @@ int dir_manette, dir_manette_temp;
 
 
 
-int seuil_qtr=80;
+int seuil_qtr=150;
 int seuil_sonar=7;
 boolean ligne_noire=true;
 

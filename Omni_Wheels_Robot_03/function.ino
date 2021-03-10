@@ -18,10 +18,16 @@ datawheel[1]= byte(LeftWheel.distanceToGo()-((LeftWheel.distanceToGo()>>8)*256))
 datawheel[2]= byte(FrontWheel.distanceToGo()>>8);
 datawheel[3]= byte(FrontWheel.distanceToGo()-((FrontWheel.distanceToGo()>>8)*256));
         
-Serial3.write(datawheel, 4);
+if ((FrontWheel.distanceToGo() == 0)&&(BackWheel.distanceToGo() == 0)&& (LeftWheel.distanceToGo() == 0)&&(RightWheel.distanceToGo() == 0)){
+
+
+  Serial3.write(datawheel,4);
+}
 
     if (FrontWheel.distanceToGo() == 0) {
       FrontWheel.setCurrentPosition(0);
+      digitalWrite(enable_front,HIGH);
+      
     }
     else {
       FrontWheel.runSpeed();
@@ -29,6 +35,8 @@ Serial3.write(datawheel, 4);
 
     if (LeftWheel.distanceToGo() == 0) {
       LeftWheel.setCurrentPosition(0);
+      digitalWrite(enable_left,HIGH);
+
     }
     else {
       LeftWheel.runSpeed();
@@ -36,6 +44,8 @@ Serial3.write(datawheel, 4);
 
     if (RightWheel.distanceToGo() == 0) {
       RightWheel.setCurrentPosition(0);
+      digitalWrite(enable_right,HIGH);
+ 
     }
     else {
       RightWheel.runSpeed();
@@ -43,6 +53,8 @@ Serial3.write(datawheel, 4);
 
     if (BackWheel.distanceToGo() == 0) {
       BackWheel.setCurrentPosition(0);
+      digitalWrite(enable_back,HIGH);
+      
     }
     else {
       BackWheel.runSpeed();

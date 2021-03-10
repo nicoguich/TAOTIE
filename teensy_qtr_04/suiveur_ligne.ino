@@ -1,20 +1,20 @@
 void ligne(){
   
-dataSensor[4]=byte(map(sensorValues_av[0],0,1000,0,255));
-dataSensor[5]=byte(map(sensorValues_av[1],0,1000,0,255));
-dataSensor[6]=byte(map(sensorValues_av[2],0,1000,0,255));
+dataSensor[4]=byte(map(sensorValues[0],0,500,0,255));
+dataSensor[5]=byte(map(sensorValues[1],0,500,0,255));
+dataSensor[6]=byte(map(sensorValues[2],0,500,0,255));
 
-dataSensor[7]=byte(map(sensorValues_droite[0],0,1000,0,255));
-dataSensor[8]=byte(map(sensorValues_droite[1],0,1000,0,255));
-dataSensor[9]=byte(map(sensorValues_droite[2],0,1000,0,255));
+dataSensor[7]=byte(map(sensorValues[3],0,500,0,255));
+dataSensor[8]=byte(map(sensorValues[4],0,500,0,255));
+dataSensor[9]=byte(map(sensorValues[5],0,500,0,255));
 
-dataSensor[10]=byte(map(sensorValues_ar[0],0,1000,0,255));
-dataSensor[11]=byte(map(sensorValues_ar[1],0,1000,0,255));
-dataSensor[12]=byte(map(sensorValues_ar[2],0,1000,0,255));
+dataSensor[10]=byte(map(sensorValues[6],0,500,0,255));
+dataSensor[11]=byte(map(sensorValues[7],0,500,0,255));
+dataSensor[12]=byte(map(sensorValues[8],0,500,0,255));
 
-dataSensor[13]=byte(map(sensorValues_gauche[0],0,1000,0,255));
-dataSensor[14]=byte(map(sensorValues_gauche[1],0,1000,0,255));
-dataSensor[15]=byte(map(sensorValues_gauche[2],0,1000,0,255));
+dataSensor[13]=byte(map(sensorValues[9],0,500,0,255));
+dataSensor[14]=byte(map(sensorValues[10],0,500,0,255));
+dataSensor[15]=byte(map(sensorValues[11],0,500,0,255));
 
 /*
   if (print_sensor == true) {

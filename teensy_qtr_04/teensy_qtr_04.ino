@@ -1,16 +1,16 @@
 #include <QTRSensors.h>
 
 
-QTRSensors qtr_av, qtr_ar, qtr_gauche, qtr_droite;
+QTRSensors qtr,qtr_av, qtr_ar, qtr_gauche, qtr_droite;
 
 
 
-int batterie_pin = A18;
-boolean print_sensor = false;
+int batterie_pin = 37;
+int print_Sensor = 0;
 long timer;
 uint16_t position_av, position_ar, position_gauche, position_droite;
-const uint8_t SensorCount = 3;
-uint16_t sensorValues_av[SensorCount], sensorValues_ar[SensorCount], sensorValues_gauche[SensorCount], sensorValues_droite[SensorCount];
+const uint8_t SensorCount = 12;
+uint16_t sensorValues[SensorCount],sensorValues_av[SensorCount], sensorValues_ar[SensorCount], sensorValues_gauche[SensorCount], sensorValues_droite[SensorCount];
 byte dataSensor[5], dataIn[5], datawheel[4];
 
 int trigPin_av= 11, echoPin_av=12;
@@ -28,26 +28,35 @@ int batterie_value=0;
 
 void setup() {
   timer = millis();
-  Serial.begin(9600);
-  Serial2.begin(9600);
-  Serial3.begin(9600);
+  Serial.begin(115200);
+  Serial2.begin(115200);
+  Serial3.begin(115200);
 
 
 
 
+  qtr.setTypeRC();
+  qtr.setTimeout(500);
+  qtr.setSensorPins((const uint8_t[]){23, 22, 21,18,19,20,17,16,15,39,13,14}, SensorCount);
+  qtr.setEmitterPin(38);
+
+/*
   qtr_av.setTypeRC();
+  qtr_av.setTimeout(500);
   qtr_av.setSensorPins((const uint8_t[]) {
     23, 22, 21
   }, SensorCount);
   qtr_av.setEmitterPin(38);
 
   qtr_ar.setTypeRC();
+  qtr_ar.setTimeout(500);
   qtr_ar.setSensorPins((const uint8_t[]) {
     17, 16, 15
   }, SensorCount);
   qtr_ar.setEmitterPin(38);
 
   qtr_droite.setTypeRC();
+  qtr_droite.setTimeout(500);
   qtr_droite.setSensorPins((const uint8_t[]) {
     18, 19, 20
   }, SensorCount);
@@ -55,11 +64,12 @@ void setup() {
 
 
   qtr_gauche.setTypeRC();
+  qtr_gauche.setTimeout(500);
   qtr_gauche.setSensorPins((const uint8_t[]) {
     39, 13, 14
   }, SensorCount);
   qtr_gauche.setEmitterPin(38);
-
+*/
  // delay(500);
 
 
@@ -93,19 +103,28 @@ digitalWrite(led3,HIGH);
 
 
 void loop() {
-
+/*
   qtr_av.read(sensorValues_av);
   qtr_ar.read(sensorValues_ar);
   qtr_gauche.read(sensorValues_gauche);
   qtr_droite.read(sensorValues_droite);
+*/
 
+qtr.read(sensorValues);
+  ligne();
 
-  if ( print_sensor)  {
+  //SEND DATA CAPTEUR TO OSC 8266
+
+  Serial3.write(dataSensor, 16);
+  delay(100);
+
+//Serial.println(print_Sensor);
+  if ( print_Sensor==1)  {
     imprim_sensor();
   }
 
 batterie_value=analogRead(batterie_pin);
-Serial.println(batterie_value);
+//Serial.println(batterie_value);
 
   //RECEIVE DATA MOTOR FROM teensy3.2 and send to OSC 8266
   if (Serial2.available() > 0) {
@@ -123,12 +142,7 @@ Serial.println(batterie_value);
 
 
  // sonar();
-  ligne();
 
-  //SEND DATA CAPTEUR TO OSC 8266
-
-  Serial3.write(dataSensor, 16);
-  delay(80);
 
 
 }

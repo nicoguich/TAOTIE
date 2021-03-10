@@ -25,8 +25,8 @@ int enable_front=2,enable_back=10,enable_left=13,enable_right=5;
 
 void setup() {
 
-  Serial.begin(9600);
-  Serial3.begin(9600);
+  Serial.begin(115200);
+  Serial3.begin(115200);
 
   // Set initial seed values for the steppers
   FrontWheel.setMaxSpeed(wheelSpeed);
@@ -51,7 +51,6 @@ void setup() {
     data2[x] = 0;
   }
 
-delay(5000);
 
 }
 

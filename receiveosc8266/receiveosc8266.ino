@@ -35,7 +35,7 @@ OSCErrorCode error;
 
 void setup() {
 
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // Connect to WiFi network
   Serial.println();
@@ -106,7 +106,7 @@ void loop() {
     msg.send(Udp);
     Udp.endPacket();
     msg.empty();
-    //delay(20);
+    delay(20);
   }
   
 }

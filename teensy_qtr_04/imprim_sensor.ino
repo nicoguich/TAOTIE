@@ -1,14 +1,14 @@
 void imprim_sensor(){
 
 
- for (uint8_t i = 0; i < 3; i++)
+ for (uint8_t i = 0; i <12; i++)
     {
       Serial.print("av:");
-      Serial.print(sensorValues_av[i]);
+      Serial.print(sensorValues[i]);
       Serial.print('\t');
     }
     Serial.println();
-    for (uint8_t i = 0; i < 3; i++)
+  /*  for (uint8_t i = 0; i < 3; i++)
     {
       Serial.print("ar:");
       Serial.print(sensorValues_ar[i]);
@@ -32,7 +32,7 @@ void imprim_sensor(){
 
     Serial.println();
 
-
+*/
 
 
 
