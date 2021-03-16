@@ -19,15 +19,20 @@ char pass[] = "lescoworkssontcuites";                    // your network passwor
 
 // A UDP instance to let us send and receive packets over UDP
 WiFiUDP Udp;
+OSCBundle bundle;
 const IPAddress outIp(192,168,100,255);        // remote IP (not needed for receive)
 const unsigned int outPort = 9999;          // remote port (not needed for receive)
 const unsigned int localPort = 8888;        // local port to listen for UDP packets (here's where we send the packets)
 
 
 int dir,pos,speedmotor;
+int qtr,sonar,coord,bat,on,lampe;
+int length_send,length_qtr=12,length_bat=1,length_coord=2,length_sonar=4,length_lampe=1,length_on=5;
 
-byte data[5];
-byte dataIn[16];
+
+byte data_command[7];
+byte data_show[7];
+byte dataIn[13];
 
 
 OSCErrorCode error;
@@ -65,18 +70,66 @@ void setup() {
 
 }
 
-void motor(OSCMessage &msg) {
-  dir = msg.getInt(0);
-  pos = msg.getInt(1);
-  speedmotor= msg.getInt(2);
-data[0]= byte(pos>>8);
-data[1]=byte(pos-((pos>>8)*256));
-data[2]=byte(dir);
-data[3]= byte(speedmotor>>8);
-data[4]=byte(speedmotor-((speedmotor>>8)*256));
-Serial.write(data,5);
+void command(OSCMessage &msg) {
+dir = msg.getInt(0);
+pos = msg.getInt(1);
+speedmotor= msg.getInt(2);
+
+/*
+Serial.print("/command ");
+Serial.print(dir);
+Serial.print(" ");
+Serial.print(pos);
+Serial.print(" ");
+Serial.println(speedmotor);
+*/
+data_command[0]=byte(0);  
+data_command[1]= byte(pos>>8);
+data_command[2]=byte(pos-((pos>>8)*256));
+data_command[3]=byte(dir);
+data_command[4]= byte(speedmotor>>8);
+data_command[5]=byte(speedmotor-((speedmotor>>8)*256));
+Serial.write(data_command,7);
 
 }
+
+
+
+void show(OSCMessage &msg) {
+
+//qtr,sonar,coord,bat,on,lampe
+qtr = msg.getInt(0);
+sonar = msg.getInt(1);
+coord = msg.getInt(2);
+bat = msg.getInt(3);
+on = msg.getInt(4);
+lampe = msg.getInt(5);
+/*
+Serial.print("/show ");
+Serial.print(qtr);
+Serial.print(" ");
+Serial.print(sonar);
+Serial.print(" ");
+Serial.print(coord);
+Serial.print(" ");
+Serial.print(bat);
+Serial.print(" ");
+Serial.print(on);
+Serial.print(" ");
+Serial.println(lampe);
+*/
+data_show[0]=byte(1);
+data_show[1]=byte(qtr);  
+data_show[2]= byte(sonar);
+data_show[3]=byte(coord);
+data_show[4]=byte(bat);
+data_show[5]= byte(on);
+data_show[6]=byte(lampe);
+Serial.write(data_show,7);
+
+}
+
+
 
 void loop() {
   OSCMessage msg;
@@ -87,7 +140,8 @@ void loop() {
       msg.fill(Udp.read());
     }
     if (!msg.hasError()) {
-      msg.dispatch("/motor", motor);
+      msg.dispatch("/command", command);
+      msg.dispatch("/show",show);
     } else {
       error = msg.getError();
       Serial.print("error: ");
@@ -98,14 +152,50 @@ void loop() {
 
 
   if (Serial.available() > 0) {
-    Serial.readBytes(dataIn, 16);
-        OSCMessage msg("/capteur");
-        for (int x=0;x<16;x++){
-    msg.add(int(dataIn[x]));}
+    Serial.readBytes(dataIn, 13);
+OSCMessage msg2;
+   
+switch (dataIn[0]){
+case 0 :
+  msg2= bundle.add("/qtr");
+  length_send = length_qtr;
+  break;
+  
+case 1:
+  msg2= bundle.add("/bat");
+  length_send = length_bat;
+  break;
+  
+  case 2 :
+  msg2= bundle.add("/coord");
+  length_send = length_coord;
+  break;
+  
+  case 3 :
+  msg2= bundle.add("/lampe");
+  length_send = length_lampe;
+  break;
+  
+  case 4 :
+  msg2= bundle.add("/sonar");
+  length_send = length_sonar;
+  break;
+  
+  case 5 :
+  msg2= bundle.add("/on");
+  length_send = length_on;
+  break;
+
+  
+}
+     
+ for (int x=1;x<length_send+1;x++){
+         
+    msg2.add(int(dataIn[x]));}
     Udp.beginPacket(outIp, outPort);
-    msg.send(Udp);
+    msg2.send(Udp);
     Udp.endPacket();
-    msg.empty();
+    msg2.empty();
     delay(20);
   }
   
