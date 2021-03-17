@@ -12,7 +12,7 @@ long timer;
 int limit_qtr,limit_sonar;
 const uint8_t SensorCount = 12;
 uint16_t sensorValues[SensorCount];
-byte Sensor_qtr[13], Sensor_qtr_temp[13], Sensor_sonar[13], Sensor_sonar_temp[13],dataIn[7];
+byte Sensor_qtr[13], Sensor_qtr_temp[13], Sensor_sonar[13], Sensor_sonar_temp[13],dataIn[7],Sensor_batterie[13];
 
 int trigPin_av= 11, echoPin_av=12;
 int trigPin_ar= 26, echoPin_ar=27;
@@ -23,7 +23,7 @@ int trigPin_droite= 24, echoPin_droite=25;
 long duration_av,duration_ar,duration_droite,duration_gauche;
 int distance_av,distance_ar,distance_droite,distance_gauche;
 int led1=2,led2=3,led3=4,led4=5;
-int batterie_value=0;
+int batterie_value,batterie_value_temp;
 
 
 
@@ -104,6 +104,8 @@ void loop() {
   ligne(); //READ AND SEND QTR TO ESP8266
 
   sonar(); //READ AND SEND SONAR TO ESP8266
+
+  batterie(); 
 
  
 
