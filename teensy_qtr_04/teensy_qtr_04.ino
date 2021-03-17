@@ -1,17 +1,17 @@
 #include <QTRSensors.h>
 
 
-QTRSensors qtr,qtr_av, qtr_ar, qtr_gauche, qtr_droite;
+QTRSensors qtr;
 
 
 
 int batterie_pin = 37;
 int print_Sensor = 0;
 long timer;
-uint16_t position_av, position_ar, position_gauche, position_droite;
+int limit_qtr= 150;
 const uint8_t SensorCount = 12;
-uint16_t sensorValues[SensorCount],sensorValues_av[SensorCount], sensorValues_ar[SensorCount], sensorValues_gauche[SensorCount], sensorValues_droite[SensorCount];
-byte dataSensor[5], dataIn[5], datawheel[4];
+uint16_t sensorValues[SensorCount];
+byte dataSensor[13], dataSensor_temp[13], dataIn[7];
 
 int trigPin_av= 11, echoPin_av=12;
 int trigPin_ar= 26, echoPin_ar=27;
@@ -39,38 +39,6 @@ void setup() {
   qtr.setTimeout(500);
   qtr.setSensorPins((const uint8_t[]){23, 22, 21,18,19,20,17,16,15,39,13,14}, SensorCount);
   qtr.setEmitterPin(38);
-
-/*
-  qtr_av.setTypeRC();
-  qtr_av.setTimeout(500);
-  qtr_av.setSensorPins((const uint8_t[]) {
-    23, 22, 21
-  }, SensorCount);
-  qtr_av.setEmitterPin(38);
-
-  qtr_ar.setTypeRC();
-  qtr_ar.setTimeout(500);
-  qtr_ar.setSensorPins((const uint8_t[]) {
-    17, 16, 15
-  }, SensorCount);
-  qtr_ar.setEmitterPin(38);
-
-  qtr_droite.setTypeRC();
-  qtr_droite.setTimeout(500);
-  qtr_droite.setSensorPins((const uint8_t[]) {
-    18, 19, 20
-  }, SensorCount);
-  qtr_droite.setEmitterPin(38);
-
-
-  qtr_gauche.setTypeRC();
-  qtr_gauche.setTimeout(500);
-  qtr_gauche.setSensorPins((const uint8_t[]) {
-    39, 13, 14
-  }, SensorCount);
-  qtr_gauche.setEmitterPin(38);
-*/
- // delay(500);
 
 
 
@@ -103,26 +71,34 @@ digitalWrite(led3,HIGH);
 
 
 void loop() {
+
 /*
-  qtr_av.read(sensorValues_av);
-  qtr_ar.read(sensorValues_ar);
-  qtr_gauche.read(sensorValues_gauche);
-  qtr_droite.read(sensorValues_droite);
+// RECEIVE DATA FROM ESP8266
+  if (Serial3.available() > 0) {
+    Serial3.readBytes(dataIn, 7);
+    Serial2.write(dataIn, 7);
+  }
+  
 */
 
-qtr.read(sensorValues);
+
+
+  
+
+ //SEND DATA QTR TO ESP8266
+
   ligne();
 
-  //SEND DATA CAPTEUR TO OSC 8266
+ 
 
-  Serial3.write(dataSensor, 16);
-  delay(100);
+ 
+
 
 //Serial.println(print_Sensor);
   if ( print_Sensor==1)  {
     imprim_sensor();
   }
-
+ /*
 batterie_value=analogRead(batterie_pin);
 //Serial.println(batterie_value);
 
@@ -134,15 +110,12 @@ batterie_value=analogRead(batterie_pin);
 
 
 
-  //RECEIVE DATA MOTOR FROM OSC 8266
-  if (Serial3.available() > 0) {
-    Serial3.readBytes(dataIn, 5);
-    Serial2.write(dataIn, 5);
-  }
+
+
 
 
  // sonar();
 
-
+*/
 
 }

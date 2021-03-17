@@ -7,7 +7,7 @@ void detection_qtr() {
 
   for (int x=0; x< qtr_value.length; x++) {
 
-    if (qtr_value[x]>=seuil_qtr) {
+    if (qtr_value[x]==1) {
       qtr_color[x]=color(255, 0, 0);
       qtr_ok[x]=true;
       img_sel=img[12];
