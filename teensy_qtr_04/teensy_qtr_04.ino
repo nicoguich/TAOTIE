@@ -12,7 +12,7 @@ long timer;
 int limit_qtr, limit_sonar, limit_batterie;
 const uint8_t SensorCount = 12;
 uint16_t sensorValues[SensorCount];
-byte Sensor_qtr[13], Sensor_qtr_temp[13], Sensor_sonar[13], Sensor_sonar_temp[13], dataIn[7], Sensor_batterie[13], coord_in[4], coord_out[13];
+byte Sensor_qtr[13], Sensor_qtr_temp[13], Sensor_sonar[13], Sensor_sonar_temp[13], dataIn[7],dataMotor[5], Sensor_batterie[13], coord_in[1], coord_out[13];
 byte show_qtr,show_sonar,show_coord,show_bat,show_on,show_lampe;
 
 
@@ -90,7 +90,7 @@ void loop() {
 
   //RECEIVE COORDONATE FROM teensy3.2 and send to OSC 8266
   if (Serial2.available() > 0) {
-    Serial2.readBytes(coord_in, 4);
+    Serial2.readBytes(coord_in, 1);
     coord_out[0] = 2;
     coord_out[1] = coord_in[0];
     coord_out[2] = coord_in[1];

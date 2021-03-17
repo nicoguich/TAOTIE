@@ -6,7 +6,9 @@ void osc_in(){
 
     switch (dataIn[0]){
     case 0 :
-      Serial2.write(dataIn, 7);
+    for (int x=0;x<6;x++){
+    dataMotor[x]=dataIn[x+1];}
+      Serial2.write(dataMotor, 5);
       break;
 
       case 1 :

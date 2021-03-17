@@ -25,9 +25,9 @@ const unsigned int outPort = 9999;          // remote port (not needed for recei
 const unsigned int localPort = 8888;        // local port to listen for UDP packets (here's where we send the packets)
 
 
-int dir, pos, speedmotor, limit_qtr_value, limit_sonar_value;
+int dir, pos, speedmotor, limit_qtr_value, limit_sonar_value,limit_batterie_value;
 int qtr, sonar, coord, bat, on, lampe;
-int length_send, length_qtr = 12, length_bat = 1, length_coord = 2, length_sonar = 4, length_lampe = 1, length_on = 5;
+int length_send, length_qtr = 12, length_bat = 1, length_coord = 4, length_sonar = 4, length_lampe = 1, length_on = 5;
 
 
 byte data_command[7];
@@ -85,6 +85,7 @@ void loop() {
       msg.dispatch("/show", show);
       msg.dispatch("/limit_qtr", limit_qtr);
       msg.dispatch("/limit_sonar", limit_sonar);
+      msg.dispatch("/limit_batterie", limit_sonar);
     } else {
       error = msg.getError();
       Serial.print("error: ");
@@ -222,7 +223,7 @@ void limit_qtr(OSCMessage &msg) {
 
   /*
     Serial.print("/limit_qtr ");
-    Serial.println(limit_qtr);
+    Serial.println(limit_qtr_value);
   */
   data_command[0] = byte(2);
   data_command[1] = byte(limit_qtr_value);
@@ -236,11 +237,27 @@ void limit_sonar(OSCMessage &msg) {
 
 
   /*
-    Serial.print("/limit_qtr ");
-    Serial.println(limit_qtr);
+    Serial.print("/limit_sonar ");
+    Serial.println(limit_sonar_value);
   */
   data_command[0] = byte(3);
   data_command[1] = byte(limit_sonar_value);
+  Serial.write(data_command, 7);
+
+}
+
+
+void limit_batterie(OSCMessage &msg) {
+  
+  limit_batterie_value = msg.getInt(0);
+
+
+  /*
+    Serial.print("/limit_batterie ");
+    Serial.println(limit_batterie_value);
+  */
+  data_command[0] = byte(4);
+  data_command[1] = byte(limit_batterie_value);
   Serial.write(data_command, 7);
 
 }

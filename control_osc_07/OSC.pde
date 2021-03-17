@@ -20,7 +20,7 @@ void oscEvent(OscMessage theOscMessage) {
 
 void send_osc(){
   
-   OscMessage myOscMessage = new OscMessage("/motor");
+   OscMessage myOscMessage = new OscMessage("/command");
    
    myOscMessage.add(int(dir));
    myOscMessage.add(int(step));

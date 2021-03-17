@@ -21,7 +21,7 @@ datawheel[3]= byte(FrontWheel.distanceToGo()-((FrontWheel.distanceToGo()>>8)*256
 if ((FrontWheel.distanceToGo() == 0)&&(BackWheel.distanceToGo() == 0)&& (LeftWheel.distanceToGo() == 0)&&(RightWheel.distanceToGo() == 0)){
 
 
-  Serial3.write(datawheel,4);
+  Serial3.write(1,1);
 }
 
     if (FrontWheel.distanceToGo() == 0) {
