@@ -13,12 +13,14 @@ void ligne() {
     if ((Sensor_qtr_temp[x + 1] >= limit_qtr) && (Sensor_qtr[x + 1] != 1)) {
 
       Sensor_qtr[x + 1] = 1;
+      qtr_ok[x]=true;
       change++;
 
     }
     else if ((Sensor_qtr_temp[x + 1] < limit_qtr) && (Sensor_qtr[x + 1] != 0)) {
 
       Sensor_qtr[x + 1] = 0;
+      qtr_ok[x]=false;
       change++;
 
     }
