@@ -9,10 +9,10 @@ QTRSensors qtr;
 int batterie_pin = 37;
 int print_Sensor = 0;
 long timer;
-int limit_qtr;
+int limit_qtr,limit_sonar;
 const uint8_t SensorCount = 12;
 uint16_t sensorValues[SensorCount];
-byte dataSensor[13], dataSensor_temp[13], dataIn[7];
+byte Sensor_qtr[13], Sensor_qtr_temp[13], Sensor_sonar[13], Sensor_sonar_temp[13],dataIn[7];
 
 int trigPin_av= 11, echoPin_av=12;
 int trigPin_ar= 26, echoPin_ar=27;
@@ -54,6 +54,7 @@ pinMode(echoPin_droite, INPUT);
 
 
 limit_qtr=EEPROM.read(0);
+limit_sonar=EEPROM.read(1);
 delay(500);
 
 
@@ -82,10 +83,17 @@ void loop() {
 // RECEIVE DATA FROM ESP8266
   if (Serial3.available() > 0) {
     Serial3.readBytes(dataIn, 7);
-    if (dataIn[0]!=2){
+    if (dataIn[0]<2){
     Serial2.write(dataIn, 7);}
-    else{
+    else if (dataIn[0]==2){
       EEPROM.write(0, dataIn[1]) ;
+      limit_qtr=dataIn[1];
+      delay(500);
+      }
+
+    else if (dataIn[0]==3){
+      EEPROM.write(1, dataIn[1]) ;
+       limit_sonar=dataIn[1];
       delay(500);
       }
   }
@@ -93,19 +101,14 @@ void loop() {
 
 
 
+  ligne(); //READ AND SEND QTR TO ESP8266
 
-  
-
- //SEND DATA QTR TO ESP8266
-
-  ligne();
-
- 
+  sonar(); //READ AND SEND SONAR TO ESP8266
 
  
 
 
-//Serial.println(print_Sensor);
+
   if ( print_Sensor==1)  {
     imprim_sensor();
   }
