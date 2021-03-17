@@ -27,6 +27,8 @@ int distance_av, distance_ar, distance_droite, distance_gauche;
 int led1 = 2, led2 = 3, led3 = 4, led4 = 5;
 int batterie_value, batterie_value_temp;
 
+int dir,pos;
+
 
 
 void setup() {

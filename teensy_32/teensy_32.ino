@@ -68,26 +68,19 @@ void loop() {
     dir = data2[2];
     wheelSpeed = int ((256 * data2[3]) + data2[4]);
 
-        if ((int(dir)> 40) || (int(dir)< 0)||(int(wheelSpeed)>5000)||(int(wheelSpeed)<0)||(int(pos)<0)) {
-dir=0;
-pos=0;
-wheelSpeed=0;
-    }
-
-
 
     m = int(dir);
     pos = int(pos * 32);
 
 
-
+/*
     Serial.print(m);
     Serial.print("  ");
     Serial.print(pos / 32);
     Serial.print("  ");
     Serial.println(wheelSpeed);
 
-
+*/
 
 
     if ((m == 4) || (m == 14) || (m == 24) || (m == 34)) {
@@ -131,24 +124,6 @@ wheelSpeed=0;
 
 
   moveMotor();
-
-
-
-
-
-
-  // Monitor the battery voltage
-  int sensorValue = analogRead(A0);
-  float voltage = sensorValue * (5.0 / 1023.00) * 3.6; // Convert the reading values from 5v to suitable 12V i
-  //Serial.println(voltage);
-  // If voltage is below 11V turn on the LED
-  if (voltage < 11.5) {
-    digitalWrite(led, HIGH);
-  }
-  else {
-    digitalWrite(led, LOW);
-  }
-
 
 
 

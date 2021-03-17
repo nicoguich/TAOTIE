@@ -9,6 +9,8 @@ void osc_in(){
     for (int x=0;x<6;x++){
     dataMotor[x]=dataIn[x+1];}
       Serial2.write(dataMotor, 5);
+    pos = (256 * dataMotor[0]) + dataMotor[1];
+    dir = dataMotor[2];
       break;
 
       case 1 :
