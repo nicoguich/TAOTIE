@@ -1,4 +1,5 @@
 #include <QTRSensors.h>
+#include <EEPROM.h>
 
 
 QTRSensors qtr;
@@ -8,7 +9,7 @@ QTRSensors qtr;
 int batterie_pin = 37;
 int print_Sensor = 0;
 long timer;
-int limit_qtr= 150;
+int limit_qtr;
 const uint8_t SensorCount = 12;
 uint16_t sensorValues[SensorCount];
 byte dataSensor[13], dataSensor_temp[13], dataIn[7];
@@ -52,6 +53,11 @@ pinMode(trigPin_droite, OUTPUT);
 pinMode(echoPin_droite, INPUT);
 
 
+limit_qtr=EEPROM.read(0);
+delay(500);
+
+
+
 
 pinMode(led1,OUTPUT);
 pinMode(led2,OUTPUT);
@@ -72,14 +78,19 @@ digitalWrite(led3,HIGH);
 
 void loop() {
 
-/*
+
 // RECEIVE DATA FROM ESP8266
   if (Serial3.available() > 0) {
     Serial3.readBytes(dataIn, 7);
-    Serial2.write(dataIn, 7);
+    if (dataIn[0]!=2){
+    Serial2.write(dataIn, 7);}
+    else{
+      EEPROM.write(0, dataIn[1]) ;
+      delay(500);
+      }
   }
   
-*/
+
 
 
 
