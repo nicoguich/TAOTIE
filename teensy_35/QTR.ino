@@ -13,14 +13,14 @@ void F_qtr() {
     if ((Sensor_qtr_temp[x + 1] >= limit_qtr) && (Sensor_qtr[x + 1] != 1)) {
 
       Sensor_qtr[x + 1] = 1;
-      qtr_ok[x]=true;
+      qtr_ok[x] = true;
       change++;
 
     }
     else if ((Sensor_qtr_temp[x + 1] < limit_qtr) && (Sensor_qtr[x + 1] != 0)) {
 
       Sensor_qtr[x + 1] = 0;
-      qtr_ok[x]=false;
+      qtr_ok[x] = false;
       change++;
 
     }
@@ -29,8 +29,8 @@ void F_qtr() {
   }
 
 
-  if ((change > 0)&&(int(show_qtr)==1)) {
-    
+  if ((change > 0) && (int(show_qtr) == 1)) {
+
     Serial3.write(Sensor_qtr, 13);
   }
 

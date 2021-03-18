@@ -12,14 +12,14 @@ long timer;
 int limit_qtr, limit_sonar, limit_batterie;
 const uint8_t SensorCount = 12;
 uint16_t sensorValues[SensorCount];
-byte Sensor_qtr[13], Sensor_qtr_temp[13], Sensor_sonar[13], Sensor_sonar_temp[13], dataIn[7],dataMotor[5], Sensor_batterie[13], coord_in[1], coord_out[13];
-byte show_qtr,show_sonar,show_coord,show_bat,show_on,show_lampe;
+byte Sensor_qtr[13], Sensor_qtr_temp[13], Sensor_sonar[13], Sensor_sonar_temp[13], dataIn[7], dataMotor[5], Sensor_batterie[13], coord_in[1], coord_out[13];
+byte show_qtr, show_sonar, show_coord, show_bat, show_on, show_lampe;
 boolean qtr_ok[12];
-boolean on_home=false, on_T_ar=false,on_T_av=false,on_T_gauche=false,on_T_droite=false,go_on=false, on_T=false, on_croisement=false, on_ligneH=false, on_ligneV=false, ligne_ok=false, croisement_ok=false, coin_ok=false, T_ok=false, capteur_ok=false, perdu_temp=false, follow_ligne=false;
-boolean envoi=false, alignement=false;
-int etape_perdu=0, etape_croisement=0, compteur_croisement, dir_change=0, etape_go=0;
-int speed,speed_command, speed_perdu=500, step=0,dir,dir_temp,dir_on_ligne,pos;
-float coordX,coordY,angle,stepX,stepY;
+boolean on_home = false, on_T_ar = false, on_T_av = false, on_T_gauche = false, on_T_droite = false, go_on = false, on_T = false, on_croisement = false, on_ligneH = false, on_ligneV = false, ligne_ok = false, croisement_ok = false, coin_ok = false, T_ok = false, capteur_ok = false, perdu_temp = false, follow_ligne = false;
+boolean envoi = false, alignement = false;
+int etape_perdu = 0, etape_croisement = 0, compteur_croisement, dir_change = 0, etape_go = 0;
+int speed, speed_command, speed_perdu = 500, step = 0, dir, dir_temp, dir_on_ligne, pos;
+float coordX, coordY, angle, stepX, stepY;
 
 int trigPin_av = 11, echoPin_av = 12;
 int trigPin_ar = 26, echoPin_ar = 27;
@@ -65,7 +65,7 @@ void setup() {
 
   limit_qtr = EEPROM.read(0);
   limit_sonar = EEPROM.read(1);
-  limit_batterie= EEPROM.read(2);
+  limit_batterie = EEPROM.read(2);
   delay(500);
 
 
@@ -92,36 +92,36 @@ void loop() {
 
 
   F_osc_in();// RECEIVE DATA FROM ESP8266 AND SEND TO TEENSY3.2
- 
+
 
   //RECEIVE COORDONATE FROM teensy3.2 and send to OSC 8266
   if (Serial2.available() > 0) {
     Serial2.readBytes(coord_in, 1);
     coord_out[0] = 2;
     coord_out[1] = coord_in[0];
- /*   coord_out[2] = coord_in[1];
-    coord_out[3] = coord_in[2];
-    coord_out[4] = coord_in[3];*/
-   if(show_coord==1) Serial3.write(coord_out, 13);
+    /*   coord_out[2] = coord_in[1];
+       coord_out[3] = coord_in[2];
+       coord_out[4] = coord_in[3];*/
+    if (show_coord == 1) Serial3.write(coord_out, 13);
   }
 
 
 
 
-    
- F_qtr();//READ AND SEND QTR TO ESP8266
- F_sonar(); //READ AND SEND SONAR TO ESP8266
- F_batterie(); //READ AND SEND BATTERIE TO ESP8266
+
+  F_qtr();//READ AND SEND QTR TO ESP8266
+  F_sonar(); //READ AND SEND SONAR TO ESP8266
+  F_batterie(); //READ AND SEND BATTERIE TO ESP8266
 
 
 
-if (envoi) F_send_command();
-if (go_on) F_go_on(); 
-if (alignement) F_alignement();
-if ((on_ligneH)||(on_ligneV))  F_on_ligne();
-if (on_croisement) F_on_croisement();
-if ( print_Sensor == 1)F_imprim_sensor();
-    
+  if (envoi) F_send_command();
+  if (go_on) F_go_on();
+  if (alignement) F_alignement();
+  if ((on_ligneH) || (on_ligneV))  F_on_ligne();
+  if (on_croisement) F_on_croisement();
+  if ( print_Sensor == 1)F_imprim_sensor();
+
 
 
 

@@ -151,7 +151,7 @@ void F_sonar() {
 
   }
 
-  if ((change > 0)&& (int(show_sonar)==1)) {
+  if ((change > 0) && (int(show_sonar) == 1)) {
     Serial3.write(Sensor_sonar, 13);
   }
 

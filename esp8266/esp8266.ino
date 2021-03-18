@@ -86,6 +86,10 @@ void loop() {
       msg.dispatch("/limit_qtr", limit_qtr);
       msg.dispatch("/limit_sonar", limit_sonar);
       msg.dispatch("/limit_batterie", limit_sonar);
+      msg.dispatch("/lost", lost);
+      msg.dispatch("/home", home);
+      msg.dispatch("/go", go);
+      
     } else {
       error = msg.getError();
       Serial.print("error: ");
@@ -258,6 +262,40 @@ void limit_batterie(OSCMessage &msg) {
   */
   data_command[0] = byte(4);
   data_command[1] = byte(limit_batterie_value);
+  Serial.write(data_command, 7);
+
+}
+
+
+
+void lost(OSCMessage &msg) {
+  
+
+  data_command[0] = byte(100);
+  Serial.write(data_command, 7);
+
+}
+
+void home(OSCMessage &msg) {
+  
+
+  data_command[0] = byte(101);
+  Serial.write(data_command, 7);
+
+}
+
+void go(OSCMessage &msg) {
+
+ int X_grid=msg.getInt(0);
+  int X_float=msg.getInt(1);
+  int Y_grid=msg.getInt(2);
+  int Y_float=msg.getInt(3);
+
+  data_command[0] = byte(102);
+  data_command[1] = byte(X_grid);
+  data_command[2] = byte(X_float);
+  data_command[3] = byte(Y_grid);
+  data_command[4] = byte(X_float);
   Serial.write(data_command, 7);
 
 }

@@ -83,9 +83,9 @@ void F_on_ligne() {
 
 
   /// avant arrière
-  if ((dir==12) || (dir==17)) {
+  if ((dir == 12) || (dir == 17)) {
 
-    if (dir==12) {
+    if (dir == 12) {
 
       if ((qtr_ok[11] == true) || (qtr_ok[5] == true)) {
         on_ligneV = false;
@@ -95,7 +95,7 @@ void F_on_ligne() {
     }
 
 
-    if (dir==17){
+    if (dir == 17) {
 
       if ((qtr_ok[9] == true) || (qtr_ok[3] == true)) {
         on_ligneV = false;
