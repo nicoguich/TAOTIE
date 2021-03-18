@@ -10,10 +10,16 @@ void F_osc_in() {
           dataMotor[x] = dataIn[x + 1];
         }
         Serial2.write(dataMotor, 5);
-        pos = (256 * dataMotor[0]) + dataMotor[1];
-        dir = dataMotor[2];
+        pos = int((256 * dataMotor[0]) + dataMotor[1]);
+        dir = int(dataMotor[2]);
         speed = int ((256 * dataMotor[3]) + dataMotor[4]);
         speed_command = speed;
+        if (dir==0){
+        go_on=false;
+        alignement = false;
+        perdu_temp = false;
+        on_home=false;
+        }
         break;
 
       case 1 :

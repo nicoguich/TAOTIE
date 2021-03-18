@@ -18,7 +18,7 @@ boolean qtr_ok[12];
 boolean on_home = false, on_T_ar = false, on_T_av = false, on_T_gauche = false, on_T_droite = false, go_on = false, on_T = false, on_croisement = false, on_ligneH = false, on_ligneV = false, ligne_ok = false, croisement_ok = false, coin_ok = false, T_ok = false, capteur_ok = false, perdu_temp = false, follow_ligne = false;
 boolean envoi = false, alignement = false;
 int etape_perdu = 0, etape_croisement = 0, compteur_croisement, dir_change = 0, etape_go = 0;
-int speed, speed_command, speed_perdu = 500, step = 0, dir, dir_temp, dir_on_ligne, pos;
+int speed, speed_command=1000, speed_perdu = 500, step = 0, dir, dir_temp, dir_on_ligne, pos;
 float coordX, coordY, angle, stepX, stepY;
 
 int trigPin_av = 11, echoPin_av = 12;
@@ -117,7 +117,13 @@ void loop() {
 
   if (go_on) F_go_on();
   if (alignement) F_alignement();
-  if ((on_ligneH) || (on_ligneV))  F_on_ligne();
+  if ((on_ligneH) || (on_ligneV)){
+    F_on_ligne();
+    digitalWrite(led4,HIGH);
+  }
+  else{
+     digitalWrite(led4,LOW);
+  }
   if (on_croisement) F_on_croisement();
   if ( print_Sensor == 1)F_imprim_sensor();
   if (envoi) F_send_command();

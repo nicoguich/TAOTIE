@@ -8,4 +8,12 @@ void F_send_command() {
   dataMotor[4] = byte(speed - ((speed >> 8) * 256));
   Serial2.write(dataMotor, 5);
 
+
+  if ((on_ligneH==true)||(on_ligneV==true)){
+  dir=dir_on_ligne;
+speed=speed_command;
+}
+
+envoi=false;
+
 }
