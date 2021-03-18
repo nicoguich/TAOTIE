@@ -115,13 +115,12 @@ void loop() {
 
 
 
-  if (envoi) F_send_command();
   if (go_on) F_go_on();
   if (alignement) F_alignement();
   if ((on_ligneH) || (on_ligneV))  F_on_ligne();
   if (on_croisement) F_on_croisement();
   if ( print_Sensor == 1)F_imprim_sensor();
-
+  if (envoi) F_send_command();
 
 
 

@@ -44,11 +44,10 @@ public void controlEvent(ControlEvent theEvent) {
   
   
 if (bouton_name.equals("lost")){
-    
-    alignement=boolean(int(theEvent.getController().getValue()));
-    perdu_temp=false;
-    dir_temp="0.0";
-    etape_perdu=0;
+   OscMessage myOscMessage = new OscMessage("/lost");
+   
+  myOscMessage.add(1);
+  oscP5.send(myOscMessage, taotie_robot);
   }
   
   if (bouton_name.equals("ligneH")){
@@ -81,86 +80,24 @@ if (bouton_name.equals("lost")){
   }
   
   
-      if (bouton_name.equals("home")){
-    
-    on_home=boolean(int(theEvent.getController().getValue()));
-    
-    
-    if (on_home==true){
-    
-    if ((on_T_gauche==false)&&(on_T_ar==false)){
-      if (on_ligneH){
-      
-      dir="14";}
-      
-      if (on_ligneV){
-        
-        dir="17";}
-    }
-      
-   if ((on_T_gauche==true)&&(on_T_ar==false)){
-     dir="17";
-     
-   }
+      if (bouton_name.equals("home")){  
+        OscMessage myOscMessage = new OscMessage("/home");
    
-   if ((on_T_gauche==false)&&(on_T_ar==true)){
-       dir="14"; 
-     
-   }
-if ((on_T_gauche==true)&&(on_T_ar==true)){
-     dir="0";
-   on_home=false;
-   cp5.getController("home").setValue(0);
-   coordX=0;
-   coordY=0;
-   angle=0;
-              }
-   
-    dir_on_ligne=dir;
- 
- envoi=true;
-   
-    } 
+  myOscMessage.add(1);
+  oscP5.send(myOscMessage, taotie_robot);
   }
 
 
 
- if (bouton_name.equals("GO")){
-go_on=boolean(int(theEvent.getController().getValue()));
-if(go_on){
- if ((int(stepX)!=0)&&(on_ligneV==false)){
-  if (int(stepX)>0){
-   dir="15";
-   dir_on_ligne=dir;
-   send_osc();
-  }
-  else{
-       dir="14";
-   dir_on_ligne=dir;
-   send_osc();
-  }
+ if (bouton_name.equals("GO")){        
    
- }
- 
- 
-  else if (on_ligneH==false){
-  if (int(stepY)>0){
-   dir="12";
-   dir_on_ligne=dir;
-   send_osc();
-  }
-  else{
-       dir="17";
-   dir_on_ligne=dir;
-   send_osc();
-  }
+   OscMessage myOscMessage = new OscMessage("/go");
    
- }
-  
-  
-}
-
-  
+  myOscMessage.add(int(stepX));
+  myOscMessage.add(int(stepX));
+  myOscMessage.add(int(stepY));
+  myOscMessage.add(int(stepX));
+  oscP5.send(myOscMessage, taotie_robot);
  }
   
   

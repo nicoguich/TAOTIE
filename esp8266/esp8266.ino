@@ -25,7 +25,7 @@ const unsigned int outPort = 9999;          // remote port (not needed for recei
 const unsigned int localPort = 8888;        // local port to listen for UDP packets (here's where we send the packets)
 
 
-int dir, pos, speedmotor, limit_qtr_value, limit_sonar_value,limit_batterie_value;
+int dir, pos, speedmotor, limit_qtr_value, limit_sonar_value, limit_batterie_value;
 int qtr, sonar, coord, bat, on, lampe;
 int length_send, length_qtr = 12, length_bat = 1, length_coord = 4, length_sonar = 4, length_lampe = 1, length_on = 5;
 
@@ -89,7 +89,7 @@ void loop() {
       msg.dispatch("/lost", lost);
       msg.dispatch("/home", home);
       msg.dispatch("/go", go);
-      
+
     } else {
       error = msg.getError();
       Serial.print("error: ");
@@ -221,7 +221,7 @@ void show(OSCMessage &msg) {
 
 
 void limit_qtr(OSCMessage &msg) {
-  
+
   limit_qtr_value = msg.getInt(0);
 
 
@@ -236,7 +236,7 @@ void limit_qtr(OSCMessage &msg) {
 }
 
 void limit_sonar(OSCMessage &msg) {
-  
+
   limit_sonar_value = msg.getInt(0);
 
 
@@ -252,7 +252,7 @@ void limit_sonar(OSCMessage &msg) {
 
 
 void limit_batterie(OSCMessage &msg) {
-  
+
   limit_batterie_value = msg.getInt(0);
 
 
@@ -269,7 +269,7 @@ void limit_batterie(OSCMessage &msg) {
 
 
 void lost(OSCMessage &msg) {
-  
+
 
   data_command[0] = byte(100);
   Serial.write(data_command, 7);
@@ -277,7 +277,7 @@ void lost(OSCMessage &msg) {
 }
 
 void home(OSCMessage &msg) {
-  
+
 
   data_command[0] = byte(101);
   Serial.write(data_command, 7);
@@ -286,10 +286,10 @@ void home(OSCMessage &msg) {
 
 void go(OSCMessage &msg) {
 
- int X_grid=msg.getInt(0);
-  int X_float=msg.getInt(1);
-  int Y_grid=msg.getInt(2);
-  int Y_float=msg.getInt(3);
+  int X_grid = msg.getInt(0);
+  int X_float = msg.getInt(1);
+  int Y_grid = msg.getInt(2);
+  int Y_float = msg.getInt(3);
 
   data_command[0] = byte(102);
   data_command[1] = byte(X_grid);

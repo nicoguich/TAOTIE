@@ -14,6 +14,7 @@ void F_qtr() {
 
       Sensor_qtr[x + 1] = 1;
       qtr_ok[x] = true;
+      capteur_ok=true;
       change++;
 
     }
@@ -21,6 +22,7 @@ void F_qtr() {
 
       Sensor_qtr[x + 1] = 0;
       qtr_ok[x] = false;
+      capteur_ok=false;
       change++;
 
     }

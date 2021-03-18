@@ -38,7 +38,7 @@ color qtr_color[]= new color[12];
 boolean envoi=false, alignement=false;
 int type_ligne=0, type_ligne_temp, type_T=0, type_coin=0;
 boolean on_home=false, on_T_ar=false,on_T_av=false,on_T_gauche=false,on_T_droite=false,go_on=false, on_T=false, on_croisement=false, on_ligneH=false, on_ligneV=false, ligne_ok=false, croisement_ok=false, coin_ok=false, T_ok=false, capteur_ok=false, perdu_temp=false, follow_ligne=false, calibrate_blanc=false, calibrate_noir=false;
-int capteur_max, capteur_max_temp, rotate=0;
+  int capteur_max, capteur_max_temp, rotate=0;
 
 float coordX,coordY,angle;
 
@@ -328,7 +328,7 @@ void draw() {
 
   detection_qtr();
   detection_sonar();
-
+/*
   if (go_on) {
     F_go_on();
   }
@@ -353,7 +353,7 @@ void draw() {
     
   }
   
-
+*/
  
 
   dessine_robot();
