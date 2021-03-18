@@ -44,13 +44,13 @@ void F_on_ligne() {
         speed = speed_perdu;
         dir = 7;
         step = 5;
-        send_command();
+        F_send_command();
 
 
         delay(200);
         dir = dir_temp;
         step = 0;
-        send_command();
+        F_send_command();
       }
 
 
@@ -70,11 +70,11 @@ void F_on_ligne() {
         speed = speed_perdu;
         dir = 2;
         step = 5;
-        send_command();
+        F_send_command();
         delay(200);
         dir = dir_temp;
         step = 0;
-        send_command();
+        F_send_command();
       }
     }
   }
@@ -124,11 +124,11 @@ void F_on_ligne() {
         speed = speed_perdu;
         dir = 4;
         step = 5;
-        send_command();
+        F_send_command();
         delay(200);
         step = 0;
         dir = dir_temp;
-        send_command();
+        F_send_command();
       }
 
 
@@ -148,12 +148,12 @@ void F_on_ligne() {
         speed = speed_perdu;
         dir = 5;
         step = 5;
-        send_command();
+        F_send_command();
         delay(200);
 
         dir = dir_temp;
         step = 0;
-        send_command();
+        F_send_command();
       }
     }
   }

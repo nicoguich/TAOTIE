@@ -1,4 +1,4 @@
-void osc_in(){
+void F_osc_in(){
 
 
  if (Serial3.available() > 0) {
@@ -11,6 +11,8 @@ void osc_in(){
       Serial2.write(dataMotor, 5);
     pos = (256 * dataMotor[0]) + dataMotor[1];
     dir = dataMotor[2];
+    speed=int ((256 * dataMotor[3]) + dataMotor[4]);
+    speed_command=speed;
       break;
 
       case 1 :

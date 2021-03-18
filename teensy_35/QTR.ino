@@ -1,4 +1,4 @@
-void ligne() {
+void F_qtr() {
 
   qtr.read(sensorValues);
   delay(50);
@@ -29,7 +29,8 @@ void ligne() {
   }
 
 
-  if (change > 0) {
+  if ((change > 0)&&(int(show_qtr)==1)) {
+    
     Serial3.write(Sensor_qtr, 13);
   }
 

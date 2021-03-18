@@ -1,4 +1,4 @@
-void imprim_sensor() {
+void F_imprim_sensor() {
 
 
   for (uint8_t i = 0; i < 12; i++)

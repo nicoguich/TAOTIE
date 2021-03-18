@@ -32,7 +32,7 @@ void F_on_croisement() {
           dir_on_ligne=dir;
           go_on=false;
           dir_change=0;
-          send_command();
+          F_send_command();
         }
 
 
@@ -42,7 +42,7 @@ void F_on_croisement() {
 
           dir=dir_change;
           dir_on_ligne=dir;
-          send_command();
+          F_send_command();
         }
         
               if ((qtr_ok[9]==false)&&(qtr_ok[10]==false)&&(qtr_ok[11]==false)) {
@@ -67,7 +67,7 @@ else{
          on_home=false;
             
           }
-        send_command();
+        F_send_command();
       }
 }
 
@@ -140,7 +140,7 @@ else{
           dir_on_ligne=dir;
           go_on=false;
           dir_change=0;
-          send_command();
+          F_send_command();
         }
 
 
@@ -152,7 +152,7 @@ else{
 
           dir=dir_change;
           dir_on_ligne=dir;
-          send_command();
+          F_send_command();
         }
         
               if ((qtr_ok[3]==false)&&(qtr_ok[4]==false)&&(qtr_ok[5]==false)) {
@@ -170,7 +170,7 @@ else{
         on_T_droite=true;
 
         dir=0;
-        send_command();
+        F_send_command();
       }
 
 }
@@ -235,7 +235,7 @@ coordY++;
           dir_on_ligne=dir;
           go_on=false;
           dir_change=0;
-          send_command();
+          F_send_command();
         }
 
 
@@ -246,7 +246,7 @@ coordY++;
 
           dir=dir_change;
           dir_on_ligne=dir;
-          send_command();
+          F_send_command();
         }
         
               if ((qtr_ok[0]==false)&&(qtr_ok[1]==false)&&(qtr_ok[2]==false)) {
@@ -263,7 +263,7 @@ else{
         on_T_av=true;
 
         dir=0;
-        send_command();
+        F_send_command();
       }
 }
       etape_croisement++;
@@ -341,7 +341,7 @@ coordY--;
           dir_on_ligne=dir;
           go_on=false;
           dir_change=0;
-          send_command();
+          F_send_command();
         }
 
 
@@ -351,7 +351,7 @@ coordY--;
 
           dir=dir_change;
           dir_on_ligne=dir;
-          send_command();
+          F_send_command();
         }
         
         
@@ -376,7 +376,7 @@ else{
           }
         
         
-        send_command();
+        F_send_command();
       }
 
 }

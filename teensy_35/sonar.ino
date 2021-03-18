@@ -1,4 +1,4 @@
-void sonar() {
+void F_sonar() {
   int change = 0;
 
   Sensor_sonar[0] = byte(104);
@@ -151,7 +151,7 @@ void sonar() {
 
   }
 
-  if (change > 0) {
+  if ((change > 0)&& (int(show_sonar)==1)) {
     Serial3.write(Sensor_sonar, 13);
   }
 

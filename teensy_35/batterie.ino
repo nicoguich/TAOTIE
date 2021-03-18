@@ -1,4 +1,4 @@
-void batterie() {
+void F_batterie() {
 
 
   Sensor_batterie[0] = byte(101);
@@ -9,7 +9,8 @@ void batterie() {
 
     batterie_value = batterie_value_temp;
     Sensor_batterie[1] = batterie_value;
-    Serial3.write(Sensor_batterie, 13);
+     if(int(show_bat)==1){
+    Serial3.write(Sensor_batterie, 13);}
   }
  
 

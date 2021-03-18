@@ -1,4 +1,4 @@
-void send_command(){
+void F_send_command(){
 
 
   dataMotor[0] = byte(step >> 8);
