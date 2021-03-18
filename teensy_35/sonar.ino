@@ -1,7 +1,7 @@
 void sonar() {
   int change = 0;
 
-  Sensor_sonar[0] = byte(4);
+  Sensor_sonar[0] = byte(104);
 
 
   ///SONAR AVANT

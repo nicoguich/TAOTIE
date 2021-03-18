@@ -20,6 +20,18 @@ void osc_in(){
       show_bat=dataIn[4];
       show_on=dataIn[5];
       show_lampe=dataIn[6];
+  /*    Serial.print(show_qtr);
+      Serial.print(" ");
+            Serial.print(show_sonar);
+      Serial.print(" ");
+            Serial.print(show_coord);
+      Serial.print(" ");
+                  Serial.print(show_bat);
+      Serial.print(" ");
+            Serial.print(show_on);
+      Serial.print(" ");
+            Serial.println(show_lampe);*/
+
       break;
     
    case 2:

@@ -100,32 +100,32 @@ void loop() {
     OSCMessage msg2;
 
     switch (dataIn[0]) {
-      case 0 :
+      case 100 :
         msg2 = bundle.add("/qtr");
         length_send = length_qtr;
         break;
 
-      case 1:
+      case 101:
         msg2 = bundle.add("/bat");
         length_send = length_bat;
         break;
 
-      case 2 :
+      case 102 :
         msg2 = bundle.add("/coord");
         length_send = length_coord;
         break;
 
-      case 3 :
+      case 103 :
         msg2 = bundle.add("/lampe");
         length_send = length_lampe;
         break;
 
-      case 4 :
+      case 104 :
         msg2 = bundle.add("/sonar");
         length_send = length_sonar;
         break;
 
-      case 5 :
+      case 105 :
         msg2 = bundle.add("/on");
         length_send = length_on;
         break;

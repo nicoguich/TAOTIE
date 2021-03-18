@@ -1,7 +1,7 @@
 void batterie() {
 
 
-  Sensor_batterie[0] = byte(1);
+  Sensor_batterie[0] = byte(101);
   batterie_value_temp = map(analogRead(batterie_pin), 0, 1024, 0, 255);
 //   Serial.println(analogRead(batterie_pin));
 

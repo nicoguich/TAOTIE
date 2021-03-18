@@ -5,7 +5,7 @@ void ligne() {
 
 
   int change = 0;
-  Sensor_qtr[0] = byte(0);
+  Sensor_qtr[0] = byte(100);
 
   for (int x = 0; x < 12; x++) {
     Sensor_qtr_temp[x + 1] = byte(map(sensorValues[x], 0, 500, 0, 255));

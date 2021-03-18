@@ -19,6 +19,7 @@ boolean on_home=false, on_T_ar=false,on_T_av=false,on_T_gauche=false,on_T_droite
 boolean envoi=false, alignement=false;
 int etape_perdu=0, etape_croisement=0, compteur_croisement, dir_change=0, etape_go=0;
 int speed, speed_perdu=500, step=0,dir,dir_temp,dir_on_ligne,pos;
+float coordX,coordY,angle,stepX,stepY;
 
 int trigPin_av = 11, echoPin_av = 12;
 int trigPin_ar = 26, echoPin_ar = 27;
@@ -107,11 +108,12 @@ void loop() {
 
 
 
- if(show_qtr==1) ligne(); //READ AND SEND QTR TO ESP8266
+ if(int(show_qtr)==1){ ligne();
+ Serial.println("toto");}//READ AND SEND QTR TO ESP8266
 
- if(show_sonar==1) sonar(); //READ AND SEND SONAR TO ESP8266
+ if(int(show_sonar)==1) sonar(); //READ AND SEND SONAR TO ESP8266
 
-  if(show_bat==1)batterie(); //READ AND SEND BATTERIE TO ESP8266
+  if(int(show_bat)==1)batterie(); //READ AND SEND BATTERIE TO ESP8266
 
 
 
