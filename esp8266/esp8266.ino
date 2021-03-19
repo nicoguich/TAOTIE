@@ -295,7 +295,7 @@ void go(OSCMessage &msg) {
   data_command[1] = byte(X_grid);
   data_command[2] = byte(X_float);
   data_command[3] = byte(Y_grid);
-  data_command[4] = byte(X_float);
+  data_command[4] = byte(Y_float);
   Serial.write(data_command, 7);
 
 }

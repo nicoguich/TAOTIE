@@ -33,6 +33,11 @@ void F_on_croisement() {
             go_on = false;
             dir_change = 0;
             F_send_command();
+            
+            if((dest_stepX>0)||(dest_stepY>0)){
+               
+              F_hors_grille();
+            }
           }
 
 
@@ -142,6 +147,11 @@ void F_on_croisement() {
             go_on = false;
             dir_change = 0;
             F_send_command();
+             
+            if((dest_stepX>0)||(dest_stepY>0)){
+              
+              F_hors_grille();
+            }
           }
 
 
@@ -237,6 +247,11 @@ void F_on_croisement() {
             go_on = false;
             dir_change = 0;
             F_send_command();
+            
+            if((dest_stepX>0)||(dest_stepY>0)){
+               
+              F_hors_grille();
+            }
           }
 
 
@@ -343,6 +358,11 @@ void F_on_croisement() {
             go_on = false;
             dir_change = 0;
             F_send_command();
+           
+           if((dest_stepX>0)||(dest_stepY>0)){
+              
+              F_hors_grille();
+            }
           }
 
 

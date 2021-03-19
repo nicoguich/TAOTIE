@@ -93,10 +93,12 @@ if (bouton_name.equals("lost")){
    
    OscMessage myOscMessage = new OscMessage("/go");
    
+  println("coordX:"+stepX+" stepX:"+micro_stepX+" coordY:"+stepY+" stepY:"+micro_stepY);
+   
   myOscMessage.add(int(stepX));
-  myOscMessage.add(int(stepX));
+  myOscMessage.add(int(micro_stepX));
   myOscMessage.add(int(stepY));
-  myOscMessage.add(int(stepX));
+  myOscMessage.add(int(micro_stepY));
   oscP5.send(myOscMessage, taotie_robot);
  }
   

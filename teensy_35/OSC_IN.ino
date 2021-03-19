@@ -6,19 +6,34 @@ void F_osc_in() {
 
     switch (dataIn[0]) {
       case 0 :
+
         for (int x = 0; x < 6; x++) {
           dataMotor[x] = dataIn[x + 1];
         }
         Serial2.write(dataMotor, 5);
-        pos = int((256 * dataMotor[0]) + dataMotor[1]);
+        step = int((256 * dataMotor[0]) + dataMotor[1]);
         dir = int(dataMotor[2]);
         speed = int ((256 * dataMotor[3]) + dataMotor[4]);
         speed_command = speed;
         if (dir==0){
+        on_ligneV=false;
+        on_ligneH=false;
         go_on=false;
         alignement = false;
         perdu_temp = false;
         on_home=false;
+        on_croisement=false;
+        on_T_av = false;
+        on_T_ar = false;
+        on_T_droite = false;
+        on_T_gauche = false;
+        dir_on_ligne = dir;
+        stepX = 0;
+        stepY=0;
+        dest_stepX=0;
+        dest_stepY=0;
+        coordX = 0;
+        coordY = 0;
         }
         break;
 
@@ -108,13 +123,22 @@ void F_osc_in() {
 
 
       case 102 :
-        int dest_coordX = dataIn[1];
-        int dest_stepX = dataIn[2];
-        int dest_coordY = dataIn[3];
-        int dest_stepY = dataIn[4];
+        int dest_coordX = int(dataIn[1]);
+         dest_stepX = int(dataIn[2]);
+        int dest_coordY = int(dataIn[3]);
+         dest_stepY = int(dataIn[4]);
 
         stepX = dest_coordX - coordX;
         stepY = dest_coordY - coordY;
+
+
+
+
+        if ((stepX_hors_grille>0)||(stepY_hors_grille>0)){
+
+F_retour_croisement();
+          
+        }
 
 
 

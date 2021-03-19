@@ -13,15 +13,13 @@ void moveMotor() {
 
   if (m < 11) {
 
-datawheel[0]= byte(LeftWheel.distanceToGo()>>8);
-datawheel[1]= byte(LeftWheel.distanceToGo()-((LeftWheel.distanceToGo()>>8)*256));
-datawheel[2]= byte(FrontWheel.distanceToGo()>>8);
-datawheel[3]= byte(FrontWheel.distanceToGo()-((FrontWheel.distanceToGo()>>8)*256));
+
         
-if ((FrontWheel.distanceToGo() == 0)&&(BackWheel.distanceToGo() == 0)&& (LeftWheel.distanceToGo() == 0)&&(RightWheel.distanceToGo() == 0)){
+if ((FrontWheel.distanceToGo() == 0)&&(BackWheel.distanceToGo() == 0)&& (LeftWheel.distanceToGo() == 0)&&(RightWheel.distanceToGo() == 0)&&(m!=0)){
 
 
-  Serial3.write(1,1);
+  Serial3.write(byte(123));
+  m=0;
 }
 
     if (FrontWheel.distanceToGo() == 0) {
