@@ -93,17 +93,17 @@ if (bouton_name.equals("lost")){
    
    OscMessage myOscMessage = new OscMessage("/go");
    
-  println("coordX:"+stepX+" stepX:"+micro_stepX+" coordY:"+stepY+" stepY:"+micro_stepY);
+  println("coordX:"+stepX+" stepX:"+dest_stepX+" coordY:"+stepY+" stepY:"+dest_stepY);
    
   myOscMessage.add(int(stepX));
-  myOscMessage.add(int(micro_stepX));
+  myOscMessage.add(int(dest_stepX));
   myOscMessage.add(int(stepY));
-  myOscMessage.add(int(micro_stepY));
+  myOscMessage.add(int(dest_stepY));
   oscP5.send(myOscMessage, taotie_robot);
  }
   
   
- if (((bouton_name.equals("home"))==false)&&((bouton_name.equals("lost"))==false)&&((bouton_name.equals("GO"))==false)&&((bouton_name.equals("ligneH"))==false)&&((bouton_name.equals("ligneV"))==false)&&((bouton_name.equals("croisement"))==false)&&((bouton_name.equals("T"))==false)&&(bouton_name.equals("X")==false)&&(bouton_name.equals("Y")==false)&&(bouton_name.equals("step")==false)&&(bouton_name.equals("speed")==false)){
+ if (((bouton_name.equals("home"))==false)&&((bouton_name.equals("lost"))==false)&&((bouton_name.equals("GO"))==false)&&((bouton_name.equals("ligneH"))==false)&&((bouton_name.equals("ligneV"))==false)&&((bouton_name.equals("croisement"))==false)&&((bouton_name.equals("T"))==false)&&(bouton_name.equals("X")==false)&&(bouton_name.equals("Y")==false)&&(bouton_name.equals("step")==false)&&(bouton_name.equals("speed")==false)&&(bouton_name.equals("stepX")==false)&&(bouton_name.equals("stepY")==false)){
   println(bouton_name);
  dir=str(theEvent.getController().getValue());
  if ((step.equals("0"))&&(dir.equals("0.0")==false)){

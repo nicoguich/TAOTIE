@@ -328,33 +328,6 @@ void draw() {
 
   detection_qtr();
   detection_sonar();
-/*
-  if (go_on) {
-    F_go_on();
-  }
-  if (alignement) {
-    F_alignement();
-  }
-  if ((on_ligneH)||(on_ligneV)) {
-    F_on_ligne();
-  }
-  if (on_croisement) {
-    F_on_croisement();
-  }
-
-  if((on_T_av==false)&&(on_T_ar==false)&&(on_T_droite==false)&&(on_T_gauche==false)){
-    
-   cp5.getController("T").setValue(0); 
-   on_T=false;
-  }
-  else{
-    
-   on_T=true; 
-    
-  }
-  
-*/
- 
 
   dessine_robot();
 }
