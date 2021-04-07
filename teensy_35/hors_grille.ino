@@ -1,6 +1,6 @@
 void F_hors_grille(){
 
-  digitalWrite(led2,HIGH);
+ // digitalWrite(led2,HIGH);
 byte fin_mvt=0;
 
 
@@ -8,7 +8,7 @@ byte fin_mvt=0;
 if (dest_stepX>0){
 
 dir=5;
-step=dest_stepX;
+step=dest_stepX*5;
 F_send_command();
 
   
@@ -22,7 +22,7 @@ F_send_command();
   }
   }
   fin_mvt=0; 
-  stepX_hors_grille=dest_stepX;
+  stepX_hors_grille=dest_stepX*5;
 }
 
 
@@ -31,7 +31,7 @@ F_send_command();
 if (dest_stepY>0){
 
 dir=2;
-step=dest_stepY;
+step=dest_stepY*5;
 F_send_command();
 
   
@@ -45,10 +45,10 @@ F_send_command();
   }
   }
    fin_mvt=0;  
-    stepY_hors_grille=dest_stepY;
+    stepY_hors_grille=dest_stepY*5;
 }
 
 
-  digitalWrite(led2,LOW);
+ // digitalWrite(led2,LOW);
 
 }

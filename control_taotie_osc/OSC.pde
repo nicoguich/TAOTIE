@@ -4,19 +4,59 @@ void oscEvent(OscMessage theOscMessage) {
 
 
   if (theOscMessage.checkAddrPattern("/qtr")==true) {
-
-    
     
     for (int x=0; x<12; x++) {
     
         qtr_value[x]=theOscMessage.get(x).intValue();
-      
-
     }
   }
+
+
+
+
+  if (theOscMessage.checkAddrPattern("/bat")==true) {
+    
+
+    
+      println("bat : "+ str(theOscMessage.get(0).intValue()));
+
+}
+
+  if (theOscMessage.checkAddrPattern("/limit_qtr")==true) {
+    limit_qtr= theOscMessage.get(0).intValue();
+
+  
+}
+
+  if (theOscMessage.checkAddrPattern("/limit_sonar")==true) {
+    limit_sonar= theOscMessage.get(0).intValue();
+
+  
+}
+
+  if (theOscMessage.checkAddrPattern("/limit_batterie")==true) {
+    limit_batterie= theOscMessage.get(0).intValue();
+
+  
 }
 
 
+  if (theOscMessage.checkAddrPattern("/on_state")==true) {
+ cp5.getController("ligneH").setValue(theOscMessage.get(0).intValue());
+  cp5.getController("ligneV").setValue(theOscMessage.get(1).intValue());
+  cp5.getController("croisement").setValue(theOscMessage.get(2).intValue());   
+  cp5.getController("T_av").setValue(theOscMessage.get(3).intValue());
+  cp5.getController("T_ar").setValue(theOscMessage.get(4).intValue());  
+    cp5.getController("T_gauche").setValue(theOscMessage.get(5).intValue());
+  cp5.getController("T_droite").setValue(theOscMessage.get(6).intValue());
+    
+  }
+
+
+
+
+
+}
 
 void send_osc(){
   

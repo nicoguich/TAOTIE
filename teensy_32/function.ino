@@ -72,7 +72,7 @@ if ((FrontWheel.distanceToGo() == 0)&&(BackWheel.distanceToGo() == 0)&& (LeftWhe
 
 
 
-void moveBackward() {
+void moveLeftBackward(){//
 
 
   digitalWrite(enable_front,HIGH);
@@ -93,7 +93,7 @@ void moveBackward() {
 }
 
 
-void moveForward() {
+void moveRightForward(){//
 
   digitalWrite(enable_front,HIGH);
   digitalWrite(enable_left,LOW);
@@ -115,7 +115,7 @@ void moveForward() {
 
 
 
-void moveSidewaysLeft() {
+void moveLeftForward() {//
 
   digitalWrite(enable_front,LOW);
   digitalWrite(enable_left,HIGH);
@@ -135,7 +135,7 @@ void moveSidewaysLeft() {
 }
 
 
-void moveSidewaysRight() {
+void moveRightBackward() {//
 
 
   digitalWrite(enable_front,LOW);
@@ -200,7 +200,7 @@ void rotateRight() {
 
 
 
-void moveLeftBackward() {
+void moveSidewaysLeft() {//
 
   digitalWrite(enable_front,LOW);
   digitalWrite(enable_left,LOW);
@@ -222,7 +222,7 @@ void moveLeftBackward() {
 
 
 
-void moveLeftForward() {
+void moveForward() {//
 
   digitalWrite(enable_front,LOW);
   digitalWrite(enable_left,LOW);
@@ -243,7 +243,7 @@ void moveLeftForward() {
 }
 
 
-void moveRightBackward() {
+void moveBackward()  {//
 
 
   digitalWrite(enable_front,LOW);
@@ -266,7 +266,7 @@ void moveRightBackward() {
 
 
 
-void moveRightForward() {
+void moveSidewaysRight() {//
 
 
   digitalWrite(enable_front,LOW);

@@ -42,10 +42,12 @@ boolean on_home=false, on_T_ar=false,on_T_av=false,on_T_gauche=false,on_T_droite
 
 float coordX,coordY,angle;
 
-String dest_coordX="0", dest_coordY="0", dest_stepX="0", dest_stepY="0",stepX="0", stepY="0",micro_stepX="0",micro_stepY="0", step="0", dir="0", dir_temp, speed="0", speed_perdu="500", dir_on_ligne="0";
+String send_qtr,send_sonar,send_batterie,dest_coordX="0", dest_coordY="0", dest_stepX="0", dest_stepY="0",stepX="0", stepY="0",micro_stepX="0",micro_stepY="0", step="0", dir="0", dir_temp, speed="0", speed_perdu="500", dir_on_ligne="0";
 
 int etape_perdu=0, etape_croisement=0, compteur_croisement, dir_change=0, etape_go=0;
 
+
+int limit_qtr,limit_sonar, limit_batterie;
 ControlP5 cp5;
 
 OscP5 oscP5;
@@ -90,8 +92,7 @@ void setup() {
 
 
 
-  cp5.addToggle("GO")
-    .setValue(false)
+  cp5.addButton("GO")
     .setPosition(320, 400)
     .setSize(40, 40)
     .updateSize()
@@ -220,18 +221,42 @@ void setup() {
 
 
 
-  PImage[] imgs_T = {loadImage("button_T_a.png"), loadImage("button_T_c.png")};
-  cp5.addToggle("T")
+  PImage[] imgs_T_ar = {loadImage("button_T_ar_a.png"), loadImage("button_T_ar_c.png")};
+  cp5.addToggle("T_ar")
     .setValue(false)
-    .setPosition(150, 500)
-    .setImages(imgs_T)
+    .setPosition(10, 500)
+    .setImages(imgs_T_ar)
+    .updateSize()
+    ;
+    
+      PImage[] imgs_T_av = {loadImage("button_T_av_a.png"), loadImage("button_T_av_c.png")};
+  cp5.addToggle("T_av")
+    .setValue(false)
+    .setPosition(10, 550)
+    .setImages(imgs_T_av)
+    .updateSize()
+    ;
+    
+      PImage[] imgs_T_gauche = {loadImage("button_T_gauche_a.png"), loadImage("button_T_gauche_c.png")};
+  cp5.addToggle("T_gauche")
+    .setValue(false)
+    .setPosition(10, 600)
+    .setImages(imgs_T_gauche)
+    .updateSize()
+    ;
+    
+      PImage[] imgs_T_droite = {loadImage("button_T_droite_a.png"), loadImage("button_T_droite_c.png")};
+  cp5.addToggle("T_droite")
+    .setValue(false)
+    .setPosition(10, 650)
+    .setImages(imgs_T_droite)
     .updateSize()
     ;
 
   PImage[] imgs_croisement = {loadImage("croisement_a.png"), loadImage("croisement_c.png")};
   cp5.addToggle("croisement")
     .setValue(false)
-    .setPosition(210, 500)
+    .setPosition(70, 500)
     .setImages(imgs_croisement)
     .updateSize()
     ;
@@ -241,7 +266,7 @@ void setup() {
   PImage[] imgs_ligneH = {loadImage("ligneH_a.png"), loadImage("ligneH_c.png")};
   cp5.addToggle("ligneH")
     .setValue(false)
-    .setPosition(270, 500)
+    .setPosition(130, 500)
     .setImages(imgs_ligneH)
     .updateSize()
     ;
@@ -250,29 +275,103 @@ void setup() {
   PImage[] imgs_ligneV = {loadImage("ligneV_a.png"), loadImage("ligneV_c.png")};
   cp5.addToggle("ligneV")
     .setValue(false)
-    .setPosition(270, 560)
+    .setPosition(130, 550)
     .setImages(imgs_ligneV)
     .updateSize()
     ;
 
 
-  PImage[] imgs_lost = {loadImage("lost_a.png"), loadImage("lost_c.png")};
-  cp5.addToggle("lost")
-    .setValue(false)
-    .setPosition(330, 500)
+  PImage[] imgs_lost = {loadImage("lost_a.png"),loadImage("lost_b.png"), loadImage("lost_c.png")};
+  cp5.addButton("lost")
+    .setPosition(190, 500)
     .setImages(imgs_lost)
     .updateSize()
     ;
 
 
-  PImage[] imgs_home = {loadImage("home_a.png"), loadImage("home_c.png")};
-  cp5.addToggle("home")
-    .setValue(false)
-    .setPosition(390, 500)
+  PImage[] imgs_home = {loadImage("home_a.png"),loadImage("home_b.png"), loadImage("home_c.png")};
+  cp5.addButton("home")
+
+    .setPosition(250, 500)
     .setImages(imgs_home)
     .updateSize()
     ;
 
+
+cp5.addToggle("qtr")
+    .setValue(false)
+    .setPosition(600, 50)
+    .setSize(20, 20)
+    .setColorLabel(0) 
+    .updateSize()
+    ;
+    
+    cp5.addButton("get_qtr")
+    .setPosition(650, 50)
+    .setSize(20, 20)
+    .setLabelVisible(false)
+    .updateSize()
+    ;
+    
+    cp5.addTextfield("send_qtr")
+    .setPosition(730, 50)
+    .setSize(40, 20)
+    .setLabelVisible(false)
+    .updateSize()
+    ;
+
+cp5.addToggle("sonar")
+    .setValue(false)
+    .setPosition(600, 90)
+    .setSize(20, 20)
+    .setColorLabel(0) 
+    .updateSize()
+    ;
+    
+    
+    
+        cp5.addButton("get_sonar")
+    .setPosition(650, 90)
+    .setSize(20, 20)
+    .setLabelVisible(false)
+    .updateSize()
+    ;
+    
+        cp5.addTextfield("send_sonar")
+    .setPosition(730, 90)
+    .setSize(40, 20)
+    .setLabelVisible(false)
+    .updateSize()
+    ;
+    
+    cp5.addToggle("batterie")
+    .setValue(false)
+    .setPosition(600, 130)
+    .setSize(20, 20)
+    .setColorLabel(0) 
+    .updateSize()
+    ;
+        cp5.addButton("get_batterie")
+    .setPosition(650, 130)
+    .setSize(20, 20)
+    .setLabelVisible(false)
+    .updateSize()
+    ;
+        cp5.addTextfield("send_batterie")
+    .setPosition(730, 130)
+    .setSize(40, 20)
+    .setLabelVisible(false)
+    .updateSize()
+    ;
+    
+    
+      cp5.addSlider("led")
+     .setPosition(600,170)
+     .setRange(0,255)
+     .setColorLabel(0)
+    ;
+    
+    
 
 
 

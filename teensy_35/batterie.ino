@@ -17,9 +17,13 @@ void F_batterie() {
 
   if (batterie_value < limit_batterie) {
 
-    digitalWrite(led1, HIGH);
+    digitalWrite(led4, HIGH);
 
 
+  }
+  else{
+ digitalWrite(led4, LOW);
+    
   }
 
 }

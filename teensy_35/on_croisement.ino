@@ -33,9 +33,9 @@ void F_on_croisement() {
             go_on = false;
             dir_change = 0;
             F_send_command();
-            
-            if((dest_stepX>0)||(dest_stepY>0)){
-               
+
+            if ((dest_stepX > 0) || (dest_stepY > 0)) {
+
               F_hors_grille();
             }
           }
@@ -104,10 +104,12 @@ void F_on_croisement() {
 
             on_croisement = false;
             on_ligneV = true;
+            on_ligneV_temp = false;
           } else {
 
             on_croisement = false;
             on_ligneH = true;
+            on_ligneH_temp = false;
 
 
             on_T_droite = false;
@@ -147,9 +149,9 @@ void F_on_croisement() {
             go_on = false;
             dir_change = 0;
             F_send_command();
-             
-            if((dest_stepX>0)||(dest_stepY>0)){
-              
+
+            if ((dest_stepX > 0) || (dest_stepY > 0)) {
+
               F_hors_grille();
             }
           }
@@ -206,10 +208,12 @@ void F_on_croisement() {
           if ((dir_change != 0) && (dir_change != 15)) {
             on_croisement = false;
             on_ligneV = true;
+            on_ligneV_temp = false;
           } else {
 
             on_croisement = false;
             on_ligneH = true;
+            on_ligneH_temp = false;
             on_T_gauche = false;
           }
         }
@@ -247,9 +251,9 @@ void F_on_croisement() {
             go_on = false;
             dir_change = 0;
             F_send_command();
-            
-            if((dest_stepX>0)||(dest_stepY>0)){
-               
+
+            if ((dest_stepX > 0) || (dest_stepY > 0)) {
+
               F_hors_grille();
             }
           }
@@ -308,10 +312,12 @@ void F_on_croisement() {
 
             on_croisement = false;
             on_ligneH = true;
+            on_ligneH_temp = false;
           } else {
 
             on_croisement = false;
             on_ligneV = true;
+            on_ligneV_temp = false;
             on_T_ar = false;
           }
         }
@@ -358,9 +364,9 @@ void F_on_croisement() {
             go_on = false;
             dir_change = 0;
             F_send_command();
-           
-           if((dest_stepX>0)||(dest_stepY>0)){
-              
+
+            if ((dest_stepX > 0) || (dest_stepY > 0)) {
+
               F_hors_grille();
             }
           }
@@ -426,14 +432,39 @@ void F_on_croisement() {
           if ((dir_change != 0) && (dir_change != 17)) {
             on_croisement = false;
             on_ligneH = true;
+            on_ligneH_temp = false;
           } else {
 
             on_croisement = false;
             on_ligneV = true;
+            on_ligneV_temp = false;
             on_T_av = false;
           }
         }
         break;
     }
   }
+
+
+  if ( on_croisement_temp == false) {
+
+
+    on_croisement_temp = true;
+
+    on_ligneH_temp = false;
+    on_ligneV_temp = false;
+
+    data_get_out[0] = 109 ;
+    data_get_out[1] = byte(on_ligneH);
+    data_get_out[2] = byte(on_ligneV);
+    data_get_out[3] = byte(on_croisement);
+    data_get_out[4] = byte(on_T_av);
+    data_get_out[5] = byte(on_T_ar);
+    data_get_out[6] = byte(on_T_gauche);
+    data_get_out[7] = byte(on_T_droite);
+    Serial3.write(data_get_out, 13);
+
+  }
+
+
 }

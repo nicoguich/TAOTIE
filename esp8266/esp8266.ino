@@ -14,8 +14,8 @@
 #include <OSCBundle.h>
 #include <OSCData.h>
 
-char ssid[] = "LE HOOP";          // your network SSID (name)
-char pass[] = "lescoworkssontcuites";                    // your network password
+char ssid[] = "TAOTIE";          // your network SSID (name)
+char pass[] = "naomi_wu";                    // your network password
 
 // A UDP instance to let us send and receive packets over UDP
 WiFiUDP Udp;
@@ -27,7 +27,7 @@ const unsigned int localPort = 8888;        // local port to listen for UDP pack
 
 int dir, pos, speedmotor, limit_qtr_value, limit_sonar_value, limit_batterie_value;
 int qtr, sonar, coord, bat, on, lampe;
-int length_send, length_qtr = 12, length_bat = 1, length_coord = 4, length_sonar = 4, length_lampe = 1, length_on = 5;
+int length_send, length_on_state = 7, length_qtr = 12, length_bat = 1, length_coord = 4, length_sonar = 4, length_lampe = 1, length_on = 5, length_limit_qtr = 1, length_limit_sonar = 1, length_limit_batterie = 1;
 
 
 byte data_command[7];
@@ -84,11 +84,15 @@ void loop() {
       msg.dispatch("/command", command);
       msg.dispatch("/show", show);
       msg.dispatch("/limit_qtr", limit_qtr);
+      msg.dispatch("/get_limit_qtr", get_limit_qtr);
       msg.dispatch("/limit_sonar", limit_sonar);
-      msg.dispatch("/limit_batterie", limit_sonar);
+      msg.dispatch("/get_limit_sonar", get_limit_sonar);
+      msg.dispatch("/limit_batterie", limit_batterie);
+      msg.dispatch("/get_limit_batterie", get_limit_batterie);
       msg.dispatch("/lost", lost);
       msg.dispatch("/home", home);
       msg.dispatch("/go", go);
+      msg.dispatch("/led", led);
 
     } else {
       error = msg.getError();
@@ -133,6 +137,28 @@ void loop() {
         msg2 = bundle.add("/on");
         length_send = length_on;
         break;
+
+      case 106 :
+        msg2 = bundle.add("/limit_qtr");
+        length_send = length_limit_qtr;
+        break;
+
+      case 107 :
+        msg2 = bundle.add("/limit_sonar");
+        length_send = length_limit_sonar;
+        break;
+
+      case 108 :
+        msg2 = bundle.add("/limit_batterie");
+        length_send = length_limit_batterie;
+        break;
+
+      case 109 :
+        msg2 = bundle.add("/on_state");
+        length_send = length_on_state;
+        break;
+
+
 
 
     }
@@ -268,6 +294,32 @@ void limit_batterie(OSCMessage &msg) {
 
 
 
+void get_limit_qtr(OSCMessage &msg) {
+
+
+  data_command[0] = byte(5);
+  Serial.write(data_command, 7);
+
+}
+
+void get_limit_sonar(OSCMessage &msg) {
+
+
+  data_command[0] = byte(6);
+  Serial.write(data_command, 7);
+
+}
+
+void get_limit_batterie(OSCMessage &msg) {
+
+
+  data_command[0] = byte(7);
+  Serial.write(data_command, 7);
+
+}
+
+
+
 void lost(OSCMessage &msg) {
 
 
@@ -297,5 +349,20 @@ void go(OSCMessage &msg) {
   data_command[3] = byte(Y_grid);
   data_command[4] = byte(Y_float);
   Serial.write(data_command, 7);
+
+}
+
+
+
+void led(OSCMessage &msg) {
+
+
+  int led_value = msg.getInt(0);
+
+  data_command[0] = byte(8);
+  data_command[1] = byte(led_value);
+
+  Serial.write(data_command, 7);
+
 
 }

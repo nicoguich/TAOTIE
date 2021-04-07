@@ -12,10 +12,10 @@ long timer;
 int limit_qtr, limit_sonar, limit_batterie;
 const uint8_t SensorCount = 12;
 uint16_t sensorValues[SensorCount];
-byte Sensor_qtr[13], Sensor_qtr_temp[13], Sensor_sonar[13], Sensor_sonar_temp[13], dataIn[7], dataMotor[5], Sensor_batterie[13], coord_in[1], coord_out[13];
+byte data_get_out[13],Sensor_qtr[13], Sensor_qtr_temp[13], Sensor_sonar[13], Sensor_sonar_temp[13], dataIn[7], dataMotor[5], Sensor_batterie[13], coord_in[1], coord_out[13];
 byte show_qtr, show_sonar, show_coord, show_bat, show_on, show_lampe;
 boolean qtr_ok[12];
-boolean on_home = false, on_T_ar = false, on_T_av = false, on_T_gauche = false, on_T_droite = false, go_on = false, on_T = false, on_croisement = false, on_ligneH = false, on_ligneV = false, ligne_ok = false, croisement_ok = false, coin_ok = false, T_ok = false, capteur_ok = false, perdu_temp = false, follow_ligne = false, hors_grille=false;
+boolean on_home = false, on_T_ar = false, on_T_av = false, on_T_gauche = false, on_T_droite = false, go_on = false, on_T = false,on_T_temp=false, on_croisement = false,on_croisement_temp=false, on_ligneH = false,on_ligneH_temp=false, on_ligneV = false,on_ligneV_temp=false, ligne_ok = false, croisement_ok = false, coin_ok = false, T_ok = false, capteur_ok = false, perdu_temp = false, follow_ligne = false, hors_grille=false;
 boolean envoi = false, alignement = false;
 int etape_perdu = 0, etape_croisement = 0, compteur_croisement, dir_change = 0, etape_go = 0;
 int speed, speed_command=1000, speed_perdu = 500, step = 0, dir, dir_temp, dir_on_ligne, pos;
@@ -30,7 +30,7 @@ int trigPin_droite = 24, echoPin_droite = 25;
 
 long duration_av, duration_ar, duration_droite, duration_gauche;
 int distance_av, distance_ar, distance_droite, distance_gauche;
-int led1 = 2, led2 = 3, led3 = 4, led4 = 5;
+int led1 = 2, led2 = 3, led3 = 4, led4 = 5, fat_led=33; 
 int batterie_value, batterie_value_temp;
 
 
@@ -76,9 +76,10 @@ void setup() {
   pinMode(led2, OUTPUT);
   pinMode(led3, OUTPUT);
   pinMode(led4, OUTPUT);
+  pinMode(fat_led,OUTPUT);
 
 
-  digitalWrite(led3, HIGH);
+  digitalWrite(led1, HIGH);
 
 
 }
@@ -108,12 +109,13 @@ void loop() {
   if (alignement) F_alignement();
   if ((on_ligneH) || (on_ligneV)){
     F_on_ligne();
-    digitalWrite(led4,HIGH);
+    digitalWrite(led2,HIGH);
   }
   else{
-     digitalWrite(led4,LOW);
+     digitalWrite(led2,LOW);
   }
   if (on_croisement) F_on_croisement();
+
  
   if ( print_Sensor == 1)F_imprim_sensor();
   if (envoi) F_send_command();

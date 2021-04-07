@@ -3,7 +3,7 @@ void dessine_robot() {
   fill(255);
   stroke(1);
   pushMatrix();
-  translate(180, 0);
+  translate(50, -50);
   /// rectangle central
   fill(255);
   rect(350, 150, 100, 100);
@@ -54,28 +54,28 @@ void dessine_robot() {
 
   textSize(12);
   ///rectangle av
-  fill(255);
-  rect(380, 50, 40, 100);
+  //fill(255);
+ // rect(380, 50, 40, 100);
   fill(sonar_color[0]);
-  text("s0:"+sonar_value[0], 380, 40);
+  text("s0:"+sonar_value[0], 380, 140);
 
   ///rectangle gauche
-  fill(255);
-  rect(250, 180, 100, 40);
+ // fill(255);
+ // rect(250, 180, 100, 40);
    fill(sonar_color[3]);
-  text("s3:"+sonar_value[3], 200, 200);
+  text("s3:"+sonar_value[3], 300, 200);
 
   ///rectangle droite
-  fill(255);
-  rect(450, 180, 100, 40);
+//  fill(255);
+ // rect(450, 180, 100, 40);
    fill(sonar_color[1]);
-  text("s1:"+sonar_value[1], 560, 200);
+  text("s1:"+sonar_value[1], 460, 200);
 
   ///rectangle ar
-  fill(255);
-  rect(380, 250, 40, 100);
+//  fill(255);
+//  rect(380, 250, 40, 100);
    fill(sonar_color[2]);
-  text("s2:"+sonar_value[2], 380, 370);
+  text("s2:"+sonar_value[2], 380, 280);
   
   
    /*image(img_sel,475,275);
@@ -84,8 +84,8 @@ void dessine_robot() {
         if (T_ok){
      text(type_T,570,300);}
   */
-  text("X: "+coordX+"  Y: "+coordY+ "  angle: "+ angle,300,400);
-  text(etape_croisement,570,300);
+//  text("X: "+coordX+"  Y: "+coordY+ "  angle: "+ angle,300,400);
+//  text(etape_croisement,570,300);
   popMatrix();
   
   text("C "+dest_coordX,125,415);
@@ -94,6 +94,13 @@ void dessine_robot() {
     text("C "+dest_coordY,275,415);
   text("S "+dest_stepY,275,435);
  
+ fill(0);
+ text ("show",600,45);
+  text ("get",650,45);
+  text("send limit",720,45);
+  text(str(limit_qtr),675,70);
+   text(str(limit_sonar),675,110);
+    text(str(limit_batterie),675,150);
   
   
 }

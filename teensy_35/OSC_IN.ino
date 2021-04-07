@@ -3,10 +3,12 @@ void F_osc_in() {
 
   if (Serial3.available() > 0) {
     Serial3.readBytes(dataIn, 7);
+    Serial.print(dataIn[0]);
+    Serial.print("  ");
+    Serial.println(dataIn[1]);
 
-    switch (dataIn[0]) {
-      case 0 :
 
+  if (dataIn[0]==0){
         for (int x = 0; x < 6; x++) {
           dataMotor[x] = dataIn[x + 1];
         }
@@ -15,29 +17,29 @@ void F_osc_in() {
         dir = int(dataMotor[2]);
         speed = int ((256 * dataMotor[3]) + dataMotor[4]);
         speed_command = speed;
-        if (dir==0){
-        on_ligneV=false;
-        on_ligneH=false;
-        go_on=false;
-        alignement = false;
-        perdu_temp = false;
-        on_home=false;
-        on_croisement=false;
-        on_T_av = false;
-        on_T_ar = false;
-        on_T_droite = false;
-        on_T_gauche = false;
-        dir_on_ligne = dir;
-        stepX = 0;
-        stepY=0;
-        dest_stepX=0;
-        dest_stepY=0;
-        coordX = 0;
-        coordY = 0;
+        if (dir == 0) {
+          on_ligneV = false;
+          on_ligneH = false;
+          go_on = false;
+          alignement = false;
+          perdu_temp = false;
+          on_home = false;
+          on_croisement = false;
+          on_T_av = false;
+          on_T_ar = false;
+          on_T_droite = false;
+          on_T_gauche = false;
+          dir_on_ligne = dir;
+          stepX = 0;
+          stepY = 0;
+          dest_stepX = 0;
+          dest_stepY = 0;
+          coordX = 0;
+          coordY = 0;
         }
-        break;
+  }
 
-      case 1 :
+   else if (dataIn[0]==1){
         show_qtr = dataIn[1];
         show_sonar = dataIn[2];
         show_coord = dataIn[3];
@@ -56,35 +58,64 @@ void F_osc_in() {
             Serial.print(" ");
                   Serial.println(show_lampe);*/
 
-        break;
+   }
 
-      case 2:
+  else if (dataIn[0]==2){
         EEPROM.write(0, dataIn[1]) ;
         limit_qtr = dataIn[1];
         delay(500);
-        break;
+  }
 
-      case 3 :
+   else if (dataIn[0]==3){
         EEPROM.write(1, dataIn[1]) ;
         limit_sonar = dataIn[1];
         delay(500);
-        break;
+   }
 
 
-      case 4 :
+     else if (dataIn[0]==4){
         EEPROM.write(2, dataIn[1]) ;
         limit_batterie = dataIn[1];
         delay(500);
-        break;
+     }
 
-      case 100 :
+      else if (dataIn[0]==5){
+
+        data_get_out[0] = 106 ;
+        data_get_out[1] = byte(limit_qtr);
+
+        Serial3.write(data_get_out, 13);
+      }
+
+     else if (dataIn[0]==6){
+        data_get_out[0] = 107 ;
+        data_get_out[1] = byte(limit_sonar);
+
+        Serial3.write(data_get_out, 13);
+     }
+
+
+       else if (dataIn[0]==7){
+        data_get_out[0] = 108 ;
+        data_get_out[1] = byte(limit_batterie);
+        Serial3.write(data_get_out, 13);
+       }
+
+    else if (dataIn[0]==8){
+        int led_value = int(dataIn[1]);
+        analogWrite(fat_led, led_value);
+    }
+
+
+      else if (dataIn[0]==100){
+        Serial.println("toto");
         alignement = true;
         perdu_temp = false;
         dir_temp = 0;
         etape_perdu = 0;
-        break;
+      }
 
-      case 101 :
+ else if (dataIn[0]==101){
         on_home = true;
         if ((on_T_gauche == false) && (on_T_ar == false)) {
           if (on_ligneH) {
@@ -118,15 +149,15 @@ void F_osc_in() {
         dir_on_ligne = dir;
 
         envoi = true;
-        break;
+ }
 
 
 
-      case 102 :
+ else if (dataIn[0]==102){
         int dest_coordX = int(dataIn[1]);
-         dest_stepX = int(dataIn[2]);
+        dest_stepX = int(dataIn[2]);
         int dest_coordY = int(dataIn[3]);
-         dest_stepY = int(dataIn[4]);
+        dest_stepY = int(dataIn[4]);
 
         stepX = dest_coordX - coordX;
         stepY = dest_coordY - coordY;
@@ -134,10 +165,10 @@ void F_osc_in() {
 
 
 
-        if ((stepX_hors_grille>0)||(stepY_hors_grille>0)){
+        if ((stepX_hors_grille > 0) || (stepY_hors_grille > 0)) {
 
-F_retour_croisement();
-          
+          F_retour_croisement();
+
         }
 
 
@@ -176,10 +207,12 @@ F_retour_croisement();
 
         }
 
-        break;
+ }
 
 
-    }
+
+
+    
   }
 
 

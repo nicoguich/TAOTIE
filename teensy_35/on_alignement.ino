@@ -90,6 +90,7 @@ void F_alignement() {
     step = 0;
     alignement = false;
     on_ligneH = true;
+    on_ligneH_temp=false;
     dir_temp = 0;
 
   }
@@ -119,6 +120,7 @@ void F_alignement() {
     step = 0;
     alignement = false;
     on_ligneH = true;
+    on_ligneH_temp=false;
     dir_temp = 0;
 
 

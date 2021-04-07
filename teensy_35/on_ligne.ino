@@ -168,5 +168,45 @@ void F_on_ligne() {
     envoi = true;
   } else {
     dir = dir_on_ligne;
+    speed=speed_command;
   }
+
+
+
+  if ((on_ligneH == true) && (on_ligneH_temp == false)) {
+    on_ligneH_temp = true;
+    on_ligneV_temp = false;
+    on_croisement_temp = false;
+    data_get_out[0] = 109 ;
+    data_get_out[1] = byte(on_ligneH);
+    data_get_out[2] = byte(on_ligneV);
+    data_get_out[3] = byte(on_croisement);
+    data_get_out[4] = byte(on_T_av);
+    data_get_out[5] = byte(on_T_ar);
+    data_get_out[6] = byte(on_T_gauche);
+    data_get_out[7] = byte(on_T_droite);
+    Serial3.write(data_get_out, 13);
+
+
+  }
+  if ((on_ligneV == true) && (on_ligneV_temp == false)) {
+    on_ligneH_temp = false;
+    on_ligneV_temp = true;
+    on_croisement_temp = false;
+
+    data_get_out[0] = 109 ;
+    data_get_out[1] = byte(on_ligneH);
+    data_get_out[2] = byte(on_ligneV);
+    data_get_out[3] = byte(on_croisement);
+    data_get_out[4] = byte(on_T_av);
+    data_get_out[5] = byte(on_T_ar);
+    data_get_out[6] = byte(on_T_gauche);
+    data_get_out[7] = byte(on_T_droite);
+    Serial3.write(data_get_out, 13);
+
+
+  }
+
+
+
 }
