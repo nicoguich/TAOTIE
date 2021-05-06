@@ -27,7 +27,7 @@ const unsigned int localPort = 8888;        // local port to listen for UDP pack
 
 int dir, pos, speedmotor, limit_qtr_value, limit_sonar_value, limit_batterie_value;
 int qtr, sonar, coord, bat, on, lampe;
-int length_send, length_on_state = 7, length_qtr = 12, length_bat = 1, length_coord = 4, length_sonar = 4, length_lampe = 1, length_on = 5, length_limit_qtr = 1, length_limit_sonar = 1, length_limit_batterie = 1;
+int length_send, length_on_state = 7, length_qtr = 12, length_bat = 1, length_coord = 4, length_sonar = 4, length_lampe = 1, length_on = 5, length_limit_qtr = 1, length_limit_sonar = 1, length_limit_batterie = 1, length_dist_to_go = 2;
 
 
 byte data_command[7];
@@ -93,6 +93,9 @@ void loop() {
       msg.dispatch("/home", home);
       msg.dispatch("/go", go);
       msg.dispatch("/led", led);
+      msg.dispatch("/rec", rec);
+      msg.dispatch("/play", play_sd);
+    
 
     } else {
       error = msg.getError();
@@ -107,61 +110,65 @@ void loop() {
     Serial.readBytes(dataIn, 13);
     OSCMessage msg2;
 
-    switch (dataIn[0]) {
-      case 100 :
-        msg2 = bundle.add("/qtr");
-        length_send = length_qtr;
-        break;
+    if (dataIn[0] == 100) {
 
-      case 101:
-        msg2 = bundle.add("/bat");
-        length_send = length_bat;
-        break;
-
-      case 102 :
-        msg2 = bundle.add("/coord");
-        length_send = length_coord;
-        break;
-
-      case 103 :
-        msg2 = bundle.add("/lampe");
-        length_send = length_lampe;
-        break;
-
-      case 104 :
-        msg2 = bundle.add("/sonar");
-        length_send = length_sonar;
-        break;
-
-      case 105 :
-        msg2 = bundle.add("/on");
-        length_send = length_on;
-        break;
-
-      case 106 :
-        msg2 = bundle.add("/limit_qtr");
-        length_send = length_limit_qtr;
-        break;
-
-      case 107 :
-        msg2 = bundle.add("/limit_sonar");
-        length_send = length_limit_sonar;
-        break;
-
-      case 108 :
-        msg2 = bundle.add("/limit_batterie");
-        length_send = length_limit_batterie;
-        break;
-
-      case 109 :
-        msg2 = bundle.add("/on_state");
-        length_send = length_on_state;
-        break;
-
-
-
-
+      msg2 = bundle.add("/qtr");
+      length_send = length_qtr;
     }
+
+    if (dataIn[0] == 101) {
+      msg2 = bundle.add("/bat");
+      length_send = length_bat;
+    }
+
+    if (dataIn[0] == 102) {
+      msg2 = bundle.add("/coord");
+      length_send = length_coord;
+    }
+    if (dataIn[0] == 103) {
+      msg2 = bundle.add("/lampe");
+      length_send = length_lampe;
+    }
+
+    if (dataIn[0] == 104) {
+      msg2 = bundle.add("/sonar");
+      length_send = length_sonar;
+    }
+
+    if (dataIn[0] == 105) {
+      msg2 = bundle.add("/on");
+      length_send = length_on;
+    }
+
+    if (dataIn[0] == 106) {
+      msg2 = bundle.add("/limit_qtr");
+      length_send = length_limit_qtr;
+    }
+
+    if (dataIn[0] == 107) {
+      msg2 = bundle.add("/limit_sonar");
+      length_send = length_limit_sonar;
+    }
+
+    if (dataIn[0] == 108) {
+      msg2 = bundle.add("/limit_batterie");
+      length_send = length_limit_batterie;
+    }
+
+    if (dataIn[0] == 109) {
+      msg2 = bundle.add("/on_state");
+      length_send = length_on_state;
+    }
+
+    if (dataIn[0] == 123) {
+      msg2 = bundle.add("/dist_to_go");
+      length_send = length_dist_to_go;
+    }
+
+
+
+
+
 
     for (int x = 1; x < length_send + 1; x++) {
 
@@ -348,6 +355,29 @@ void go(OSCMessage &msg) {
   data_command[2] = byte(X_float);
   data_command[3] = byte(Y_grid);
   data_command[4] = byte(Y_float);
+  Serial.write(data_command, 7);
+
+}
+
+
+void rec(OSCMessage &msg) {
+
+  int rec_ok = msg.getInt(0);
+
+  data_command[0] = byte(103);
+  data_command[1] = byte(rec_ok);
+  Serial.write(data_command, 7);
+
+}
+
+
+void play_sd(OSCMessage &msg) {
+
+
+  int play_ok = msg.getInt(0);
+
+  data_command[0] = byte(104);
+  data_command[1] = byte(play_ok);
   Serial.write(data_command, 7);
 
 }

@@ -17,8 +17,15 @@ void moveMotor() {
         
 if ((FrontWheel.distanceToGo() == 0)&&(BackWheel.distanceToGo() == 0)&& (LeftWheel.distanceToGo() == 0)&&(RightWheel.distanceToGo() == 0)&&(m!=0)){
 
+Serial.println("distance 0");
 
-  Serial3.write(byte(123));
+ data_command[0] = 123;
+
+  data_command[1] = byte(255);
+  data_command[2] = byte(255);
+  Serial3.write(data_command, 3);
+  delay(100);
+
   m=0;
 }
 
@@ -75,6 +82,66 @@ if ((FrontWheel.distanceToGo() == 0)&&(BackWheel.distanceToGo() == 0)&& (LeftWhe
 void moveLeftBackward(){//
 
 
+
+
+if (m_temp[0]!=0){
+data_command[0] = 123;
+
+ if (m_temp[0]==1){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+ 
+ if (m_temp[0]==2){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+        if (m_temp[0]==3){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+
+     if (m_temp[0]==4){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+
+      if (m_temp[0]==5){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+       if (m_temp[0]==6){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+  
+
+   if (m_temp[0]==7){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+     if (m_temp[0]==8){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+
+   if (m_temp[0]==9){
+  data_command[1] = byte((-1*FrontWheel.distanceToGo()) >> 8);
+  data_command[2] = byte((-1*FrontWheel.distanceToGo())  - (((-1*FrontWheel.distanceToGo())  >> 8) * 256));}
+
+ if (m_temp[0]==10){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+
+  Serial3.write(data_command, 3);
+  delay(100);
+       
+
+}
+  LeftWheel.setCurrentPosition(0);
+  FrontWheel.setCurrentPosition(0);
+  BackWheel.setCurrentPosition(0);
+  RightWheel.setCurrentPosition(0);
+
   digitalWrite(enable_front,HIGH);
   digitalWrite(enable_left,LOW);
   digitalWrite(enable_right,LOW);
@@ -88,6 +155,13 @@ void moveLeftBackward(){//
   LeftSpeed = wheelSpeed;
   RightSpeed = -wheelSpeed;
   BackSpeed = 0;
+
+
+
+
+
+
+ on_move = false;
 
 
 }
@@ -95,6 +169,69 @@ void moveLeftBackward(){//
 
 void moveRightForward(){//
 
+
+
+
+if (m_temp[0]!=0){
+data_command[0] = 123;
+
+ if (m_temp[0]==1){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+ 
+ if (m_temp[0]==2){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+        if (m_temp[0]==3){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+
+     if (m_temp[0]==4){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+
+      if (m_temp[0]==5){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+       if (m_temp[0]==6){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+  
+
+   if (m_temp[0]==7){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+     if (m_temp[0]==8){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+
+   if (m_temp[0]==9){
+  data_command[1] = byte((-1*FrontWheel.distanceToGo()) >> 8);
+  data_command[2] = byte((-1*FrontWheel.distanceToGo())  - (((-1*FrontWheel.distanceToGo())  >> 8) * 256));}
+
+ if (m_temp[0]==10){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+
+  Serial3.write(data_command, 3);
+  delay(100);
+      
+
+
+}
+
+  LeftWheel.setCurrentPosition(0);
+  FrontWheel.setCurrentPosition(0);
+  BackWheel.setCurrentPosition(0);
+  RightWheel.setCurrentPosition(0);
+  
   digitalWrite(enable_front,HIGH);
   digitalWrite(enable_left,LOW);
   digitalWrite(enable_right,LOW);
@@ -111,11 +248,80 @@ void moveRightForward(){//
   BackWheel.moveTo(0);
 
 
+
+
+
+
+  on_move = false;
+
 }
 
 
 
 void moveLeftForward() {//
+
+
+ if (m_temp[0]!=0){ 
+
+data_command[0] = 123;
+
+ if (m_temp[0]==1){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+ 
+ if (m_temp[0]==2){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+        if (m_temp[0]==3){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+
+     if (m_temp[0]==4){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+
+      if (m_temp[0]==5){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+       if (m_temp[0]==6){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+  
+
+   if (m_temp[0]==7){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+     if (m_temp[0]==8){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+
+   if (m_temp[0]==9){
+  data_command[1] = byte((-1*FrontWheel.distanceToGo()) >> 8);
+  data_command[2] = byte((-1*FrontWheel.distanceToGo())  - (((-1*FrontWheel.distanceToGo())  >> 8) * 256));}
+
+ if (m_temp[0]==10){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+
+  Serial3.write(data_command, 3);
+  delay(100);
+
+
+ }
+
+
+  LeftWheel.setCurrentPosition(0);
+  FrontWheel.setCurrentPosition(0);
+  BackWheel.setCurrentPosition(0);
+  RightWheel.setCurrentPosition(0);
+
 
   digitalWrite(enable_front,LOW);
   digitalWrite(enable_left,HIGH);
@@ -131,6 +337,12 @@ void moveLeftForward() {//
   LeftWheel.moveTo(0);
   RightWheel.moveTo(0);
   BackWheel.moveTo(-pos);
+
+
+
+
+
+         on_move = false; 
 
 }
 
@@ -138,6 +350,68 @@ void moveLeftForward() {//
 void moveRightBackward() {//
 
 
+
+ if (m_temp[0]!=0){ 
+
+data_command[0] = 123;
+
+ if (m_temp[0]==1){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+ 
+ if (m_temp[0]==2){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+        if (m_temp[0]==3){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+
+     if (m_temp[0]==4){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+
+      if (m_temp[0]==5){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+       if (m_temp[0]==6){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+  
+
+   if (m_temp[0]==7){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+     if (m_temp[0]==8){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+
+   if (m_temp[0]==9){
+  data_command[1] = byte((-1*FrontWheel.distanceToGo()) >> 8);
+  data_command[2] = byte((-1*FrontWheel.distanceToGo())  - (((-1*FrontWheel.distanceToGo())  >> 8) * 256));}
+
+ if (m_temp[0]==10){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+
+  Serial3.write(data_command, 3);
+  delay(100);
+   
+
+ }
+
+
+  LeftWheel.setCurrentPosition(0);
+  FrontWheel.setCurrentPosition(0);
+  BackWheel.setCurrentPosition(0);
+  RightWheel.setCurrentPosition(0);
+
   digitalWrite(enable_front,LOW);
   digitalWrite(enable_left,HIGH);
   digitalWrite(enable_right,HIGH);
@@ -154,11 +428,83 @@ void moveRightBackward() {//
   RightWheel.moveTo(0);
   BackWheel.moveTo(pos);
 
+
+
+
+
+
+
+     on_move = false;
+  
+
 }
 
 
 
 void rotateLeft() {
+
+
+ if (m_temp[0]!=0){ 
+
+data_command[0] = 123;
+
+ if (m_temp[0]==1){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+ 
+ if (m_temp[0]==2){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+        if (m_temp[0]==3){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+
+     if (m_temp[0]==4){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+
+      if (m_temp[0]==5){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+       if (m_temp[0]==6){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+  
+
+   if (m_temp[0]==7){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+     if (m_temp[0]==8){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+
+   if (m_temp[0]==9){
+  data_command[1] = byte((-1*FrontWheel.distanceToGo()) >> 8);
+  data_command[2] = byte((-1*FrontWheel.distanceToGo())  - (((-1*FrontWheel.distanceToGo())  >> 8) * 256));}
+
+ if (m_temp[0]==10){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+
+  Serial3.write(data_command, 3);
+  delay(100);
+    
+
+
+ }
+
+   LeftWheel.setCurrentPosition(0);
+  FrontWheel.setCurrentPosition(0);
+  BackWheel.setCurrentPosition(0);
+  RightWheel.setCurrentPosition(0);
+
 
   digitalWrite(enable_front,LOW);
   digitalWrite(enable_left,LOW);
@@ -176,11 +522,79 @@ void rotateLeft() {
   RightWheel.moveTo(-pos);
   BackWheel.moveTo(-pos);
 
+
+
+ 
+  
+    on_move = false;
 }
 
 
 
 void rotateRight() {
+
+
+ if (m_temp[0]!=0){ 
+
+data_command[0] = 123;
+
+ if (m_temp[0]==1){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+ 
+ if (m_temp[0]==2){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+        if (m_temp[0]==3){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+
+     if (m_temp[0]==4){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+
+      if (m_temp[0]==5){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+       if (m_temp[0]==6){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+  
+
+   if (m_temp[0]==7){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+     if (m_temp[0]==8){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+
+   if (m_temp[0]==9){
+  data_command[1] = byte((-1*FrontWheel.distanceToGo()) >> 8);
+  data_command[2] = byte((-1*FrontWheel.distanceToGo())  - (((-1*FrontWheel.distanceToGo())  >> 8) * 256));}
+
+ if (m_temp[0]==10){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+
+  Serial3.write(data_command, 3);
+  delay(100);
+  
+
+
+ }
+
+   LeftWheel.setCurrentPosition(0);
+  FrontWheel.setCurrentPosition(0);
+  BackWheel.setCurrentPosition(0);
+  RightWheel.setCurrentPosition(0);
+
 
   digitalWrite(enable_front,LOW);
   digitalWrite(enable_left,LOW);
@@ -195,6 +609,12 @@ void rotateRight() {
   LeftWheel.moveTo(pos);
   RightWheel.moveTo(pos);
   BackWheel.moveTo(pos);
+
+
+
+ 
+
+        on_move = false;
 
 }
 
@@ -202,6 +622,68 @@ void rotateRight() {
 
 void moveSidewaysLeft() {//
 
+
+ if (m_temp[0]!=0){ 
+
+data_command[0] = 123;
+
+ if (m_temp[0]==1){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+ 
+ if (m_temp[0]==2){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+        if (m_temp[0]==3){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+
+     if (m_temp[0]==4){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+
+      if (m_temp[0]==5){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+       if (m_temp[0]==6){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+  
+
+   if (m_temp[0]==7){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+     if (m_temp[0]==8){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+
+   if (m_temp[0]==9){
+  data_command[1] = byte((-1*FrontWheel.distanceToGo()) >> 8);
+  data_command[2] = byte((-1*FrontWheel.distanceToGo())  - (((-1*FrontWheel.distanceToGo())  >> 8) * 256));}
+
+ if (m_temp[0]==10){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+
+  Serial3.write(data_command, 3);
+  delay(100);
+ 
+
+ }
+
+
+  LeftWheel.setCurrentPosition(0);
+  FrontWheel.setCurrentPosition(0);
+  BackWheel.setCurrentPosition(0);
+  RightWheel.setCurrentPosition(0);
+
   digitalWrite(enable_front,LOW);
   digitalWrite(enable_left,LOW);
   digitalWrite(enable_right,LOW);
@@ -218,13 +700,78 @@ void moveSidewaysLeft() {//
 
   BackWheel.moveTo(-pos);
 
+
+ 
+
+  
+       on_move = false;
 }
 
 
 
 void moveForward() {//
 
-  digitalWrite(enable_front,LOW);
+ 
+ if (m_temp[0]!=0){ 
+
+data_command[0] = 123;
+
+ if (m_temp[0]==1){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+ 
+ if (m_temp[0]==2){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+        if (m_temp[0]==3){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+
+     if (m_temp[0]==4){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+
+      if (m_temp[0]==5){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+       if (m_temp[0]==6){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+  
+
+   if (m_temp[0]==7){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+     if (m_temp[0]==8){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+
+   if (m_temp[0]==9){
+  data_command[1] = byte((-1*FrontWheel.distanceToGo()) >> 8);
+  data_command[2] = byte((-1*FrontWheel.distanceToGo())  - (((-1*FrontWheel.distanceToGo())  >> 8) * 256));}
+
+ if (m_temp[0]==10){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+
+  Serial3.write(data_command, 3);
+  delay(100);
+ 
+ }
+
+  LeftWheel.setCurrentPosition(0);
+  FrontWheel.setCurrentPosition(0);
+  BackWheel.setCurrentPosition(0);
+  RightWheel.setCurrentPosition(0);
+
+ digitalWrite(enable_front,LOW);
   digitalWrite(enable_left,LOW);
   digitalWrite(enable_right,LOW);
   digitalWrite(enable_back,LOW);
@@ -239,11 +786,83 @@ void moveForward() {//
   LeftWheel.moveTo(-pos);
   RightWheel.moveTo(pos);
   BackWheel.moveTo(-pos);
+ 
+
+
+
+ 
+
+         on_move = false;
 
 }
 
 
 void moveBackward()  {//
+
+
+
+
+ if (m_temp[0]!=0){ 
+
+
+data_command[0] = 123;
+
+ if (m_temp[0]==1){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+ 
+ if (m_temp[0]==2){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+        if (m_temp[0]==3){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+
+     if (m_temp[0]==4){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+
+      if (m_temp[0]==5){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+       if (m_temp[0]==6){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+  
+
+   if (m_temp[0]==7){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+     if (m_temp[0]==8){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+
+   if (m_temp[0]==9){
+  data_command[1] = byte((-1*FrontWheel.distanceToGo()) >> 8);
+  data_command[2] = byte((-1*FrontWheel.distanceToGo())  - (((-1*FrontWheel.distanceToGo())  >> 8) * 256));}
+
+ if (m_temp[0]==10){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+
+  Serial3.write(data_command, 3);
+  delay(100);
+
+ }
+
+
+
+  LeftWheel.setCurrentPosition(0);
+  FrontWheel.setCurrentPosition(0);
+  BackWheel.setCurrentPosition(0);
+  RightWheel.setCurrentPosition(0);
 
 
   digitalWrite(enable_front,LOW);
@@ -260,6 +879,15 @@ void moveBackward()  {//
   LeftWheel.moveTo(pos);
   RightWheel.moveTo(-pos);
   BackWheel.moveTo(pos);
+
+
+
+
+
+ 
+
+          on_move = false;
+
 
 }
 
@@ -269,10 +897,76 @@ void moveBackward()  {//
 void moveSidewaysRight() {//
 
 
+
+
+ if (m_temp[0]!=0){ 
+
+data_command[0] = 123;
+
+ if (m_temp[0]==1){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+ 
+ if (m_temp[0]==2){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+        if (m_temp[0]==3){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+
+     if (m_temp[0]==4){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+
+      if (m_temp[0]==5){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+       if (m_temp[0]==6){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+  
+
+   if (m_temp[0]==7){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+     if (m_temp[0]==8){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+
+   if (m_temp[0]==9){
+  data_command[1] = byte((-1*FrontWheel.distanceToGo()) >> 8);
+  data_command[2] = byte((-1*FrontWheel.distanceToGo())  - (((-1*FrontWheel.distanceToGo())  >> 8) * 256));}
+
+ if (m_temp[0]==10){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+
+  Serial3.write(data_command, 3);
+  delay(100);
+
+
+ }
+
+
+
   digitalWrite(enable_front,LOW);
   digitalWrite(enable_left,LOW);
   digitalWrite(enable_right,LOW);
   digitalWrite(enable_back,LOW);
+
+
+
+  LeftWheel.setCurrentPosition(0);
+  FrontWheel.setCurrentPosition(0);
+  BackWheel.setCurrentPosition(0);
+  RightWheel.setCurrentPosition(0);
 
   
   FrontSpeed = -wheelSpeed;
@@ -284,6 +978,11 @@ void moveSidewaysRight() {//
   LeftWheel.moveTo(-pos);
   RightWheel.moveTo(pos);
   BackWheel.moveTo(pos);
+
+
+
+ 
+          on_move = false;
 
 }
 
@@ -296,6 +995,61 @@ void stopMoving() {
   digitalWrite(enable_left,HIGH);
   digitalWrite(enable_right,HIGH);
   digitalWrite(enable_back,HIGH);
+
+
+
+ data_command[0] = 123;
+
+ if (m_temp[0]==1){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+ 
+ if (m_temp[0]==2){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+        if (m_temp[0]==3){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+
+     if (m_temp[0]==4){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+
+      if (m_temp[0]==5){
+  data_command[1] = byte(RightWheel.distanceToGo() >> 8);
+  data_command[2] = byte(RightWheel.distanceToGo() - ((RightWheel.distanceToGo() >> 8) * 256));}
+
+       if (m_temp[0]==6){
+  data_command[1] = byte(LeftWheel.distanceToGo() >> 8);
+  data_command[2] = byte(LeftWheel.distanceToGo() - ((LeftWheel.distanceToGo() >> 8) * 256));}
+  
+
+   if (m_temp[0]==7){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+     if (m_temp[0]==8){
+  data_command[1] = byte(BackWheel.distanceToGo() >> 8);
+  data_command[2] = byte(BackWheel.distanceToGo() - ((BackWheel.distanceToGo() >> 8) * 256));}
+
+
+   if (m_temp[0]==9){
+  data_command[1] = byte((-1*FrontWheel.distanceToGo()) >> 8);
+  data_command[2] = byte((-1*FrontWheel.distanceToGo())  - (((-1*FrontWheel.distanceToGo())  >> 8) * 256));}
+
+ if (m_temp[0]==10){
+  data_command[1] = byte(FrontWheel.distanceToGo() >> 8);
+  data_command[2] = byte(FrontWheel.distanceToGo() - ((FrontWheel.distanceToGo() >> 8) * 256));}
+
+
+  Serial3.write(data_command, 3);
+  delay(100);
+        on_move = false;
+ 
+      
 
   
   FrontWheel.setSpeed(0);

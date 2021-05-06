@@ -1,5 +1,20 @@
 void oscEvent(OscMessage theOscMessage) {
   
+  
+  
+  if (theOscMessage.checkAddrPattern("/dist_to_go")==true) { 
+    
+
+   if ((int((256*theOscMessage.get(0).intValue())+theOscMessage.get(1).intValue()))!=65535){
+    println("dist parcouru:" + (65000- int((256*theOscMessage.get(0).intValue())+theOscMessage.get(1).intValue())));}
+    else{
+      println("arrivé!!!");
+}
+    
+    
+  }
+  
+  
 
 
 

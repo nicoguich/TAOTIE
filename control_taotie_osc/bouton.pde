@@ -107,7 +107,7 @@ if (bouton_name.equals("lost")){
   println(bouton_name);
  dir=str(theEvent.getController().getValue());
  if ((step.equals("0"))&&(dir.equals("0.0")==false)){
-   dir=str(int(dir)+10);}
+   step=str(65000);}
 
   dir_on_ligne=dir;
  
@@ -182,6 +182,29 @@ if (bouton_name.equals("lost")){
        
  
             OscMessage myOscMessage = new OscMessage("/led");
+      myOscMessage.add(int(theEvent.getController().getValue()));
+      
+      oscP5.send(myOscMessage, taotie_robot); 
+       
+     }
+     
+     
+     
+          if (bouton_name.equals("REC")){
+       
+ 
+            OscMessage myOscMessage = new OscMessage("/rec");
+      myOscMessage.add(int(theEvent.getController().getValue()));
+      
+      oscP5.send(myOscMessage, taotie_robot); 
+       
+     }
+     
+     
+               if (bouton_name.equals("PLAY")){
+       println(int(theEvent.getController().getValue()));
+ 
+            OscMessage myOscMessage = new OscMessage("/play");
       myOscMessage.add(int(theEvent.getController().getValue()));
       
       oscP5.send(myOscMessage, taotie_robot); 

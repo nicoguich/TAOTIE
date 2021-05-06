@@ -18,8 +18,10 @@ long pos, timer;
 byte data2[5];
 byte datawheel[4];
 int led = 16;
-int enable_front=2,enable_back=10,enable_left=13,enable_right=5;
-
+int enable_front = 2, enable_back = 10, enable_left = 13, enable_right = 5;
+byte data_command[2];
+boolean on_move = false;
+int m_temp[2];
 
 
 
@@ -41,16 +43,17 @@ void setup() {
   RightWheel.setCurrentPosition(0);
 
   pinMode (led, OUTPUT);
-  pinMode(enable_front,OUTPUT);
-  pinMode(enable_back,OUTPUT);
-  pinMode(enable_left,OUTPUT);
-  pinMode(enable_right,OUTPUT);
+  pinMode(enable_front, OUTPUT);
+  pinMode(enable_back, OUTPUT);
+  pinMode(enable_left, OUTPUT);
+  pinMode(enable_right, OUTPUT);
 
 
   for (int x = 0; x < 5; x++) {
     data2[x] = 0;
   }
-
+m_temp[1]=0;
+m=0;
 
 }
 
@@ -70,53 +73,79 @@ void loop() {
 
 
     m = int(dir);
-    pos = int(pos * 32);
+      m_temp[0]=m_temp[1];
+      m_temp[1]=m;
+      
+    
+    pos = int(pos);
 
 
-/*
-    Serial.print(m);
-    Serial.print("  ");
-    Serial.print(pos / 32);
-    Serial.print("  ");
-    Serial.println(wheelSpeed);
+    /*
+        Serial.print(m);
+        Serial.print("  ");
+        Serial.print(pos / 32);
+        Serial.print("  ");
+        Serial.println(wheelSpeed);
 
-*/
+    */
 
 
     if ((m == 4) || (m == 14) || (m == 24) || (m == 34)) {
       moveSidewaysLeft();
+
+      on_move = true;
     }
     if ((m == 5) || (m == 15) || (m == 25) || (m == 35)) {
       moveSidewaysRight();
+
+      on_move = true;
     }
     if ((m == 2) || (m == 12) || (m == 22) || (m == 32)) {
 
       moveForward();
+
+      on_move = true;
     }
     if ((m == 7) || (m == 17) || (m == 27) || (m == 37)) {
       moveBackward();
+
+      on_move = true;
     }
     if ((m == 3) || (m == 13) || (m == 23) || (m == 33)) {
       moveRightForward();
+
+      on_move = true;
     }
     if ((m == 1) || (m == 11) || (m == 21) || (m == 31)) {
       moveLeftForward();
+
+      on_move = true;
     }
     if ((m == 8) || (m == 18) || (m == 28) || (m == 38)) {
       moveRightBackward();
+
+      on_move = true;
     }
     if ((m == 6) || (m == 16) || (m == 26) || (m == 36)) {
       moveLeftBackward();
+
+      on_move = true;
     }
     if ((m == 9) || (m == 19) || (m == 29) || (m == 39)) {
       rotateLeft();
+
+      on_move = true;
     }
     if ((m == 10) || (m == 20) || (m == 30) || (m == 40)) {
       rotateRight();
+
+      on_move = true;
     }
 
     if (m == 0) {
       stopMoving();
+
+
     }
   }
 

@@ -14,7 +14,7 @@ void F_send_command() {
 
   if ((on_ligneH==true)||(on_ligneV==true)){
   dir=dir_on_ligne;
-speed=speed_command;
+
 }
 
 envoi=false;

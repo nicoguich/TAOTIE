@@ -70,33 +70,30 @@ void setup() {
   textFont(font);
   cp5 = new ControlP5(this);    
 
-  cp5.addTextfield("stepX")
-    .setPosition(20, 400)
-    .setSize(100, 40)
-    .setFont(font)
-    .setFocus(true)
-    .setColor(color(255))
-    .setColorCaptionLabel(color(0))
-    .setLabel("coord "+coordX+"\n step "+micro_stepX)
-    ;
-
-  cp5.addTextfield("stepY")
-    .setPosition(170, 400)
-    .setSize(100, 40)
-    .setFont(font)
-    .setFocus(true)
-    .setColor(color(255))
-    .setColorCaptionLabel(color(0))
-   .setLabel("coord "+coordY+"\n step "+micro_stepY)
-    ;     
-
-
-
-  cp5.addButton("GO")
-    .setPosition(320, 400)
+     
+      cp5.addToggle("REC")
+      .setColorLabel(0) 
+    .setPosition(200, 400)
     .setSize(40, 40)
     .updateSize()
     ;
+    
+          cp5.addToggle("PLAY")
+      .setColorLabel(0) 
+    .setPosition(300, 400)
+    .setSize(40, 40)
+    .updateSize()
+    ;
+    
+      PImage[] imgs_home = {loadImage("home_a.png"),loadImage("home_b.png"), loadImage("home_c.png")};
+  cp5.addButton("lost")
+
+    .setPosition(100, 400)
+    .setImages(imgs_home)
+    .updateSize()
+    ;
+    
+    
 
 
   cp5.addTextfield("step")
@@ -221,81 +218,6 @@ void setup() {
 
 
 
-  PImage[] imgs_T_ar = {loadImage("button_T_ar_a.png"), loadImage("button_T_ar_c.png")};
-  cp5.addToggle("T_ar")
-    .setValue(false)
-    .setPosition(10, 500)
-    .setImages(imgs_T_ar)
-    .updateSize()
-    ;
-    
-      PImage[] imgs_T_av = {loadImage("button_T_av_a.png"), loadImage("button_T_av_c.png")};
-  cp5.addToggle("T_av")
-    .setValue(false)
-    .setPosition(10, 550)
-    .setImages(imgs_T_av)
-    .updateSize()
-    ;
-    
-      PImage[] imgs_T_gauche = {loadImage("button_T_gauche_a.png"), loadImage("button_T_gauche_c.png")};
-  cp5.addToggle("T_gauche")
-    .setValue(false)
-    .setPosition(10, 600)
-    .setImages(imgs_T_gauche)
-    .updateSize()
-    ;
-    
-      PImage[] imgs_T_droite = {loadImage("button_T_droite_a.png"), loadImage("button_T_droite_c.png")};
-  cp5.addToggle("T_droite")
-    .setValue(false)
-    .setPosition(10, 650)
-    .setImages(imgs_T_droite)
-    .updateSize()
-    ;
-
-  PImage[] imgs_croisement = {loadImage("croisement_a.png"), loadImage("croisement_c.png")};
-  cp5.addToggle("croisement")
-    .setValue(false)
-    .setPosition(70, 500)
-    .setImages(imgs_croisement)
-    .updateSize()
-    ;
-
-
-
-  PImage[] imgs_ligneH = {loadImage("ligneH_a.png"), loadImage("ligneH_c.png")};
-  cp5.addToggle("ligneH")
-    .setValue(false)
-    .setPosition(130, 500)
-    .setImages(imgs_ligneH)
-    .updateSize()
-    ;
-
-
-  PImage[] imgs_ligneV = {loadImage("ligneV_a.png"), loadImage("ligneV_c.png")};
-  cp5.addToggle("ligneV")
-    .setValue(false)
-    .setPosition(130, 550)
-    .setImages(imgs_ligneV)
-    .updateSize()
-    ;
-
-
-  PImage[] imgs_lost = {loadImage("lost_a.png"),loadImage("lost_b.png"), loadImage("lost_c.png")};
-  cp5.addButton("lost")
-    .setPosition(190, 500)
-    .setImages(imgs_lost)
-    .updateSize()
-    ;
-
-
-  PImage[] imgs_home = {loadImage("home_a.png"),loadImage("home_b.png"), loadImage("home_c.png")};
-  cp5.addButton("home")
-
-    .setPosition(250, 500)
-    .setImages(imgs_home)
-    .updateSize()
-    ;
 
 
 cp5.addToggle("qtr")

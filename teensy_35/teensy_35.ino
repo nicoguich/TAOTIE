@@ -1,9 +1,21 @@
 #include <QTRSensors.h>
 #include <EEPROM.h>
+#include <SD.h>
 
 
 QTRSensors qtr;
 
+
+
+File myFile;
+int data_sd[10000];
+int nombre[4];
+int compteur_data=0;
+const int chipSelect = BUILTIN_SDCARD;
+int rec_sd=0,play_sd=0, compteur_sd=0;
+boolean lecture_ok=false;
+int dir_data[2];
+int boucle=0;
 
 
 int batterie_pin = 37;
@@ -12,7 +24,7 @@ long timer;
 int limit_qtr, limit_sonar, limit_batterie;
 const uint8_t SensorCount = 12;
 uint16_t sensorValues[SensorCount];
-byte data_get_out[13],Sensor_qtr[13], Sensor_qtr_temp[13], Sensor_sonar[13], Sensor_sonar_temp[13], dataIn[7], dataMotor[5], Sensor_batterie[13], coord_in[1], coord_out[13];
+byte data_get_out[13],Sensor_qtr[13], Sensor_qtr_temp[13], Sensor_sonar[13], Sensor_sonar_temp[13], dataIn[7], dataMotor[5], Sensor_batterie[13], dist_to_go_temp[3],dist_to_go[13], coord_out[13];
 byte show_qtr, show_sonar, show_coord, show_bat, show_on, show_lampe;
 boolean qtr_ok[12];
 boolean on_home = false, on_T_ar = false, on_T_av = false, on_T_gauche = false, on_T_droite = false, go_on = false, on_T = false,on_T_temp=false, on_croisement = false,on_croisement_temp=false, on_ligneH = false,on_ligneH_temp=false, on_ligneV = false,on_ligneV_temp=false, ligne_ok = false, croisement_ok = false, coin_ok = false, T_ok = false, capteur_ok = false, perdu_temp = false, follow_ligne = false, hors_grille=false;
@@ -41,7 +53,7 @@ void setup() {
   Serial.begin(115200);
   Serial2.begin(115200);
   Serial3.begin(115200);
-
+  SD.begin(chipSelect);
 
 
 
@@ -62,6 +74,7 @@ void setup() {
   pinMode(echoPin_gauche, INPUT);
   pinMode(trigPin_droite, OUTPUT);
   pinMode(echoPin_droite, INPUT);
+  pinMode(6,INPUT_PULLUP);
 
 
   limit_qtr = EEPROM.read(0);
@@ -82,6 +95,14 @@ void setup() {
   digitalWrite(led1, HIGH);
 
 
+
+
+
+
+
+  
+
+
 }
 
 
@@ -92,8 +113,7 @@ void setup() {
 
 void loop() {
 
-  if (Serial2.available() > 0) {
-    Serial2.readBytes(coord_in, 1);} //RECEIVE fin_mvt FROM teensy3.2 and send to OSC 8266
+
 
 
 
@@ -103,18 +123,27 @@ void loop() {
   F_sonar(); //READ AND SEND SONAR TO ESP8266
   F_batterie(); //READ AND SEND BATTERIE TO ESP8266
 
-
-
-  if (go_on) F_go_on();
   if (alignement) F_alignement();
+
+  if (play_sd==1){
+
+F_play_sd();
+    digitalWrite(led3,HIGH);
+    
+  }
+  else{
+        digitalWrite(led3,LOW);
+  }
+
+
   if ((on_ligneH) || (on_ligneV)){
-    F_on_ligne();
+ 
     digitalWrite(led2,HIGH);
   }
   else{
      digitalWrite(led2,LOW);
   }
-  if (on_croisement) F_on_croisement();
+
 
  
   if ( print_Sensor == 1)F_imprim_sensor();
