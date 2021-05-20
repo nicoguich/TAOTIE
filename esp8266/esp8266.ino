@@ -43,26 +43,26 @@ void setup() {
   Serial.begin(115200);
 
   // Connect to WiFi network
-  Serial.println();
-  Serial.println();
-  Serial.print("Connecting to ");
-  Serial.println(ssid);
+  // Serial.println();
+  // Serial.println();
+  // Serial.print("Connecting to ");
+  //Serial.println(ssid);
   WiFi.begin(ssid, pass);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.print(".");
+    // Serial.print(".");
   }
-  Serial.println("");
+  // Serial.println("");
 
-  Serial.println("WiFi connected");
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
+  // Serial.println("WiFi connected");
+  // Serial.println("IP address: ");
+  // Serial.println(WiFi.localIP());
 
-  Serial.println("Starting UDP");
+  // Serial.println("Starting UDP");
   Udp.begin(localPort);
-  Serial.print("Local port: ");
-  Serial.println(Udp.localPort());
+  // Serial.print("Local port: ");
+  // Serial.println(Udp.localPort());
 
 
 
@@ -95,12 +95,12 @@ void loop() {
       msg.dispatch("/led", led);
       msg.dispatch("/rec", rec);
       msg.dispatch("/play", play_sd);
-    
+
 
     } else {
       error = msg.getError();
-      Serial.print("error: ");
-      Serial.println(error);
+      //    Serial.print("error: ");
+      //    Serial.println(error);
     }
   }
 

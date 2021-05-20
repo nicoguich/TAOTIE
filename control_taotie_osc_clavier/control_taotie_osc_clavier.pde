@@ -64,12 +64,31 @@ void setup() {
     .updateSize()
     ;
     
+    
+     cp5.addToggle("REC_chargeur")
+      .setColorLabel(0) 
+    .setPosition(200, 470)
+    .setSize(40, 40)
+    .updateSize()
+    ;
+    
+    
+    
           cp5.addToggle("PLAY")
       .setColorLabel(0) 
     .setPosition(300, 400)
     .setSize(40, 40)
     .updateSize()
     ;
+    
+    
+             cp5.addToggle("PLAY_chargeur")
+      .setColorLabel(0) 
+    .setPosition(300, 470)
+    .setSize(40, 40)
+    .updateSize()
+    ;
+    
     
       PImage[] imgs_home = {loadImage("home_a.png"),loadImage("home_b.png"), loadImage("home_c.png")};
   cp5.addButton("lost")

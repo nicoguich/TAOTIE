@@ -6,42 +6,7 @@ public void controlEvent(ControlEvent theEvent) {
 
   }
   
-  if(bouton_name.equals("stepX")){
-   String []list_temp=split(stepX, '.');
-    
-    dest_coordX=list_temp[0];
-    if (list_temp.length>1){
-      dest_stepX=list_temp[1];
-      
-    }
-    
-    
-    stepX=str(int(int(dest_coordX)-coordX));
-   
-    
-   
-    
-     
-    
-  }
-  
-  if (bouton_name.equals("stepY")){
-    
-       String []list_temp=split(stepY, '.');
-    
-    dest_coordY=list_temp[0];
-    if (list_temp.length>1){
-      dest_stepY=list_temp[1];
-      
-    }
-    
-    
-    
-     stepY=str(int(int(dest_coordY)-coordY));
-   cp5.getController("stepY").setLabel("coord "+coordY+"\n step "+micro_stepY);
-    
-  }
-  
+
   
 if (bouton_name.equals("lost")){
    OscMessage myOscMessage = new OscMessage("/lost");
@@ -50,57 +15,7 @@ if (bouton_name.equals("lost")){
   oscP5.send(myOscMessage, taotie_robot);
   }
   
-  if (bouton_name.equals("ligneH")){
-    
-    on_ligneH=boolean(int(theEvent.getController().getValue()));
-    
-  }
-  
-    if (bouton_name.equals("ligneV")){
-    
-    on_ligneV=boolean(int(theEvent.getController().getValue()));
-    
-  }
-  
-  
-  
-    if (bouton_name.equals("croisement")){
-    
-    on_croisement=boolean(int(theEvent.getController().getValue()));
-   
-    
-  }
-  
-    
-    if (bouton_name.equals("T")){
-    
-    on_T=boolean(int(theEvent.getController().getValue()));
-   
-    
-  }
-  
-  
-      if (bouton_name.equals("home")){  
-        OscMessage myOscMessage = new OscMessage("/home");
-   
-  myOscMessage.add(1);
-  oscP5.send(myOscMessage, taotie_robot);
-  }
 
-
-
- if (bouton_name.equals("GO")){        
-   
-   OscMessage myOscMessage = new OscMessage("/go");
-   
-  println("coordX:"+stepX+" stepX:"+dest_stepX+" coordY:"+stepY+" stepY:"+dest_stepY);
-   
-  myOscMessage.add(int(stepX));
-  myOscMessage.add(int(dest_stepX));
-  myOscMessage.add(int(stepY));
-  myOscMessage.add(int(dest_stepY));
-  oscP5.send(myOscMessage, taotie_robot);
- }
   
   
  if ((bouton_name.equals("forward"))||(bouton_name.equals("right_forward"))||(bouton_name.equals("right"))||(bouton_name.equals("right_backward"))||(bouton_name.equals("backward"))||(bouton_name.equals("left_backward"))||(bouton_name.equals("left"))||(bouton_name.equals("left_forward"))||(bouton_name.equals("rotate_right"))||(bouton_name.equals("rotate_left"))||(bouton_name.equals("STOP"))){
@@ -113,6 +28,12 @@ if (bouton_name.equals("lost")){
  
  envoi=true;
  }
+ 
+ 
+ 
+ 
+ 
+ 
  
  if((bouton_name.equals("qtr")==true)||(bouton_name.equals("sonar")==true)||(bouton_name.equals("batterie")==true)){
       OscMessage myOscMessage = new OscMessage("/show");
@@ -129,6 +50,7 @@ if (bouton_name.equals("lost")){
    
  }
  
+ 
   if(bouton_name.equals("get_qtr")==true){
     
         OscMessage myOscMessage = new OscMessage("/get_limit_qtr");
@@ -143,12 +65,14 @@ if (bouton_name.equals("lost")){
         
   }
   
+  
     if(bouton_name.equals("get_batterie")==true){
     
         OscMessage myOscMessage = new OscMessage("/get_limit_batterie");
         oscP5.send(myOscMessage, taotie_robot);
         
   }
+  
   
     if (bouton_name.equals("send_qtr")){
       
@@ -160,6 +84,7 @@ if (bouton_name.equals("lost")){
     }
     
     
+    
        if (bouton_name.equals("send_sonar")){
       
       OscMessage myOscMessage = new OscMessage("/limit_sonar");
@@ -168,6 +93,7 @@ if (bouton_name.equals("lost")){
       oscP5.send(myOscMessage, taotie_robot);
       
     }
+    
     
        if (bouton_name.equals("send_batterie")){
       
@@ -178,6 +104,7 @@ if (bouton_name.equals("lost")){
       
     }
     
+    
      if (bouton_name.equals("led")){
        
  
@@ -187,6 +114,11 @@ if (bouton_name.equals("lost")){
       oscP5.send(myOscMessage, taotie_robot); 
        
      }
+     
+     
+     
+     
+     
      
      
      
@@ -201,8 +133,29 @@ if (bouton_name.equals("lost")){
      }
      
      
+       if (bouton_name.equals("REC_chargeur")){
+       
+ 
+            OscMessage myOscMessage = new OscMessage("/rec");
+            if (int(theEvent.getController().getValue())==1){
+      myOscMessage.add(2);}
+      else{
+      myOscMessage.add(0);
+      }
+      
+      oscP5.send(myOscMessage, taotie_robot); 
+       
+     }
+     
+     
+     
+     
+     
+     
+     
+     
                if (bouton_name.equals("PLAY")){
-       println(int(theEvent.getController().getValue()));
+      
  
             OscMessage myOscMessage = new OscMessage("/play");
       myOscMessage.add(int(theEvent.getController().getValue()));
@@ -210,6 +163,25 @@ if (bouton_name.equals("lost")){
       oscP5.send(myOscMessage, taotie_robot); 
        
      }
+     
+                    if (bouton_name.equals("PLAY_chargeur")){
+      
+ 
+            OscMessage myOscMessage = new OscMessage("/play");
+            if (int(theEvent.getController().getValue())==1){
+      myOscMessage.add(2);}
+      else{
+      myOscMessage.add(0);
+      }      
+      oscP5.send(myOscMessage, taotie_robot); 
+       
+     }
+
+     
+     
+     
+     
+     
 
   
 }

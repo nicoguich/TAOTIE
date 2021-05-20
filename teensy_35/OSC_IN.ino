@@ -1,19 +1,28 @@
 void F_osc_in() {
 
-
-if (digitalRead(6)==LOW){
+/*
+if (digitalRead(6)!=button_state){
+  button_state=digitalRead(6);
+  Serial.println("bouton");
  if (play_sd==0){ 
 play_sd=1;
-alignement=true;
+lecture_ok=true;
+      alignement = true;
+      perdu_temp = false;
+      dir_temp = 0;
+      etape_perdu = 0;
+
+
 delay(200);}
 else{
+ 
   play_sd=0;
 delay(200);
 }
   
 }
 
-  
+  */
 
   if (Serial2.available() > 0) {
  
@@ -24,7 +33,7 @@ delay(200);
      data_get_out[2]=dist_to_go_temp[2];
      Serial3.write(data_get_out,13);
      delay(100);
-   if ((play_sd==1)&&(alignement==false)&&(boucle==0)){
+   if (((play_sd==1)||(play_sd==2))&&(alignement==false)&&(boucle==0)){
      if ((int((256*data_get_out[1])+data_get_out[2]))==65535){
       
 
@@ -55,7 +64,7 @@ delay(200);
     }
 
 
-      if (rec_sd==1){
+      if ((rec_sd==1)||(rec_sd==2)){
         Serial.println("rec_data...");
         Serial.println(String(65000- (int((256*data_get_out[1])+data_get_out[2]))));
         Serial.println(String(dir_data[0]));
@@ -190,8 +199,8 @@ dir_data[0]=dir_data[1];
     }
 
     else if (dataIn[0] == 8) {
-      int led_value = int(dataIn[1]);
-      analogWrite(fat_led, led_value);
+       led_value = int(dataIn[1]);
+     
     }
 
 
@@ -297,10 +306,36 @@ if (rec_sd==1){
   SD.remove("test.txt");
     myFile = SD.open("test.txt", FILE_WRITE);
   }
+  else{
+
+
+myFile = SD.open("test.txt", FILE_WRITE);
+    
+  }
 play_sd=0;}
 
+if (rec_sd==2){
+  Serial.println("rec chargeur");
+    if (SD.exists("chargeur.txt")){ 
+      Serial.println("remove chargeur");
+  SD.remove("chargeur.txt");
+    myFile = SD.open("chargeur.txt", FILE_WRITE);
+  }
+  else{
+myFile = SD.open("chargeur.txt", FILE_WRITE);
+    
+  }
+play_sd=0;}
+
+
+
+
+
+
+
+
 if( rec_sd==0){
-  Serial.println("close_rec");
+  Serial.println("close_rec chargeur");
   myFile.close();
 }
 
@@ -314,69 +349,34 @@ else if (dataIn[0] == 104) {
 
 play_sd=int(dataIn[1]); 
 if (play_sd==1){
-  if (SD.exists("test.txt")){
-    
-  myFile = SD.open("test.txt");
-  
-  compteur_data=0;
-  int compteur_nombre=0;
-    int data_temp=0;
-    int compteur_calcul=0;
-    int lecture_nombre;
-    lecture_ok=false;
-    while (myFile.available()) {
-      lecture_nombre=myFile.read();
-     if((int(lecture_nombre)-48!=-16)&&(int(lecture_nombre)-48!=-1)){
-     nombre[compteur_nombre]= int(lecture_nombre)-48;
-     compteur_nombre++;
-    }
-    else if ((int(lecture_nombre)-48==-16)||(int(lecture_nombre)-48==-1)){
-    for (int x=compteur_nombre-1; x>-1;x--){
-data_temp=data_temp+(nombre[x]*pow(10,compteur_calcul));
-compteur_calcul++;
-
-    }
-    data_sd[compteur_data]=int(data_temp);
-    compteur_data++;
-    compteur_calcul=0;
-    compteur_nombre=0;
-    data_temp=0;
-    
-
-    }
-  
-    }
-    // close the file:
-    myFile.close();
-
-
-    for (int x=0;x<compteur_data;x++){
-if (x%3==0){
-
-  Serial.print("step:");
-}
-else if (x%3==1){
-
-  Serial.print("dir:");
-}
-else if (x%3==2){
-
-  Serial.print("speed:");
-}
-Serial.println(data_sd[x]);
       
-    }
-
-
-     
-  }
-
+play_sd=1;
+lecture_ok=true;
+alignement = true;
+perdu_temp = false;
+dir_temp = 0;
+etape_perdu = 0;
 compteur_sd=0;
-  
-rec_sd=0;}
 }
 
 
+if (play_sd==2){
+      
+play_sd=2;
+lecture_ok=true;
+alignement = true;
+perdu_temp = false;
+dir_temp = 0;
+etape_perdu = 0;
+compteur_sd=0;
+}
+
+
+
+
+
+
+}
 
 
 

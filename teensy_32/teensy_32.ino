@@ -55,6 +55,17 @@ void setup() {
 m_temp[1]=0;
 m=0;
 
+
+  digitalWrite(enable_front,HIGH);
+  digitalWrite(enable_left,HIGH);
+  digitalWrite(enable_right,HIGH);
+  digitalWrite(enable_back,HIGH);
+
+
+
+
+delay(2000);
+
 }
 
 void loop() {

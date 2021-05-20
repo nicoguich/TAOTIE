@@ -16,6 +16,7 @@ int rec_sd=0,play_sd=0, compteur_sd=0;
 boolean lecture_ok=false;
 int dir_data[2];
 int boucle=0;
+int button_state,button_change;
 
 
 int batterie_pin = 37;
@@ -44,6 +45,7 @@ long duration_av, duration_ar, duration_droite, duration_gauche;
 int distance_av, distance_ar, distance_droite, distance_gauche;
 int led1 = 2, led2 = 3, led3 = 4, led4 = 5, fat_led=33; 
 int batterie_value, batterie_value_temp;
+int led_value=255;
 
 
 
@@ -92,16 +94,26 @@ void setup() {
   pinMode(fat_led,OUTPUT);
 
 
-  digitalWrite(led1, HIGH);
-
-
-
-
-
-
-
   
 
+
+button_state=digitalRead(6);
+button_change=button_state;
+
+
+
+
+
+
+play_sd=1;
+lecture_ok=true;
+alignement = true;
+perdu_temp = false;
+dir_temp = 0;
+etape_perdu = 0;
+  
+
+delay(2000);
 
 }
 
@@ -125,7 +137,7 @@ void loop() {
 
   if (alignement) F_alignement();
 
-  if (play_sd==1){
+  if (play_sd>0){
 
 F_play_sd();
     digitalWrite(led3,HIGH);
@@ -144,6 +156,8 @@ F_play_sd();
      digitalWrite(led2,LOW);
   }
 
+digitalWrite(led1, HIGH);
+ analogWrite(fat_led, led_value);
 
  
   if ( print_Sensor == 1)F_imprim_sensor();
