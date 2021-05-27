@@ -7,16 +7,17 @@ QTRSensors qtr;
 
 
 
-File myFile;
+File myFile,retourFile;
 int data_sd[10000];
 int nombre[4];
 int compteur_data=0;
 const int chipSelect = BUILTIN_SDCARD;
 int rec_sd=0,play_sd=0, compteur_sd=0;
 boolean lecture_ok=false;
-int dir_data[2];
+int dir_data[2],speed_data[2];
 int boucle=0;
 int button_state,button_change;
+int low_batterie, en_charge=0,batterie_ok=0;
 
 
 int batterie_pin = 37;
@@ -76,7 +77,7 @@ void setup() {
   pinMode(echoPin_gauche, INPUT);
   pinMode(trigPin_droite, OUTPUT);
   pinMode(echoPin_droite, INPUT);
-  pinMode(6,INPUT_PULLUP);
+  pinMode(36,INPUT);
 
 
   limit_qtr = EEPROM.read(0);
@@ -95,24 +96,12 @@ void setup() {
 
 
   
-
-
-button_state=digitalRead(6);
-button_change=button_state;
-
-
-
-
-
-
 play_sd=1;
 lecture_ok=true;
 alignement = true;
-perdu_temp = false;
 dir_temp = 0;
 etape_perdu = 0;
-  
-
+compteur_sd=0;
 delay(2000);
 
 }
@@ -128,7 +117,6 @@ void loop() {
 
 
 
-
   F_osc_in();// RECEIVE DATA FROM ESP8266 AND SEND TO TEENSY3.2
 
   F_qtr();//READ AND SEND QTR TO ESP8266
@@ -137,13 +125,21 @@ void loop() {
 
   if (alignement) F_alignement();
 
+
+  if(rec_sd>0){
+
+
+      digitalWrite(led3,HIGH);
+  }
+
+
   if (play_sd>0){
 
 F_play_sd();
     digitalWrite(led3,HIGH);
     
   }
-  else{
+  if ((play_sd==0)&&(rec_sd==0)){
         digitalWrite(led3,LOW);
   }
 

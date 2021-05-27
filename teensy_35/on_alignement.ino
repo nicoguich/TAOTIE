@@ -2,30 +2,38 @@
 void F_alignement() {
 
 
-if (on_ligneH==false){
-  ///robot perdu
-  if (perdu_temp == false) {
-    speed = speed_perdu;
-    dir = 17;
-
-    perdu_temp = true;
-  }
-
 
 
   ////detection 1 capteur
 
 
+if (etape_perdu==0){
 
+        speed = speed_perdu;
+    dir = 17;
         if ((qtr_ok[4] == true)&&(qtr_ok[10] == false)) {
-          perdu_temp = false;
+        
           dir = 20;
         }
 
         if ((qtr_ok[10] == true)&&(qtr_ok[4] == false)) {
-          perdu_temp = false;
+        
           dir = 19;
         }
+
+
+
+         if (( qtr_ok[4] == true) && (qtr_ok[10] == true)&& (qtr_ok[11] == false)&& (qtr_ok[5] == false)&& (qtr_ok[9] == false)&& (qtr_ok[3] == false)) {
+       
+        etape_perdu=1;
+        dir=14;
+         }
+
+
+
+    
+}
+
 
 
 
@@ -33,91 +41,73 @@ if (on_ligneH==false){
   ////detection ligne
 
 
+if (etape_perdu==1){
 
-
-
-
-  if (( qtr_ok[9] == true) && (qtr_ok[3] == true)) {
-
-    perdu_temp = false;
-    speed = speed_perdu;
-    dir = 17;
-     F_send_command();
-
-
-  }
-
-  
-
-  if (( qtr_ok[11] == true) && (qtr_ok[5] == true)) {
-    perdu_temp = false;
-    speed = speed_perdu;
-    dir = 12;
-     F_send_command();
-
-
-  }
-
-
-
-  if (( qtr_ok[4] == true) && (qtr_ok[10] == true)) {
-    speed = speed_perdu;
-
-    dir = 14;
-    step = 0;
-    F_send_command();
-    //alignement = false;
-    on_ligneH = true;
-    on_ligneH_temp=false;
-    dir_temp = 14;
-  
-  }
-
-}
-else{
-
+ speed = speed_perdu;
 dir=14;
 
-  /// gauche droite
-  if ((dir == 14) || (dir == 15)) {
 
 
-      if ((qtr_ok[3] == true) ) {
-        speed = speed_perdu;
-        dir = 19;
-      }
+         if ((qtr_ok[11] == true)) {
+        
+          dir = 19;
+        }
 
-      if ((qtr_ok[9] == true)&&(qtr_ok[11] == false)) {
-        speed = speed_perdu;
-        dir = 20;
+        
+         if ((qtr_ok[9] == true)) {
+        
+          dir = 20;
+        }
 
-      }
+    
+ 
+
+        if ((qtr_ok[3] == true)&&(qtr_ok[9] == true)){
+
+dir=17;
+
+          
+        }
+
+                if ((qtr_ok[11] == true)&&(qtr_ok[5] == true)){
+
+dir=12;
+
+          
+        }
+        
 
 
-      if ((qtr_ok[3] == true) && (qtr_ok[9] == true)) {
 
-        speed = speed_perdu;
-        dir = 17;
+        if ((qtr_ok[1] == true)&&(qtr_ok[7] == true)) {
+        
+          dir = 14;
+          etape_perdu=2;
+        }
 
-      }
-
-
-      if ((qtr_ok[11] == true)&&(qtr_ok[9] == false))  {
-        speed = speed_perdu;
-        dir = 19;
-      }
-
-      if(qtr_ok[5] == true) {
-        speed = speed_perdu;
-        dir = 20;
-      }
+  
 
 
-      if ((qtr_ok[11] == true) && (qtr_ok[5] == true)) {
-        speed = speed_perdu;
-        dir = 12;
 
-      }
+
+}
+
+
+
+
+
+
+  
+
+
+
+if (etape_perdu==2){
+
+ speed = speed_perdu;
+dir=14;
+
+
+
 
 
   if ((qtr_ok[1] == true) && (qtr_ok[7] == true)) {
@@ -292,7 +282,7 @@ compteur_sd=0;
 
 
   
-}
+
 
 
 

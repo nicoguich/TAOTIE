@@ -15,23 +15,22 @@ void moveMotor() {
 
 
         
-if ((FrontWheel.distanceToGo() == 0)&&(BackWheel.distanceToGo() == 0)&& (LeftWheel.distanceToGo() == 0)&&(RightWheel.distanceToGo() == 0)&&(m!=0)){
+if ((FrontWheel.distanceToGo() == 0)&&(BackWheel.distanceToGo() == 0)&& (LeftWheel.distanceToGo() == 0)&&(RightWheel.distanceToGo() == 0)&&(m>0)){
 
-Serial.println("distance 0");
+
 
  data_command[0] = 123;
 
   data_command[1] = byte(255);
   data_command[2] = byte(255);
   Serial3.write(data_command, 3);
-  delay(100);
-
-  m=0;
+  delay(10);
+ m=-1;
 }
 
     if (FrontWheel.distanceToGo() == 0) {
       FrontWheel.setCurrentPosition(0);
-      digitalWrite(enable_front,HIGH);
+     // digitalWrite(enable_front,HIGH);
       
     }
     else {
@@ -40,7 +39,7 @@ Serial.println("distance 0");
 
     if (LeftWheel.distanceToGo() == 0) {
       LeftWheel.setCurrentPosition(0);
-      digitalWrite(enable_left,HIGH);
+    //  digitalWrite(enable_left,HIGH);
 
     }
     else {
@@ -49,7 +48,7 @@ Serial.println("distance 0");
 
     if (RightWheel.distanceToGo() == 0) {
       RightWheel.setCurrentPosition(0);
-      digitalWrite(enable_right,HIGH);
+    //  digitalWrite(enable_right,HIGH);
  
     }
     else {
@@ -58,7 +57,7 @@ Serial.println("distance 0");
 
     if (BackWheel.distanceToGo() == 0) {
       BackWheel.setCurrentPosition(0);
-      digitalWrite(enable_back,HIGH);
+     // digitalWrite(enable_back,HIGH);
       
     }
     else {
@@ -133,7 +132,7 @@ data_command[0] = 123;
 
 
   Serial3.write(data_command, 3);
-  delay(100);
+  delay(10);
        
 
 }
@@ -146,6 +145,7 @@ data_command[0] = 123;
   digitalWrite(enable_left,LOW);
   digitalWrite(enable_right,LOW);
   digitalWrite(enable_back,HIGH);
+  
 
   FrontWheel.moveTo(0);
   LeftWheel.moveTo(pos);
@@ -221,7 +221,7 @@ data_command[0] = 123;
 
 
   Serial3.write(data_command, 3);
-  delay(100);
+  delay(10);
       
 
 
@@ -311,7 +311,7 @@ data_command[0] = 123;
 
 
   Serial3.write(data_command, 3);
-  delay(100);
+  delay(10);
 
 
  }
@@ -401,7 +401,7 @@ data_command[0] = 123;
 
 
   Serial3.write(data_command, 3);
-  delay(100);
+  delay(10);
    
 
  }
@@ -494,7 +494,7 @@ data_command[0] = 123;
 
 
   Serial3.write(data_command, 3);
-  delay(100);
+  delay(10);
     
 
 
@@ -584,7 +584,7 @@ data_command[0] = 123;
 
 
   Serial3.write(data_command, 3);
-  delay(100);
+  delay(10);
   
 
 
@@ -600,6 +600,8 @@ data_command[0] = 123;
   digitalWrite(enable_left,LOW);
   digitalWrite(enable_right,LOW);
   digitalWrite(enable_back,LOW);
+
+  
   
   FrontSpeed = wheelSpeed;
   LeftSpeed = wheelSpeed;
@@ -673,7 +675,7 @@ data_command[0] = 123;
 
 
   Serial3.write(data_command, 3);
-  delay(100);
+  delay(10);
  
 
  }
@@ -684,10 +686,14 @@ data_command[0] = 123;
   BackWheel.setCurrentPosition(0);
   RightWheel.setCurrentPosition(0);
 
+  
+
   digitalWrite(enable_front,LOW);
   digitalWrite(enable_left,LOW);
   digitalWrite(enable_right,LOW);
   digitalWrite(enable_back,LOW);
+
+
 
   
   FrontSpeed = wheelSpeed;
@@ -762,7 +768,7 @@ data_command[0] = 123;
 
 
   Serial3.write(data_command, 3);
-  delay(100);
+  delay(10);
  
  }
 
@@ -771,10 +777,14 @@ data_command[0] = 123;
   BackWheel.setCurrentPosition(0);
   RightWheel.setCurrentPosition(0);
 
+
+
  digitalWrite(enable_front,LOW);
   digitalWrite(enable_left,LOW);
   digitalWrite(enable_right,LOW);
   digitalWrite(enable_back,LOW);
+
+
 
   
   FrontSpeed = wheelSpeed;
@@ -853,7 +863,7 @@ data_command[0] = 123;
 
 
   Serial3.write(data_command, 3);
-  delay(100);
+  delay(10);
 
  }
 
@@ -949,7 +959,7 @@ data_command[0] = 123;
 
 
   Serial3.write(data_command, 3);
-  delay(100);
+  delay(10);
 
 
  }
@@ -1046,7 +1056,7 @@ void stopMoving() {
 
 
   Serial3.write(data_command, 3);
-  delay(100);
+  delay(10);
         on_move = false;
  
       

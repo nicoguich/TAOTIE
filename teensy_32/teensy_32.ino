@@ -30,6 +30,21 @@ void setup() {
   Serial.begin(115200);
   Serial3.begin(115200);
 
+  pinMode (led, OUTPUT);
+  pinMode(enable_front, OUTPUT);
+  pinMode(enable_back, OUTPUT);
+  pinMode(enable_left, OUTPUT);
+  pinMode(enable_right, OUTPUT);
+
+  
+  digitalWrite(enable_front,HIGH);
+  digitalWrite(enable_left,HIGH);
+  digitalWrite(enable_right,HIGH);
+  digitalWrite(enable_back,HIGH);
+
+
+  
+
   // Set initial seed values for the steppers
   FrontWheel.setMaxSpeed(wheelSpeed);
   LeftWheel.setMaxSpeed(wheelSpeed);
@@ -42,11 +57,7 @@ void setup() {
   BackWheel.setCurrentPosition(0);
   RightWheel.setCurrentPosition(0);
 
-  pinMode (led, OUTPUT);
-  pinMode(enable_front, OUTPUT);
-  pinMode(enable_back, OUTPUT);
-  pinMode(enable_left, OUTPUT);
-  pinMode(enable_right, OUTPUT);
+
 
 
   for (int x = 0; x < 5; x++) {
@@ -56,10 +67,7 @@ m_temp[1]=0;
 m=0;
 
 
-  digitalWrite(enable_front,HIGH);
-  digitalWrite(enable_left,HIGH);
-  digitalWrite(enable_right,HIGH);
-  digitalWrite(enable_back,HIGH);
+
 
 
 
@@ -82,10 +90,17 @@ void loop() {
     dir = data2[2];
     wheelSpeed = int ((256 * data2[3]) + data2[4]);
 
-
+if (m!=-1){
     m = int(dir);
       m_temp[0]=m_temp[1];
+      m_temp[1]=m;}
+else{
+m = int(dir);
+      m_temp[0]=0;
       m_temp[1]=m;
+  
+}
+      
       
     
     pos = int(pos);
