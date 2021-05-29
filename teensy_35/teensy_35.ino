@@ -17,7 +17,7 @@ boolean lecture_ok=false;
 int dir_data[2],speed_data[2];
 int boucle=0;
 int button_state,button_change;
-int low_batterie, en_charge=0,batterie_ok=0;
+int low_batterie, en_charge=0,batterie_ok=0,copain_base=0;
 
 
 int batterie_pin = 37;
@@ -83,6 +83,7 @@ void setup() {
   limit_qtr = EEPROM.read(0);
   limit_sonar = EEPROM.read(1);
   limit_batterie = EEPROM.read(2);
+  play_sd=EEPROM.read(3);
   delay(500);
 
 
@@ -96,7 +97,7 @@ void setup() {
 
 
   
-play_sd=1;
+
 lecture_ok=true;
 alignement = true;
 dir_temp = 0;

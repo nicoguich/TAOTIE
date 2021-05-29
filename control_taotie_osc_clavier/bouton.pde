@@ -1,5 +1,5 @@
 public void controlEvent(ControlEvent theEvent) {
- String bouton_name=theEvent.getController().getName();
+ String bouton_name=theEvent.getName();
  
   if((bouton_name.equals("step"))||(bouton_name.equals("speed"))){
     theEvent.getController().setLabel(theEvent.getController().getName()+" "+theEvent.getController().getStringValue());
@@ -126,7 +126,10 @@ if (bouton_name.equals("lost")){
        
  
             OscMessage myOscMessage = new OscMessage("/rec");
-      myOscMessage.add(int(theEvent.getController().getValue()));
+       if (int(theEvent.getController().getValue())==1){
+      myOscMessage.add(parcours);}
+      else{
+         myOscMessage.add(0);}
       
       oscP5.send(myOscMessage, taotie_robot); 
        
@@ -138,7 +141,7 @@ if (bouton_name.equals("lost")){
  
             OscMessage myOscMessage = new OscMessage("/rec");
             if (int(theEvent.getController().getValue())==1){
-      myOscMessage.add(2);}
+      myOscMessage.add(10);}
       else{
       myOscMessage.add(0);
       }
@@ -158,7 +161,11 @@ if (bouton_name.equals("lost")){
       
  
             OscMessage myOscMessage = new OscMessage("/play");
-      myOscMessage.add(int(theEvent.getController().getValue()));
+            if (int(theEvent.getController().getValue())==1){
+      myOscMessage.add(parcours);}
+      else{
+         myOscMessage.add(0);}
+      
       
       oscP5.send(myOscMessage, taotie_robot); 
        
@@ -169,7 +176,7 @@ if (bouton_name.equals("lost")){
  
             OscMessage myOscMessage = new OscMessage("/play");
             if (int(theEvent.getController().getValue())==1){
-      myOscMessage.add(2);}
+      myOscMessage.add(10);}
       else{
       myOscMessage.add(0);
       }      
@@ -179,9 +186,13 @@ if (bouton_name.equals("lost")){
 
      
      
-     
-     
-     
+      if (bouton_name.equals("radioButton")){
+        
+        parcours=int(theEvent.getValue());
+            println(parcours);
 
+      }
+     
+ 
   
 }

@@ -27,7 +27,7 @@ const unsigned int localPort = 8888;        // local port to listen for UDP pack
 
 int dir, pos, speedmotor, limit_qtr_value, limit_sonar_value, limit_batterie_value;
 int qtr, sonar, coord, bat, on, lampe;
-int length_send, length_on_state = 7, length_qtr = 12, length_bat = 1, length_coord = 4, length_sonar = 4, length_lampe = 1, length_on = 5, length_limit_qtr = 1, length_limit_sonar = 1, length_limit_batterie = 1, length_dist_to_go = 2;
+int length_send, length_on_state = 7, length_qtr = 12, length_bat = 1, length_coord = 4, length_sonar = 4, length_lampe = 1, length_on = 5, length_limit_qtr = 1, length_limit_sonar = 1, length_limit_batterie = 1, length_dist_to_go = 2, length_copain_base=2;
 
 
 byte data_command[7];
@@ -95,6 +95,7 @@ void loop() {
       msg.dispatch("/led", led);
       msg.dispatch("/rec", rec);
       msg.dispatch("/play", play_sd);
+      msg.dispatch("/copain_base", copain_base);
 
 
     } else {
@@ -159,6 +160,15 @@ void loop() {
       msg2 = bundle.add("/on_state");
       length_send = length_on_state;
     }
+
+
+    if (dataIn[0] == 110) {
+      msg2 = bundle.add("/copain_base");
+      length_send = length_copain_base;
+    }
+
+
+    
 
     if (dataIn[0] == 123) {
       msg2 = bundle.add("/dist_to_go");
@@ -378,6 +388,19 @@ void play_sd(OSCMessage &msg) {
 
   data_command[0] = byte(104);
   data_command[1] = byte(play_ok);
+  Serial.write(data_command, 7);
+
+}
+
+
+
+void copain_base(OSCMessage &msg) {
+
+
+  
+
+  data_command[0] = byte(105);
+  data_command[1] = byte(1);
   Serial.write(data_command, 7);
 
 }

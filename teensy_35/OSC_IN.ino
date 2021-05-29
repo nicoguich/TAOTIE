@@ -31,64 +31,37 @@ if (digitalRead(36)==HIGH){
      data_get_out[0] = 123;
      data_get_out[1]=dist_to_go_temp[1];
      data_get_out[2]=dist_to_go_temp[2];
-     Serial3.write(data_get_out,13);
-     delay(10);
-   if (((play_sd==1)||(play_sd==2))&&(alignement==false)&&(boucle==0)){
+   /*  Serial3.write(data_get_out,13);
+     delay(10);*/
+   if ((play_sd>0)&&(alignement==false)&&(boucle==0)){
      if ((int((256*data_get_out[1])+data_get_out[2]))==65535){
       
-
-
       compteur_sd=compteur_sd+3;
       
       if (compteur_sd<compteur_data){
       lecture_ok=false;}
+   
       else{
-if (play_sd==1){
-        compteur_sd=0;
-        alignement=true;
 
-        on_ligneH = false;
+if (play_sd!=10){
+        alignement=true;
+        on_ligneH = false;}
+        
+        compteur_sd=0;
+
         etape_perdu=0;
 if (low_batterie==1){
-  play_sd=2;
+  play_sd=10;
+  en_charge=1;
+  copain_base=0;
+  timer=millis();
   
-}
-        
-}
-else if (play_sd==2){
-en_charge=1;
-  
-}
+}       
+ } 
+ }
+ }
 
-else if (play_sd==3){
-play_sd=1;
-
-        compteur_sd=0;
-        alignement=true;
-        etape_perdu=0;
-        on_ligneH = false;
-
-
-  
-}
-
-
-
-
-
-
-
-
-
-       
-      }
-
-      
-     }
-    }
-
-
-      if ((rec_sd==1)||(rec_sd==2)){
+      if (rec_sd>0){
         Serial.println("rec_data...");
         Serial.println(String(65000- (int((256*data_get_out[1])+data_get_out[2]))));
         Serial.println(String(dir_data[0]));
@@ -249,23 +222,78 @@ dir_data[0]=dir_data[1];
 
 else if ((dataIn[0] == 103)&&(play_sd==0)) {
   
-rec_sd=int(dataIn[1]);  
+rec_sd=int(dataIn[1]);
+
+  
 if (rec_sd==1){
-  Serial.println("rec");
-    if (SD.exists("test.txt")){ 
+  Serial.println("rec un");
+    if (SD.exists("un.txt")){ 
       Serial.println("remove");
-  SD.remove("test.txt");
-    myFile = SD.open("test.txt", FILE_WRITE);
+  SD.remove("un.txt");
+    myFile = SD.open("un.txt", FILE_WRITE);
   }
   else{
-
-
-myFile = SD.open("test.txt", FILE_WRITE);
-    
+myFile = SD.open("un.txt", FILE_WRITE);
+Serial.println("create parcours un");
   }
 play_sd=0;}
 
+
 if (rec_sd==2){
+  Serial.println("rec deux");
+    if (SD.exists("deux.txt")){ 
+      Serial.println("remove");
+  SD.remove("deux.txt");
+    myFile = SD.open("deux.txt", FILE_WRITE);
+  }
+  else{
+myFile = SD.open("deux.txt", FILE_WRITE);
+  }
+play_sd=0;}
+
+
+if (rec_sd==3){
+  Serial.println("rec trois");
+    if (SD.exists("trois.txt")){ 
+      Serial.println("remove");
+  SD.remove("trois.txt");
+    myFile = SD.open("trois.txt", FILE_WRITE);
+  }
+  else{
+myFile = SD.open("trois.txt", FILE_WRITE);
+  }
+play_sd=0;}
+
+
+if (rec_sd==4){
+  Serial.println("rec quatre");
+    if (SD.exists("quatre.txt")){ 
+      Serial.println("remove");
+  SD.remove("quatre.txt");
+    myFile = SD.open("quatre.txt", FILE_WRITE);
+  }
+  else{
+myFile = SD.open("quatre.txt", FILE_WRITE);
+  }
+play_sd=0;}
+
+if (rec_sd==5){
+  Serial.println("rec cinq");
+    if (SD.exists("cinq.txt")){ 
+      Serial.println("remove");
+  SD.remove("cinq.txt");
+    myFile = SD.open("cinq.txt", FILE_WRITE);
+  }
+  else{
+myFile = SD.open("cinq.txt", FILE_WRITE);
+  }
+play_sd=0;}
+
+
+
+
+
+if (rec_sd==10){
   Serial.println("rec chargeur");
     if (SD.exists("chargeur.txt")){ 
       Serial.println("remove chargeur");
@@ -286,19 +314,18 @@ play_sd=0;}
 
 
 if( rec_sd==0){
-  Serial.println("close_rec chargeur");
+  Serial.println("close_rec");
+
+  myFile.print(String(0));
+  myFile.print(" ");
+myFile.print(String(0));
+myFile.print(" ");
+myFile.print(String(speed));
+myFile.print("/");
+
+
   myFile.close();
 
-
-
-
- 
-
-
-
-
-
-  
   if (SD.exists("chargeur.txt")){
     
   myFile = SD.open("chargeur.txt");
@@ -351,10 +378,8 @@ retourFile = SD.open("retour.txt", FILE_WRITE);
   }
 
 
-    
-
 int dir_temp;
-    for (int x=compteur_data-3;x>-1;x=x-3){
+    for (int x=compteur_data-6;x>-1;x=x-3){
    Serial.println("write retour");   
 
 
@@ -417,10 +442,18 @@ Serial.println(data_sd[x+2]);
 
       
     }
+    retourFile.print(String(3000));
+    retourFile.print(" ");
+    retourFile.print(String(3));
+retourFile.print(" ");
+retourFile.print(String(500));
+retourFile.print("/");
     retourFile.close();
     Serial.println("close retour");
   
 }
+
+
 }
 
 }
@@ -434,18 +467,44 @@ else if ((dataIn[0] == 104)&&(rec_sd==0)) {
   
 
 play_sd=int(dataIn[1]);
-if (play_sd>0){ 
+if ((play_sd>0)&&(play_sd!=10)){ 
 lecture_ok=true;
 alignement = true;
 perdu_temp = false;
 dir_temp = 0;
 etape_perdu = 0;
 compteur_sd=0;
+      EEPROM.write(3, dataIn[1]) ;
+      delay(200);
+    
+}
+if (play_sd==10){
+
+  lecture_ok=true;
+alignement = true;
+perdu_temp = false;
+dir_temp = 0;
+etape_perdu = 0;
+compteur_sd=0;
+
+
+  en_charge=1;
+  copain_base=0;
+  timer=millis();
 }
 
+
+
 }
 
+else if (dataIn[0] == 105){
 
+
+copain_base=1;
+
+
+  
+}
 
 
 

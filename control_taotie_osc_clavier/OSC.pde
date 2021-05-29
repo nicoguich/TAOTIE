@@ -1,5 +1,11 @@
 void oscEvent(OscMessage theOscMessage) {
   
+  if (theOscMessage.checkAddrPattern("/copain_base")==true) { 
+    
+    println("copain_base");
+    
+  }
+  
   
   
   if (theOscMessage.checkAddrPattern("/dist_to_go")==true) { 

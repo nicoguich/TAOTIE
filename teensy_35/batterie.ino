@@ -29,10 +29,22 @@ void F_batterie() {
     
   }
 
-/*
-if ((batterie_value>230)&&(batterie_ok==0)){
 
-  batterie_ok=1;
+
+  if ((batterie_value>220)&&(en_charge==1)&&(millis()>timer+1000)){
+data_get_out[0]=byte(110);
+data_get_out[1]=byte(1);
+    Serial3.write(data_get_out, 13);
+    timer=millis();
+digitalWrite(led4,HIGH);
+delay(200);
+ digitalWrite(led4,LOW);   
+  }
+
+
+if ((batterie_value>233)&&(en_charge==1)&&(copain_base==1)){
+
+
   en_charge=0;
 
 
@@ -92,9 +104,9 @@ Serial.println(data_sd[x]);
 
      
   }
-
+play_sd=EEPROM.read(3);
+delay(200);
 compteur_sd=0;
-
  lecture_ok=false;
 
 
@@ -103,7 +115,7 @@ compteur_sd=0;
 
   
 }
-*/
+
 
   
 

@@ -5,7 +5,7 @@ import controlP5.*;
 
 
 
-
+int parcours=6;
 int seuil_qtr=150;
 int seuil_sonar=7;
 boolean ligne_noire=true;
@@ -88,6 +88,24 @@ void setup() {
     .setSize(40, 40)
     .updateSize()
     ;
+    
+    
+    
+    cp5.addRadioButton("radioButton")
+         .setPosition(400,400)
+         .setSize(40,20)
+         .setColorForeground(color(120))
+         .setColorActive(color(255,50,50))
+         .setColorLabel(color(0))
+         .setItemsPerRow(6)
+         .setSpacingColumn(10)
+         .addItem("1",1)
+         .addItem("2",2)
+         .addItem("3",3)
+         .addItem("4",4)
+         .addItem("5",5)
+         .addItem("random",6)
+         ;
     
     
       PImage[] imgs_home = {loadImage("home_a.png"),loadImage("home_b.png"), loadImage("home_c.png")};
