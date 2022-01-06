@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 import serial
 import signal
 
+from pythonosc import udp_client
 from picamera.array import PiRGBArray # Generates a 3D RGB array
 from picamera import PiCamera # Provides a Python interface for the RPi Camera Module
 import time # Provides time-related functions
@@ -11,6 +12,7 @@ import numpy as np
 
 
 
+client = udp_client.SimpleUDPClient("192.168.100.149", 5005)
 ligne_temp=701
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -40,12 +42,6 @@ ser = serial.Serial(
 signal.signal(signal.SIGINT, handler)
 
 
-
-
-
-
-
-
 # Initialize the camera
 camera = PiCamera()
 
@@ -70,7 +66,7 @@ time.sleep(0.1)
 
 # Capture frames continuously from the camera
 for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port=True):
-
+    value_sensor=[0,0,0,0,0,0,0,0]
     # Grab the raw NumPy array representing the image
     img = frame.array
 
@@ -108,51 +104,67 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     if result_1:
         cv2.rectangle(color,(130,30),(160,60),(0,255,0),1)
         cv2.putText(color,"1",(130,60),font,1,(0,255,0),2,cv2.LINE_AA)
+        value_sensor[0]=1
+
     else:
         cv2.rectangle(color,(130,30),(160,60),(0,0,255),1)
         cv2.putText(color,"1",(130,60),font,1,(0,0,255),2,cv2.LINE_AA)
+
     if result_2:
         cv2.rectangle(color,(305,30),(335,60),(0,255,0),1)
         cv2.putText(color,"2",(305,60),font,1,(0,255,0),2,cv2.LINE_AA)
+        value_sensor[1]=1
     else:
         cv2.rectangle(color,(305,30),(335,60),(0,0,255),1)
         cv2.putText(color,"2",(305,60),font,1,(0,0,255),2,cv2.LINE_AA)
+
     if result_3:
         cv2.rectangle(color,(480,30),(510,60),(0,255,0),1)
         cv2.putText(color,"3",(480,60),font,1,(0,255,0),2,cv2.LINE_AA)
+        value_sensor[2]=1
     else:
         cv2.rectangle(color,(480,30),(510,60),(0,0,255),1)
         cv2.putText(color,"3",(480,60),font,1,(0,0,255),2,cv2.LINE_AA)
+
     if result_4:
         cv2.rectangle(color,(130,420),(160,450),(0,255,0),1)
         cv2.putText(color,"4",(130,450),font,1,(0,255,0),2,cv2.LINE_AA)
+        value_sensor[3]=1
     else:
         cv2.rectangle(color,(130,420),(160,450),(0,0,255),1)
         cv2.putText(color,"4",(130,450),font,1,(0,0,255),2,cv2.LINE_AA)
 
+
     if result_5:
         cv2.rectangle(color,(305,420),(335,450),(0,255,0),1)
         cv2.putText(color,"5",(305,450),font,1,(0,255,0),2,cv2.LINE_AA)
+        value_sensor[4]=1
     else:
         cv2.rectangle(color,(305,420),(335,450),(0,0,255),1)
         cv2.putText(color,"5",(305,450),font,1,(0,0,255),2,cv2.LINE_AA)
 
+
     if result_6:
         cv2.rectangle(color,(480,420),(510,450),(0,255,0),1)
         cv2.putText(color,"6",(480,450),font,1,(0,255,0),2,cv2.LINE_AA)
+        value_sensor[5]=1
     else:
         cv2.rectangle(color,(480,420),(510,450),(0,0,255),1)
         cv2.putText(color,"6",(480,450),font,1,(0,0,255),2,cv2.LINE_AA)
 
+
     if result_7:
         cv2.rectangle(color,(130,225),(160,255),(0,255,0),1)
         cv2.putText(color,"7",(130,255),font,1,(0,255,0),2,cv2.LINE_AA)
+        value_sensor[6]=1
     else:
         cv2.rectangle(color,(130,225),(160,255),(0,0,255),1)
         cv2.putText(color,"7",(130,255),font,1,(0,0,255),2,cv2.LINE_AA)
+
     if result_8:
         cv2.rectangle(color,(480,225),(510,255),(0,255,0),1)
         cv2.putText(color,"8",(480,255),font,1,(0,255,0),2,cv2.LINE_AA)
+        value_sensor[7]=1
     else:
         cv2.rectangle(color,(480,225),(510,255),(0,0,255),1)
         cv2.putText(color,"8",(480,255),font,1,(0,0,255),2,cv2.LINE_AA)
@@ -163,14 +175,16 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
 
 
 
+
     cv2.imshow('frame', color)
+    #client.send_message("/filter", x)
 
     # Wait for keyPress for 1 millisecond
     key = cv2.waitKey(1) & 0xFF
 
     # Clear the stream in preparation for the next frame
     raw_capture.truncate(0)
-
+    client.send_message("/sensor",value_sensor)
     ligne = ser.readline().rstrip()
     if not ligne:
         continue
