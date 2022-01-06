@@ -23,11 +23,12 @@ long pos, timer;
 
 byte datawheel[4];
 int led = 20;
+int batterie_level_pin=23;
 int enable_arriere_droit = 2, enable_arriere_gauche = 13, enable_avant_gauche = 5, enable_avant_droit = 10;
 byte data_command[2];
 boolean on_move = false;
 int m_temp[2];
-
+float batterie_level, batterie_level_temp;
 
 void setup() {
   Serial.begin(9600);
@@ -41,7 +42,10 @@ void setup() {
   pinMode(enable_avant_droit, OUTPUT);
   pinMode(17,OUTPUT);
 
-  analogWrite(17,130);
+
+
+
+  analogWrite(17,230);
   analogWrite(led,130);
   digitalWrite(enable_arriere_droit,HIGH);
   digitalWrite(enable_avant_gauche,HIGH);
@@ -82,12 +86,16 @@ delay(2000);
 }
 void loop() {
   if (Serial3.available() > 0) {
+
+    batterie();
     
     byte data = Serial3.readBytesUntil('\n',data2,BUFFER_SIZE);
     //Serial.print(data);
     for (int x=0;x<10;x++){
     
     }
+
+
     
 
 
@@ -185,6 +193,10 @@ m = int(dir);
 
     }
   }
+
+
+
+
 
 
 

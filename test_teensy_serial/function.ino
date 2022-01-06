@@ -235,14 +235,14 @@ void rotateLeft() {
 
 
   
-  arriere_droitSpeed = -wheelSpeed;
-  avant_gaucheSpeed = -wheelSpeed;
-  avant_droitSpeed = -wheelSpeed;
-  arriere_gaucheSpeed = -wheelSpeed;
-  arriere_droitWheel.moveTo(-pos);
-  avant_gaucheWheel.moveTo(-pos);
-  avant_droitWheel.moveTo(-pos);
-  arriere_gaucheWheel.moveTo(-pos);
+  arriere_droitSpeed = wheelSpeed;
+  avant_gaucheSpeed = wheelSpeed;
+  avant_droitSpeed = wheelSpeed;
+  arriere_gaucheSpeed = wheelSpeed;
+  arriere_droitWheel.moveTo(pos);
+  avant_gaucheWheel.moveTo(pos);
+  avant_droitWheel.moveTo(pos);
+  arriere_gaucheWheel.moveTo(pos);
 
 
 
@@ -270,14 +270,14 @@ void rotateRight(){
 
   
   
-  arriere_droitSpeed = wheelSpeed;
-  avant_gaucheSpeed = wheelSpeed;
-  avant_droitSpeed = wheelSpeed;
-  arriere_gaucheSpeed = wheelSpeed;
-  arriere_droitWheel.moveTo(pos);
-  avant_gaucheWheel.moveTo(pos);
-  avant_droitWheel.moveTo(pos);
-  arriere_gaucheWheel.moveTo(pos);
+  arriere_droitSpeed = -wheelSpeed;
+  avant_gaucheSpeed = -wheelSpeed;
+  avant_droitSpeed = -wheelSpeed;
+  arriere_gaucheSpeed = -wheelSpeed;
+  arriere_droitWheel.moveTo(-pos);
+  avant_gaucheWheel.moveTo(-pos);
+  avant_droitWheel.moveTo(-pos);
+  arriere_gaucheWheel.moveTo(-pos);
 
 
 
@@ -309,13 +309,13 @@ void moveSidewaysLeft() {//
 
 
   
-  arriere_droitSpeed = wheelSpeed;
+  arriere_droitSpeed = -wheelSpeed;
   avant_gaucheSpeed = wheelSpeed;
-  avant_droitSpeed = -wheelSpeed;
+  avant_droitSpeed = wheelSpeed;
   arriere_gaucheSpeed = -wheelSpeed;
-  arriere_droitWheel.moveTo(pos);
+  arriere_droitWheel.moveTo(-pos);
   avant_gaucheWheel.moveTo(pos);
-  avant_droitWheel.moveTo(-pos);
+  avant_droitWheel.moveTo(pos);
 
   arriere_gaucheWheel.moveTo(-pos);
 
@@ -428,15 +428,15 @@ void moveSidewaysRight() {//
   avant_droitWheel.setCurrentPosition(0);
 
   
-  arriere_droitSpeed = -wheelSpeed;
+  arriere_droitSpeed = wheelSpeed;
   avant_gaucheSpeed = -wheelSpeed;
-  avant_droitSpeed = wheelSpeed;
+  avant_droitSpeed = -wheelSpeed;
   arriere_gaucheSpeed = wheelSpeed;
 
-  arriere_droitWheel.moveTo(-pos);
-  avant_gaucheWheel.moveTo(-pos);
-  avant_droitWheel.moveTo(pos);
-  arriere_gaucheWheel.moveTo(pos);
+  arriere_droitWheel.moveTo(pos);
+  avant_gaucheWheel.moveTo(pos);
+  avant_droitWheel.moveTo(-pos);
+  arriere_gaucheWheel.moveTo(-pos);
 
 
 
@@ -448,6 +448,7 @@ void moveSidewaysRight() {//
 
 
 void stopMoving() {
+  
 
  Serial.println("STOP");
   digitalWrite(enable_arriere_droit,HIGH);
@@ -472,5 +473,7 @@ void stopMoving() {
   avant_gaucheWheel.moveTo(0);
   avant_droitWheel.moveTo(0);
   arriere_gaucheWheel.moveTo(0);
+
+  batterie();
 
 }
