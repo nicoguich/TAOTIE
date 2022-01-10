@@ -1,9 +1,11 @@
-from __future__ import print_function
 from inputs import get_gamepad
-import serial
-import time
+from pythonosc import udp_client
+import socket
 
-dataMotor=[0,0,0,0,0]
+client = udp_client.SimpleUDPClient("127.0.0.1", 5005)
+#client._sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+
+data=[0,0]
 axe_X=0
 axe_Y=0
 axe_RX=0
@@ -12,21 +14,18 @@ triangle=0
 carre=0
 rond=0
 croix=0
-
-step=0
-speed=1000
-speed_temp=1000
 dir=0
-dir_temp=0
+speed=1000
 
-arduino_serial = serial.Serial('/dev/ttyAMA0', 9600, timeout=1)
-arduino_serial.flush()
-
-while 1:
+while True :
     events = get_gamepad()
+
     for event in events:
+
+
         if event.code == "ABS_Y" and event.state < -10000 :
             axe_Y=-1
+
         elif event.code == "ABS_Y" and event.state > 10000 :
             axe_Y=1
         elif event.code == "ABS_Y" and event.state < 10000 and event.state > -10000:
@@ -53,12 +52,9 @@ while 1:
         elif event.code == "ABS_RX" and event.state < 10000 and event.state > -10000:
             axe_RX=0
 
-
-
-
-
         if event.code == "BTN_WEST":
             triangle= event.state
+
         if event.code == "BTN_EAST":
             rond= event.state
         if event.code == "BTN_SOUTH":
@@ -86,6 +82,7 @@ while 1:
 
         if axe_Y== -1 and triangle == 1 :
             dir=12
+
 
         if axe_Y== -1 and rond == 1 :
             dir=13
@@ -123,16 +120,5 @@ while 1:
             dir=13
 
 
-        if dir_temp != dir or speed_temp != speed:
-            dir_temp=dir
-            speed_temp=speed
-            dataMotor[0] = step >> 8;
-            dataMotor[1] = step - ((step >> 8) * 256);
-            dataMotor[2] = dir;
-            dataMotor[3] = speed >> 8;
-            dataMotor[4] = speed - ((speed >> 8) * 256);
-            for x in range (0,5):
-
-            	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
-            arduino_serial.write(b'\n')
-            print(dir)
+    data=[dir,speed]
+    client.send_message("/controller",data)
