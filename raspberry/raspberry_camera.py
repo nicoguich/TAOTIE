@@ -50,9 +50,9 @@ camera.resolution = (640, 480)
 
 # Set the number of frames per second
 camera.framerate = 25
-
+time.sleep(2)
 camera.exposure_mode = 'off'
-camera.brightness = 50
+camera.brightness =45
 
 # Generates a 3D RGB array and stores it in rawCapture
 
@@ -72,7 +72,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
 
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
-    (thresh, blackAndWhiteImage) = cv2.threshold(gray, 220, 255, cv2.THRESH_BINARY)
+    (thresh, blackAndWhiteImage) = cv2.threshold(gray, 50, 255, cv2.THRESH_BINARY)
     color = cv2.cvtColor(blackAndWhiteImage,cv2.COLOR_GRAY2BGR)
     array=np.array(color)
     sensor_1 = array[ 30:60,130:160]
