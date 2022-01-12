@@ -1,6 +1,6 @@
 
 import RPi.GPIO as GPIO
-from inputs import get_gamepad
+import inputs
 from pythonosc import udp_client
 import socket
 
@@ -29,9 +29,16 @@ speed=1000
 select=0
 start=0
 home=0
+step=0
+
+
+
+
+
+
 
 while True :
-    events = get_gamepad()
+    events = inputs.get_gamepad()
 
     for event in events:
 
@@ -47,6 +54,7 @@ while True :
                     GPIO.output(27, GPIO.LOW)
 
         if event.code=="BTN_SELECT" and event.state==1:
+
             select =abs(select-1)
             if select==1:
                 GPIO.output(10, GPIO.HIGH)
@@ -151,7 +159,7 @@ while True :
             dir=13
 
     if select==1:
-        data=[dir,speed,select,home,start]
+        data=[step,dir,speed,select,home,start]
     else:
-        data=[0,speed,select,home,0]
+        data=[step,0,speed,select,home,0]
     client.send_message("/controller",data)

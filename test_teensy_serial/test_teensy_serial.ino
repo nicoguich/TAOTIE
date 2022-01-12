@@ -1,3 +1,5 @@
+
+#include <EEPROM.h>
 #include <AccelStepper.h>
 
 // Define the stepper motors and the pins the will use
@@ -21,6 +23,7 @@ int avant_gaucheSpeed, arriere_droitSpeed, arriere_gaucheSpeed, avant_droitSpeed
 int dataIn, m = -1, dir, compteurdata;
 long pos, timer;
 
+int rec=0;
 byte datawheel[4];
 int led = 20;
 int batterie_level_pin=23;
@@ -97,8 +100,6 @@ void loop() {
 
 
     
-
-
     pos = (256 * data2[0]) + data2[1];
     dir = data2[2];
     wheelSpeed = int ((256 * data2[3]) + data2[4]);
@@ -110,7 +111,7 @@ void loop() {
     Serial.println(wheelSpeed);
 
 if (m!=-1){
-    m = int(dir);
+      m = int(dir);
       m_temp[0]=m_temp[1];
       m_temp[1]=m;}
 else{
@@ -125,63 +126,53 @@ m = int(dir);
     pos = int(pos);
 
 
-    /*
-        Serial.print(m);
-        Serial.print("  ");
-        Serial.print(pos / 32);
-        Serial.print("  ");
-        Serial.println(wheelSpeed);
-
-    */
-
-
-    if ((m == 4) || (m == 14) || (m == 24) || (m == 34)) {
+    if ((m == 4) || (m == 14)) {
       moveSidewaysLeft();
 
       on_move = true;
     }
-    if ((m == 5) || (m == 15) || (m == 25) || (m == 35)) {
+    if ((m == 5) || (m == 15)) {
       moveSidewaysRight();
 
       on_move = true;
     }
-    if ((m == 2) || (m == 12) || (m == 22) || (m == 32)) {
+    if ((m == 2) || (m == 12)) {
 
       moveForward();
 
       on_move = true;
     }
-    if ((m == 7) || (m == 17) || (m == 27) || (m == 37)) {
+    if ((m == 7) || (m == 17) ) {
       moveBackward() ;
 
       on_move = true;
     }
-    if ((m == 3) || (m == 13) || (m == 23) || (m == 33)) {
+    if ((m == 3) || (m == 13) ) {
       moveRightForward();
 
       on_move = true;
     }
-    if ((m == 1) || (m == 11) || (m == 21) || (m == 31)) {
+    if ((m == 1) || (m == 11) ) {
      moveLeftForward();
 
       on_move = true;
     }
-    if ((m == 8) || (m == 18) || (m == 28) || (m == 38)) {
+    if ((m == 8) || (m == 18) ) {
       moveRightBackward();
 
       on_move = true;
     }
-    if ((m == 6) || (m == 16) || (m == 26) || (m == 36)) {
+    if ((m == 6) || (m == 16) ) {
       moveLeftBackward();
 
       on_move = true;
     }
-    if ((m == 9) || (m == 19) || (m == 29) || (m == 39)) {
+    if ((m == 9) || (m == 19)) {
       rotateLeft();
 
       on_move = true;
     }
-    if ((m == 10) || (m == 20) || (m == 30) || (m == 40)) {
+    if ((m == 10) || (m == 20)) {
      rotateRight();
 
       on_move = true;

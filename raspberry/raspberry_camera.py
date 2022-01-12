@@ -52,7 +52,7 @@ camera.resolution = (640, 480)
 camera.framerate = 25
 time.sleep(2)
 camera.exposure_mode = 'off'
-camera.brightness =45
+camera.brightness =50
 
 # Generates a 3D RGB array and stores it in rawCapture
 
@@ -171,33 +171,43 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
 
 
 
-
-
-
-
-
     cv2.imshow('frame', color)
-    #client.send_message("/filter", x)
+
 
     # Wait for keyPress for 1 millisecond
     key = cv2.waitKey(1) & 0xFF
-
     # Clear the stream in preparation for the next frame
     raw_capture.truncate(0)
+
     client.send_message("/sensor",value_sensor)
     ligne = ser.readline().rstrip()
-    if not ligne:
-        continue
-    if ligne.decode("utf-8").isnumeric()==True :
-        ligne = int(ligne)
-        ligne_temp=ligne
-    else:
-        ligne=ligne_temp
+    try:
+        if ligne.decode("utf-8").isnumeric()==True :
+            ligne=str(int(ligne))
 
+            if len(ligne)>2:
+                mode=int(ligne[0])
+                print(mode)
 
-    if ligne<700 :
-        GPIO.output(17, GPIO.HIGH)
-    else:
-        GPIO.output(17, GPIO.LOW)
+                if mode==3:
+                    client.send_message("/arrive",1)
+                    print("arrive")
 
-    print ("niveau batterie" , ligne)
+                if mode==2:
+                    batterie=(int(ligne[1:])*100)/1023
+                    print ("batterie : ",int( batterie),"%")
+                    #print("")
+                    if int( batterie)<60 :
+                        GPIO.output(17, GPIO.HIGH)
+                    else:
+                        GPIO.output(17, GPIO.LOW)
+                if mode==1:
+                    if int(ligne[1:3])!= 0 :
+                        data=[int(ligne[1:3]),int(ligne[3:])]
+                    else:
+                        data=[0,0]
+                    client.send_message("/command",data)
+                    #print ("commande : ",ligne[1:3],"  step : ", ligne[3:])
+                    #print("")
+    except (UnicodeDecodeError):
+        pass
