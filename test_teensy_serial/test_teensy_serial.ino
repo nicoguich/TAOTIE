@@ -47,8 +47,8 @@ void setup() {
 
 
 
-
-  analogWrite(17,250);
+ 
+ analogWrite(17,250);
   analogWrite(led,130);
   digitalWrite(enable_arriere_droit,HIGH);
   digitalWrite(enable_avant_gauche,HIGH);
@@ -94,9 +94,7 @@ void loop() {
     
     byte data = Serial3.readBytesUntil('\n',data2,BUFFER_SIZE);
     //Serial.print(data);
-    for (int x=0;x<10;x++){
-    
-    }
+
 
 
     
@@ -109,6 +107,8 @@ void loop() {
     Serial.print(dir);
     Serial.print("/ speed ");
     Serial.println(wheelSpeed);
+
+if (dir!=255){
 
 if (m!=-1){
       m = int(dir);
@@ -184,7 +184,13 @@ m = int(dir);
 
     }
   }
+ else{
 
+ analogWrite(17,wheelSpeed);
+
+  
+ }
+  }
 
 
 

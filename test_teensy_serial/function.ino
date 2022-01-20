@@ -517,9 +517,9 @@ void moveSidewaysRight() {//
   arriere_gaucheSpeed = wheelSpeed;
 
   arriere_droitWheel.moveTo(pos);
-  avant_gaucheWheel.moveTo(pos);
+  avant_gaucheWheel.moveTo(-pos);
   avant_droitWheel.moveTo(-pos);
-  arriere_gaucheWheel.moveTo(-pos);
+  arriere_gaucheWheel.moveTo(pos);
 
 
 

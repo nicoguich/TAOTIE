@@ -3,7 +3,8 @@ import RPi.GPIO as GPIO
 import serial
 import signal
 
-from pythonosc import udp_client
+from osc4py3.as_eventloop import *
+from osc4py3 import oscbuildparse
 from picamera.array import PiRGBArray # Generates a 3D RGB array
 from picamera import PiCamera # Provides a Python interface for the RPi Camera Module
 import time # Provides time-related functions
@@ -11,23 +12,22 @@ import cv2 # OpenCV library
 import numpy as np
 
 
+osc_startup()
+osc_udp_client("127.0.0.1", 5005, "raspberry")
 
-client = udp_client.SimpleUDPClient("127.0.0.1", 5005)
-ligne_temp=701
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(22, GPIO.OUT)
 GPIO.setup(17, GPIO.OUT)
 
 def handler(signum, frame):
     print("prout")
     GPIO.output(17, GPIO.LOW)
-    GPIO.output(22, GPIO.LOW)
+
     exit(1)
 
 
 
-GPIO.output(22, GPIO.HIGH)
+
 
 ser = serial.Serial(
     port='/dev/ttyAMA0',
@@ -178,8 +178,9 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     key = cv2.waitKey(1) & 0xFF
     # Clear the stream in preparation for the next frame
     raw_capture.truncate(0)
-
-    client.send_message("/sensor",value_sensor)
+    msg = oscbuildparse.OSCMessage("/sensor", None, value_sensor)
+    osc_send(msg, "raspberry")
+    osc_process()
     ligne = ser.readline().rstrip()
     try:
         if ligne.decode("utf-8").isnumeric()==True :
@@ -187,10 +188,12 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
 
             if len(ligne)>2:
                 mode=int(ligne[0])
-                print(mode)
+
 
                 if mode==3:
-                    client.send_message("/arrive",1)
+                    msg = oscbuildparse.OSCMessage("/arrive", None, data)
+                    osc_send(msg, "raspberry")
+                    osc_process()
                     print("arrive")
 
                 if mode==2:
@@ -206,8 +209,12 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
                         data=[int(ligne[1:3]),int(ligne[3:])]
                     else:
                         data=[0,0]
-                    client.send_message("/command",data)
+                    print(data)
+                    msg = oscbuildparse.OSCMessage("/command", None, data)
+                    osc_send(msg, "raspberry")
+                    osc_process()
                     #print ("commande : ",ligne[1:3],"  step : ", ligne[3:])
                     #print("")
-    except (UnicodeDecodeError):
+    except (UnicodeDecodeError,ValueError):
         pass
+osc_terminate()

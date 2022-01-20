@@ -1,8 +1,9 @@
 
 import RPi.GPIO as GPIO
 import inputs
-from pythonosc import udp_client
-import socket
+from osc4py3.as_eventloop import *
+from osc4py3 import oscbuildparse
+import time
 
 
 GPIO.setwarnings(False)
@@ -11,9 +12,13 @@ GPIO.setup(10, GPIO.OUT)
 GPIO.output(10, GPIO.LOW)
 GPIO.setup(27, GPIO.OUT)
 GPIO.output(27, GPIO.LOW)
+GPIO.setup(22, GPIO.OUT)
+GPIO.output(22, GPIO.HIGH)
 
-client = udp_client.SimpleUDPClient("127.0.0.1", 5005)
-#client._sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+
+osc_startup()
+osc_udp_client("127.0.0.1", 5005, "raspberry")
+
 
 data=[0,0]
 axe_X=0
@@ -29,7 +34,14 @@ speed=1000
 select=0
 start=0
 home=0
-step=0
+led_ir=1
+
+
+msg = oscbuildparse.OSCMessage("/controller", None, data)
+osc_send(msg, "raspberry")
+osc_process()
+
+
 
 
 
@@ -41,17 +53,25 @@ while True :
     events = inputs.get_gamepad()
 
     for event in events:
+        if event.code=="ABS_HAT0Y" and event.state==1:
+            led_ir =abs(led_ir-1)
+            if led_ir==1:
+                GPIO.output(22, GPIO.HIGH)
+            else:
+                GPIO.output(22, GPIO.LOW)
+
 
         if event.code == "BTN_MODE":
             home=event.state
 
         if event.code=="BTN_START" and event.state==1:
-            if select==1:
+
                 start =abs(start-1)
-                if start==1:
-                    GPIO.output(27, GPIO.HIGH)
-                else:
-                    GPIO.output(27, GPIO.LOW)
+                if select==1:
+                    if start==1:
+                        GPIO.output(27, GPIO.HIGH)
+                    else:
+                        GPIO.output(27, GPIO.LOW)
 
         if event.code=="BTN_SELECT" and event.state==1:
 
@@ -159,7 +179,13 @@ while True :
             dir=13
 
     if select==1:
-        data=[step,dir,speed,select,home,start]
+        data=[dir,speed,select,home,start,led_ir]
     else:
-        data=[step,0,speed,select,home,0]
-    client.send_message("/controller",data)
+        data=[0,speed,select,home,start,led_ir]
+
+    msg = oscbuildparse.OSCMessage("/controller", None, data)
+    osc_send(msg, "raspberry")
+    osc_process()
+
+
+osc_terminate()

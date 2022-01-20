@@ -12,17 +12,22 @@ port=5005
 
 
 step=0
+step_temp=0
 speed=1000
 speed_temp=1000
 dir=0
 dir_temp=0
 select=0
 home=0
-home_temp=0
+home_temp = 0
 rec=0
 rec_temp=0
 compteur_play=0
 lines = []
+data_step=0
+data_dir=0
+arrive=0
+
 
 
 
@@ -42,15 +47,18 @@ def alignement():
     global select
     global home
     global home_temp
-    global rec
+    global rec_temp
     global chemin
     global compteur_play
     global lines
     global step
+    global arrive
+    global data_dir
+    global data_step
 
 
 
-    if select==0:
+    if select==0 or rec_temp==1:
 
 
         if etape_perdu == 0 :
@@ -78,30 +86,67 @@ def alignement():
             if sensor[0]==1 and sensor[1]==1 and sensor[2]==1:
                 dir =12
             if sensor[1]==1 and sensor[4]==1 and sensor[0]==0 and sensor[3]==0 :
-                dir =0
                 etape_perdu=2
-                time.sleep(2)
-        if etape_perdu==2:
+
+
+                if rec_temp==1:
+                    etape_perdu=-1
+                    dir=0
+        if etape_perdu==2 :
             if compteur_play < len(lines):
-                print(lines[compteur_play])
-                step=int(lines[compteur_play][2:])
-                dir=int(lines[compteur_play][:2])-10
+
+
+                data=lines[compteur_play].split()
+                if int(data[0])!= 255 :
+                    speed=int(data[2])
+                    step=int(data[1])
+                    dir=int(data[0])-10
+                else:
+                    etape_perdu=0
+                    dir=-1
 
             else:
                 compteur_play=0
-                etape_perdu=-1
+                etape_perdu=0
                 print("fin")
+        if etape_perdu==-1:
+
+            home_temp=0
 
 
-        send_serial(0,step,dir,speed,select,home,rec)
+        if dir>=0:
+            #print ("dir: ",dir," step: ",step)
+            send_serial(0,step,dir,speed,select,home,rec)
+        else:
+            compteur_play+=1
+
+        if arrive==1 and home_temp==0 and rec_temp==1:
+            arrive=0
+            print ("commande : ",data_dir,"  step : ", data_step,"  speed : ", speed)
+            chemin.write(str(data_dir)+" "+str(data_step)+" "+str(speed)+"\n")
+        else:
+            data_dir=0
+            data_step=0
 
 def command(address, *args):
-    global rec
+    global rec_temp
+    global home_temp
     global chemin
+    global speed
+    global data_step
+    global data_dir
+    global arrive
 
-    if rec==1 :
-        print ("commande : ",args[0],"  step : ", args[1])
-        chemin.write(str(args[0])+" "+str(args[1])+"\n")
+
+    if rec_temp==1:
+        data_step= args[1]
+        data_dir= args[0]
+        arrive =1
+
+
+
+
+
 
 
 
@@ -113,7 +158,6 @@ def sensor_osc(address, *args):
 def check_arrive(address, *args):
     global compteur_play
     print("arrive")
-
     compteur_play+=1
 
 
@@ -136,6 +180,7 @@ def send_serial(address, *args):
     global compteur_play
     global lines
     global etape_perdu
+    global step_temp
 
     arduino_serial.flush()
     step=args[0]
@@ -145,17 +190,26 @@ def send_serial(address, *args):
     home=args[4]
     rec=args[5]
 
+
+
+
     if home==1 and home_temp==0:
-        print("play")
-        etape_perdu=0
+
+        if rec==0 and rec_temp==0:
+            print("play")
+            etape_perdu=0
+            lines = []
+            with open("chemin.txt") as f:
+                lines = f.readlines()
+            print(lines)
+            compteur_play=0
+        if rec_temp==1:
+            print("home")
+            chemin.write("255 255 255\n")
+            etape_perdu=0
         home_temp=1
-        lines = []
-        with open("chemin.txt") as f:
-            lines = f.readlines()
-        print(lines)
-        compteur_play=0
-    if home==0 and home_temp==1:
-        home_temp=0
+
+
 
 
     if rec==0 and rec_temp==1:
@@ -164,10 +218,18 @@ def send_serial(address, *args):
         print("rec off")
     if rec==1 and rec_temp==0:
         rec_temp=1
+        etape_perdu=-1
         print("rec on")
         chemin = open("chemin.txt","w")
 
-    if dir_temp != dir or speed_temp != speed:
+    if select==1:
+        home=0
+        compteur_play=0
+        #etape_perdu=-1
+
+    if dir_temp != dir or speed_temp != speed :
+
+        step_temp=step
         dir_temp=dir
         speed_temp=speed
         dataMotor[0] = step >> 8;
@@ -181,6 +243,8 @@ def send_serial(address, *args):
         arduino_serial.write(b'\n')
 
 
+def poubelle(address, *args):
+    print("poubelle")
 
 
 
@@ -190,4 +254,5 @@ dispatcher.map("/controller", send_serial)
 dispatcher.map("/command", command)
 dispatcher.map("/arrive", check_arrive)
 server = osc_server.ThreadingOSCUDPServer((ip, port), dispatcher)
+
 server.serve_forever()
