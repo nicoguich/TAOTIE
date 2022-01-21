@@ -1,233 +1,237 @@
-from pythonosc import dispatcher
-from pythonosc import osc_server
+import RPi.GPIO as GPIO
+from osc4py3.as_eventloop import *
+from osc4py3 import oscmethod as osm
 import serial
 import time
 
 
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(10, GPIO.OUT)
+GPIO.output(10, GPIO.LOW)
+GPIO.setup(27, GPIO.OUT)
+GPIO.output(27, GPIO.LOW)
+GPIO.setup(22, GPIO.OUT)
+GPIO.output(22, GPIO.HIGH)
 
 
+osc_startup()
 arduino_serial = serial.Serial('/dev/ttyAMA0', 9600, timeout=1)
 ip="127.0.0.1"
 port=5005
+osc_udp_server(ip, port, "raspberry")
 
 
+
+dir=0
 step=0
-step_temp=0
 speed=1000
 speed_temp=1000
-dir=0
 dir_temp=0
-select=0
-home=0
 home_temp = 0
-rec=0
 rec_temp=0
 compteur_play=0
 lines = []
-data_step=0
-data_dir=0
 arrive=0
-
-
-
-
+led_ir_temp=0
+etape_perdu=0
+speed_perdu=600
+play=0
+start_released=0
 
 sensor=[0,0,0,0,0,0,0,0]
 dataMotor=[0,0,0,0,0]
 
 
-etape_perdu=-1
-speed_perdu=800
 
+
+###############################################################""
 def alignement():
     global etape_perdu
     global sensor
     global speed
     global dir
-    global select
-    global home
-    global home_temp
-    global rec_temp
-    global chemin
     global compteur_play
-    global lines
-    global step
-    global arrive
-    global data_dir
-    global data_step
 
 
-
-    if select==0 or rec_temp==1:
-
-
-        if etape_perdu == 0 :
-            speed=speed_perdu
-            dir=17
-            if sensor[7]==1 and sensor[6]==0 :
-                dir=19
-            if sensor[7]==0 and sensor[6]==1:
-                dir=20
-            if sensor[7]==1 and sensor[6]==1 and sensor[3]==0 and sensor[5]==0:
-                etape_perdu=1
-                dir=14
-
-        if etape_perdu==1:
-            speed=speed_perdu
+    if etape_perdu == 0 :
+        speed=speed_perdu
+        dir=17
+        if sensor[7]==1 and sensor[6]==0 :
+            dir=19
+        if sensor[7]==0 and sensor[6]==1:
+            dir=20
+        if sensor[7]==1 and sensor[6]==1 and sensor[3]==0 and sensor[5]==0:
+            etape_perdu=1
             dir=14
-            if sensor[0]==1:
-                dir=20
-            if sensor[3]==1:
-                dir=19
-            if sensor[0]==1 and sensor[6]==1 and sensor[3]==1:
-                dir =14
-            if sensor[3]==1 and sensor[4]==1 and sensor[5]==1:
-                dir =17
-            if sensor[0]==1 and sensor[1]==1 and sensor[2]==1:
-                dir =12
-            if sensor[1]==1 and sensor[4]==1 and sensor[0]==0 and sensor[3]==0 :
-                etape_perdu=2
+
+    if etape_perdu==1:
+        speed=speed_perdu
+        dir=14
+        if sensor[0]==1:
+            dir=20
+        if sensor[3]==1:
+            dir=19
+        if sensor[0]==1 and sensor[6]==1 and sensor[3]==1:
+            dir =14
+        if sensor[3]==1 and sensor[4]==1 and sensor[5]==1:
+            dir =17
+        if sensor[0]==1 and sensor[1]==1 and sensor[2]==1:
+            dir =12
+        if sensor[1]==1 and sensor[4]==1 and sensor[0]==0 and sensor[3]==0 :
+            etape_perdu=2
+            dir=0
+            print("home_ok")
+            if play==1:
+                compteur_play+=1
+###########################################################################
 
 
-                if rec_temp==1:
-                    etape_perdu=-1
-                    dir=0
-        if etape_perdu==2 :
-            if compteur_play < len(lines):
 
-
-                data=lines[compteur_play].split()
-                if int(data[0])!= 255 :
-                    speed=int(data[2])
-                    step=int(data[1])
-                    dir=int(data[0])-10
-                else:
-                    etape_perdu=0
-                    dir=-1
-
-            else:
-                compteur_play=0
-                etape_perdu=0
-                print("fin")
-        if etape_perdu==-1:
-
-            home_temp=0
-
-
-        if dir>=0:
-            #print ("dir: ",dir," step: ",step)
-            send_serial(0,step,dir,speed,select,home,rec)
-        else:
-            compteur_play+=1
-
-        if arrive==1 and home_temp==0 and rec_temp==1:
-            arrive=0
-            print ("commande : ",data_dir,"  step : ", data_step,"  speed : ", speed)
-            chemin.write(str(data_dir)+" "+str(data_step)+" "+str(speed)+"\n")
-        else:
-            data_dir=0
-            data_step=0
-
-def command(address, *args):
+##########################################################################
+def command(*args):
     global rec_temp
     global home_temp
-    global chemin
     global speed
-    global data_step
-    global data_dir
-    global arrive
+
+    data_step= args[1]
+    data_dir= args[0]
+
+    if rec_temp==1 and home_temp==0:
+        print ("commande : ",data_dir,"  step : ", data_step,"  speed : ", speed)
+        chemin.write(str(data_dir)+" "+str(data_step)+" "+str(speed)+"\n")
+#################################################################################
 
 
-    if rec_temp==1:
-        data_step= args[1]
-        data_dir= args[0]
-        arrive =1
-
-
-
-
-
-
-
-
-def sensor_osc(address, *args):
+#################################
+def sensor_osc(*args):
     global sensor
     sensor=args
-    alignement()
+#######################################
 
-def check_arrive(address, *args):
+
+###################################
+def check_arrive(*args):
     global compteur_play
     print("arrive")
     compteur_play+=1
+##################################
 
-
-
-def send_serial(address, *args):
-
-
-    global step
+##########################################################
+def controller(*args):
     global dir
-    global speed
     global dir_temp
-    global speed_temp
-    global dataMotor
+    global speed
     global select
-    global home
     global home_temp
-    global rec
+    global etape_perdu
+    global led_ir_temp
     global rec_temp
     global chemin
-    global compteur_play
+    global play
     global lines
-    global etape_perdu
-    global step_temp
-
-    arduino_serial.flush()
-    step=args[0]
-    dir=args[1]
-    speed=args[2]
-    select=args[3]
-    home=args[4]
-    rec=args[5]
+    global start_released
 
 
 
+
+    speed=args[1]
+    select=args[2]
+    home=args[3]
+    start=args[4]
+    led_ir=args[5]
+
+    if select== 1 :
+        dir=args[0]
 
     if home==1 and home_temp==0:
-
-        if rec==0 and rec_temp==0:
-            print("play")
-            etape_perdu=0
-            lines = []
-            with open("chemin.txt") as f:
-                lines = f.readlines()
-            print(lines)
-            compteur_play=0
-        if rec_temp==1:
-            print("home")
-            chemin.write("255 255 255\n")
-            etape_perdu=0
+        print("process home....")
         home_temp=1
+        etape_perdu=0
+        if rec_temp==1:
+            print ("commande : 255 255 255")
+            chemin.write("255 255 255\n")
+    if home_temp==1 and etape_perdu==2 :
+        home_temp=0
 
+    if led_ir==1 and led_ir_temp==0:
+        led_ir_temp=1
+        GPIO.output(22, GPIO.HIGH)
+        dataMotor[0] = 0;
+        dataMotor[1] = 0;
+        dataMotor[2] = 255;
+        dataMotor[3] = 0;
+        dataMotor[4] = 250;
+        for x in range (0,5):
 
+        	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
+        arduino_serial.write(b'\n')
+    if led_ir==0 and led_ir_temp==1:
+        led_ir_temp=0
+        GPIO.output(22, GPIO.LOW)
+        dataMotor[0] = 0;
+        dataMotor[1] = 0;
+        dataMotor[2] = 255;
+        dataMotor[3] = 0;
+        dataMotor[4] = 0;
+        for x in range (0,5):
 
+        	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
+        arduino_serial.write(b'\n')
 
-    if rec==0 and rec_temp==1:
+    if start==1 and rec_temp==1 and select==1 and start_released==0:
+        start_released=1
         chemin.close()
         rec_temp=0
         print("rec off")
-    if rec==1 and rec_temp==0:
+        GPIO.output(27, GPIO.LOW)
+    if start==1 and rec_temp==0 and select==1 and start_released==0:
+        start_released=1
         rec_temp=1
-        etape_perdu=-1
         print("rec on")
+        GPIO.output(27, GPIO.HIGH)
         chemin = open("chemin.txt","w")
-
-    if select==1:
-        home=0
+    if start==1 and select==0 and play==0 and start_released==0:
+        start_released=1
+        play=1
+        etape_perdu=0
+        home_temp=1
+        lines = []
+        with open("chemin.txt") as f:
+            lines = f.readlines()
+        print(lines)
         compteur_play=0
-        #etape_perdu=-1
+        print("play and process home....")
+    if start==1 and select==0 and play==1 and start_released==0:
+        print("pause")
+        start_released=1
+        play=2
+    if start==1 and select==0 and play==2 and start_released==0:
+        print("resume")
+        start_released=1
+        play=1
+    if select==1:
+        GPIO.output(10, GPIO.HIGH)
+        play=0
+    else:
+        GPIO.output(10, GPIO.LOW)
+    if start==0:
+        start_released=0
 
-    if dir_temp != dir or speed_temp != speed :
+
+#################################################################
+
+
+
+
+########################################################################
+def send_serial(dir,step,speed):
+    global dir_temp
+    global speed_temp
+
+    if (dir_temp != dir or speed_temp != speed) and dir>=0 :
+
+        print("dir:", dir)
 
         step_temp=step
         dir_temp=dir
@@ -241,18 +245,61 @@ def send_serial(address, *args):
 
         	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
         arduino_serial.write(b'\n')
+################################################################################
 
 
-def poubelle(address, *args):
-    print("poubelle")
+######################################################################
+def lecture():
+    global compteur_play
+    global lines
+    global dir
+    global step
+    global speed
+    global etape_perdu
+    global home_temp
+
+    home_temp=0
+
+    if compteur_play < len(lines):
+        data=lines[compteur_play].split()
+
+        if int(data[0])!= 255 :
+            speed=int(data[2])
+            step=int(data[1])
+            dir=int(data[0])-10
+        else:
+            etape_perdu=0
+            dir=-1
+            home_temp=1
+        if dir==-10:
+            compteur_play+=1
+            dir=-1
+
+
+    else:
+        compteur_play=0
+        etape_perdu=0
+        home_temp=1
+        print("fin")
 
 
 
-dispatcher = dispatcher.Dispatcher()
-dispatcher.map("/sensor", sensor_osc)
-dispatcher.map("/controller", send_serial)
-dispatcher.map("/command", command)
-dispatcher.map("/arrive", check_arrive)
-server = osc_server.ThreadingOSCUDPServer((ip, port), dispatcher)
 
-server.serve_forever()
+osc_method("/controller", controller)
+osc_method("/sensor", sensor_osc)
+osc_method("/command", command)
+osc_method("/arrive", check_arrive)
+
+###########################################################
+#############################################################
+#################################################################
+while True:
+
+    osc_process()
+    if home_temp==1:
+        alignement()
+    if etape_perdu==2 and play==1:
+        lecture()
+    send_serial(dir,step,speed)
+
+osc_terminate()
