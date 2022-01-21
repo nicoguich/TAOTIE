@@ -1,19 +1,10 @@
 
-import RPi.GPIO as GPIO
+
 import inputs
 from osc4py3.as_eventloop import *
 from osc4py3 import oscbuildparse
 import time
 
-
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(10, GPIO.OUT)
-GPIO.output(10, GPIO.LOW)
-GPIO.setup(27, GPIO.OUT)
-GPIO.output(27, GPIO.LOW)
-GPIO.setup(22, GPIO.OUT)
-GPIO.output(22, GPIO.HIGH)
 
 
 osc_startup()
@@ -45,43 +36,28 @@ osc_process()
 
 
 
-
-
-
-
 while True :
     events = inputs.get_gamepad()
 
     for event in events:
         if event.code=="ABS_HAT0Y" and event.state==1:
             led_ir =abs(led_ir-1)
-            if led_ir==1:
-                GPIO.output(22, GPIO.HIGH)
-            else:
-                GPIO.output(22, GPIO.LOW)
+
 
 
         if event.code == "BTN_MODE":
             home=event.state
 
-        if event.code=="BTN_START" and event.state==1:
+        if event.code=="BTN_START" :
 
-                start =abs(start-1)
-                if select==1:
-                    if start==1:
-                        GPIO.output(27, GPIO.HIGH)
-                    else:
-                        GPIO.output(27, GPIO.LOW)
+                start =event.state
+
+
 
         if event.code=="BTN_SELECT" and event.state==1:
 
             select =abs(select-1)
-            if select==1:
-                GPIO.output(10, GPIO.HIGH)
-            else:
-                GPIO.output(27, GPIO.LOW)
-                GPIO.output(10, GPIO.LOW)
-                start=0
+
         if event.code == "ABS_Y" and event.state < -10000 :
             axe_Y=-1
 
@@ -178,10 +154,8 @@ while True :
         if axe_X== 1 and triangle == 1 :
             dir=13
 
-    if select==1:
-        data=[dir,speed,select,home,start,led_ir]
-    else:
-        data=[0,speed,select,home,start,led_ir]
+
+    data=[dir,speed,select,home,start,led_ir]
 
     msg = oscbuildparse.OSCMessage("/controller", None, data)
     osc_send(msg, "raspberry")

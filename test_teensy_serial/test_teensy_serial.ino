@@ -11,7 +11,7 @@ AccelStepper avant_gaucheWheel(1, 6, 9);   // Stepper4
 
 
 
-const int BUFFER_SIZE = 10;
+const int BUFFER_SIZE = 6;
 byte data2[BUFFER_SIZE];
 
 
@@ -84,7 +84,7 @@ m=0;
 
 
 
-
+Serial.setTimeout(100);
 delay(2000);
 }
 void loop() {
@@ -92,7 +92,7 @@ void loop() {
 
     batterie();
     
-    byte data = Serial3.readBytesUntil('\n',data2,BUFFER_SIZE);
+    byte data = Serial3.readBytes(data2,BUFFER_SIZE);
     //Serial.print(data);
 
 
