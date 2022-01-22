@@ -161,7 +161,7 @@ def controller(*args):
         dataMotor[1] = 0;
         dataMotor[2] = 255;
         dataMotor[3] = 0;
-        dataMotor[4] = 250;
+        dataMotor[4] = 150;
         for x in range (0,5):
 
         	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))

@@ -12,6 +12,7 @@ import cv2 # OpenCV library
 import numpy as np
 
 
+
 osc_startup()
 osc_udp_client("127.0.0.1", 5005, "raspberry")
 
@@ -38,6 +39,11 @@ ser = serial.Serial(
     timeout=0.01
 )
 
+brightness=50
+image=0
+thresh=50
+contrast=0
+reverse=0
 
 signal.signal(signal.SIGINT, handler)
 
@@ -52,7 +58,8 @@ camera.resolution = (640, 480)
 camera.framerate = 25
 time.sleep(2)
 camera.exposure_mode = 'off'
-camera.brightness =50
+camera.brightness = brightness
+camera.awb_mode= 'off'
 
 # Generates a 3D RGB array and stores it in rawCapture
 
@@ -72,9 +79,15 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
 
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
-    (thresh, blackAndWhiteImage) = cv2.threshold(gray, 50, 255, cv2.THRESH_BINARY)
+    (thresh, blackAndWhiteImage) = cv2.threshold(gray, thresh, 255, cv2.THRESH_BINARY)
     color = cv2.cvtColor(blackAndWhiteImage,cv2.COLOR_GRAY2BGR)
+
+    if reverse==1:
+        color=(255-color)
+
     array=np.array(color)
+
+
     sensor_1 = array[ 30:60,130:160]
     result_1 = np.all((sensor_1 == 0))
 
@@ -170,12 +183,46 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
         cv2.putText(color,"8",(480,255),font,1,(0,0,255),2,cv2.LINE_AA)
 
 
-
-    cv2.imshow('frame', color)
+    if image==0:
+        cv2.imshow('frame', color)
+    if image==1:
+        cv2.imshow('frame', gray)
 
 
     # Wait for keyPress for 1 millisecond
-    key = cv2.waitKey(1) & 0xFF
+    key = cv2.waitKey(10)
+    if key==81:
+        contrast-=1
+        camera.contrast = contrast
+        print("contrast:",contrast)
+    if key==83:
+        contrast+=1
+        camera.contrast = contrast
+        print("contrast:",contrast)
+
+    if key==82:
+        if image==1:
+            brightness+=1
+            camera.brightness = brightness
+            print("brightness",brightness)
+        else:
+            thresh+=1
+            print("thresh:",thresh)
+    if key==84:
+        if image==1:
+            brightness-=1
+            camera.brightness = brightness
+            print("brightness",brightness)
+        else:
+            thresh-=1
+            print("thresh:",thresh)
+    if key==105:
+        image=abs(image-1)
+    if key==114:
+        reverse=abs(reverse-1)
+    if key!=-1:
+        print(key)
+
     # Clear the stream in preparation for the next frame
     raw_capture.truncate(0)
     msg = oscbuildparse.OSCMessage("/sensor", None, value_sensor)
