@@ -190,14 +190,14 @@ def controller(*args):
         rec_temp=1
         print("rec on")
         GPIO.output(27, GPIO.HIGH)
-        chemin = open("chemin.txt","w")
+        chemin = open("/home/pi/Desktop/chemin.txt","w")
     if start==1 and select==0 and play==0 and start_released==0:
         start_released=1
         play=1
         etape_perdu=0
         home_temp=1
         lines = []
-        with open("chemin.txt") as f:
+        with open("/home/pi/Desktop/chemin.txt") as f:
             lines = f.readlines()
         print(lines)
         compteur_play=0
