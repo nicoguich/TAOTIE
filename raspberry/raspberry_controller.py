@@ -40,8 +40,8 @@ while True :
     events = inputs.get_gamepad()
 
     for event in events:
-        if event.code=="ABS_HAT0Y" and event.state==1:
-            led_ir =abs(led_ir-1)
+        if event.code=="ABS_HAT0Y" :
+            led_ir =event.state
 
 
 

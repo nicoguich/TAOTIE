@@ -38,6 +38,7 @@ etape_perdu=0
 speed_perdu=600
 play=0
 start_released=0
+led_released=0
 
 sensor=[0,0,0,0,0,0,0,0]
 dataMotor=[0,0,0,0,0]
@@ -56,6 +57,7 @@ def alignement():
 
     if etape_perdu == 0 :
         speed=speed_perdu
+        led_ir_control(1)
         dir=17
         if sensor[7]==1 and sensor[6]==0 :
             dir=19
@@ -82,6 +84,7 @@ def alignement():
             etape_perdu=2
             dir=0
             print("home_ok")
+            led_ir_control(0)
             if play==1:
                 compteur_play+=1
 ###########################################################################
@@ -116,6 +119,36 @@ def check_arrive(*args):
     print("arrive")
     compteur_play+=1
 ##################################
+def led_ir_control(state):
+    global led_ir_temp
+    global led_ir
+
+    if state!=led_ir_temp :
+        if state==1:
+            led_ir_temp=1
+            GPIO.output(22, GPIO.HIGH)
+            dataMotor[0] = 0;
+            dataMotor[1] = 0;
+            dataMotor[2] = 255;
+            dataMotor[3] = 0;
+            dataMotor[4] = 150;
+            for x in range (0,5):
+
+            	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
+            arduino_serial.write(b'\n')
+        else:
+            led_ir_temp=0
+            GPIO.output(22, GPIO.LOW)
+            dataMotor[0] = 0;
+            dataMotor[1] = 0;
+            dataMotor[2] = 255;
+            dataMotor[3] = 0;
+            dataMotor[4] = 0;
+            for x in range (0,5):
+
+            	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
+            arduino_serial.write(b'\n')
+
 
 ##########################################################
 def controller(*args):
@@ -131,6 +164,7 @@ def controller(*args):
     global play
     global lines
     global start_released
+    global led_released
 
 
 
@@ -143,8 +177,11 @@ def controller(*args):
 
     if select== 1 :
         dir=args[0]
+        if dir!=0:
+            etape_perdu=2
 
     if home==1 and home_temp==0:
+
         print("process home....")
         home_temp=1
         etape_perdu=0
@@ -154,42 +191,26 @@ def controller(*args):
     if home_temp==1 and etape_perdu==2 :
         home_temp=0
 
-    if led_ir==1 and led_ir_temp==0:
-        led_ir_temp=1
-        GPIO.output(22, GPIO.HIGH)
-        dataMotor[0] = 0;
-        dataMotor[1] = 0;
-        dataMotor[2] = 255;
-        dataMotor[3] = 0;
-        dataMotor[4] = 150;
-        for x in range (0,5):
+    if led_ir==1 and led_ir_temp==0 and led_released==0 :
+        led_released=1
+        led_ir_control(1)
 
-        	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
-        arduino_serial.write(b'\n')
-    if led_ir==0 and led_ir_temp==1:
-        led_ir_temp=0
-        GPIO.output(22, GPIO.LOW)
-        dataMotor[0] = 0;
-        dataMotor[1] = 0;
-        dataMotor[2] = 255;
-        dataMotor[3] = 0;
-        dataMotor[4] = 0;
-        for x in range (0,5):
+    if led_ir==1 and led_ir_temp==1 and led_released==0:
+        led_released=1
+        led_ir_control(0)
 
-        	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
-        arduino_serial.write(b'\n')
 
     if start==1 and rec_temp==1 and select==1 and start_released==0:
         start_released=1
         chemin.close()
         rec_temp=0
         print("rec off")
-        GPIO.output(27, GPIO.LOW)
+
     if start==1 and rec_temp==0 and select==1 and start_released==0:
         start_released=1
         rec_temp=1
         print("rec on")
-        GPIO.output(27, GPIO.HIGH)
+
         chemin = open("/home/pi/Desktop/chemin.txt","w")
     if start==1 and select==0 and play==0 and start_released==0:
         start_released=1
@@ -217,6 +238,12 @@ def controller(*args):
         GPIO.output(10, GPIO.LOW)
     if start==0:
         start_released=0
+    if led_ir==0:
+        led_released=0
+    if play==1 or rec_temp==1:
+        GPIO.output(27, GPIO.HIGH)
+    else:
+        GPIO.output(27, GPIO.LOW)
 
 
 #################################################################
