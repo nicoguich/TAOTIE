@@ -10,6 +10,7 @@ from picamera import PiCamera # Provides a Python interface for the RPi Camera M
 import time # Provides time-related functions
 import cv2 # OpenCV library
 import numpy as np
+from set_picamera_gain import set_analog_gain, set_digital_gain
 
 
 
@@ -57,20 +58,24 @@ signal.signal(signal.SIGINT, handler)
 
 # Initialize the camera
 camera = PiCamera()
-
-# Set the camera resolution
 camera.resolution = (640, 480)
-
-# Set the number of frames per second
-camera.framerate = 25
+camera.start_preview(fullscreen=False)
 time.sleep(2)
 
-camera.exposure_mode = 'off'
-print(camera.analog_gain, camera.digital_gain)
+# fix the auto white balance gains at their current values
+g = camera.awb_gains
+camera.awb_mode = "off"
+camera.awb_gains = g
 
-camera.awb_mode= 'off'
+# fix the shutter speed
+camera.shutter_speed = camera.exposure_speed
 
-# Generates a 3D RGB array and stores it in rawCapture
+print("Current a/d gains: {}, {}".format(camera.analog_gain, camera.digital_gain))
+
+print("Attempting to set analogue gain to 1")
+set_analog_gain(camera, 1)
+print("Attempting to set digital gain to 1")
+set_digital_gain(camera, 1)
 
 camera.hflip = True
 camera.vflip = True
@@ -84,6 +89,10 @@ time.sleep(0.1)
 for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port=True):
     camera.contrast = contrast
     camera.brightness = brightness
+    if camera.digital_gain!=1:
+        set_digital_gain(camera, 1)
+        print("Current a/d gains: {}, {}".format(camera.analog_gain, camera.digital_gain))
+
 
     value_sensor=[0,0,0,0,0,0,0,0]
     # Grab the raw NumPy array representing the image
