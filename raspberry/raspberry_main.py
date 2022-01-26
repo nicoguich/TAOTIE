@@ -12,7 +12,7 @@ GPIO.output(10, GPIO.LOW)
 GPIO.setup(27, GPIO.OUT)
 GPIO.output(27, GPIO.LOW)
 GPIO.setup(22, GPIO.OUT)
-GPIO.output(22, GPIO.HIGH)
+GPIO.output(22, GPIO.LOW)
 
 
 osc_startup()
@@ -41,7 +41,7 @@ start_released=0
 led_released=0
 
 sensor=[0,0,0,0,0,0,0,0]
-dataMotor=[0,0,0,0,0]
+dataMotor=[0,0,0,0,0,0]
 
 
 
@@ -129,10 +129,11 @@ def led_ir_control(state):
             GPIO.output(22, GPIO.HIGH)
             dataMotor[0] = 0;
             dataMotor[1] = 0;
-            dataMotor[2] = 255;
-            dataMotor[3] = 0;
-            dataMotor[4] = 150;
-            for x in range (0,5):
+            dataMotor[2] = 0;
+            dataMotor[3] = 255;
+            dataMotor[4] = 0;
+            dataMotor[5] = 150;
+            for x in range (0,6):
 
             	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
             arduino_serial.write(b'\n')
@@ -141,10 +142,11 @@ def led_ir_control(state):
             GPIO.output(22, GPIO.LOW)
             dataMotor[0] = 0;
             dataMotor[1] = 0;
-            dataMotor[2] = 255;
-            dataMotor[3] = 0;
+            dataMotor[2] = 0;
+            dataMotor[3] = 255;
             dataMotor[4] = 0;
-            for x in range (0,5):
+            dataMotor[5] = 0;
+            for x in range (0,6):
 
             	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
             arduino_serial.write(b'\n')
@@ -188,7 +190,7 @@ def controller(*args):
         if rec_temp==1:
             print ("commande : 255 255 255")
             chemin.write("255 255 255\n")
-    if home_temp==1 and etape_perdu==2 :
+    if home_temp==1 and home=0 :
         home_temp=0
 
     if led_ir==1 and led_ir_temp==0 and led_released==0 :
@@ -204,6 +206,7 @@ def controller(*args):
         start_released=1
         chemin.close()
         rec_temp=0
+        compteur_play=0
         print("rec off")
 
     if start==1 and rec_temp==0 and select==1 and start_released==0:
@@ -263,12 +266,15 @@ def send_serial(dir,step,speed):
         step_temp=step
         dir_temp=dir
         speed_temp=speed
-        dataMotor[0] = step >> 8;
-        dataMotor[1] = step - ((step >> 8) * 256);
-        dataMotor[2] = dir;
-        dataMotor[3] = speed >> 8;
-        dataMotor[4] = speed - ((speed >> 8) * 256);
-        for x in range (0,5):
+        step_byte=step.to_bytes(3,byteorder='big')
+        print("step :",step,"/ bytes: ", step_byte)
+        dataMotor[0] = step_byte[0];
+        dataMotor[1] = step_byte[1];
+        dataMotor[2] = step_byte[2];
+        dataMotor[3] = dir;
+        dataMotor[4] = speed >> 8;
+        dataMotor[5] = speed - ((speed >> 8) * 256);
+        for x in range (0,6):
 
         	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
         arduino_serial.write(b'\n')

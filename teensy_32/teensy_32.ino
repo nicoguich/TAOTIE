@@ -82,13 +82,14 @@ void loop() {
   // Check for incoming data
 
   if (Serial3.available() > 0) {
-    Serial3.readBytes(data2, 5); // Read the data
+    Serial3.readBytes(data2, 6); // Read the data
 
 
-
+    //pos= ( (data2[0] & 0x0F) << 16) + ((data2[1] & 0xFF) << 8) + (data2[2] & 0xFF);
     pos = (256 * data2[0]) + data2[1];
     dir = data2[2];
     wheelSpeed = int ((256 * data2[3]) + data2[4]);
+
 
 if (m!=-1){
     m = int(dir);

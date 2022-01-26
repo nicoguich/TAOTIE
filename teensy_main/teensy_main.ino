@@ -11,7 +11,7 @@ AccelStepper avant_gaucheWheel(1, 6, 9);   // Stepper4
 
 
 
-const int BUFFER_SIZE = 6;
+const int BUFFER_SIZE = 7;
 byte data2[BUFFER_SIZE];
 
 
@@ -48,7 +48,7 @@ void setup() {
 
 
  
- analogWrite(17,250);
+
   analogWrite(led,130);
   digitalWrite(enable_arriere_droit,HIGH);
   digitalWrite(enable_avant_gauche,HIGH);
@@ -98,9 +98,10 @@ void loop() {
 
 
     
-    pos = (256 * data2[0]) + data2[1];
-    dir = data2[2];
-    wheelSpeed = int ((256 * data2[3]) + data2[4]);
+    //pos = (256 * data2[0]) + data2[1];
+    pos = ( (data2[0] & 0x0F) << 16) + ((data2[1] & 0xFF) << 8) + (data2[2] & 0xFF);
+    dir = data2[3];
+    wheelSpeed = int ((256 * data2[4]) + data2[5]);
     Serial.print("pos ");
     Serial.print(pos);
     Serial.print("/ dir ");
