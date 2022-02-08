@@ -40,7 +40,7 @@ play=0
 start_released=0
 led_released=0
 
-sensor=[0,0,0,0,0,0,0,0]
+sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
 dataMotor=[0,0,0,0,0,0]
 
 
@@ -53,6 +53,7 @@ def alignement():
     global speed
     global dir
     global compteur_play
+    global home_temp
 
 
     if etape_perdu == 0 :
@@ -82,6 +83,7 @@ def alignement():
             dir =12
         if sensor[1]==1 and sensor[4]==1 and sensor[0]==0 and sensor[3]==0 :
             etape_perdu=2
+            home_temp=0
             dir=0
             print("home_ok")
             led_ir_control(0)
@@ -110,6 +112,7 @@ def command(*args):
 def sensor_osc(*args):
     global sensor
     sensor=args
+    print(sensor[10])
 #######################################
 
 
@@ -167,7 +170,7 @@ def controller(*args):
     global lines
     global start_released
     global led_released
-
+    global compteur_play
 
 
 
@@ -180,6 +183,7 @@ def controller(*args):
     if select== 1 :
         dir=args[0]
         if dir!=0:
+            home_temp=0
             etape_perdu=2
 
     if home==1 and home_temp==0:
@@ -190,8 +194,7 @@ def controller(*args):
         if rec_temp==1:
             print ("commande : 255 255 255")
             chemin.write("255 255 255\n")
-    if home_temp==1 and home=0 :
-        home_temp=0
+
 
     if led_ir==1 and led_ir_temp==0 and led_released==0 :
         led_released=1
@@ -215,7 +218,7 @@ def controller(*args):
         print("rec on")
 
         chemin = open("/home/pi/Desktop/chemin.txt","w")
-    if start==1 and select==0 and play==0 and start_released==0:
+    if start==1 and select==0 and play==0 and start_released==0 :
         start_released=1
         play=1
         etape_perdu=0
@@ -226,6 +229,7 @@ def controller(*args):
         print(lines)
         compteur_play=0
         print("play and process home....")
+
     if start==1 and select==0 and play==1 and start_released==0:
         print("pause")
         start_released=1

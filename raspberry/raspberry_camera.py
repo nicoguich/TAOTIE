@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 import serial
 import signal
 
+from matplotlib import pyplot as plt
 from osc4py3.as_eventloop import *
 from osc4py3 import oscbuildparse
 from picamera.array import PiRGBArray # Generates a 3D RGB array
@@ -94,7 +95,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
         print("Current a/d gains: {}, {}".format(camera.analog_gain, camera.digital_gain))
 
 
-    value_sensor=[0,0,0,0,0,0,0,0]
+    value_sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
     # Grab the raw NumPy array representing the image
     img = frame.array
 
@@ -105,6 +106,8 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
 
     if reverse==1:
         color=(255-color)
+
+
 
     array=np.array(color)
 
@@ -202,6 +205,38 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     else:
         cv2.rectangle(color,(450,225),(480,255),(0,0,255),1)
         cv2.putText(color,"7",(450,255),font,1,(0,0,255),2,cv2.LINE_AA)
+
+
+    im2=blackAndWhiteImage.copy()
+    im2=(255-im2)
+    contours, hierarchy = cv2.findContours(im2, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+    id=0
+    for contour in contours:
+        epsilon = 0.1*cv2.arcLength(contour,True)
+        approx = cv2.approxPolyDP(contour,epsilon,True)
+        area = cv2.contourArea(approx)
+
+        if area >10000:
+
+
+            #cv2.drawContours(color, [approx], -1, (0,255,0), 3)
+            rect = cv2.minAreaRect(contour)
+            box = cv2.boxPoints(rect)
+            box = np.int0(box)
+            cv2.drawContours(color,[box],0,(0,0,255),2)
+            x=int(rect[0][0])
+            y=int(rect[0][1])
+            cv2.putText(color,str(id),(x,y),font,1,(0,255,0),2,cv2.LINE_AA)
+            if id==0:
+                value_sensor[8]=x
+                value_sensor[9]=y
+                value_sensor[10]=float(rect[2])
+            id+=1
+
+    value_sensor[11]=id
+
+
 
 
     if image==0:
