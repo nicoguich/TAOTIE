@@ -75,20 +75,50 @@ def alignement():
             dir=20
         if sensor[3]==1:
             dir=19
-        if sensor[0]==1 and sensor[6]==1 and sensor[3]==1:
-            dir =14
+
         if sensor[3]==1 and sensor[4]==1 and sensor[5]==1:
             dir =17
         if sensor[0]==1 and sensor[1]==1 and sensor[2]==1:
             dir =12
-        if sensor[1]==1 and sensor[4]==1 and sensor[0]==0 and sensor[3]==0 :
+        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 :
             etape_perdu=2
+    if etape_perdu==2:
+        dir=14
+        if sensor[11]==2:
+            etape_perdu=3
+    if etape_perdu==3:
+        speed=100
+        if sensor[11]==1 and sensor[8]>=320:
+            etape_perdu=4
+    if etape_perdu==4:
+        speed=30
+        if sensor[9]==240 and sensor[8]==320:
+            etape_perdu=5
+        elif sensor[9]<240:
+            dir=12
+        elif sensor[9]>240:
+            dir=17
+        elif sensor[8]<320:
+            dir=14
+        elif sensor[8]>320:
+            dir=15
+    if etape_perdu==5:
+
+        if (sensor[10]==0.0) or (sensor[10]==90.0):
             home_temp=0
             dir=0
             print("home_ok")
             led_ir_control(0)
             if play==1:
                 compteur_play+=1
+        elif sensor[10]>0 and sensor[10]<45:
+            dir=20
+        elif sensor[10]>45:
+            dir=19
+
+
+
+
 ###########################################################################
 
 
@@ -112,7 +142,7 @@ def command(*args):
 def sensor_osc(*args):
     global sensor
     sensor=args
-    print(sensor[10])
+    print(sensor[8],sensor[9],sensor[10])
 #######################################
 
 
