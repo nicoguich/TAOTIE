@@ -214,7 +214,7 @@ def controller(*args):
         dir=args[0]
         if dir!=0:
             home_temp=0
-            etape_perdu=2
+            etape_perdu=5
 
     if home==1 and home_temp==0:
 
@@ -365,7 +365,7 @@ while True:
     osc_process()
     if home_temp==1:
         alignement()
-    if etape_perdu==2 and play==1:
+    if etape_perdu==5 and play==1:
         lecture()
     send_serial(dir,step,speed)
 
