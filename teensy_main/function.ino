@@ -96,8 +96,8 @@ void moveLeftBackward(){//
   
   digitalWrite(enable_arriere_droit,LOW);
   digitalWrite(enable_avant_gauche,LOW);
-  digitalWrite(enable_avant_droit,HIGH);
-  digitalWrite(enable_arriere_gauche,HIGH);
+  digitalWrite(enable_avant_droit,LOW);
+  digitalWrite(enable_arriere_gauche,LOW);
 
   
   arriere_droitSpeed = -wheelSpeed;
@@ -141,8 +141,8 @@ void moveRightForward(){//
   
   digitalWrite(enable_arriere_droit,LOW);
   digitalWrite(enable_avant_gauche,LOW);
-  digitalWrite(enable_avant_droit,HIGH);
-  digitalWrite(enable_arriere_gauche,HIGH);
+  digitalWrite(enable_avant_droit,LOW);
+  digitalWrite(enable_arriere_gauche,LOW);
 
   
   arriere_droitSpeed = wheelSpeed;
@@ -183,8 +183,8 @@ void moveLeftForward() {//
   arriere_gaucheWheel.setCurrentPosition(0);
   avant_droitWheel.setCurrentPosition(0);
   
-  digitalWrite(enable_arriere_droit,HIGH);
-  digitalWrite(enable_avant_gauche,HIGH);
+  digitalWrite(enable_arriere_droit,LOW);
+  digitalWrite(enable_avant_gauche,LOW);
   digitalWrite(enable_avant_droit,LOW);
   digitalWrite(enable_arriere_gauche,LOW);
 
@@ -224,8 +224,8 @@ void moveRightBackward() {//
   arriere_gaucheWheel.setCurrentPosition(0);
   avant_droitWheel.setCurrentPosition(0);
   
-  digitalWrite(enable_arriere_droit,HIGH);
-  digitalWrite(enable_avant_gauche,HIGH);
+  digitalWrite(enable_arriere_droit,LOW);
+  digitalWrite(enable_avant_gauche,LOW);
   digitalWrite(enable_avant_droit,LOW);
   digitalWrite(enable_arriere_gauche,LOW);
 
@@ -544,10 +544,10 @@ void stopMoving() {
    }
 
  Serial.println("STOP");
-  digitalWrite(enable_arriere_droit,HIGH);
-  digitalWrite(enable_avant_gauche,HIGH);
-  digitalWrite(enable_avant_droit,HIGH);
-  digitalWrite(enable_arriere_gauche,HIGH);
+  digitalWrite(enable_arriere_droit,LOW);
+  digitalWrite(enable_avant_gauche,LOW);
+  digitalWrite(enable_avant_droit,LOW);
+  digitalWrite(enable_arriere_gauche,LOW);
 
 
 

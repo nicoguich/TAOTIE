@@ -3,9 +3,12 @@ import RPi.GPIO as GPIO
 import serial
 import signal
 
+
+
 from matplotlib import pyplot as plt
 from osc4py3.as_eventloop import *
 from osc4py3 import oscbuildparse
+from osc4py3 import oscmethod as osm
 from picamera.array import PiRGBArray # Generates a 3D RGB array
 from picamera import PiCamera # Provides a Python interface for the RPi Camera Module
 import time # Provides time-related functions
@@ -13,10 +16,16 @@ import cv2 # OpenCV library
 import numpy as np
 from set_picamera_gain import set_analog_gain, set_digital_gain
 
+sel_control=1
+control_value=0
+batterie=50
 
+
+cv2.namedWindow("control", cv2.WINDOW_AUTOSIZE)
 
 osc_startup()
 osc_udp_client("127.0.0.1", 5005, "raspberry")
+osc_udp_server("127.0.0.1", 5006, "camera")
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -28,6 +37,8 @@ def handler(signum, frame):
 
     exit(1)
 
+
+
 reglage_lines = []
 
 with open("/home/pi/Desktop/reglage_camera.txt") as f:
@@ -38,6 +49,24 @@ thresh=int(reglage_lines[2])
 reverse=int(reglage_lines[3])
 print("brightness:" ,brightness, "/contrast: ",contrast,"tresh: ",thresh,"reverse: ",reverse)
 
+
+def control_image(*args):
+    global sel_control
+    global brightness
+    global contrast
+    global thresh
+    global reverse
+    global image
+    sel_control=args[0]
+
+    if sel_control==1:
+        brightness=args[1]
+    if sel_control==2:
+        contrast=args[2]
+    if sel_control==3:
+        thresh=args[3]
+    reverse = args[4]
+    image = args[5]
 
 
 
@@ -86,13 +115,18 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 # Wait a certain number of seconds to allow the camera time to warmup
 time.sleep(0.1)
 
+
+
+osc_method("/image", control_image)
+
 # Capture frames continuously from the camera
 for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port=True):
+    osc_process()
     camera.contrast = contrast
     camera.brightness = brightness
     if camera.digital_gain!=1:
         set_digital_gain(camera, 1)
-        print("Current a/d gains: {}, {}".format(camera.analog_gain, camera.digital_gain))
+        #print("Current a/d gains: {}, {}".format(camera.analog_gain, camera.digital_gain))
 
 
     value_sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
@@ -100,6 +134,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     img = frame.array
 
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+
 
     (thresh, blackAndWhiteImage) = cv2.threshold(gray, thresh, 255, cv2.THRESH_BINARY)
     color = cv2.cvtColor(blackAndWhiteImage,cv2.COLOR_GRAY2BGR)
@@ -236,70 +271,89 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
 
     value_sensor[11]=id
 
-
-
+    control_image = np.zeros((100,700,3), np.uint8)
+    #cv2.putText(control_image,"batterie :"+str(int(batterie))+"%",(10,150),font,1,(0,0,255),2,cv2.LINE_AA)
+    if sel_control==1:
+        cv2.putText(control_image,"bright :"+str(brightness),(10,50),font,1,(0,0,255),2,cv2.LINE_AA)
+    else:
+        cv2.putText(control_image,"bright :"+str(brightness),(10,50),font,1,(255,0,0),2,cv2.LINE_AA)
+    if sel_control==2:
+        cv2.putText(control_image,"contr :"+str(contrast),(200,50),font,1,(0,0,255),2,cv2.LINE_AA)
+    else:
+        cv2.putText(control_image,"contr :"+str(contrast),(200,50),font,1,(255,0,0),2,cv2.LINE_AA)
+    if sel_control==3:
+        cv2.putText(control_image,"thresh :"+str(thresh),(400,50),font,1,(0,0,255),2,cv2.LINE_AA)
+    else:
+        cv2.putText(control_image,"thresh :"+str(thresh),(400,50),font,1,(255,0,0),2,cv2.LINE_AA)
 
     if image==0:
-        cv2.imshow('frame', color)
+        cv2.imshow('opencv', color)
     if image==1:
-        cv2.imshow('frame', gray)
+        cv2.imshow('opencv', gray)
 
+    cv2.imshow('control', control_image)
+    #cv2.imshow('source', gray)
+
+
+    #cv2.moveWindow("source", 100, 100)
+    cv2.moveWindow("opencv", 100, 100)
+    cv2.moveWindow("control", 100, 600)
 
     # Wait for keyPress for 1 millisecond
-    key = cv2.waitKey(10)
-    if key==81:
-        contrast-=1
-        if contrast<=-100:
-            contrast=-100
-        print("contrast:",contrast)
-    if key==83:
-        contrast+=1
-        if contrast>=100:
-            contrast=100
-        print("contrast:",contrast)
-
-    if key==82:
-        if image==1:
-            brightness+=1
-            if brightness>=100:
-                brightness=100
-            print("brightness",brightness)
-
-
-        else:
-            thresh+=1
-            if thresh>=255:
-                thresh=255
-            print("thresh:",thresh)
-    if key==84:
-        if image==1:
-            brightness-=1
-            if brightness<=0:
-                brightness=0
-            print("brightness",brightness)
-
-        else:
-            thresh-=1
-            if thresh<=0:
-                thresh=0
-            print("thresh:",thresh)
-    if key==105:
-        image=abs(image-1)
-    if key==114:
-        reverse=abs(reverse-1)
-    if key==13:
-        print("enregistrement reglage camera...")
-        reglage_camera = open("/home/pi/Desktop/reglage_camera.txt","w")
-        print("...")
-        reglage_camera.write(str(int(brightness))+"\n")
-        print("...")
-        reglage_camera.write(str(int(contrast))+"\n")
-        print("...")
-        reglage_camera.write(str(int(thresh))+"\n")
-        print("...")
-        reglage_camera.write(str(int(reverse))+"\n")
-        reglage_camera.close()
-        print("reglage enregistré")
+    key = cv2.waitKey(5)
+    # if key==81:
+    #     contrast-=1
+    #     if contrast<=-100:
+    #         contrast=-100
+    #     print("contrast:",contrast)
+    # if key==83:
+    #     contrast+=1
+    #     if contrast>=100:
+    #         contrast=100
+    #     print("contrast:",contrast)
+    #
+    # if key==82:
+    #     if image==1:
+    #         brightness+=1
+    #         if brightness>=100:
+    #             brightness=100
+    #         print("brightness",brightness)
+    #
+    #
+    #     else:
+    #         thresh+=1
+    #         if thresh>=255:
+    #             thresh=255
+    #         print("thresh:",thresh)
+    # if key==84:
+    #     if image==1:
+    #         brightness-=1
+    #         if brightness<=0:
+    #             brightness=0
+    #         print("brightness",brightness)
+    #
+    #     else:
+    #         thresh-=1
+    #         if thresh<=0:
+    #             thresh=0
+    #         print("thresh:",thresh)
+    # if key==105:
+    #     image=abs(image-1)
+    # if key==114:
+    #     reverse=abs(reverse-1)
+    # if key==13:
+    #     print("enregistrement reglage camera...")
+    #     reglage_camera = open("/home/pi/Desktop/reglage_camera.txt","w")
+    #     print("...")
+    #     reglage_camera.write(str(int(brightness))+"\n")
+    #     print("...")
+    #     reglage_camera.write(str(int(contrast))+"\n")
+    #     print("...")
+    #     reglage_camera.write(str(int(thresh))+"\n")
+    #     print("...")
+    #     reglage_camera.write(str(int(reverse))+"\n")
+    #     reglage_camera.close()
+    #     print("reglage enregistré")
 
     #if key!=-1:
         #print(key)
@@ -309,6 +363,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     msg = oscbuildparse.OSCMessage("/sensor", None, value_sensor)
     osc_send(msg, "raspberry")
     osc_process()
+
     ligne = ser.readline().rstrip()
     try:
         if ligne.decode("utf-8").isnumeric()==True :
@@ -328,7 +383,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
                     batterie=(int(ligne[1:])*100)/1023
                     print ("batterie : ",int( batterie),"%")
                     #print("")
-                    if int( batterie)<60 :
+                    if int( batterie)<25 :
                         GPIO.output(17, GPIO.HIGH)
                     else:
                         GPIO.output(17, GPIO.LOW)
@@ -337,7 +392,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
                         data=[int(ligne[1:3]),int(ligne[3:])]
                     else:
                         data=[0,0]
-                    print(data)
+                    #print(data)
                     msg = oscbuildparse.OSCMessage("/command", None, data)
                     osc_send(msg, "raspberry")
                     osc_process()

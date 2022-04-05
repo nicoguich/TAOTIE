@@ -26,6 +26,7 @@ long pos, timer;
 int rec=0;
 byte datawheel[4];
 int led = 20;
+int led_ir=17;
 int batterie_level_pin=23;
 int enable_arriere_droit = 2, enable_arriere_gauche = 13, enable_avant_gauche = 5, enable_avant_droit = 10;
 byte data_command[2];
@@ -43,13 +44,13 @@ void setup() {
   pinMode(enable_arriere_gauche, OUTPUT);
   pinMode(enable_avant_gauche, OUTPUT);
   pinMode(enable_avant_droit, OUTPUT);
-  pinMode(17,OUTPUT);
+  pinMode(led_ir,OUTPUT);
 
 
 
  
-
-  analogWrite(led,130);
+  analogWrite(led,200);
+  analogWrite(led_ir,130);
   digitalWrite(enable_arriere_droit,HIGH);
   digitalWrite(enable_avant_gauche,HIGH);
   digitalWrite(enable_avant_droit,HIGH);
@@ -109,7 +110,7 @@ void loop() {
     Serial.print("/ speed ");
     Serial.println(wheelSpeed);
 
-if (dir!=255){
+if (dir<200){
 
 if (m!=-1){
       m = int(dir);
@@ -185,12 +186,34 @@ m = int(dir);
 
     }
   }
- else{
+ else if (dir==255){
 
- analogWrite(17,wheelSpeed);
+ analogWrite(led_ir,wheelSpeed);
 
   
  }
+
+ else if (dir==200){
+
+   analogWrite(led,wheelSpeed);
+
+ }
+
+
+ else if (dir==201){
+
+  digitalWrite(enable_arriere_droit,HIGH);
+  digitalWrite(enable_avant_gauche,HIGH);
+  digitalWrite(enable_avant_droit,HIGH);
+  digitalWrite(enable_arriere_gauche,HIGH);
+
+ }
+
+
+
+
+
+ 
   }
 
 

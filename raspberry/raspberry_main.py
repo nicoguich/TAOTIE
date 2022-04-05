@@ -15,6 +15,24 @@ GPIO.setup(22, GPIO.OUT)
 GPIO.output(22, GPIO.LOW)
 
 
+time.sleep(2)
+GPIO.output(10, GPIO.HIGH)
+GPIO.output(27, GPIO.HIGH)
+GPIO.output(22, GPIO.HIGH)
+time.sleep(1)
+GPIO.output(10, GPIO.LOW)
+GPIO.output(27, GPIO.LOW)
+GPIO.output(22, GPIO.LOW)
+time.sleep(1)
+GPIO.output(10, GPIO.HIGH)
+GPIO.output(27, GPIO.HIGH)
+GPIO.output(22, GPIO.HIGH)
+time.sleep(1)
+GPIO.output(10, GPIO.LOW)
+GPIO.output(27, GPIO.LOW)
+GPIO.output(22, GPIO.LOW)
+
+
 osc_startup()
 arduino_serial = serial.Serial('/dev/ttyAMA0', 9600, timeout=1)
 ip="127.0.0.1"
@@ -34,11 +52,13 @@ compteur_play=0
 lines = []
 arrive=0
 led_ir_temp=0
+led_fat_temp=0
 etape_perdu=0
 speed_perdu=600
 play=0
 start_released=0
-led_released=0
+led_ir_released=0
+led_fat_released=0
 
 sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
 dataMotor=[0,0,0,0,0,0]
@@ -55,20 +75,22 @@ def alignement():
     global compteur_play
     global home_temp
 
-
+    print("etape_perdu: ", etape_perdu)
     if etape_perdu == 0 :
-        speed=speed_perdu
         led_ir_control(1)
+        etape_perdu=1
+    if etape_perdu==1:
+        speed=speed_perdu
         dir=17
         if sensor[7]==1 and sensor[6]==0 :
             dir=19
         if sensor[7]==0 and sensor[6]==1:
             dir=20
         if sensor[7]==1 and sensor[6]==1 and sensor[3]==0 and sensor[5]==0:
-            etape_perdu=1
+            etape_perdu=2
             dir=14
 
-    if etape_perdu==1:
+    if etape_perdu==2:
         speed=speed_perdu
         dir=14
         if sensor[0]==1:
@@ -80,20 +102,26 @@ def alignement():
             dir =17
         if sensor[0]==1 and sensor[1]==1 and sensor[2]==1:
             dir =12
-        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 :
-            etape_perdu=2
-    if etape_perdu==2:
-        dir=14
         if sensor[11]==2:
             etape_perdu=3
     if etape_perdu==3:
         speed=100
-        if sensor[11]==1 and sensor[8]>=320:
+        dir=14
+
+        if sensor[3]==1 and sensor[4]==1 and sensor[5]==1:
+            dir =17
+        if sensor[0]==1 and sensor[1]==1 and sensor[2]==1:
+            dir =12
+        if sensor[11]==1:
             etape_perdu=4
     if etape_perdu==4:
+        speed=100
+        if sensor[11]==1 and sensor[8]>=320:
+            etape_perdu=5
+    if etape_perdu==5:
         speed=30
         if sensor[9]==240 and sensor[8]==320:
-            etape_perdu=5
+            etape_perdu=6
         elif sensor[9]<240:
             dir=12
         elif sensor[9]>240:
@@ -102,13 +130,15 @@ def alignement():
             dir=14
         elif sensor[8]>320:
             dir=15
-    if etape_perdu==5:
+    if etape_perdu==6:
 
         if (sensor[10]==0.0) or (sensor[10]==90.0):
-            home_temp=0
-            dir=0
+
             print("home_ok")
             led_ir_control(0)
+            etape_perdu=7
+            home_temp=0
+            dir=0
             if play==1:
                 compteur_play+=1
         elif sensor[10]>0 and sensor[10]<45:
@@ -142,7 +172,7 @@ def command(*args):
 def sensor_osc(*args):
     global sensor
     sensor=args
-    print(sensor[8],sensor[9],sensor[10])
+
 #######################################
 
 
@@ -165,11 +195,12 @@ def led_ir_control(state):
             dataMotor[2] = 0;
             dataMotor[3] = 255;
             dataMotor[4] = 0;
-            dataMotor[5] = 150;
+            dataMotor[5] = 130;
             for x in range (0,6):
 
             	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
             arduino_serial.write(b'\n')
+            time.sleep(0.5)
         else:
             led_ir_temp=0
             GPIO.output(22, GPIO.LOW)
@@ -186,6 +217,44 @@ def led_ir_control(state):
 
 
 ##########################################################
+
+def led_fat_control(state):
+    global led_fat_temp
+    global led_fat
+
+    print(state)
+    if state!=led_fat_temp :
+        if state==1:
+            led_fat_temp=1
+            dataMotor[0] = 0;
+            dataMotor[1] = 0;
+            dataMotor[2] = 0;
+            dataMotor[3] = 200;
+            dataMotor[4] = 0;
+            dataMotor[5] = 200;
+            for x in range (0,6):
+
+            	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
+            arduino_serial.write(b'\n')
+        else:
+            led_fat_temp=0
+            dataMotor[0] = 0;
+            dataMotor[1] = 0;
+            dataMotor[2] = 0;
+            dataMotor[3] = 200;
+            dataMotor[4] = 0;
+            dataMotor[5] = 0;
+            for x in range (0,6):
+
+            	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
+            arduino_serial.write(b'\n')
+
+
+##########################################################
+
+
+
+
 def controller(*args):
     global dir
     global dir_temp
@@ -194,12 +263,14 @@ def controller(*args):
     global home_temp
     global etape_perdu
     global led_ir_temp
+    global led_fat_temp
     global rec_temp
     global chemin
     global play
     global lines
     global start_released
-    global led_released
+    global led_ir_released
+    global led_fat_released
     global compteur_play
 
 
@@ -209,12 +280,17 @@ def controller(*args):
     home=args[3]
     start=args[4]
     led_ir=args[5]
+    led_fat=args[6]
+    stop=args[7]
+
+
+
 
     if select== 1 :
         dir=args[0]
         if dir!=0:
             home_temp=0
-            etape_perdu=5
+            etape_perdu=7
 
     if home==1 and home_temp==0:
 
@@ -226,14 +302,22 @@ def controller(*args):
             chemin.write("255 255 255\n")
 
 
-    if led_ir==1 and led_ir_temp==0 and led_released==0 :
-        led_released=1
+    if led_ir==1 and led_ir_temp==0 and led_ir_released==0 :
+        led_ir_released=1
         led_ir_control(1)
 
-    if led_ir==1 and led_ir_temp==1 and led_released==0:
-        led_released=1
+    if led_ir==1 and led_ir_temp==1 and led_ir_released==0:
+        led_ir_released=1
         led_ir_control(0)
 
+
+    if led_fat==1 and led_fat_temp==0 and led_fat_released==0 :
+        led_fat_released=1
+        led_fat_control(1)
+
+    if led_fat==1 and led_fat_temp==1 and led_fat_released==0:
+        led_fat_released=1
+        led_fat_control(0)
 
     if start==1 and rec_temp==1 and select==1 and start_released==0:
         start_released=1
@@ -276,11 +360,25 @@ def controller(*args):
     if start==0:
         start_released=0
     if led_ir==0:
-        led_released=0
+        led_ir_released=0
+    if led_fat==0:
+        led_fat_released=0
     if play==1 or rec_temp==1:
         GPIO.output(27, GPIO.HIGH)
     else:
         GPIO.output(27, GPIO.LOW)
+    if stop==1:
+        led_fat_temp=0
+        dataMotor[0] = 0;
+        dataMotor[1] = 0;
+        dataMotor[2] = 0;
+        dataMotor[3] = 201;
+        dataMotor[4] = 0;
+        dataMotor[5] = 0;
+        for x in range (0,6):
+
+            arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
+        arduino_serial.write(b'\n')
 
 
 #################################################################
@@ -361,11 +459,10 @@ osc_method("/arrive", check_arrive)
 #############################################################
 #################################################################
 while True:
-
     osc_process()
     if home_temp==1:
         alignement()
-    if etape_perdu==5 and play==1:
+    if etape_perdu==7 and play==1:
         lecture()
     send_serial(dir,step,speed)
 
