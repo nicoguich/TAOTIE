@@ -186,7 +186,7 @@ while True :
         if event.code=="BTN_SOUTH" and sel_stop==1 :
 
             stop = event.state
-            
+
 
         if event.code=="BTN_START" and sel_control==1 :
                 if event.state==1:
@@ -259,12 +259,14 @@ while True :
             msg_control = oscbuildparse.OSCMessage("/image", None, data_cam)
             osc_send(msg_control, "camera")
             osc_process()
+            #print(data_cam)
 
         else:
             data=[dir,speed,select,home,start,led_ir,led_fat,stop]
             msg = oscbuildparse.OSCMessage("/controller", None, data)
             osc_send(msg, "raspberry")
             osc_process()
+            #print(data)
 
 
 osc_terminate()
