@@ -38,7 +38,6 @@ def handler(signum, frame):
     exit(1)
 
 
-
 reglage_lines = []
 
 with open("/home/pi/Desktop/reglage_camera.txt") as f:
@@ -69,22 +68,7 @@ def control_image(*args):
     image = args[5]
 
 
-
-
-ser = serial.Serial(
-    port='/dev/ttyAMA0',
-    baudrate = 9600,
-    parity=serial.PARITY_NONE,
-    stopbits=serial.STOPBITS_ONE,
-    bytesize=serial.EIGHTBITS,
-    timeout=0.01
-)
-
 image=0
-
-
-signal.signal(signal.SIGINT, handler)
-
 
 # Initialize the camera
 camera = PiCamera()
@@ -119,34 +103,24 @@ time.sleep(0.1)
 
 osc_method("/image", control_image)
 
-# Capture frames continuously from the camera
+
 for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port=True):
     osc_process()
     camera.contrast = contrast
     camera.brightness = brightness
     if camera.digital_gain!=1:
         set_digital_gain(camera, 1)
-        #print("Current a/d gains: {}, {}".format(camera.analog_gain, camera.digital_gain))
 
+    img = frame.array
+    img = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+    (thresh, blackAndWhiteImage) = cv2.threshold(img,thresh, 255, cv2.THRESH_BINARY)
+
+    blackAndWhiteImage = cv2.rectangle(blackAndWhiteImage, (0, 0), (640, 480), (255), 3)
+    contours, hierarchy = cv2.findContours( blackAndWhiteImage, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    blackAndWhiteImage = cv2.cvtColor(blackAndWhiteImage,cv2.COLOR_GRAY2BGR)
 
     value_sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
-    # Grab the raw NumPy array representing the image
-    img = frame.array
-
-    gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-
-
-    (thresh, blackAndWhiteImage) = cv2.threshold(gray, thresh, 255, cv2.THRESH_BINARY)
-    color = cv2.cvtColor(blackAndWhiteImage,cv2.COLOR_GRAY2BGR)
-
-    if reverse==1:
-        color=(255-color)
-
-
-
-    array=np.array(color)
-
-
+    array=np.array(blackAndWhiteImage)
     sensor_1 = array[ 80:110,160:190]
     result_1 = np.all((sensor_1 == 0))
 
@@ -174,102 +148,127 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
 
 
     if result_1:
-        cv2.rectangle(color,(160,80),(190,110),(0,255,0),1)
-        cv2.putText(color,"0",(160,110),font,1,(0,255,0),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(160,80),(190,110),(0,255,0),1)
+        cv2.putText(blackAndWhiteImage,"0",(160,110),font,1,(0,255,0),2,cv2.LINE_AA)
         value_sensor[0]=1
 
     else:
-        cv2.rectangle(color,(160,80),(190,110),(0,0,255),1)
-        cv2.putText(color,"0",(160,110),font,1,(0,0,255),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(160,80),(190,110),(0,0,255),1)
+        cv2.putText(blackAndWhiteImage,"0",(160,110),font,1,(0,0,255),2,cv2.LINE_AA)
 
     if result_2:
-        cv2.rectangle(color,(305,80),(335,110),(0,255,0),1)
-        cv2.putText(color,"1",(305,110),font,1,(0,255,0),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(305,80),(335,110),(0,255,0),1)
+        cv2.putText(blackAndWhiteImage,"1",(305,110),font,1,(0,255,0),2,cv2.LINE_AA)
         value_sensor[1]=1
     else:
-        cv2.rectangle(color,(305,80),(335,110),(0,0,255),1)
-        cv2.putText(color,"1",(305,110),font,1,(0,0,255),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(305,80),(335,110),(0,0,255),1)
+        cv2.putText(blackAndWhiteImage,"1",(305,110),font,1,(0,0,255),2,cv2.LINE_AA)
 
     if result_3:
-        cv2.rectangle(color,(450,80),(480,110),(0,255,0),1)
-        cv2.putText(color,"2",(450,110),font,1,(0,255,0),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(450,80),(480,110),(0,255,0),1)
+        cv2.putText(blackAndWhiteImage,"2",(450,110),font,1,(0,255,0),2,cv2.LINE_AA)
         value_sensor[2]=1
     else:
-        cv2.rectangle(color,(450,80),(480,110),(0,0,255),1)
-        cv2.putText(color,"2",(450,110),font,1,(0,0,255),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(450,80),(480,110),(0,0,255),1)
+        cv2.putText(blackAndWhiteImage,"2",(450,110),font,1,(0,0,255),2,cv2.LINE_AA)
 
     if result_4:
-        cv2.rectangle(color,(160,370),(190,400),(0,255,0),1)
-        cv2.putText(color,"3",(160,400),font,1,(0,255,0),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(160,370),(190,400),(0,255,0),1)
+        cv2.putText(blackAndWhiteImage,"3",(160,400),font,1,(0,255,0),2,cv2.LINE_AA)
         value_sensor[3]=1
     else:
-        cv2.rectangle(color,(160,370),(190,400),(0,0,255),1)
-        cv2.putText(color,"3",(160,400),font,1,(0,0,255),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(160,370),(190,400),(0,0,255),1)
+        cv2.putText(blackAndWhiteImage,"3",(160,400),font,1,(0,0,255),2,cv2.LINE_AA)
 
 
     if result_5:
-        cv2.rectangle(color,(305,370),(335,400),(0,255,0),1)
-        cv2.putText(color,"4",(305,400),font,1,(0,255,0),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(305,370),(335,400),(0,255,0),1)
+        cv2.putText(blackAndWhiteImage,"4",(305,400),font,1,(0,255,0),2,cv2.LINE_AA)
         value_sensor[4]=1
     else:
-        cv2.rectangle(color,(305,370),(335,400),(0,0,255),1)
-        cv2.putText(color,"4",(305,400),font,1,(0,0,255),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(305,370),(335,400),(0,0,255),1)
+        cv2.putText(blackAndWhiteImage,"4",(305,400),font,1,(0,0,255),2,cv2.LINE_AA)
 
 
     if result_6:
-        cv2.rectangle(color,(450,370),(480,400),(0,255,0),1)
-        cv2.putText(color,"5",(450,400),font,1,(0,255,0),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(450,370),(480,400),(0,255,0),1)
+        cv2.putText(blackAndWhiteImage,"5",(450,400),font,1,(0,255,0),2,cv2.LINE_AA)
         value_sensor[5]=1
     else:
-        cv2.rectangle(color,(450,370),(480,400),(0,0,255),1)
-        cv2.putText(color,"5",(450,400),font,1,(0,0,255),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(450,370),(480,400),(0,0,255),1)
+        cv2.putText(blackAndWhiteImage,"5",(450,400),font,1,(0,0,255),2,cv2.LINE_AA)
 
 
     if result_7:
-        cv2.rectangle(color,(160,225),(190,255),(0,255,0),1)
-        cv2.putText(color,"6",(160,255),font,1,(0,255,0),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(160,225),(190,255),(0,255,0),1)
+        cv2.putText(blackAndWhiteImage,"6",(160,255),font,1,(0,255,0),2,cv2.LINE_AA)
         value_sensor[6]=1
     else:
-        cv2.rectangle(color,(160,225),(190,255),(0,0,255),1)
-        cv2.putText(color,"6",(160,255),font,1,(0,0,255),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(160,225),(190,255),(0,0,255),1)
+        cv2.putText(blackAndWhiteImage,"6",(160,255),font,1,(0,0,255),2,cv2.LINE_AA)
 
     if result_8:
-        cv2.rectangle(color,(450,225),(480,255),(0,255,0),1)
-        cv2.putText(color,"7",(450,255),font,1,(0,255,0),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(450,225),(480,255),(0,255,0),1)
+        cv2.putText(blackAndWhiteImage,"7",(450,255),font,1,(0,255,0),2,cv2.LINE_AA)
         value_sensor[7]=1
     else:
-        cv2.rectangle(color,(450,225),(480,255),(0,0,255),1)
-        cv2.putText(color,"7",(450,255),font,1,(0,0,255),2,cv2.LINE_AA)
+        cv2.rectangle(blackAndWhiteImage,(450,225),(480,255),(0,0,255),1)
+        cv2.putText(blackAndWhiteImage,"7",(450,255),font,1,(0,0,255),2,cv2.LINE_AA)
 
 
-    im2=blackAndWhiteImage.copy()
-    im2=(255-im2)
-    contours, hierarchy = cv2.findContours(im2, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-    id=0
+    i=0
     for contour in contours:
-        epsilon = 0.1*cv2.arcLength(contour,True)
+        epsilon = 0.01*cv2.arcLength(contour,True)
         approx = cv2.approxPolyDP(contour,epsilon,True)
         area = cv2.contourArea(approx)
 
-        if area >10000:
+    # finding center point of shape
+        M = cv2.moments(contour)
+        if M['m00'] != 0.0:
+            x = int(M['m10']/M['m00'])
+            y = int(M['m01']/M['m00'])
 
 
-            #cv2.drawContours(color, [approx], -1, (0,255,0), 3)
-            rect = cv2.minAreaRect(contour)
-            box = cv2.boxPoints(rect)
-            box = np.int0(box)
-            cv2.drawContours(color,[box],0,(0,0,255),2)
-            x=int(rect[0][0])
-            y=int(rect[0][1])
-            cv2.putText(color,str(id),(x,y),font,1,(0,255,0),2,cv2.LINE_AA)
-            if id==0:
+
+        #if area >100:
+        if i == 0 or area < 200:
+            i = 1
+            continue
+        if len(approx) == 4 :
+
+            if (value_sensor[6]==1 and value_sensor[7]==1):
                 value_sensor[8]=x
                 value_sensor[9]=y
-                value_sensor[10]=float(rect[2])
-            id+=1
+                value_sensor[10]=0
+                cv2.putText(blackAndWhiteImage, 'ligne_H', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
 
-    value_sensor[11]=id
+            if (value_sensor[1]==1 and value_sensor[4]==1):
+                value_sensor[8]=x
+                value_sensor[9]=y
+                value_sensor[10]=1
+                cv2.putText(blackAndWhiteImage, 'ligne_V', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+
+        if len(approx) == 6 :
+            cv2.putText(blackAndWhiteImage, 'coin', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+
+        if len(approx) == 8 :
+            cv2.putText(blackAndWhiteImage, 'T', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+            if (value_sensor[0]==0  and value_sensor[3]==0 and value_sensor[6]==0 and value_sensor[7]==1 ) :
+                cv2.putText(blackAndWhiteImage, 'est', (x, y+15),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+            if ( value_sensor[1]==1 and value_sensor[3]==0 and value_sensor[4]==0 and value_sensor[5]==0):
+                cv2.putText(blackAndWhiteImage, 'sud', (x, y+15),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+            if ( value_sensor[2]==0 and value_sensor[5]==0 and value_sensor[6]==1 and value_sensor[7]==0):
+                cv2.putText(blackAndWhiteImage, 'ouest', (x, y+15),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+            if ( value_sensor[0]==0 and value_sensor[1]==0 and value_sensor[2]==0 and value_sensor[4]==1):
+                cv2.putText(blackAndWhiteImage, 'nord', (x, y+15),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+        if len(approx) == 12 :
+            cv2.putText(blackAndWhiteImage, 'croix', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+
+
+
+        cv2.drawContours(blackAndWhiteImage, [approx], -1,(0,255,0) , 2)
+
 
     control_image = np.zeros((100,700,3), np.uint8)
     #cv2.putText(control_image,"batterie :"+str(int(batterie))+"%",(10,150),font,1,(0,0,255),2,cv2.LINE_AA)
@@ -286,118 +285,22 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     else:
         cv2.putText(control_image,"thresh :"+str(thresh),(400,50),font,1,(255,0,0),2,cv2.LINE_AA)
 
+
     if image==0:
-        cv2.imshow('opencv', color)
+        cv2.imshow('opencv', blackAndWhiteImage)
     if image==1:
-        cv2.imshow('opencv', gray)
+        cv2.imshow('opencv', img)
 
     cv2.imshow('control', control_image)
-    #cv2.imshow('source', gray)
+    cv2.moveWindow("opencv", 800, 10)
 
 
-    #cv2.moveWindow("source", 100, 100)
-    cv2.moveWindow("opencv", 100, 100)
-    cv2.moveWindow("control", 100, 600)
-
-    # Wait for keyPress for 1 millisecond
-    key = cv2.waitKey(5)
-    # if key==81:
-    #     contrast-=1
-    #     if contrast<=-100:
-    #         contrast=-100
-    #     print("contrast:",contrast)
-    # if key==83:
-    #     contrast+=1
-    #     if contrast>=100:
-    #         contrast=100
-    #     print("contrast:",contrast)
-    #
-    # if key==82:
-    #     if image==1:
-    #         brightness+=1
-    #         if brightness>=100:
-    #             brightness=100
-    #         print("brightness",brightness)
-    #
-    #
-    #     else:
-    #         thresh+=1
-    #         if thresh>=255:
-    #             thresh=255
-    #         print("thresh:",thresh)
-    # if key==84:
-    #     if image==1:
-    #         brightness-=1
-    #         if brightness<=0:
-    #             brightness=0
-    #         print("brightness",brightness)
-    #
-    #     else:
-    #         thresh-=1
-    #         if thresh<=0:
-    #             thresh=0
-    #         print("thresh:",thresh)
-    # if key==105:
-    #     image=abs(image-1)
-    # if key==114:
-    #     reverse=abs(reverse-1)
-    # if key==13:
-    #     print("enregistrement reglage camera...")
-    #     reglage_camera = open("/home/pi/Desktop/reglage_camera.txt","w")
-    #     print("...")
-    #     reglage_camera.write(str(int(brightness))+"\n")
-    #     print("...")
-    #     reglage_camera.write(str(int(contrast))+"\n")
-    #     print("...")
-    #     reglage_camera.write(str(int(thresh))+"\n")
-    #     print("...")
-    #     reglage_camera.write(str(int(reverse))+"\n")
-    #     reglage_camera.close()
-    #     print("reglage enregistré")
-
-    #if key!=-1:
-        #print(key)
-
-    # Clear the stream in preparation for the next frame
     raw_capture.truncate(0)
+    key = cv2.waitKey(2)
+
+
     msg = oscbuildparse.OSCMessage("/sensor", None, value_sensor)
     osc_send(msg, "raspberry")
     osc_process()
 
-    ligne = ser.readline().rstrip()
-    try:
-        if ligne.decode("utf-8").isnumeric()==True :
-            ligne=str(int(ligne))
-
-            if len(ligne)>2:
-                mode=int(ligne[0])
-
-
-                if mode==3:
-                    msg = oscbuildparse.OSCMessage("/arrive", None, data)
-                    osc_send(msg, "raspberry")
-                    osc_process()
-                    print("arrive")
-
-                if mode==2:
-                    batterie=(int(ligne[1:])*100)/1023
-                    print ("batterie : ",int( batterie),"%")
-                    #print("")
-                    if int( batterie)<25 :
-                        GPIO.output(17, GPIO.HIGH)
-                    else:
-                        GPIO.output(17, GPIO.LOW)
-                if mode==1:
-                    if int(ligne[1:3])!= 0 :
-                        data=[int(ligne[1:3]),int(ligne[3:])]
-                    else:
-                        data=[0,0]
-                    #print(data)
-                    msg = oscbuildparse.OSCMessage("/command", None, data)
-                    osc_send(msg, "raspberry")
-                    osc_process()
-                    #print ("commande : ",ligne[1:3],"  step : ", ligne[3:])
-                    #print("")
-    except (UnicodeDecodeError,ValueError):
-        pass
 osc_terminate()
