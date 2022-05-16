@@ -42,6 +42,7 @@ sel_control=0
 image=0
 stop=0
 sel_stop=0
+on_ligne=0
 
 
 msg = oscbuildparse.OSCMessage("/controller", None, data)
@@ -58,7 +59,7 @@ while True :
     for event in events:
 
 
-        if event.code=="ABS_HAT0Y" and sel_control==0 :
+        if event.code=="ABS_HAT0Y" and sel_control==0 and sel_stop==0 :
             if event.state==1:
                 led_ir =1
             else:
@@ -68,8 +69,24 @@ while True :
             else:
                 led_fat=0
 
+        if event.code=="ABS_HAT0Y" and sel_control==0 and sel_stop==1 :
+            if event.state==1:
+                on_ligne= 17
+
+            if event.state==-1:
+                on_ligne=12
+            if event.state==0:
+                on_ligne=0
 
 
+        if event.code=="ABS_HAT0X" and sel_control==0 and sel_stop==1 :
+            if event.state==1:
+                on_ligne= 15
+
+            if event.state==-1:
+                on_ligne=14
+            if event.state==0:
+                on_ligne=0
         if event.code == "BTN_MODE" and sel_control==0:
             home=event.state
 
@@ -262,7 +279,7 @@ while True :
             #print(data_cam)
 
         else:
-            data=[dir,speed,select,home,start,led_ir,led_fat,stop]
+            data=[dir,speed,select,home,start,led_ir,led_fat,stop,on_ligne]
             msg = oscbuildparse.OSCMessage("/controller", None, data)
             osc_send(msg, "raspberry")
             osc_process()

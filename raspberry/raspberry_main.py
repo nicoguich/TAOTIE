@@ -44,6 +44,7 @@ osc_udp_server(ip, port, "raspberry")
 dir=0
 step=0
 speed=1000
+speed_control=1000
 speed_temp=1000
 dir_temp=0
 home_temp = 0
@@ -54,14 +55,18 @@ arrive=0
 led_ir_temp=0
 led_fat_temp=0
 etape_perdu=0
-speed_perdu=600
+speed_perdu=400
 play=0
 start_released=0
 led_ir_released=0
 led_fat_released=0
 
+on_ligne_H=0
+dir_ligne=0
+
 sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
 dataMotor=[0,0,0,0,0,0]
+
 
 
 
@@ -74,6 +79,7 @@ def alignement():
     global dir
     global compteur_play
     global home_temp
+    global on_ligne_H
 
     print("etape_perdu: ", etape_perdu)
     if etape_perdu == 0 :
@@ -86,70 +92,80 @@ def alignement():
             dir=19
         if sensor[7]==0 and sensor[6]==1:
             dir=20
-        if sensor[7]==1 and sensor[6]==1 and sensor[3]==0 and sensor[5]==0:
+        if sensor[7]==1 and sensor[6]==1 and sensor[0]==0 and sensor[1]==0 and sensor[2]==0 :
             etape_perdu=2
-            dir=14
+            dir=17
 
     if etape_perdu==2:
         speed=speed_perdu
-        dir=14
-        if sensor[0]==1:
+        dir=17
+        if sensor[11]>0 and sensor[11]<45:
             dir=20
-        if sensor[3]==1:
+
+        if sensor[11]>45 :
             dir=19
 
-        if sensor[3]==1 and sensor[4]==1 and sensor[5]==1:
-            dir =17
-        if sensor[0]==1 and sensor[1]==1 and sensor[2]==1:
-            dir =12
-        if sensor[11]==2:
-            etape_perdu=3
-    if etape_perdu==3:
-        speed=100
-        dir=14
-
-        if sensor[3]==1 and sensor[4]==1 and sensor[5]==1:
-            dir =17
-        if sensor[0]==1 and sensor[1]==1 and sensor[2]==1:
-            dir =12
-        if sensor[11]==1:
-            etape_perdu=4
-    if etape_perdu==4:
-        speed=100
-        if sensor[11]==1 and sensor[8]>=320:
-            etape_perdu=5
-    if etape_perdu==5:
-        speed=30
-        if sensor[9]==240 and sensor[8]==320:
-            etape_perdu=6
-        elif sensor[9]<240:
-            dir=12
-        elif sensor[9]>240:
-            dir=17
-        elif sensor[8]<320:
-            dir=14
-        elif sensor[8]>320:
-            dir=15
-    if etape_perdu==6:
-
-        if (sensor[10]==0.0) or (sensor[10]==90.0):
-
+        if sensor[11]==0 or sensor[11]==90:
             print("home_ok")
-            led_ir_control(0)
-            etape_perdu=7
+            #led_ir_control(0)
+            etape_perdu=3
             home_temp=0
             dir=0
+            on_ligne_H=1
             if play==1:
                 compteur_play+=1
-        elif sensor[10]>0 and sensor[10]<45:
-            dir=20
-        elif sensor[10]>45:
-            dir=19
+
 
 
 
 
 ###########################################################################
+
+
+
+
+###############################################################""
+def reste_sur_ligne():
+    global dir
+    global dir_ligne
+    global on_ligne_H
+    global sensor
+    global speed
+    global speed_control
+
+    speed=speed_control
+
+    if (on_ligne_H==1 and (dir_ligne==14 or dir_ligne==15)):
+        dir = dir_ligne
+        if sensor[11]>1 and sensor[11]<45:
+            dir=20
+
+        if sensor[11]>45 and sensor[11]<99:
+            dir=19
+
+        if sensor[0]==1 and sensor[1]==1 and sensor[2]==1:
+            speed=speed_perdu
+            dir=12
+        if sensor[3]==1 and sensor[4]==1 and sensor[5]==1:
+            speed=speed_perdu
+            dir=17
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -272,10 +288,13 @@ def controller(*args):
     global led_ir_released
     global led_fat_released
     global compteur_play
-
+    global dir_ligne
+    global on_ligne_H
+    global speed_control
 
 
     speed=args[1]
+    speed_control=speed
     select=args[2]
     home=args[3]
     start=args[4]
@@ -287,16 +306,21 @@ def controller(*args):
 
 
     if select== 1 :
+        dir_ligne=args[8]
+
         dir=args[0]
+        print(dir)
         if dir!=0:
+            on_ligne_H=0
             home_temp=0
-            etape_perdu=7
+            etape_perdu=3
 
     if home==1 and home_temp==0:
 
         print("process home....")
         home_temp=1
         etape_perdu=0
+        on_ligne_H=0
         if rec_temp==1:
             print ("commande : 255 255 255")
             chemin.write("255 255 255\n")
@@ -458,11 +482,14 @@ osc_method("/arrive", check_arrive)
 ###########################################################
 #############################################################
 #################################################################
+led_ir_control(1)
 while True:
     osc_process()
     if home_temp==1:
         alignement()
-    if etape_perdu==7 and play==1:
+    if on_ligne_H==1:
+        reste_sur_ligne()
+    if etape_perdu==3 and play==1:
         lecture()
     send_serial(dir,step,speed)
 

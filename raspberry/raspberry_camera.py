@@ -116,6 +116,10 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     (thresh, blackAndWhiteImage) = cv2.threshold(img,thresh, 255, cv2.THRESH_BINARY)
 
     blackAndWhiteImage = cv2.rectangle(blackAndWhiteImage, (0, 0), (640, 480), (255), 3)
+    if reverse==1:
+        blackAndWhiteImage=(255-blackAndWhiteImage)
+
+
     contours, hierarchy = cv2.findContours( blackAndWhiteImage, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     blackAndWhiteImage = cv2.cvtColor(blackAndWhiteImage,cv2.COLOR_GRAY2BGR)
 
@@ -222,6 +226,10 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
         epsilon = 0.01*cv2.arcLength(contour,True)
         approx = cv2.approxPolyDP(contour,epsilon,True)
         area = cv2.contourArea(approx)
+        rect = cv2.minAreaRect(contour)
+        box = cv2.boxPoints(rect)
+        box = np.int0(box)
+
 
     # finding center point of shape
         M = cv2.moments(contour)
@@ -241,8 +249,10 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
                 value_sensor[8]=x
                 value_sensor[9]=y
                 value_sensor[10]=0
+                value_sensor[11]=int(rect[2])
                 cv2.putText(blackAndWhiteImage, 'ligne_H', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
-
+                cv2.drawContours(blackAndWhiteImage,[box],0,(0,0,255),2)
+                cv2.putText(blackAndWhiteImage, str(int(rect[2])), (x, y+20),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
             if (value_sensor[1]==1 and value_sensor[4]==1):
                 value_sensor[8]=x
                 value_sensor[9]=y
