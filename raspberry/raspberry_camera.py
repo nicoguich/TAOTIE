@@ -245,19 +245,26 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
             continue
         if len(approx) == 4 :
 
-            if (value_sensor[6]==1 and value_sensor[7]==1):
-                value_sensor[8]=x
-                value_sensor[9]=y
-                value_sensor[10]=0
-                value_sensor[11]=int(rect[2])
+            (width, height)= rect[1]
+            if ((width > height) and (rect[2]>0) and (rect[2]<45)):
                 cv2.putText(blackAndWhiteImage, 'ligne_H', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
-                cv2.drawContours(blackAndWhiteImage,[box],0,(0,0,255),2)
-                cv2.putText(blackAndWhiteImage, str(int(rect[2])), (x, y+20),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
-            if (value_sensor[1]==1 and value_sensor[4]==1):
-                value_sensor[8]=x
-                value_sensor[9]=y
-                value_sensor[10]=1
+                value_sensor[10]=0
+            if ((width > height) and (rect[2]>45) and (rect[2]<90)):
                 cv2.putText(blackAndWhiteImage, 'ligne_V', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+                value_sensor[10]=1
+            if ((width < height) and (rect[2]>0) and (rect[2]<45)):
+                cv2.putText(blackAndWhiteImage, 'ligne_V', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+                value_sensor[10]=1
+            if ((width < height) and (rect[2]>45) and (rect[2]<90)):
+                cv2.putText(blackAndWhiteImage, 'ligne_H', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+                value_sensor[10]=0
+
+            cv2.drawContours(blackAndWhiteImage,[box],0,(0,0,255),2)
+            cv2.putText(blackAndWhiteImage, str(int(rect[2])), (x, y+20),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+
+            value_sensor[8]=x
+            value_sensor[9]=y
+            value_sensor[11]=int(rect[2])
 
         if len(approx) == 6 :
             cv2.putText(blackAndWhiteImage, 'coin', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
@@ -274,7 +281,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
                 cv2.putText(blackAndWhiteImage, 'nord', (x, y+15),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
         if len(approx) == 12 :
             cv2.putText(blackAndWhiteImage, 'croix', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
-
+            value_sensor[10]=2
 
 
         cv2.drawContours(blackAndWhiteImage, [approx], -1,(0,255,0) , 2)

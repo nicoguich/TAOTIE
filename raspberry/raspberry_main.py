@@ -62,7 +62,9 @@ led_ir_released=0
 led_fat_released=0
 
 on_ligne_H=0
+on_ligne_V=0
 dir_ligne=0
+check_croix=0
 
 sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
 dataMotor=[0,0,0,0,0,0]
@@ -80,6 +82,7 @@ def alignement():
     global compteur_play
     global home_temp
     global on_ligne_H
+    global dir_ligne
 
     print("etape_perdu: ", etape_perdu)
     if etape_perdu == 0 :
@@ -112,6 +115,7 @@ def alignement():
             home_temp=0
             dir=0
             on_ligne_H=1
+            dir_ligne=0
             if play==1:
                 compteur_play+=1
 
@@ -129,18 +133,25 @@ def reste_sur_ligne():
     global dir
     global dir_ligne
     global on_ligne_H
+    global on_ligne_V
     global sensor
     global speed
     global speed_control
+    global check_croix
+
+
+
 
     speed=speed_control
 
     if (on_ligne_H==1 and (dir_ligne==14 or dir_ligne==15)):
         dir = dir_ligne
         if sensor[11]>1 and sensor[11]<45:
+            speed=speed_perdu
             dir=20
 
         if sensor[11]>45 and sensor[11]<99:
+            speed=speed_perdu
             dir=19
 
         if sensor[0]==1 and sensor[1]==1 and sensor[2]==1:
@@ -149,22 +160,49 @@ def reste_sur_ligne():
         if sensor[3]==1 and sensor[4]==1 and sensor[5]==1:
             speed=speed_perdu
             dir=17
+        if sensor[1]==1 and sensor[4]==1 and sensor[10]==2 and check_croix==0:
+            dir=0
+            dir_ligne=0
+            check_croix=1
+        if sensor[10]!=2:
+            check_croix=0
+
+
+    if (on_ligne_V==1 and (dir_ligne==12 or dir_ligne==17)):
+
+
+        dir = dir_ligne
+        if sensor[11]>1 and sensor[11]<45:
+            speed=speed_perdu
+            dir=20
+
+        if sensor[11]>45 and sensor[11]<99:
+            speed=speed_perdu
+            dir=19
+
+        if sensor[0]==1 and sensor[6]==1 and sensor[3]==1:
+            speed=speed_perdu
+            dir=14
+        if sensor[2]==1 and sensor[7]==1 and sensor[5]==1:
+            speed=speed_perdu
+            dir=15
+        if sensor[6]==1 and sensor[7]==1 and sensor[10]==2 and check_croix==0:
+            dir=0
+            dir_ligne=0
+            check_croix=1
+        if sensor[10]!=2:
+            check_croix=0
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if (check_croix==1 and (dir_ligne==17 or dir_ligne==12)):
+        print("on_ligne_V")
+        on_ligne_V=1
+        on_ligne_H=0
+    if (check_croix==1 and (dir_ligne==14 or dir_ligne==15)):
+        print("on_ligne_H")
+        on_ligne_V=0
+        on_ligne_H=1
 
 
 
@@ -211,7 +249,7 @@ def led_ir_control(state):
             dataMotor[2] = 0;
             dataMotor[3] = 255;
             dataMotor[4] = 0;
-            dataMotor[5] = 130;
+            dataMotor[5] = 255;
             for x in range (0,6):
 
             	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
@@ -238,7 +276,7 @@ def led_fat_control(state):
     global led_fat_temp
     global led_fat
 
-    print(state)
+    #print(state)
     if state!=led_fat_temp :
         if state==1:
             led_fat_temp=1
@@ -306,10 +344,11 @@ def controller(*args):
 
 
     if select== 1 :
-        dir_ligne=args[8]
+        if args[8]!=0:
+            dir_ligne=args[8]
 
         dir=args[0]
-        print(dir)
+
         if dir!=0:
             on_ligne_H=0
             home_temp=0
@@ -487,7 +526,7 @@ while True:
     osc_process()
     if home_temp==1:
         alignement()
-    if on_ligne_H==1:
+    if on_ligne_H==1 or on_ligne_V:
         reste_sur_ligne()
     if etape_perdu==3 and play==1:
         lecture()
