@@ -65,10 +65,12 @@ on_ligne_H=0
 on_ligne_V=0
 dir_ligne=0
 check_croix=0
+check_bord=0
 
 sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
 dataMotor=[0,0,0,0,0,0]
-
+coordX=-1
+coordY=-1
 
 
 
@@ -116,14 +118,44 @@ def alignement():
             dir=0
             on_ligne_H=1
             dir_ligne=0
-            if play==1:
-                compteur_play+=1
+
+
+    if etape_perdu==4:
+
+        if on_ligne_H==1:
+            dir_ligne=14
+            home_temp=0
 
 
 
 
 
 ###########################################################################
+
+
+
+
+
+
+###############################################################
+def coordonate():
+
+    global coordX
+    global coordY
+
+
+
+
+
+
+
+
+
+
+
+
+###########################################################################
+
 
 
 
@@ -138,7 +170,12 @@ def reste_sur_ligne():
     global speed
     global speed_control
     global check_croix
+    global check_bord
+    global etape_perdu
+    global coordX
+    global coordY
 
+    print(coordX, coordY)
 
 
 
@@ -160,12 +197,102 @@ def reste_sur_ligne():
         if sensor[3]==1 and sensor[4]==1 and sensor[5]==1:
             speed=speed_perdu
             dir=17
-        if sensor[1]==1 and sensor[4]==1 and sensor[10]==2 and check_croix==0:
+        if sensor[1]==1 and sensor[4]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!= 4:
             dir=0
             dir_ligne=0
             check_croix=1
+            if (dir_ligne==14):
+                coordX += -1
+            else:
+                coordX += 1
         if sensor[10]!=2:
             check_croix=0
+
+
+
+        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and dir_ligne==14 and sensor[10]==3 and check_bord==0:
+            dir=0
+            dir_ligne=0
+            check_bord=3
+            on_ligne_V=1
+            on_ligne_H=0
+            print("T OUEST")
+            coordX = 0
+            if etape_perdu==4:
+                dir=17
+                dir_ligne=17
+
+        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and dir_ligne==15 and sensor[10]==3 and check_bord==0:
+            dir=0
+            dir_ligne=0
+            check_bord=4
+            on_ligne_V=1
+            on_ligne_H=0
+            coordX += 1
+            print("T EST")
+
+        if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and sensor[1]==1 and (dir_ligne==14 or dir_ligne==15) and sensor[10]==3 and check_bord==0:
+            dir=0
+            dir_ligne=0
+            check_bord=1
+            on_ligne_V=0
+            on_ligne_H=1
+            if (dir_ligne==14):
+                coordX += -1
+            else:
+                coordX += 1
+            print("T SUD")
+
+        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[4]==1 and (dir_ligne==14 or dir_ligne==15) and sensor[10]==3 and check_bord==0:
+            dir=0
+            dir_ligne=0
+            check_bord=2
+            on_ligne_V=0
+            on_ligne_H=1
+            if (dir_ligne==14):
+                coordX += -1
+            else:
+                coordX += 1
+            print("T NORD")
+
+        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and sensor[4]==1 and dir_ligne==14  and sensor[10]==4 and check_bord==0:
+            dir=0
+            dir_ligne=0
+            check_bord=5
+            on_ligne_V=1
+            on_ligne_H=0
+            coordX=0
+            print("COIN NORD OUEST")
+
+        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and sensor[1]==1 and dir_ligne==14  and sensor[10]==4 and check_bord==0:
+            dir=0
+            dir_ligne=0
+            check_bord=6
+            on_ligne_V=1
+            on_ligne_H=0
+            coordX=0
+            print("COIN SUD OUEST")
+
+        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[4]==1 and dir_ligne==15  and sensor[10]==4 and check_bord==0:
+            dir=0
+            dir_ligne=0
+            check_bord=7
+            on_ligne_V=1
+            on_ligne_H=0
+            coordX += 1
+            print("COIN NORD EST")
+
+        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[1]==1 and dir_ligne==15  and sensor[10]==4 and check_bord==0:
+            dir=0
+            dir_ligne=0
+            check_bord=8
+            on_ligne_V=1
+            on_ligne_H=0
+            coordX += 1
+            print("COIN SUD EST")
+
+
+
 
 
     if (on_ligne_V==1 and (dir_ligne==12 or dir_ligne==17)):
@@ -186,23 +313,163 @@ def reste_sur_ligne():
         if sensor[2]==1 and sensor[7]==1 and sensor[5]==1:
             speed=speed_perdu
             dir=15
-        if sensor[6]==1 and sensor[7]==1 and sensor[10]==2 and check_croix==0:
+        if sensor[6]==1 and sensor[7]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!=4:
             dir=0
             dir_ligne=0
             check_croix=1
+            if (dir_ligne==17):
+                coordY += -1
+            else:
+                coordY += 1
+
+
         if sensor[10]!=2:
             check_croix=0
+
+        if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and dir_ligne==17 and sensor[10]==3 and check_bord==0 and etape_perdu!=4:
+            dir=0
+            dir_ligne=0
+            check_bord=1
+            on_ligne_V=0
+            on_ligne_H=1
+            coordY=0
+            print("T SUD")
+        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and dir_ligne==12 and sensor[10]==3 and check_bord==0 and etape_perdu!=4:
+            dir=0
+            dir_ligne=0
+            check_bord=2
+            on_ligne_V=0
+            on_ligne_H=1
+            coordY += 1
+            print("T NORD")
+
+
+        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and sensor[7]==1 and  (dir_ligne==12 or dir_ligne==17) and sensor[10]==3 and check_bord==0 and etape_perdu!=4:
+            dir=0
+            dir_ligne=0
+            check_bord=3
+            on_ligne_V=1
+            on_ligne_H=0
+            if (dir_ligne==17):
+                coordY += -1
+            else:
+                coordY += 1
+
+            print("T OUEST")
+
+        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[6]==1 and  (dir_ligne==12 or dir_ligne==17) and sensor[10]==3 and check_bord==0 and etape_perdu!=4:
+            dir=0
+            dir_ligne=0
+            check_bord=4
+            on_ligne_V=1
+            on_ligne_H=0
+            if (dir_ligne==17):
+                coordY += -1
+            else:
+                coordY += 1
+            print("T EST")
+
+        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[6]==1 and dir_ligne==12  and sensor[10]==4 and check_bord==0:
+            dir=0
+            dir_ligne=0
+            check_bord=7
+            on_ligne_V=0
+            on_ligne_H=1
+            coordY +=1
+            print("COIN NORD EST")
+
+        if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and sensor[6]==1 and dir_ligne==17  and sensor[10]==4 and check_bord==0:
+            dir=0
+            dir_ligne=0
+            check_bord=8
+            on_ligne_V=0
+            on_ligne_H=1
+            coordY=0
+            print("COIN SUD EST")
+
+        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[7]==1 and dir_ligne==12  and sensor[10]==4 and check_bord==0:
+            dir=0
+            dir_ligne=0
+            check_bord=5
+            on_ligne_V=0
+            on_ligne_H=1
+            coordY += 1
+
+            print("COIN NORD OUEST")
+
+        if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and sensor[7]==1 and dir_ligne==17  and sensor[10]==4 and check_bord==0:
+            dir=0
+            dir_ligne=0
+            check_bord=6
+            on_ligne_V=0
+            on_ligne_H=1
+            etape_perdu=3
+            coordX=0
+            coordY=0
+            print("COIN SUD OUEST")
+
+
+
+    if sensor[10]!=3 and sensor[10]!=4:
+        check_bord=0
 
 
 
     if (check_croix==1 and (dir_ligne==17 or dir_ligne==12)):
-        print("on_ligne_V")
+
         on_ligne_V=1
         on_ligne_H=0
     if (check_croix==1 and (dir_ligne==14 or dir_ligne==15)):
-        print("on_ligne_H")
+
         on_ligne_V=0
         on_ligne_H=1
+    if (check_bord==1 and dir_ligne==12):
+
+        on_ligne_V=1
+        on_ligne_H=0
+
+    if (check_bord==5 or check_bord== 7) and dir_ligne==17:
+
+        on_ligne_V=1
+        on_ligne_H=0
+
+    if (check_bord==6 or check_bord== 8) and dir_ligne==12:
+
+        on_ligne_V=1
+        on_ligne_H=0
+
+    if (check_bord==7 or check_bord== 8) and dir_ligne==14:
+
+        on_ligne_V=0
+        on_ligne_H=1
+
+    if (check_bord==5 or check_bord== 6) and dir_ligne==15:
+
+        on_ligne_V=0
+        on_ligne_H=1
+
+
+
+    if (check_bord==2 and dir_ligne==17):
+
+        on_ligne_V=1
+        on_ligne_H=0
+    if (check_bord==1 or check_bord==2) and (dir_ligne==14 or dir_ligne==15):
+
+        on_ligne_V=0
+        on_ligne_H=1
+    if (check_bord==3 and dir_ligne==15):
+
+        on_ligne_V=0
+        on_ligne_H=1
+    if (check_bord==4 and dir_ligne==14):
+
+        on_ligne_V=0
+        on_ligne_H=1
+    if (check_bord==3 or check_bord==4) and (dir_ligne==12 or dir_ligne==17):
+
+        on_ligne_V=1
+        on_ligne_H=0
 
 
 
@@ -255,19 +522,19 @@ def led_ir_control(state):
             	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
             arduino_serial.write(b'\n')
             time.sleep(0.5)
-        else:
-            led_ir_temp=0
-            GPIO.output(22, GPIO.LOW)
-            dataMotor[0] = 0;
-            dataMotor[1] = 0;
-            dataMotor[2] = 0;
-            dataMotor[3] = 255;
-            dataMotor[4] = 0;
-            dataMotor[5] = 0;
-            for x in range (0,6):
-
-            	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
-            arduino_serial.write(b'\n')
+        # else:
+        #     led_ir_temp=0
+        #     GPIO.output(22, GPIO.LOW)
+        #     dataMotor[0] = 0;
+        #     dataMotor[1] = 0;
+        #     dataMotor[2] = 0;
+        #     dataMotor[3] = 255;
+        #     dataMotor[4] = 0;
+        #     dataMotor[5] = 0;
+        #     for x in range (0,6):
+        #
+        #     	arduino_serial.write((dataMotor[x]).to_bytes(1, byteorder='big'))
+        #     arduino_serial.write(b'\n')
 
 
 ##########################################################
@@ -352,9 +619,9 @@ def controller(*args):
         if dir!=0:
             on_ligne_H=0
             home_temp=0
-            etape_perdu=3
+            etape_perdu=0
 
-    if home==1 and home_temp==0:
+    if home==1 and home_temp==0 and etape_perdu==0:
 
         print("process home....")
         home_temp=1
@@ -363,6 +630,14 @@ def controller(*args):
         if rec_temp==1:
             print ("commande : 255 255 255")
             chemin.write("255 255 255\n")
+
+    if home==1 and home_temp==0 and etape_perdu==3:
+
+        print("process home coordonate....")
+        home_temp=1
+        etape_perdu=4
+
+
 
 
     if led_ir==1 and led_ir_temp==0 and led_ir_released==0 :
@@ -526,10 +801,9 @@ while True:
     osc_process()
     if home_temp==1:
         alignement()
-    if on_ligne_H==1 or on_ligne_V:
+    if on_ligne_H==1 or on_ligne_V==1:
         reste_sur_ligne()
-    if etape_perdu==3 and play==1:
-        lecture()
+
     send_serial(dir,step,speed)
 
 osc_terminate()
