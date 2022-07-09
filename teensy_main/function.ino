@@ -18,9 +18,9 @@ void moveMotor() {
 if ((arriere_droitWheel.distanceToGo() == 0)&&(arriere_gaucheWheel.distanceToGo() == 0)&& (avant_gaucheWheel.distanceToGo() == 0)&&(avant_droitWheel.distanceToGo() == 0)&&(m>0)){
 
 
-
-Serial3.print(3);
- Serial3.println(255);
+/*
+Serial.print(3);
+ Serial.println(255);*/
  m=-1;
 }
 
@@ -75,18 +75,18 @@ Serial3.print(3);
 
 
 void moveLeftBackward(){//
-
+/*
  if (abs(avant_gaucheWheel.currentPosition())>0){
- Serial3.print(1);
- Serial3.print( m_temp[0]); 
- Serial3.println(abs(avant_gaucheWheel.currentPosition()));}
+ Serial.print(1);
+ Serial.print( m_temp[0]); 
+ Serial.println(abs(avant_gaucheWheel.currentPosition()));}
  else{ 
-  Serial3.print(1);
-  Serial3.print( m_temp[0]);
-  Serial3.println(abs(avant_droitWheel.currentPosition()));
+  Serial.print(1);
+  Serial.print( m_temp[0]);
+  Serial.println(abs(avant_droitWheel.currentPosition()));
    }
 
-
+*/
 
 
   avant_gaucheWheel.setCurrentPosition(0);
@@ -122,18 +122,18 @@ void moveLeftBackward(){//
 
 
 void moveRightForward(){//
-
+/*
  if (abs(avant_gaucheWheel.currentPosition())>0){
- Serial3.print(1);
- Serial3.print( m_temp[0]); 
- Serial3.println(abs(avant_gaucheWheel.currentPosition()));}
+ Serial.print(1);
+ Serial.print( m_temp[0]); 
+ Serial.println(abs(avant_gaucheWheel.currentPosition()));}
  else{ 
-  Serial3.print(1);
-  Serial3.print( m_temp[0]);
-  Serial3.println(abs(avant_droitWheel.currentPosition()));
+  Serial.print(1);
+  Serial.print( m_temp[0]);
+  Serial.println(abs(avant_droitWheel.currentPosition()));
    }
 
-
+*/
   avant_gaucheWheel.setCurrentPosition(0);
   arriere_droitWheel.setCurrentPosition(0);
   arriere_gaucheWheel.setCurrentPosition(0);
@@ -167,17 +167,18 @@ void moveRightForward(){//
 
 void moveLeftForward() {//
 
+/*
  if (abs(avant_gaucheWheel.currentPosition())>0){
- Serial3.print(1);
- Serial3.print( m_temp[0]); 
- Serial3.println(abs(avant_gaucheWheel.currentPosition()));}
+ Serial.print(1);
+ Serial.print( m_temp[0]); 
+ Serial.println(abs(avant_gaucheWheel.currentPosition()));}
  else{ 
-  Serial3.print(1);
-  Serial3.print( m_temp[0]);
-  Serial3.println(abs(avant_droitWheel.currentPosition()));
+  Serial.print(1);
+  Serial.print( m_temp[0]);
+  Serial.println(abs(avant_droitWheel.currentPosition()));
    }
 
-
+*/
   avant_gaucheWheel.setCurrentPosition(0);
   arriere_droitWheel.setCurrentPosition(0);
   arriere_gaucheWheel.setCurrentPosition(0);
@@ -209,16 +210,17 @@ void moveLeftForward() {//
 
 void moveRightBackward() {//
 
+/*
  if (abs(avant_gaucheWheel.currentPosition())>0){
- Serial3.print(1);
- Serial3.print( m_temp[0]); 
- Serial3.println(abs(avant_gaucheWheel.currentPosition()));}
+ Serial.print(1);
+ Serial.print( m_temp[0]); 
+ Serial.println(abs(avant_gaucheWheel.currentPosition()));}
  else{ 
-  Serial3.print(1);
-  Serial3.print( m_temp[0]);
-  Serial3.println(abs(avant_droitWheel.currentPosition()));
+  Serial.print(1);
+  Serial.print( m_temp[0]);
+  Serial.println(abs(avant_droitWheel.currentPosition()));
    }
-
+*/
   avant_gaucheWheel.setCurrentPosition(0);
   arriere_droitWheel.setCurrentPosition(0);
   arriere_gaucheWheel.setCurrentPosition(0);
@@ -252,17 +254,18 @@ void moveRightBackward() {//
 
 void rotateLeft() {
 
-
+/*
  if (abs(avant_gaucheWheel.currentPosition())>0){
- Serial3.print(1);
- Serial3.print( m_temp[0]); 
- Serial3.println(abs(avant_gaucheWheel.currentPosition()));}
+ Serial.print(1);
+ Serial.print( m_temp[0]); 
+ Serial.println(abs(avant_gaucheWheel.currentPosition()));}
  else{ 
-  Serial3.print(1);
-  Serial3.print( m_temp[0]);
-  Serial3.println(abs(avant_droitWheel.currentPosition()));
+  Serial.print(1);
+  Serial.print( m_temp[0]);
+  Serial.println(abs(avant_droitWheel.currentPosition()));
    }
 
+*/
    avant_gaucheWheel.setCurrentPosition(0);
   arriere_droitWheel.setCurrentPosition(0);
   arriere_gaucheWheel.setCurrentPosition(0);
@@ -296,16 +299,19 @@ void rotateLeft() {
 
 void rotateRight(){
 
+  /*
+
  if (abs(avant_gaucheWheel.currentPosition())>0){
- Serial3.print(1);
- Serial3.print( m_temp[0]); 
- Serial3.println(abs(avant_gaucheWheel.currentPosition()));}
+ Serial.print(1);
+ Serial.print( m_temp[0]); 
+ Serial.println(abs(avant_gaucheWheel.currentPosition()));}
  else{ 
-  Serial3.print(1);
-  Serial3.print( m_temp[0]);
-  Serial3.println(abs(avant_droitWheel.currentPosition()));
+  Serial.print(1);
+  Serial.print( m_temp[0]);
+  Serial.println(abs(avant_droitWheel.currentPosition()));
    }
 
+*/
    avant_gaucheWheel.setCurrentPosition(0);
   arriere_droitWheel.setCurrentPosition(0);
   arriere_gaucheWheel.setCurrentPosition(0);
@@ -340,17 +346,19 @@ void rotateRight(){
 
 void moveSidewaysLeft() {//
 
-
+/*
  if (abs(avant_gaucheWheel.currentPosition())>0){
- Serial3.print(1);
- Serial3.print( m_temp[0]); 
- Serial3.println(abs(avant_gaucheWheel.currentPosition()));}
+ Serial.print(1);
+ Serial.print( m_temp[0]); 
+ Serial.println(abs(avant_gaucheWheel.currentPosition()));}
  else{ 
-  Serial3.print(1);
-  Serial3.print( m_temp[0]);
-  Serial3.println(abs(avant_droitWheel.currentPosition()));
+  Serial.print(1);
+  Serial.print( m_temp[0]);
+  Serial.println(abs(avant_droitWheel.currentPosition()));
    }
 
+
+*/
   avant_gaucheWheel.setCurrentPosition(0);
   arriere_droitWheel.setCurrentPosition(0);
   arriere_gaucheWheel.setCurrentPosition(0);
@@ -387,17 +395,17 @@ void moveSidewaysLeft() {//
 
 void moveForward() {//
 
-  
+  /*
  if (abs(avant_gaucheWheel.currentPosition())>0){
- Serial3.print(1);
- Serial3.print( m_temp[0]); 
- Serial3.println(abs(avant_gaucheWheel.currentPosition()));}
+ Serial.print(1);
+ Serial.print( m_temp[0]); 
+ Serial.println(abs(avant_gaucheWheel.currentPosition()));}
  else{ 
-  Serial3.print(1);
-  Serial3.print( m_temp[0]);
-  Serial3.println(abs(avant_droitWheel.currentPosition()));
+  Serial.print(1);
+  Serial.print( m_temp[0]);
+  Serial.println(abs(avant_droitWheel.currentPosition()));
    }
- 
+ */
  
 
   avant_gaucheWheel.setCurrentPosition(0);
@@ -437,17 +445,17 @@ void moveForward() {//
 
 void moveBackward()   {//
 
-
+/*
  if (abs(avant_gaucheWheel.currentPosition())>0){
- Serial3.print(1);
- Serial3.print( m_temp[0]); 
- Serial3.println(abs(avant_gaucheWheel.currentPosition()));}
+ Serial.print(1);
+ Serial.print( m_temp[0]); 
+ Serial.println(abs(avant_gaucheWheel.currentPosition()));}
  else{ 
-  Serial3.print(1);
-  Serial3.print( m_temp[0]);
-  Serial3.println(abs(avant_droitWheel.currentPosition()));
+  Serial.print(1);
+  Serial.print( m_temp[0]);
+  Serial.println(abs(avant_droitWheel.currentPosition()));
    }
-
+*/
 
   avant_gaucheWheel.setCurrentPosition(0);
   arriere_droitWheel.setCurrentPosition(0);
@@ -486,17 +494,17 @@ void moveBackward()   {//
 
 void moveSidewaysRight() {//
 
-
+/*
  if (abs(avant_gaucheWheel.currentPosition())>0){
- Serial3.print(1);
- Serial3.print( m_temp[0]); 
- Serial3.println(abs(avant_gaucheWheel.currentPosition()));}
+ Serial.print(1);
+ Serial.print( m_temp[0]); 
+ Serial.println(abs(avant_gaucheWheel.currentPosition()));}
  else{ 
-  Serial3.print(1);
-  Serial3.print( m_temp[0]);
-  Serial3.println(abs(avant_droitWheel.currentPosition()));
+  Serial.print(1);
+  Serial.print( m_temp[0]);
+  Serial.println(abs(avant_droitWheel.currentPosition()));
    }
-
+*/
 
   digitalWrite(enable_arriere_droit,LOW);
   digitalWrite(enable_avant_gauche,LOW);
@@ -532,18 +540,19 @@ void moveSidewaysRight() {//
 
 void stopMoving() {
 
-
+/*
  if (abs(avant_gaucheWheel.currentPosition())>0){
- Serial3.print(1);
- Serial3.print( m_temp[0]); 
- Serial3.println(abs(avant_gaucheWheel.currentPosition()));}
+ Serial.print(1);
+ Serial.print( m_temp[0]); 
+ Serial.println(abs(avant_gaucheWheel.currentPosition()));}
  else{ 
-  Serial3.print(1);
-  Serial3.print( m_temp[0]);
-  Serial3.println(abs(avant_droitWheel.currentPosition()));
+  Serial.print(1);
+  Serial.print( m_temp[0]);
+  Serial.println(abs(avant_droitWheel.currentPosition()));
    }
+   */
 
- Serial.println("STOP");
+// Serial.println("STOP");
   digitalWrite(enable_arriere_droit,LOW);
   digitalWrite(enable_avant_gauche,LOW);
   digitalWrite(enable_avant_droit,LOW);

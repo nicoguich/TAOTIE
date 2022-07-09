@@ -21,11 +21,11 @@ control_value=0
 batterie=50
 
 
-#cv2.namedWindow("control", cv2.WINDOW_AUTOSIZE)
+cv2.namedWindow("control", cv2.WINDOW_AUTOSIZE)
 
 osc_startup()
-osc_udp_client("127.0.0.1", 5005, "raspberry")
-osc_udp_server("127.0.0.1", 5006, "camera")
+osc_udp_client("192.168.100.180", 5005, "raspberry")
+osc_udp_server("192.168.100.180", 5006, "camera")
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -297,28 +297,28 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
         cv2.drawContours(blackAndWhiteImage, [approx], -1,(0,255,0) , 2)
 
 
-    # control_image = np.zeros((100,700,3), np.uint8)
-    # #cv2.putText(control_image,"batterie :"+str(int(batterie))+"%",(10,150),font,1,(0,0,255),2,cv2.LINE_AA)
-    # if sel_control==1:
-    #     cv2.putText(control_image,"bright :"+str(brightness),(10,50),font,1,(0,0,255),2,cv2.LINE_AA)
-    # else:
-    #     cv2.putText(control_image,"bright :"+str(brightness),(10,50),font,1,(255,0,0),2,cv2.LINE_AA)
-    # if sel_control==2:
-    #     cv2.putText(control_image,"contr :"+str(contrast),(200,50),font,1,(0,0,255),2,cv2.LINE_AA)
-    # else:
-    #     cv2.putText(control_image,"contr :"+str(contrast),(200,50),font,1,(255,0,0),2,cv2.LINE_AA)
-    # if sel_control==3:
-    #     cv2.putText(control_image,"thresh :"+str(thresh),(400,50),font,1,(0,0,255),2,cv2.LINE_AA)
-    # else:
-    #     cv2.putText(control_image,"thresh :"+str(thresh),(400,50),font,1,(255,0,0),2,cv2.LINE_AA)
-    #
+    control_image = np.zeros((100,700,3), np.uint8)
+    #cv2.putText(control_image,"batterie :"+str(int(batterie))+"%",(10,150),font,1,(0,0,255),2,cv2.LINE_AA)
+    if sel_control==1:
+        cv2.putText(control_image,"bright :"+str(brightness),(10,50),font,1,(0,0,255),2,cv2.LINE_AA)
+    else:
+        cv2.putText(control_image,"bright :"+str(brightness),(10,50),font,1,(255,0,0),2,cv2.LINE_AA)
+    if sel_control==2:
+        cv2.putText(control_image,"contr :"+str(contrast),(200,50),font,1,(0,0,255),2,cv2.LINE_AA)
+    else:
+        cv2.putText(control_image,"contr :"+str(contrast),(200,50),font,1,(255,0,0),2,cv2.LINE_AA)
+    if sel_control==3:
+        cv2.putText(control_image,"thresh :"+str(thresh),(400,50),font,1,(0,0,255),2,cv2.LINE_AA)
+    else:
+        cv2.putText(control_image,"thresh :"+str(thresh),(400,50),font,1,(255,0,0),2,cv2.LINE_AA)
+
 
     if image==0:
         cv2.imshow('opencv', blackAndWhiteImage)
     if image==1:
         cv2.imshow('opencv', img)
 
-#    cv2.imshow('control', control_image)
+    cv2.imshow('control', control_image)
     cv2.moveWindow("opencv", 800, 10)
 
 

@@ -36,7 +36,7 @@ float batterie_level, batterie_level_temp;
 
 void setup() {
   Serial.begin(9600);
-  Serial3.begin(9600);
+ // Serial3.begin(9600);
 
 
   pinMode (led, OUTPUT);
@@ -89,11 +89,11 @@ Serial.setTimeout(100);
 delay(2000);
 }
 void loop() {
-  if (Serial3.available() > 0) {
+  if (Serial.available() > 0) {
 
     batterie();
     
-    byte data = Serial3.readBytes(data2,BUFFER_SIZE);
+    byte data = Serial.readBytes(data2,BUFFER_SIZE);
     //Serial.print(data);
 
 
@@ -102,12 +102,12 @@ void loop() {
     //pos = (256 * data2[0]) + data2[1];
     pos = ( (data2[0] & 0x0F) << 16) + ((data2[1] & 0xFF) << 8) + (data2[2] & 0xFF);
     dir = data2[3];
-    wheelSpeed = int ((256 * data2[4]) + data2[5]);
-    Serial.print("pos ");
-    Serial.print(pos);
-    Serial.print("/ dir ");
-    Serial.print(dir);
-    Serial.print("/ speed ");
+    wheelSpeed = int ((256 * data2[5]) + data2[4]);
+   Serial.print("pos ");
+    Serial.println(pos);
+    Serial.print("dir ");
+    Serial.println(dir);
+    Serial.print("speed ");
     Serial.println(wheelSpeed);
 
 if (dir<200){

@@ -3,6 +3,7 @@ from osc4py3.as_eventloop import *
 from osc4py3 import oscmethod as osm
 import serial
 import time
+import random
 
 
 GPIO.setwarnings(False)
@@ -35,7 +36,7 @@ GPIO.output(22, GPIO.LOW)
 
 osc_startup()
 arduino_serial = serial.Serial('/dev/ttyAMA0', 9600, timeout=1)
-ip="127.0.0.1"
+ip="192.168.100.180"
 port=5005
 osc_udp_server(ip, port, "raspberry")
 
@@ -71,6 +72,11 @@ sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
 dataMotor=[0,0,0,0,0,0]
 coordX=-1
 coordY=-1
+go_to=0
+go_toX=-1
+go_toY=-1
+max_X=3
+max_Y=2
 
 
 
@@ -138,19 +144,23 @@ def alignement():
 
 
 ###############################################################
-def coordonate():
+def coordonate(*args):
 
+    global go_toX
+    global go_toY
+    global go_to
     global coordX
     global coordY
 
+    go_toX = args[0]
+    go_toY = args[1]
 
+    if ((go_toX!=coordX) or(go_toY!=coordY)):
+        go_to = 1
+    else :
+        go_to=0
 
-
-
-
-
-
-
+    print(go_toX,go_toY)
 
 
 
@@ -174,9 +184,41 @@ def reste_sur_ligne():
     global etape_perdu
     global coordX
     global coordY
+    global go_to
+    global go_toX
+    global go_toY
+    global play
+    global max_X
+    global max_Y
 
-    print(coordX, coordY)
 
+    if (go_to==1):
+        if (go_toX != coordX):
+            if (go_toX<coordX):
+                dir_ligne=14
+            else:
+                dir_ligne=15
+
+        else :
+            if (go_toY<coordY):
+                dir_ligne=17
+            else:
+                dir_ligne=12
+
+        if (go_toX==coordX and go_toY==coordY):
+            go_to=0
+            dir_ligne=0
+            dir=0
+
+        print(go_toX,go_toY,coordX,coordY)
+
+    elif play==1:
+        time.sleep(2)
+        go_to=1
+        go_toX=random.randint(0, max_X)
+        go_toY=random.randint(0,max_Y)
+        print ("new go_toX :", go_toX)
+        print ("new go_toY :", go_toY)
 
 
     speed=speed_control
@@ -198,26 +240,29 @@ def reste_sur_ligne():
             speed=speed_perdu
             dir=17
         if sensor[1]==1 and sensor[4]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!= 4:
-            dir=0
-            dir_ligne=0
-            check_croix=1
+
             if (dir_ligne==14):
                 coordX += -1
             else:
                 coordX += 1
+            dir=0
+            dir_ligne=0
+            check_croix=1
         if sensor[10]!=2:
             check_croix=0
 
 
 
         if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and dir_ligne==14 and sensor[10]==3 and check_bord==0:
+
+            print("T OUEST")
+            coordX = 0
+
             dir=0
             dir_ligne=0
             check_bord=3
             on_ligne_V=1
             on_ligne_H=0
-            print("T OUEST")
-            coordX = 0
             if etape_perdu==4:
                 dir=17
                 dir_ligne=17
@@ -228,31 +273,38 @@ def reste_sur_ligne():
             check_bord=4
             on_ligne_V=1
             on_ligne_H=0
-            coordX += 1
+            coordX = max_X
             print("T EST")
 
         if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and sensor[1]==1 and (dir_ligne==14 or dir_ligne==15) and sensor[10]==3 and check_bord==0:
-            dir=0
-            dir_ligne=0
-            check_bord=1
-            on_ligne_V=0
-            on_ligne_H=1
+
             if (dir_ligne==14):
                 coordX += -1
             else:
                 coordX += 1
+            if etape_perdu != 4:
+                dir=0
+                dir_ligne=0
+            coordY=0
+
+            check_bord=1
+            on_ligne_V=0
+            on_ligne_H=1
             print("T SUD")
 
         if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[4]==1 and (dir_ligne==14 or dir_ligne==15) and sensor[10]==3 and check_bord==0:
+
+            if (dir_ligne==14):
+                coordX += -1
+            else:
+                coordX += 1
+
             dir=0
+            coordY=max_Y
             dir_ligne=0
             check_bord=2
             on_ligne_V=0
             on_ligne_H=1
-            if (dir_ligne==14):
-                coordX += -1
-            else:
-                coordX += 1
             print("T NORD")
 
         if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and sensor[4]==1 and dir_ligne==14  and sensor[10]==4 and check_bord==0:
@@ -262,6 +314,7 @@ def reste_sur_ligne():
             on_ligne_V=1
             on_ligne_H=0
             coordX=0
+            coordY= max_Y
             print("COIN NORD OUEST")
 
         if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and sensor[1]==1 and dir_ligne==14  and sensor[10]==4 and check_bord==0:
@@ -271,6 +324,7 @@ def reste_sur_ligne():
             on_ligne_V=1
             on_ligne_H=0
             coordX=0
+            coordY= 0
             print("COIN SUD OUEST")
 
         if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[4]==1 and dir_ligne==15  and sensor[10]==4 and check_bord==0:
@@ -279,7 +333,8 @@ def reste_sur_ligne():
             check_bord=7
             on_ligne_V=1
             on_ligne_H=0
-            coordX += 1
+            coordX = max_X
+            coordY= max_Y
             print("COIN NORD EST")
 
         if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[1]==1 and dir_ligne==15  and sensor[10]==4 and check_bord==0:
@@ -288,7 +343,8 @@ def reste_sur_ligne():
             check_bord=8
             on_ligne_V=1
             on_ligne_H=0
-            coordX += 1
+            coordX =max_X
+            coordY = 0
             print("COIN SUD EST")
 
 
@@ -314,14 +370,14 @@ def reste_sur_ligne():
             speed=speed_perdu
             dir=15
         if sensor[6]==1 and sensor[7]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!=4:
-            dir=0
-            dir_ligne=0
-            check_croix=1
+
             if (dir_ligne==17):
                 coordY += -1
             else:
                 coordY += 1
-
+            dir=0
+            dir_ligne=0
+            check_croix=1
 
         if sensor[10]!=2:
             check_croix=0
@@ -340,33 +396,38 @@ def reste_sur_ligne():
             check_bord=2
             on_ligne_V=0
             on_ligne_H=1
-            coordY += 1
+            coordY = max_Y
             print("T NORD")
 
 
         if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and sensor[7]==1 and  (dir_ligne==12 or dir_ligne==17) and sensor[10]==3 and check_bord==0 and etape_perdu!=4:
+
+            if (dir_ligne==17):
+                coordY += -1
+            else:
+                coordY += 1
             dir=0
             dir_ligne=0
             check_bord=3
             on_ligne_V=1
             on_ligne_H=0
+            coordX = 0
+
+            print("T OUEST")
+
+        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[6]==1 and  (dir_ligne==12 or dir_ligne==17) and sensor[10]==3 and check_bord==0 and etape_perdu!=4:
+
             if (dir_ligne==17):
                 coordY += -1
             else:
                 coordY += 1
 
-            print("T OUEST")
-
-        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[6]==1 and  (dir_ligne==12 or dir_ligne==17) and sensor[10]==3 and check_bord==0 and etape_perdu!=4:
             dir=0
             dir_ligne=0
             check_bord=4
             on_ligne_V=1
             on_ligne_H=0
-            if (dir_ligne==17):
-                coordY += -1
-            else:
-                coordY += 1
+            coordX = max_X
             print("T EST")
 
         if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[6]==1 and dir_ligne==12  and sensor[10]==4 and check_bord==0:
@@ -375,7 +436,8 @@ def reste_sur_ligne():
             check_bord=7
             on_ligne_V=0
             on_ligne_H=1
-            coordY +=1
+            coordY =max_Y
+            coordX = max_X
             print("COIN NORD EST")
 
         if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and sensor[6]==1 and dir_ligne==17  and sensor[10]==4 and check_bord==0:
@@ -385,6 +447,7 @@ def reste_sur_ligne():
             on_ligne_V=0
             on_ligne_H=1
             coordY=0
+            coordX = max_X
             print("COIN SUD EST")
 
         if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[7]==1 and dir_ligne==12  and sensor[10]==4 and check_bord==0:
@@ -393,7 +456,8 @@ def reste_sur_ligne():
             check_bord=5
             on_ligne_V=0
             on_ligne_H=1
-            coordY += 1
+            coordY = max_Y
+            coordX= 0
 
             print("COIN NORD OUEST")
 
@@ -493,6 +557,7 @@ def command(*args):
 def sensor_osc(*args):
     global sensor
     sensor=args
+
 
 #######################################
 
@@ -657,42 +722,16 @@ def controller(*args):
         led_fat_released=1
         led_fat_control(0)
 
-    if start==1 and rec_temp==1 and select==1 and start_released==0:
-        start_released=1
-        chemin.close()
-        rec_temp=0
-        compteur_play=0
-        print("rec off")
-
-    if start==1 and rec_temp==0 and select==1 and start_released==0:
-        start_released=1
-        rec_temp=1
-        print("rec on")
-
-        chemin = open("/home/pi/Desktop/chemin.txt","w")
-    if start==1 and select==0 and play==0 and start_released==0 :
+    if start==1 and start_released==0 and play==0:
         start_released=1
         play=1
-        etape_perdu=0
-        home_temp=1
-        lines = []
-        with open("/home/pi/Desktop/chemin.txt") as f:
-            lines = f.readlines()
-        print(lines)
-        compteur_play=0
-        print("play and process home....")
 
-    if start==1 and select==0 and play==1 and start_released==0:
-        print("pause")
+    if start==1 and start_released==0 and play==1:
         start_released=1
-        play=2
-    if start==1 and select==0 and play==2 and start_released==0:
-        print("resume")
-        start_released=1
-        play=1
+        play=0
+
     if select==1:
         GPIO.output(10, GPIO.HIGH)
-        play=0
     else:
         GPIO.output(10, GPIO.LOW)
     if start==0:
@@ -787,7 +826,7 @@ def lecture():
 
 
 
-
+osc_method("/coordonate", coordonate)
 osc_method("/controller", controller)
 osc_method("/sensor", sensor_osc)
 osc_method("/command", command)

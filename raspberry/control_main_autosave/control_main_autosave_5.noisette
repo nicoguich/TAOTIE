@@ -1,0 +1,707 @@
+{
+  "metaData": {
+    "version": "1.9.6",
+    "versionNumber": 67846
+  },
+  "projectSettings": {
+    "containers": {
+      "dashboardSettings": {
+      },
+      "customDefinitions": {
+      }
+    }
+  },
+  "dashboardManager": {
+    "parameters": [
+      {
+        "value": false,
+        "controlAddress": "/editMode"
+      },
+      {
+        "value": true,
+        "controlAddress": "/snapping"
+      }
+    ],
+    "items": [
+      {
+        "niceName": "Dashboard",
+        "type": "BaseItem",
+        "itemManager": {
+          "parameters": [
+            {
+              "value": [
+                1200.0,
+                800.0
+              ],
+              "controlAddress": "/canvasSize",
+              "enabled": false
+            }
+          ],
+          "items": [
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -160.0,
+                    -232.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    122.0,
+                    42.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "gkhoihih",
+                  "controlAddress": "/customText",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/modules/gamepad/values/axes/axis1",
+              "controllable": "/modules/gamepad/values/axes/axis1"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    26.0,
+                    -180.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    132.0,
+                    81.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/locked"
+                },
+                {
+                  "value": true,
+                  "controlAddress": "/readOnly"
+                },
+                {
+                  "value": true,
+                  "controlAddress": "/showValue"
+                }
+              ],
+              "niceName": "Item 1",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/customVariables/grille/variables/x/x",
+              "controllable": "/customVariables/grille/variables/x/x"
+            }
+          ],
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "editing": true
+      }
+    ],
+    "viewOffset": [
+      0,
+      0
+    ],
+    "viewZoom": 1.0
+  },
+  "parrots": {
+    "viewOffset": [
+      0,
+      0
+    ],
+    "viewZoom": 1.0
+  },
+  "layout": {
+    "mainLayout": {
+      "type": 1,
+      "width": 1318,
+      "height": 684,
+      "direction": 2,
+      "shifters": [
+        {
+          "type": 1,
+          "width": 1318,
+          "height": 684,
+          "direction": 1,
+          "shifters": [
+            {
+              "type": 1,
+              "width": 264,
+              "height": 684,
+              "direction": 2,
+              "shifters": [
+                {
+                  "type": 0,
+                  "width": 264,
+                  "height": 198,
+                  "currentContent": "Modules",
+                  "tabs": [
+                    {
+                      "name": "Modules"
+                    }
+                  ]
+                },
+                {
+                  "type": 0,
+                  "width": 264,
+                  "height": 157,
+                  "currentContent": "Custom Variables",
+                  "tabs": [
+                    {
+                      "name": "Custom Variables"
+                    }
+                  ]
+                },
+                {
+                  "type": 0,
+                  "width": 264,
+                  "height": 317,
+                  "currentContent": "Logger",
+                  "tabs": [
+                    {
+                      "name": "Logger"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": 0,
+              "width": 771,
+              "height": 684,
+              "currentContent": "Dashboard",
+              "tabs": [
+                {
+                  "name": "State Machine"
+                },
+                {
+                  "name": "Dashboard"
+                }
+              ]
+            },
+            {
+              "type": 0,
+              "width": 271,
+              "height": 684,
+              "currentContent": "Inspector",
+              "tabs": [
+                {
+                  "name": "Inspector"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "windows": null
+  },
+  "modules": {
+    "items": [
+      {
+        "niceName": "Gamepad",
+        "type": "Gamepad",
+        "scripts": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "params": {
+          "parameters": [
+            {
+              "value": [
+                3,
+                0,
+                0,
+                0,
+                107,
+                20,
+                0,
+                0,
+                9,
+                6,
+                0,
+                0,
+                20,
+                1,
+                0,
+                0
+              ],
+              "deviceName": "XInput Controller",
+              "controlAddress": "/device"
+            }
+          ],
+          "containers": {
+            "calibration": {
+              "parameters": [
+                {
+                  "value": -1.0,
+                  "controlAddress": "/axis1Offset"
+                }
+              ]
+            }
+          }
+        },
+        "templates": {
+          "hideInEditor": true,
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "values": {
+          "containers": {
+            "axes": {
+            },
+            "buttons": {
+            }
+          }
+        }
+      },
+      {
+        "niceName": "OSC",
+        "type": "OSC",
+        "scripts": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "params": {
+          "containers": {
+            "oscInput": {
+            },
+            "oscOutputs": {
+              "items": [
+                {
+                  "parameters": [
+                    {
+                      "value": "127.0.0.1",
+                      "controlAddress": "/remoteHost"
+                    }
+                  ],
+                  "niceName": "OSC Output",
+                  "type": "BaseItem"
+                }
+              ],
+              "viewOffset": [
+                0,
+                0
+              ],
+              "viewZoom": 1.0
+            },
+            "pass_through": {
+            }
+          }
+        },
+        "templates": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "values": {
+        }
+      },
+      {
+        "niceName": "Serial",
+        "type": "Serial",
+        "scripts": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "params": {
+          "parameters": [
+            {
+              "value": "Not connected or disconnected",
+              "controlAddress": "/port"
+            },
+            {
+              "value": 9600,
+              "hexMode": false,
+              "controlAddress": "/baudRate"
+            }
+          ],
+          "containers": {
+            "pass_through": {
+            }
+          }
+        },
+        "templates": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "values": {
+        },
+        "portID": ""
+      }
+    ],
+    "viewOffset": [
+      0,
+      0
+    ],
+    "viewZoom": 1.0
+  },
+  "customVariables": {
+    "items": [
+      {
+        "niceName": "grille",
+        "type": "BaseItem",
+        "params": {
+        },
+        "variables": {
+          "items": [
+            {
+              "parameters": [
+                {
+                  "value": 10,
+                  "hexMode": false,
+                  "controlAddress": "/x",
+                  "feedbackOnly": false,
+                  "type": "Integer",
+                  "niceName": "x",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Integer",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "x",
+              "editorIsCollapsed": true,
+              "type": "Int Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "value": 10,
+                  "hexMode": false,
+                  "controlAddress": "/y",
+                  "feedbackOnly": false,
+                  "type": "Integer",
+                  "niceName": "y",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Integer",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "y",
+              "editorIsCollapsed": true,
+              "type": "Int Parameter"
+            }
+          ],
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "presets": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        }
+      }
+    ],
+    "viewOffset": [
+      0,
+      0
+    ],
+    "viewZoom": 1.0
+  },
+  "states": {
+    "parameters": [
+      {
+        "value": 30,
+        "hexMode": false,
+        "controlAddress": "/snapGridSize"
+      }
+    ],
+    "items": [
+      {
+        "parameters": [
+          {
+            "value": [
+              -252.0,
+              -241.0
+            ],
+            "controlAddress": "/viewUIPosition"
+          },
+          {
+            "value": [
+              291.0,
+              181.0
+            ],
+            "controlAddress": "/viewUISize"
+          },
+          {
+            "value": true,
+            "controlAddress": "/active"
+          }
+        ],
+        "niceName": "State",
+        "type": "State",
+        "processors": {
+          "items": [
+            {
+              "niceName": "moveForward",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis2",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "<",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": -0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button4",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "serial",
+                    "commandPath": "",
+                    "commandType": "Send values as string",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "",
+                          "controlAddress": "/separator"
+                        },
+                        {
+                          "value": false,
+                          "controlAddress": "/appendCR"
+                        },
+                        {
+                          "value": false,
+                          "controlAddress": "/appendNL"
+                        }
+                      ],
+                      "paramLinks": {
+                      },
+                      "argManager": {
+                        "items": [
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "hexMode": false,
+                                "controlAddress": "/#1"
+                              },
+                              {
+                                "value": "2 bytes (Int16)",
+                                "controlAddress": "/precision"
+                              }
+                            ],
+                            "niceName": "step",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "hexMode": false,
+                              "controlAddress": "/states/state/processors/moveForward/consequencesTRUE/consequence/command/arguments/step/#1"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "hexMode": false,
+                                "controlAddress": "/#4"
+                              },
+                              {
+                                "value": "1 byte",
+                                "controlAddress": "/precision"
+                              }
+                            ],
+                            "niceName": "step 1",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "hexMode": false,
+                              "controlAddress": "/states/state/processors/moveForward/consequencesTRUE/consequence/command/arguments/step1/#4"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 12,
+                                "hexMode": false,
+                                "controlAddress": "/#2"
+                              },
+                              {
+                                "value": "1 byte",
+                                "controlAddress": "/precision"
+                              }
+                            ],
+                            "niceName": "dir",
+                            "type": "Integer",
+                            "param": {
+                              "value": 12,
+                              "hexMode": false,
+                              "controlAddress": "/states/state/processors/moveForward/consequencesTRUE/consequence/command/arguments/dir/#2"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 1000,
+                                "hexMode": false,
+                                "controlAddress": "/#3"
+                              },
+                              {
+                                "value": "2 bytes (Int16)",
+                                "controlAddress": "/precision"
+                              }
+                            ],
+                            "niceName": "speed",
+                            "type": "Integer",
+                            "param": {
+                              "value": 1000,
+                              "hexMode": false,
+                              "controlAddress": "/states/state/processors/moveForward/consequencesTRUE/consequence/command/arguments/speed/#3"
+                            }
+                          }
+                        ],
+                        "viewOffset": [
+                          0,
+                          0
+                        ],
+                        "viewZoom": 1.0
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            }
+          ],
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        }
+      }
+    ],
+    "viewOffset": [
+      0,
+      0
+    ],
+    "viewZoom": 1.0,
+    "transitions": {
+      "hideInEditor": true,
+      "viewOffset": [
+        0,
+        0
+      ],
+      "viewZoom": 1.0
+    },
+    "comments": {
+      "hideInEditor": true,
+      "viewOffset": [
+        0,
+        0
+      ],
+      "viewZoom": 1.0
+    }
+  },
+  "sequences": {
+    "viewOffset": [
+      0,
+      0
+    ],
+    "viewZoom": 1.0
+  },
+  "routers": {
+    "viewOffset": [
+      0,
+      0
+    ],
+    "viewZoom": 1.0
+  }
+}
