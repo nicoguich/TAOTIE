@@ -50,7 +50,7 @@ void setup() {
 
  
   analogWrite(led,200);
-  analogWrite(led_ir,130);
+  analogWrite(led_ir,255);
   digitalWrite(enable_arriere_droit,HIGH);
   digitalWrite(enable_avant_gauche,HIGH);
   digitalWrite(enable_avant_droit,HIGH);
