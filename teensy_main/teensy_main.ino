@@ -1,10 +1,8 @@
-
-#include <EEPROM.h>
 #include <AccelStepper.h>
+#include <Servo.h> 
+ 
 
-// Define the stepper motors and the pins the will use
-
-AccelStepper arriere_droitWheel(1, 3, 4);  // Stepper1 // (Type:driver, STEP, DIR) -
+AccelStepper arriere_droitWheel(1, 3, 4);  // Stepper1 // (Type:driver, STEP, DIR) 
 AccelStepper avant_droitWheel(1, 11, 12); // Stepper2
 AccelStepper arriere_gaucheWheel(1, 14, 15);  // Stepper3
 AccelStepper avant_gaucheWheel(1, 6, 9);   // Stepper4
@@ -12,10 +10,9 @@ AccelStepper avant_gaucheWheel(1, 6, 9);   // Stepper4
 
 
 const int BUFFER_SIZE = 7;
-byte data2[BUFFER_SIZE];
+char data[BUFFER_SIZE];
 
-
-
+Servo verin;
 
 int wheelSpeed = 5000;
 int avant_gaucheSpeed, arriere_droitSpeed, arriere_gaucheSpeed, avant_droitSpeed;
@@ -27,16 +24,13 @@ int rec=0;
 byte datawheel[4];
 int led = 20;
 int led_ir=17;
+int verin_pin=16;
 int batterie_level_pin=23;
 int enable_arriere_droit = 2, enable_arriere_gauche = 13, enable_avant_gauche = 5, enable_avant_droit = 10;
-byte data_command[2];
-boolean on_move = false;
-int m_temp[2];
 float batterie_level, batterie_level_temp;
 
 void setup() {
   Serial.begin(9600);
- // Serial3.begin(9600);
 
 
   pinMode (led, OUTPUT);
@@ -56,7 +50,6 @@ void setup() {
   digitalWrite(enable_avant_droit,HIGH);
   digitalWrite(enable_arriere_gauche,HIGH);
 
-
   
 
   // Set initial seed values for the steppers
@@ -73,16 +66,9 @@ void setup() {
 
 
 
+verin.attach(verin_pin);
 
-  for (int x = 0; x < 5; x++) {
-    data2[x] = 0;
-  }
-m_temp[1]=0;
-m=0;
-
-
-
-
+verin.write(45);
 
 
 Serial.setTimeout(100);
@@ -93,138 +79,91 @@ void loop() {
 
     batterie();
     
-    byte data = Serial.readBytes(data2,BUFFER_SIZE);
-    //Serial.print(data);
-
-
-
-    
-    //pos = (256 * data2[0]) + data2[1];
-    pos = ( (data2[0] & 0x0F) << 16) + ((data2[1] & 0xFF) << 8) + (data2[2] & 0xFF);
-    dir = data2[3];
-    wheelSpeed = int ((256 * data2[5]) + data2[4]);
-   Serial.print("pos ");
+    Serial.readBytes(data,BUFFER_SIZE);
+   
+    pos = ( (data[0] & 0x0F) << 16) + ((data[1] & 0xFF) << 8) + (data[2] & 0xFF);
+    dir = data[3];
+    wheelSpeed = int ((256 * data[5]) + data[4]);
+ /*   Serial.print("pos ");
     Serial.println(pos);
     Serial.print("dir ");
     Serial.println(dir);
     Serial.print("speed ");
     Serial.println(wheelSpeed);
+ */
 
-if (dir<200){
+switch (int(dir)) {
 
-if (m!=-1){
-      m = int(dir);
-      m_temp[0]=m_temp[1];
-      m_temp[1]=m;}
-else{
-m = int(dir);
-      m_temp[0]=0;
-      m_temp[1]=m;
-  
-}
-      
-      
-    
-    pos = int(pos);
-
-
-    if ((m == 4) || (m == 14)) {
-      moveSidewaysLeft();
-
-      on_move = true;
-    }
-    if ((m == 5) || (m == 15)) {
-      moveSidewaysRight();
-
-      on_move = true;
-    }
-    if ((m == 2) || (m == 12)) {
-
-      moveForward();
-
-      on_move = true;
-    }
-    if ((m == 7) || (m == 17) ) {
-      moveBackward() ;
-
-      on_move = true;
-    }
-    if ((m == 3) || (m == 13) ) {
-      moveRightForward();
-
-      on_move = true;
-    }
-    if ((m == 1) || (m == 11) ) {
-     moveLeftForward();
-
-      on_move = true;
-    }
-    if ((m == 8) || (m == 18) ) {
-      moveRightBackward();
-
-      on_move = true;
-    }
-    if ((m == 6) || (m == 16) ) {
-      moveLeftBackward();
-
-      on_move = true;
-    }
-    if ((m == 9) || (m == 19)) {
-      rotateLeft();
-
-      on_move = true;
-    }
-    if ((m == 10) || (m == 20)) {
-     rotateRight();
-
-      on_move = true;
-    }
-
-    if (m == 0) {
+      case 0 :
       stopMoving();
+      break;
 
+      case 1 :
+      moveLeftForward();
+      break;
 
-    }
-  }
- else if (dir==255){
+      case 2 :
+      moveForward();
+      break;
 
- analogWrite(led_ir,wheelSpeed);
+      case 3 :
+      moveRightForward();
+      break;
+       
+      case 4 :
+      moveSidewaysLeft();
+      break;
 
-  
- }
+      case 5 :
+      moveSidewaysRight();
+      break;
 
- else if (dir==200){
+      case 6 :
+      moveLeftBackward();
+      break;
 
-   analogWrite(led,wheelSpeed);
+      case 7 :
+      moveBackward() ;
+      break;
 
- }
-
-
- else if (dir==201){
-
-  digitalWrite(enable_arriere_droit,HIGH);
-  digitalWrite(enable_avant_gauche,HIGH);
-  digitalWrite(enable_avant_droit,HIGH);
-  digitalWrite(enable_arriere_gauche,HIGH);
-
- }
-
-
-
-
+      case 8 :
+      moveRightBackward();
+      break;
 
  
-  }
+      case 9 :
+      rotateLeft();
+      break;
 
 
+      case 10 :
+      rotateRight();
+      break;
 
 
+      case 20 :
+      verin.write(45);;
+      break;
 
+      case 21 :
+      verin.write(135);;
+      break;
+  
+      case 201 :
+      digitalWrite(enable_arriere_droit,HIGH);
+      digitalWrite(enable_avant_gauche,HIGH);
+      digitalWrite(enable_avant_droit,HIGH);
+      digitalWrite(enable_arriere_gauche,HIGH);
+      break ;
+
+
+}
+
+ 
+}
 
 
   moveMotor();
-
-
 
 
 }
