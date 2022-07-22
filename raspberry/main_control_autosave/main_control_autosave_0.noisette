@@ -12,6 +12,222 @@
     }
   },
   "dashboardManager": {
+    "parameters": [
+      {
+        "value": true,
+        "controlAddress": "/editMode"
+      },
+      {
+        "value": true,
+        "controlAddress": "/snapping"
+      }
+    ],
+    "items": [
+      {
+        "niceName": "camera settings",
+        "type": "BaseItem",
+        "itemManager": {
+          "parameters": [
+            {
+              "value": [
+                1200.0,
+                1000.0
+              ],
+              "controlAddress": "/canvasSize",
+              "enabled": false
+            },
+            {
+              "value": [
+                0.168627455830574,
+                0.4392156898975372,
+                0.5254902243614197,
+                0.0
+              ],
+              "controlAddress": "/backgroundColor"
+            },
+            {
+              "value": 1.0,
+              "controlAddress": "/backgroundImageScale"
+            },
+            {
+              "value": 1.0,
+              "controlAddress": "/backgroundImageAlpha"
+            },
+            {
+              "value": 20,
+              "hexMode": false,
+              "controlAddress": "/snapGridSize"
+            }
+          ],
+          "items": [
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -390.0,
+                    68.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    194.0,
+                    30.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": true,
+                  "controlAddress": "/showLabel"
+                },
+                {
+                  "value": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "controlAddress": "/borderColor",
+                  "enabled": true
+                },
+                {
+                  "value": true,
+                  "controlAddress": "/readOnly"
+                },
+                {
+                  "value": true,
+                  "controlAddress": "/showValue"
+                },
+                {
+                  "value": "Text",
+                  "controlAddress": "/style"
+                }
+              ],
+              "niceName": "brigtness",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/customVariables/image/variables/brigthness/brigthness",
+              "controllable": "/customVariables/image/variables/brigthness/brigthness"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -186.0,
+                    68.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    194.0,
+                    30.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "controlAddress": "/borderColor",
+                  "enabled": true
+                },
+                {
+                  "value": true,
+                  "controlAddress": "/readOnly"
+                },
+                {
+                  "value": "Text",
+                  "controlAddress": "/style"
+                }
+              ],
+              "niceName": "contrast",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/customVariables/image/variables/contrast/contrast",
+              "controllable": "/customVariables/image/variables/contrast/contrast"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    18.0,
+                    68.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    194.0,
+                    30.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "controlAddress": "/borderColor",
+                  "enabled": true
+                },
+                {
+                  "value": true,
+                  "controlAddress": "/readOnly"
+                },
+                {
+                  "value": "Text",
+                  "controlAddress": "/style"
+                }
+              ],
+              "niceName": "thresh",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/customVariables/image/variables/thresh/thresh",
+              "controllable": "/customVariables/image/variables/thresh/thresh"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -186.0,
+                    125.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    194.0,
+                    21.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "Text",
+                  "controlAddress": "/style"
+                }
+              ],
+              "niceName": "dir",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/customVariables/control/variables/dir/dir",
+              "controllable": "/customVariables/control/variables/dir/dir"
+            }
+          ],
+          "viewOffset": [
+            100,
+            43
+          ],
+          "viewZoom": 1.0
+        },
+        "editing": true
+      }
+    ],
     "viewOffset": [
       0,
       0
@@ -29,25 +245,25 @@
     "mainLayout": {
       "type": 1,
       "width": 1920,
-      "height": 997,
+      "height": 1037,
       "direction": 2,
       "shifters": [
         {
           "type": 1,
           "width": 1920,
-          "height": 997,
+          "height": 1037,
           "direction": 1,
           "shifters": [
             {
               "type": 1,
-              "width": 248,
-              "height": 997,
+              "width": 361,
+              "height": 1037,
               "direction": 2,
               "shifters": [
                 {
                   "type": 0,
-                  "width": 248,
-                  "height": 338,
+                  "width": 361,
+                  "height": 351,
                   "currentContent": "Modules",
                   "tabs": [
                     {
@@ -57,8 +273,8 @@
                 },
                 {
                   "type": 0,
-                  "width": 248,
-                  "height": 397,
+                  "width": 361,
+                  "height": 410,
                   "currentContent": "Custom Variables",
                   "tabs": [
                     {
@@ -68,8 +284,8 @@
                 },
                 {
                   "type": 0,
-                  "width": 248,
-                  "height": 250,
+                  "width": 361,
+                  "height": 263,
                   "currentContent": "Logger",
                   "tabs": [
                     {
@@ -87,9 +303,9 @@
             },
             {
               "type": 0,
-              "width": 1145,
-              "height": 997,
-              "currentContent": "State Machine",
+              "width": 1032,
+              "height": 1037,
+              "currentContent": "Dashboard",
               "tabs": [
                 {
                   "name": "State Machine"
@@ -108,7 +324,7 @@
             {
               "type": 0,
               "width": 515,
-              "height": 997,
+              "height": 1037,
               "currentContent": "Inspector",
               "tabs": [
                 {
@@ -252,7 +468,7 @@
             "controlAddress": "/logIncoming"
           }
         ],
-        "niceName": "OSC",
+        "niceName": "OSC main",
         "type": "OSC",
         "scripts": {
           "viewOffset": [
@@ -296,6 +512,34 @@
                   ],
                   "niceName": "python_main",
                   "type": "BaseItem"
+                },
+                {
+                  "parameters": [
+                    {
+                      "value": false,
+                      "controlAddress": "/enabled"
+                    },
+                    {
+                      "value": false,
+                      "controlAddress": "/local"
+                    },
+                    {
+                      "value": "192.168.100.180",
+                      "controlAddress": "/remoteHost"
+                    },
+                    {
+                      "value": 5006,
+                      "hexMode": false,
+                      "controlAddress": "/remotePort"
+                    },
+                    {
+                      "value": false,
+                      "controlAddress": "/listenToFeedback"
+                    }
+                  ],
+                  "niceName": "python_camera",
+                  "editorIsCollapsed": true,
+                  "type": "BaseItem"
                 }
               ],
               "viewOffset": [
@@ -332,6 +576,75 @@
             }
           ]
         }
+      },
+      {
+        "niceName": "OSC camera",
+        "type": "OSC",
+        "scripts": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "params": {
+          "containers": {
+            "oscInput": {
+              "parameters": [
+                {
+                  "value": false,
+                  "controlAddress": "/enabled"
+                },
+                {
+                  "value": 12000,
+                  "hexMode": false,
+                  "controlAddress": "/localPort"
+                }
+              ],
+              "editorIsCollapsed": true
+            },
+            "oscOutputs": {
+              "items": [
+                {
+                  "parameters": [
+                    {
+                      "value": false,
+                      "controlAddress": "/local"
+                    },
+                    {
+                      "value": "192.168.100.180",
+                      "controlAddress": "/remoteHost"
+                    },
+                    {
+                      "value": 5006,
+                      "hexMode": false,
+                      "controlAddress": "/remotePort"
+                    }
+                  ],
+                  "niceName": "OSC Output",
+                  "type": "BaseItem"
+                }
+              ],
+              "viewOffset": [
+                0,
+                0
+              ],
+              "viewZoom": 1.0
+            },
+            "pass_through": {
+            }
+          }
+        },
+        "templates": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "values": {
+          "hideInEditor": true
+        }
       }
     ],
     "viewOffset": [
@@ -352,7 +665,7 @@
             {
               "parameters": [
                 {
-                  "value": 201,
+                  "value": 20,
                   "hexMode": false,
                   "controlAddress": "/dir",
                   "feedbackOnly": false,
@@ -401,6 +714,231 @@
           ],
           "viewZoom": 1.0
         }
+      },
+      {
+        "niceName": "image",
+        "type": "BaseItem",
+        "params": {
+        },
+        "variables": {
+          "items": [
+            {
+              "parameters": [
+                {
+                  "value": 21,
+                  "hexMode": false,
+                  "controlAddress": "/brigthness",
+                  "feedbackOnly": false,
+                  "type": "Integer",
+                  "niceName": "brigthness",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Integer",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "brigthness",
+              "editorIsCollapsed": true,
+              "type": "Int Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "value": 23,
+                  "hexMode": false,
+                  "controlAddress": "/contrast",
+                  "feedbackOnly": false,
+                  "type": "Integer",
+                  "niceName": "contrast",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Integer",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "contrast",
+              "editorIsCollapsed": true,
+              "type": "Int Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "value": 44,
+                  "hexMode": false,
+                  "controlAddress": "/thresh",
+                  "feedbackOnly": false,
+                  "type": "Integer",
+                  "niceName": "thresh",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Integer",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "thresh",
+              "editorIsCollapsed": true,
+              "type": "Int Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "value": 3,
+                  "hexMode": false,
+                  "controlAddress": "/selcontrol",
+                  "feedbackOnly": false,
+                  "type": "Integer",
+                  "niceName": "selcontrol",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Integer",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "selcontrol",
+              "editorIsCollapsed": true,
+              "type": "Int Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "value": true,
+                  "minValue": 0,
+                  "maxValue": 1,
+                  "default": false,
+                  "controlAddress": "/reverse",
+                  "feedbackOnly": false,
+                  "type": "Boolean",
+                  "niceName": "reverse",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Boolean",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "reverse",
+              "editorIsCollapsed": true,
+              "type": "Bool Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "value": false,
+                  "minValue": 0,
+                  "maxValue": 1,
+                  "default": false,
+                  "controlAddress": "/image",
+                  "feedbackOnly": false,
+                  "type": "Boolean",
+                  "niceName": "image",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Boolean",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "image",
+              "editorIsCollapsed": true,
+              "type": "Bool Parameter"
+            }
+          ],
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "presets": {
+          "items": [
+            {
+              "parameters": [
+                {
+                  "value": [
+                    0.6470588445663452,
+                    1.0,
+                    0.0,
+                    1.0
+                  ],
+                  "controlAddress": "/color"
+                }
+              ],
+              "niceName": "Preset",
+              "type": "MorphTarget",
+              "values": {
+                "containers": {
+                  "brigthness": {
+                    "parameters": [
+                      {
+                        "value": 21,
+                        "hexMode": false,
+                        "controlAddress": "/brigthness"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "brigthness"
+                  },
+                  "contrast": {
+                    "parameters": [
+                      {
+                        "value": 23,
+                        "hexMode": false,
+                        "controlAddress": "/contrast"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "contrast"
+                  },
+                  "thresh": {
+                    "parameters": [
+                      {
+                        "value": 44,
+                        "hexMode": false,
+                        "controlAddress": "/thresh"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "thresh"
+                  },
+                  "selcontrol": {
+                    "parameters": [
+                      {
+                        "value": 3,
+                        "hexMode": false,
+                        "controlAddress": "/selcontrol"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "selcontrol"
+                  },
+                  "reverse": {
+                    "parameters": [
+                      {
+                        "value": true,
+                        "controlAddress": "/reverse"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "reverse"
+                  },
+                  "image": {
+                    "parameters": [
+                      {
+                        "value": true,
+                        "controlAddress": "/image"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "image"
+                  }
+                }
+              }
+            }
+          ],
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        }
       }
     ],
     "viewOffset": [
@@ -420,6 +958,10 @@
     "items": [
       {
         "parameters": [
+          {
+            "value": true,
+            "controlAddress": "/enabled"
+          },
           {
             "value": [
               -596.0,
@@ -681,7 +1223,7 @@
                     "command": {
                       "parameters": [
                         {
-                          "value": "/modules/osc/values/_dir",
+                          "value": "/modules/oscMain/values/_dir",
                           "controlAddress": "/target"
                         },
                         {
@@ -912,7 +1454,7 @@
                   {
                     "niceName": "Consequence 1",
                     "type": "Consequence",
-                    "commandModule": "osc",
+                    "commandModule": "oscMain",
                     "commandPath": "",
                     "commandType": "Custom Message",
                     "command": {
@@ -1842,6 +2384,33 @@
                       ],
                       "hideInEditor": true
                     }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": false,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "<",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
                   }
                 ],
                 "viewOffset": [
@@ -1920,6 +2489,29 @@
                         },
                         {
                           "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "<",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
                           "controlAddress": "/reference"
                         }
                       ],
@@ -2035,11 +2627,38 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": ">=",
+                          "value": "=",
                           "controlAddress": "/comparisonFunction"
                         },
                         {
                           "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "<",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
                           "controlAddress": "/reference"
                         }
                       ],
@@ -2058,7 +2677,7 @@
                   {
                     "niceName": "Consequence",
                     "type": "Consequence",
-                    "commandModule": "osc",
+                    "commandModule": "oscMain",
                     "commandPath": "",
                     "commandType": "Custom Message",
                     "command": {
@@ -2124,14 +2743,2768 @@
         "parameters": [
           {
             "value": [
-              -255.0,
+              -272.0,
               -1934.0
             ],
             "controlAddress": "/viewUIPosition"
           },
           {
             "value": [
-              230.0,
+              258.0,
+              687.0
+            ],
+            "controlAddress": "/viewUISize"
+          },
+          {
+            "value": true,
+            "controlAddress": "/active"
+          }
+        ],
+        "niceName": "game_pad to camera",
+        "type": "State",
+        "processors": {
+          "items": [
+            {
+              "niceName": "send osc",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "parameters": [
+                  {
+                    "value": "OR",
+                    "controlAddress": "/operator"
+                  }
+                ],
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/brigthness",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/contrast",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/thresh",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/reverse",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 3",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/image",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 4",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "oscCamera",
+                    "commandPath": "",
+                    "commandType": "Custom Message",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image",
+                          "controlAddress": "/address"
+                        }
+                      ],
+                      "paramLinks": {
+                      },
+                      "argManager": {
+                        "items": [
+                          {
+                            "parameters": [
+                              {
+                                "value": 3,
+                                "controlMode": 2,
+                                "reference": {
+                                  "value": "/customVariables/image/variables/selcontrol/selcontrol",
+                                  "controlAddress": "/reference"
+                                },
+                                "hexMode": false,
+                                "controlAddress": "/#1"
+                              }
+                            ],
+                            "niceName": "#1",
+                            "type": "Integer",
+                            "param": {
+                              "value": 3,
+                              "controlMode": 2,
+                              "reference": {
+                                "value": "/customVariables/image/variables/selcontrol/selcontrol",
+                                "controlAddress": "/reference"
+                              },
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToCamera/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#1/#1"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 21,
+                                "controlMode": 2,
+                                "reference": {
+                                  "value": "/customVariables/image/variables/brigthness/brigthness",
+                                  "controlAddress": "/reference"
+                                },
+                                "hexMode": false,
+                                "controlAddress": "/#2"
+                              }
+                            ],
+                            "niceName": "#2",
+                            "type": "Integer",
+                            "param": {
+                              "value": 21,
+                              "controlMode": 2,
+                              "reference": {
+                                "value": "/customVariables/image/variables/brigthness/brigthness",
+                                "controlAddress": "/reference"
+                              },
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToCamera/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#2/#2"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 23,
+                                "controlMode": 2,
+                                "reference": {
+                                  "value": "/customVariables/image/variables/contrast/contrast",
+                                  "controlAddress": "/reference"
+                                },
+                                "hexMode": false,
+                                "controlAddress": "/#3"
+                              }
+                            ],
+                            "niceName": "#3",
+                            "type": "Integer",
+                            "param": {
+                              "value": 23,
+                              "controlMode": 2,
+                              "reference": {
+                                "value": "/customVariables/image/variables/contrast/contrast",
+                                "controlAddress": "/reference"
+                              },
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToCamera/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#3/#3"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 44,
+                                "controlMode": 2,
+                                "reference": {
+                                  "value": "/customVariables/image/variables/thresh/thresh",
+                                  "controlAddress": "/reference"
+                                },
+                                "hexMode": false,
+                                "controlAddress": "/#4"
+                              }
+                            ],
+                            "niceName": "#4",
+                            "type": "Integer",
+                            "param": {
+                              "value": 44,
+                              "controlMode": 2,
+                              "reference": {
+                                "value": "/customVariables/image/variables/thresh/thresh",
+                                "controlAddress": "/reference"
+                              },
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToCamera/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#4/#4"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 1,
+                                "controlMode": 2,
+                                "reference": {
+                                  "value": "/customVariables/image/variables/reverse/reverse",
+                                  "controlAddress": "/reference"
+                                },
+                                "hexMode": false,
+                                "controlAddress": "/#5"
+                              }
+                            ],
+                            "niceName": "#5",
+                            "type": "Integer",
+                            "param": {
+                              "value": 1,
+                              "controlMode": 2,
+                              "reference": {
+                                "value": "/customVariables/image/variables/reverse/reverse",
+                                "controlAddress": "/reference"
+                              },
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToCamera/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#5/#5"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "controlMode": 2,
+                                "reference": {
+                                  "value": "/customVariables/image/variables/image/image",
+                                  "controlAddress": "/reference"
+                                },
+                                "hexMode": false,
+                                "controlAddress": "/#6"
+                              }
+                            ],
+                            "niceName": "#6",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "controlMode": 2,
+                              "reference": {
+                                "value": "/customVariables/image/variables/image/image",
+                                "controlAddress": "/reference"
+                              },
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToCamera/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#6/#6"
+                            }
+                          }
+                        ],
+                        "viewOffset": [
+                          0,
+                          0
+                        ],
+                        "viewZoom": 1.0
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "control sel +",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button15",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": false,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/selcontrol",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Add",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "control sel -",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button14",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": false,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/selcontrol",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Subtract",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "control sel max",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 3,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/selcontrol",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "control sel min",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "<",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/selcontrol",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 3,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "brigthness +",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button12",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/brigthness",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Add",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "brigthness -",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button13",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 3",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/brigthness",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Subtract",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "brigthness max",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/brigthness",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 100,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/brigthness",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 100,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "brigthness min",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/brigthness",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "<",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/brigthness",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "contrast +",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button12",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 3",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 2,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/contrast",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Add",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "contrast - ",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button13",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 3",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 2,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/contrast",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Subtract",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "contrast max 1",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/contrast",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 100,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/contrast",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 100,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "contrast min",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/contrast",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "<",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/contrast",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "thresh -",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button13",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 3",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 3,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/thresh",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Subtract",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "thresh + ",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button12",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 3",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 3,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/thresh",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Add",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "thresh max",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/thresh",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 255,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/thresh",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 255,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "tresh min",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/thresh",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "<",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/thresh",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "color brigtness",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/dashboards/cameraSettings/dashboard/brigtness/borderColor",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                          ],
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/dashboards/cameraSettings/dashboard/brigtness/borderColor",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "color contrast",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 2,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/dashboards/cameraSettings/dashboard/contrast/borderColor",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                          ],
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/dashboards/cameraSettings/dashboard/contrast/borderColor",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "color thresh",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 3,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/dashboards/cameraSettings/dashboard/thresh/borderColor",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                          ],
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/dashboards/cameraSettings/dashboard/thresh/borderColor",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "image mode",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/image",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Inverse",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "reverse",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button5",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/reverse",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Inverse",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "save",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button7",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": false,
+                        "controlAddress": "/enabled"
+                      }
+                    ],
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Save Preset to file",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/presets/preset",
+                          "controlAddress": "/targetPreset"
+                        },
+                        {
+                          "value": "reglage_camera.json",
+                          "controlAddress": "/file"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": true,
+                        "controlAddress": "/enabled"
+                      }
+                    ],
+                    "niceName": "Consequence 1",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Load Preset from file",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/presets/preset",
+                          "controlAddress": "/targetPreset"
+                        },
+                        {
+                          "value": "reglage_camera.json",
+                          "controlAddress": "/file"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            }
+          ],
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        }
+      },
+      {
+        "parameters": [
+          {
+            "value": true,
+            "controlAddress": "/enabled"
+          },
+          {
+            "value": [
+              -596.0,
+              -1422.0
+            ],
+            "controlAddress": "/viewUIPosition"
+          },
+          {
+            "value": [
+              314.0,
               92.0
             ],
             "controlAddress": "/viewUISize"
@@ -2242,7 +5615,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 201,
+                                "value": 20,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/customVariables/values/control/dir",
@@ -2259,7 +5632,7 @@
                             "niceName": "#3",
                             "type": "Integer",
                             "param": {
-                              "value": 201,
+                              "value": 20,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/customVariables/values/control/dir",
@@ -2354,16 +5727,20 @@
       {
         "parameters": [
           {
+            "value": true,
+            "controlAddress": "/enabled"
+          },
+          {
             "value": [
-              2.0,
+              -4.0,
               -1934.0
             ],
             "controlAddress": "/viewUIPosition"
           },
           {
             "value": [
-              278.0,
-              378.0
+              204.0,
+              401.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -2377,6 +5754,73 @@
         "processors": {
           "items": [
             {
+              "niceName": "dir 0",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscMain/values/_dir",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/0_stop",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
               "niceName": "dir 1",
               "editorIsCollapsed": true,
               "type": "Action",
@@ -2385,7 +5829,7 @@
                   {
                     "parameters": [
                       {
-                        "value": "/modules/osc/values/_dir",
+                        "value": "/modules/oscMain/values/_dir",
                         "controlAddress": "/inputValue"
                       }
                     ],
@@ -2452,7 +5896,7 @@
                   {
                     "parameters": [
                       {
-                        "value": "/modules/osc/values/_dir",
+                        "value": "/modules/oscMain/values/_dir",
                         "controlAddress": "/inputValue"
                       }
                     ],
@@ -2519,7 +5963,7 @@
                   {
                     "parameters": [
                       {
-                        "value": "/modules/osc/values/_dir",
+                        "value": "/modules/oscMain/values/_dir",
                         "controlAddress": "/inputValue"
                       }
                     ],
@@ -2586,7 +6030,7 @@
                   {
                     "parameters": [
                       {
-                        "value": "/modules/osc/values/_dir",
+                        "value": "/modules/oscMain/values/_dir",
                         "controlAddress": "/inputValue"
                       }
                     ],
@@ -2653,7 +6097,7 @@
                   {
                     "parameters": [
                       {
-                        "value": "/modules/osc/values/_dir",
+                        "value": "/modules/oscMain/values/_dir",
                         "controlAddress": "/inputValue"
                       }
                     ],
@@ -2720,7 +6164,7 @@
                   {
                     "parameters": [
                       {
-                        "value": "/modules/osc/values/_dir",
+                        "value": "/modules/oscMain/values/_dir",
                         "controlAddress": "/inputValue"
                       }
                     ],
@@ -2787,7 +6231,7 @@
                   {
                     "parameters": [
                       {
-                        "value": "/modules/osc/values/_dir",
+                        "value": "/modules/oscMain/values/_dir",
                         "controlAddress": "/inputValue"
                       },
                       {
@@ -2858,7 +6302,7 @@
                   {
                     "parameters": [
                       {
-                        "value": "/modules/osc/values/_dir",
+                        "value": "/modules/oscMain/values/_dir",
                         "controlAddress": "/inputValue"
                       }
                     ],
@@ -2925,7 +6369,7 @@
                   {
                     "parameters": [
                       {
-                        "value": "/modules/osc/values/_dir",
+                        "value": "/modules/oscMain/values/_dir",
                         "controlAddress": "/inputValue"
                       }
                     ],
@@ -2992,7 +6436,7 @@
                   {
                     "parameters": [
                       {
-                        "value": "/modules/osc/values/_dir",
+                        "value": "/modules/oscMain/values/_dir",
                         "controlAddress": "/inputValue"
                       }
                     ],
@@ -3059,7 +6503,7 @@
                   {
                     "parameters": [
                       {
-                        "value": "/modules/osc/values/_dir",
+                        "value": "/modules/oscMain/values/_dir",
                         "controlAddress": "/inputValue"
                       }
                     ],
@@ -3126,7 +6570,7 @@
                   {
                     "parameters": [
                       {
-                        "value": "/modules/osc/values/_dir",
+                        "value": "/modules/oscMain/values/_dir",
                         "controlAddress": "/inputValue"
                       }
                     ],
@@ -3194,8 +6638,8 @@
       }
     ],
     "viewOffset": [
-      120,
-      1604
+      99,
+      1507
     ],
     "viewZoom": 1.0,
     "transitions": {
@@ -3209,8 +6653,8 @@
     "comments": {
       "hideInEditor": true,
       "viewOffset": [
-        120,
-        1604
+        99,
+        1507
       ],
       "viewZoom": 1.0
     }

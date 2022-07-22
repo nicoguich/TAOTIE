@@ -21,7 +21,7 @@ control_value=0
 batterie=50
 
 
-cv2.namedWindow("control", cv2.WINDOW_AUTOSIZE)
+
 
 osc_startup()
 osc_udp_client("192.168.100.180", 5005, "raspberry")
@@ -42,10 +42,10 @@ reglage_lines = []
 
 with open("/home/pi/Desktop/reglage_camera.txt") as f:
     reglage_lines = f.readlines()
-brightness=int (reglage_lines[0])
-contrast=int (reglage_lines[1])
-thresh=int(reglage_lines[2])
-reverse=int(reglage_lines[3])
+brightness=int (100)
+contrast=int (50)
+thresh=int(150)
+reverse=int(0)
 print("brightness:" ,brightness, "/contrast: ",contrast,"tresh: ",thresh,"reverse: ",reverse)
 
 
@@ -58,12 +58,10 @@ def control_image(*args):
     global image
     sel_control=args[0]
 
-    if sel_control==1:
-        brightness=args[1]
-    if sel_control==2:
-        contrast=args[2]
-    if sel_control==3:
-        thresh=args[3]
+
+    brightness=args[1]
+    contrast=args[2]
+    thresh=args[3]
     reverse = args[4]
     image = args[5]
     camera.contrast = contrast
@@ -96,7 +94,7 @@ set_analog_gain(camera, 1)
 print("Attempting to set digital gain to 1")
 set_digital_gain(camera, 1)
 
-camera.hflip = True
+camera.hflip = False
 camera.vflip = True
 raw_capture = PiRGBArray(camera, size=(640, 480))
 font = cv2.FONT_HERSHEY_SIMPLEX
@@ -297,28 +295,13 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
         cv2.drawContours(blackAndWhiteImage, [approx], -1,(0,255,0) , 2)
 
 
-    control_image = np.zeros((100,700,3), np.uint8)
-    #cv2.putText(control_image,"batterie :"+str(int(batterie))+"%",(10,150),font,1,(0,0,255),2,cv2.LINE_AA)
-    if sel_control==1:
-        cv2.putText(control_image,"bright :"+str(brightness),(10,50),font,1,(0,0,255),2,cv2.LINE_AA)
-    else:
-        cv2.putText(control_image,"bright :"+str(brightness),(10,50),font,1,(255,0,0),2,cv2.LINE_AA)
-    if sel_control==2:
-        cv2.putText(control_image,"contr :"+str(contrast),(200,50),font,1,(0,0,255),2,cv2.LINE_AA)
-    else:
-        cv2.putText(control_image,"contr :"+str(contrast),(200,50),font,1,(255,0,0),2,cv2.LINE_AA)
-    if sel_control==3:
-        cv2.putText(control_image,"thresh :"+str(thresh),(400,50),font,1,(0,0,255),2,cv2.LINE_AA)
-    else:
-        cv2.putText(control_image,"thresh :"+str(thresh),(400,50),font,1,(255,0,0),2,cv2.LINE_AA)
-
 
     if image==0:
         cv2.imshow('opencv', blackAndWhiteImage)
     if image==1:
         cv2.imshow('opencv', img)
 
-    cv2.imshow('control', control_image)
+
     cv2.moveWindow("opencv", 800, 10)
 
 

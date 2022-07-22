@@ -90,9 +90,9 @@ def alignement():
         speed=speed_perdu
         dir=7
         if sensor[7]==1 and sensor[6]==0 :
-            dir=9
-        if sensor[7]==0 and sensor[6]==1:
             dir=10
+        if sensor[7]==0 and sensor[6]==1:
+            dir=9
         if sensor[7]==1 and sensor[6]==1 and sensor[0]==0 and sensor[1]==0 and sensor[2]==0 :
             etape_perdu=2
             dir=7
@@ -101,10 +101,10 @@ def alignement():
         speed=speed_perdu
         dir=7
         if sensor[11]>0 and sensor[11]<45:
-            dir=10
+            dir=9
 
         if sensor[11]>45 :
-            dir=9
+            dir=10
 
         if sensor[11]==0 or sensor[11]==90:
             print("home_ok")
@@ -119,11 +119,11 @@ def alignement():
     if etape_perdu==4:
 
         if on_ligne_H==1:
-            dir_ligne=14
+            dir_ligne=4
             home_temp=0
 
 
-    send_osc_chataigne(dir)
+
 
 
 ###########################################################################
@@ -183,15 +183,15 @@ def reste_sur_ligne():
     if (go_to==1):
         if (go_toX != coordX):
             if (go_toX<coordX):
-                dir_ligne=14
+                dir_ligne=4
             else:
-                dir_ligne=15
+                dir_ligne=5
 
         else :
             if (go_toY<coordY):
-                dir_ligne=17
+                dir_ligne=7
             else:
-                dir_ligne=12
+                dir_ligne=2
 
         if (go_toX==coordX and go_toY==coordY):
             go_to=0
@@ -211,25 +211,25 @@ def reste_sur_ligne():
 
     speed=speed_control
 
-    if (on_ligne_H==1 and (dir_ligne==14 or dir_ligne==15)):
+    if (on_ligne_H==1 and (dir_ligne==4 or dir_ligne==5)):
         dir = dir_ligne
         if sensor[11]>1 and sensor[11]<45:
             speed=speed_perdu
-            dir=20
+            dir=9
 
         if sensor[11]>45 and sensor[11]<99:
             speed=speed_perdu
-            dir=19
+            dir=10
 
         if sensor[0]==1 and sensor[1]==1 and sensor[2]==1:
             speed=speed_perdu
-            dir=12
+            dir=2
         if sensor[3]==1 and sensor[4]==1 and sensor[5]==1:
             speed=speed_perdu
-            dir=17
+            dir=7
         if sensor[1]==1 and sensor[4]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!= 4:
 
-            if (dir_ligne==14):
+            if (dir_ligne==4):
                 coordX += -1
             else:
                 coordX += 1
@@ -241,7 +241,7 @@ def reste_sur_ligne():
 
 
 
-        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and dir_ligne==14 and sensor[10]==3 and check_bord==0:
+        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and dir_ligne==4 and sensor[10]==3 and check_bord==0:
 
             print("T OUEST")
             coordX = 0
@@ -252,10 +252,10 @@ def reste_sur_ligne():
             on_ligne_V=1
             on_ligne_H=0
             if etape_perdu==4:
-                dir=17
-                dir_ligne=17
+                dir=7
+                dir_ligne=7
 
-        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and dir_ligne==15 and sensor[10]==3 and check_bord==0:
+        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and dir_ligne==5 and sensor[10]==3 and check_bord==0:
             dir=0
             dir_ligne=0
             check_bord=4
@@ -264,9 +264,9 @@ def reste_sur_ligne():
             coordX = max_X
             print("T EST")
 
-        if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and sensor[1]==1 and (dir_ligne==14 or dir_ligne==15) and sensor[10]==3 and check_bord==0:
+        if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and sensor[1]==1 and (dir_ligne==4 or dir_ligne==5) and sensor[10]==3 and check_bord==0:
 
-            if (dir_ligne==14):
+            if (dir_ligne==4):
                 coordX += -1
             else:
                 coordX += 1
@@ -280,9 +280,9 @@ def reste_sur_ligne():
             on_ligne_H=1
             print("T SUD")
 
-        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[4]==1 and (dir_ligne==14 or dir_ligne==15) and sensor[10]==3 and check_bord==0:
+        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[4]==1 and (dir_ligne==4 or dir_ligne==5) and sensor[10]==3 and check_bord==0:
 
-            if (dir_ligne==14):
+            if (dir_ligne==4):
                 coordX += -1
             else:
                 coordX += 1
@@ -295,7 +295,7 @@ def reste_sur_ligne():
             on_ligne_H=1
             print("T NORD")
 
-        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and sensor[4]==1 and dir_ligne==14  and sensor[10]==4 and check_bord==0:
+        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and sensor[4]==1 and dir_ligne==4  and sensor[10]==4 and check_bord==0:
             dir=0
             dir_ligne=0
             check_bord=5
@@ -305,7 +305,7 @@ def reste_sur_ligne():
             coordY= max_Y
             print("COIN NORD OUEST")
 
-        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and sensor[1]==1 and dir_ligne==14  and sensor[10]==4 and check_bord==0:
+        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and sensor[1]==1 and dir_ligne==4  and sensor[10]==4 and check_bord==0:
             dir=0
             dir_ligne=0
             check_bord=6
@@ -315,7 +315,7 @@ def reste_sur_ligne():
             coordY= 0
             print("COIN SUD OUEST")
 
-        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[4]==1 and dir_ligne==15  and sensor[10]==4 and check_bord==0:
+        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[4]==1 and dir_ligne==5  and sensor[10]==4 and check_bord==0:
             dir=0
             dir_ligne=0
             check_bord=7
@@ -325,7 +325,7 @@ def reste_sur_ligne():
             coordY= max_Y
             print("COIN NORD EST")
 
-        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[1]==1 and dir_ligne==15  and sensor[10]==4 and check_bord==0:
+        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[1]==1 and dir_ligne==5  and sensor[10]==4 and check_bord==0:
             dir=0
             dir_ligne=0
             check_bord=8
@@ -339,27 +339,27 @@ def reste_sur_ligne():
 
 
 
-    if (on_ligne_V==1 and (dir_ligne==12 or dir_ligne==17)):
+    if (on_ligne_V==1 and (dir_ligne==2 or dir_ligne==7)):
 
 
         dir = dir_ligne
         if sensor[11]>1 and sensor[11]<45:
             speed=speed_perdu
-            dir=20
+            dir=9
 
         if sensor[11]>45 and sensor[11]<99:
             speed=speed_perdu
-            dir=19
+            dir=10
 
         if sensor[0]==1 and sensor[6]==1 and sensor[3]==1:
             speed=speed_perdu
-            dir=14
+            dir=4
         if sensor[2]==1 and sensor[7]==1 and sensor[5]==1:
             speed=speed_perdu
-            dir=15
+            dir=5
         if sensor[6]==1 and sensor[7]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!=4:
 
-            if (dir_ligne==17):
+            if (dir_ligne==7):
                 coordY += -1
             else:
                 coordY += 1
@@ -370,7 +370,7 @@ def reste_sur_ligne():
         if sensor[10]!=2:
             check_croix=0
 
-        if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and dir_ligne==17 and sensor[10]==3 and check_bord==0 and etape_perdu!=4:
+        if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and dir_ligne==7 and sensor[10]==3 and check_bord==0 and etape_perdu!=4:
             dir=0
             dir_ligne=0
             check_bord=1
@@ -378,7 +378,7 @@ def reste_sur_ligne():
             on_ligne_H=1
             coordY=0
             print("T SUD")
-        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and dir_ligne==12 and sensor[10]==3 and check_bord==0 and etape_perdu!=4:
+        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and dir_ligne==2 and sensor[10]==3 and check_bord==0 and etape_perdu!=4:
             dir=0
             dir_ligne=0
             check_bord=2
@@ -388,9 +388,9 @@ def reste_sur_ligne():
             print("T NORD")
 
 
-        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and sensor[7]==1 and  (dir_ligne==12 or dir_ligne==17) and sensor[10]==3 and check_bord==0 and etape_perdu!=4:
+        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and sensor[7]==1 and  (dir_ligne==2 or dir_ligne==7) and sensor[10]==3 and check_bord==0 and etape_perdu!=4:
 
-            if (dir_ligne==17):
+            if (dir_ligne==7):
                 coordY += -1
             else:
                 coordY += 1
@@ -403,9 +403,9 @@ def reste_sur_ligne():
 
             print("T OUEST")
 
-        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[6]==1 and  (dir_ligne==12 or dir_ligne==17) and sensor[10]==3 and check_bord==0 and etape_perdu!=4:
+        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[6]==1 and  (dir_ligne==2 or dir_ligne==7) and sensor[10]==3 and check_bord==0 and etape_perdu!=4:
 
-            if (dir_ligne==17):
+            if (dir_ligne==7):
                 coordY += -1
             else:
                 coordY += 1
@@ -418,7 +418,7 @@ def reste_sur_ligne():
             coordX = max_X
             print("T EST")
 
-        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[6]==1 and dir_ligne==12  and sensor[10]==4 and check_bord==0:
+        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[6]==1 and dir_ligne==2  and sensor[10]==4 and check_bord==0:
             dir=0
             dir_ligne=0
             check_bord=7
@@ -428,7 +428,7 @@ def reste_sur_ligne():
             coordX = max_X
             print("COIN NORD EST")
 
-        if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and sensor[6]==1 and dir_ligne==17  and sensor[10]==4 and check_bord==0:
+        if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and sensor[6]==1 and dir_ligne==7  and sensor[10]==4 and check_bord==0:
             dir=0
             dir_ligne=0
             check_bord=8
@@ -438,7 +438,7 @@ def reste_sur_ligne():
             coordX = max_X
             print("COIN SUD EST")
 
-        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[7]==1 and dir_ligne==12  and sensor[10]==4 and check_bord==0:
+        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[7]==1 and dir_ligne==2  and sensor[10]==4 and check_bord==0:
             dir=0
             dir_ligne=0
             check_bord=5
@@ -449,7 +449,7 @@ def reste_sur_ligne():
 
             print("COIN NORD OUEST")
 
-        if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and sensor[7]==1 and dir_ligne==17  and sensor[10]==4 and check_bord==0:
+        if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and sensor[7]==1 and dir_ligne==7  and sensor[10]==4 and check_bord==0:
             dir=0
             dir_ligne=0
             check_bord=6
@@ -467,58 +467,58 @@ def reste_sur_ligne():
 
 
 
-    if (check_croix==1 and (dir_ligne==17 or dir_ligne==12)):
+    if (check_croix==1 and (dir_ligne==7 or dir_ligne==2)):
 
         on_ligne_V=1
         on_ligne_H=0
-    if (check_croix==1 and (dir_ligne==14 or dir_ligne==15)):
+    if (check_croix==1 and (dir_ligne==4 or dir_ligne==5)):
 
         on_ligne_V=0
         on_ligne_H=1
-    if (check_bord==1 and dir_ligne==12):
-
-        on_ligne_V=1
-        on_ligne_H=0
-
-    if (check_bord==5 or check_bord== 7) and dir_ligne==17:
+    if (check_bord==1 and dir_ligne==2):
 
         on_ligne_V=1
         on_ligne_H=0
 
-    if (check_bord==6 or check_bord== 8) and dir_ligne==12:
+    if (check_bord==5 or check_bord== 7) and dir_ligne==7:
 
         on_ligne_V=1
         on_ligne_H=0
 
-    if (check_bord==7 or check_bord== 8) and dir_ligne==14:
-
-        on_ligne_V=0
-        on_ligne_H=1
-
-    if (check_bord==5 or check_bord== 6) and dir_ligne==15:
-
-        on_ligne_V=0
-        on_ligne_H=1
-
-
-
-    if (check_bord==2 and dir_ligne==17):
+    if (check_bord==6 or check_bord== 8) and dir_ligne==2:
 
         on_ligne_V=1
         on_ligne_H=0
-    if (check_bord==1 or check_bord==2) and (dir_ligne==14 or dir_ligne==15):
+
+    if (check_bord==7 or check_bord== 8) and dir_ligne==4:
 
         on_ligne_V=0
         on_ligne_H=1
-    if (check_bord==3 and dir_ligne==15):
+
+    if (check_bord==5 or check_bord== 6) and dir_ligne==5:
 
         on_ligne_V=0
         on_ligne_H=1
-    if (check_bord==4 and dir_ligne==14):
+
+
+
+    if (check_bord==2 and dir_ligne==7):
+
+        on_ligne_V=1
+        on_ligne_H=0
+    if (check_bord==1 or check_bord==2) and (dir_ligne==4 or dir_ligne==5):
 
         on_ligne_V=0
         on_ligne_H=1
-    if (check_bord==3 or check_bord==4) and (dir_ligne==12 or dir_ligne==17):
+    if (check_bord==3 and dir_ligne==5):
+
+        on_ligne_V=0
+        on_ligne_H=1
+    if (check_bord==4 and dir_ligne==4):
+
+        on_ligne_V=0
+        on_ligne_H=1
+    if (check_bord==3 or check_bord==4) and (dir_ligne==2 or dir_ligne==7):
 
         on_ligne_V=1
         on_ligne_H=0
@@ -549,6 +549,9 @@ def game_pad(*args):
 
     if home==0:
         home_temp=0
+        etape_perdu=0
+        on_ligne_H=0
+        on_ligne_V=0
 
 
 
@@ -594,7 +597,8 @@ while True:
         alignement()
     if on_ligne_H==1 or on_ligne_V==1:
         reste_sur_ligne()
-
-    #send_serial(dir,step,speed)
+    if dir != dir_temp :
+        send_osc_chataigne(dir)
+        dir_temp=dir
 
 osc_terminate()

@@ -4,5 +4,5 @@
 8: _chkstk + 0x11f
 9: RtlRaiseException + 0x434
 10: KiUserExceptionDispatcher + 0x2e
-24: BaseThreadInitThunk + 0x14
-25: RtlUserThreadStart + 0x21
+40: BaseThreadInitThunk + 0x14
+41: RtlUserThreadStart + 0x21
