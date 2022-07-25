@@ -19,13 +19,19 @@ from set_picamera_gain import set_analog_gain, set_digital_gain
 sel_control=1
 control_value=0
 batterie=50
+brightness_osc=[0]
+contrast_osc=[0]
+thresh_osc=[0]
+reverse_osc=[0]
 
 
+temps= time.time()
 
 
 osc_startup()
 osc_udp_client("192.168.100.180", 5005, "raspberry")
 osc_udp_server("192.168.100.180", 5006, "camera")
+osc_udp_client("192.168.100.180", 5007, "chataigne")
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -42,11 +48,24 @@ reglage_lines = []
 
 with open("/home/pi/Desktop/reglage_camera.txt") as f:
     reglage_lines = f.readlines()
-brightness=int (100)
-contrast=int (50)
-thresh=int(150)
-reverse=int(0)
+brightness=int (reglage_lines[0])
+brightness_osc[0]=int (reglage_lines[0])
+contrast=int (reglage_lines[1])
+contrast_osc[0]=int (reglage_lines[1])
+thresh=int(reglage_lines[2])
+thresh_osc[0]=int (reglage_lines[2])
+reverse=int(reglage_lines[3])
+reverse_osc[0]=int (reglage_lines[3])
 print("brightness:" ,brightness, "/contrast: ",contrast,"tresh: ",thresh,"reverse: ",reverse)
+msg0 = oscbuildparse.OSCMessage("/brightness", None, brightness_osc)
+msg1 = oscbuildparse.OSCMessage("/contrast", None, contrast_osc)
+msg2 = oscbuildparse.OSCMessage("/thresh", None, thresh_osc)
+msg3 = oscbuildparse.OSCMessage("/reverse", None, reverse_osc)
+
+osc_send(msg0, "chataigne")
+osc_send(msg1, "chataigne")
+osc_send(msg2, "chataigne")
+osc_send(msg3, "chataigne")
 
 
 def control_image(*args):
@@ -64,9 +83,22 @@ def control_image(*args):
     thresh=args[3]
     reverse = args[4]
     image = args[5]
+    save = args[6]
     camera.contrast = contrast
     camera.brightness = brightness
-
+    if (save==1) :
+        print("enregistrement reglage camera...")
+        reglage_camera = open("/home/pi/Desktop/reglage_camera.txt","w")
+        print("...")
+        reglage_camera.write(str(int(brightness))+"\n")
+        print("...")
+        reglage_camera.write(str(int(contrast))+"\n")
+        print("...")
+        reglage_camera.write(str(int(thresh))+"\n")
+        print("...")
+        reglage_camera.write(str(int(reverse))+"\n")
+        reglage_camera.close()
+        print("reglage enregistré")
 
 image=0
 
@@ -312,6 +344,15 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
 
     msg = oscbuildparse.OSCMessage("/sensor", None, value_sensor)
     osc_send(msg, "raspberry")
+
+
+    # if time.time()-temps > 1 :
+    #     msg2 = oscbuildparse.OSCMessage("/ping", None, '0')
+    #     osc_send(msg2, "chataigne")
+    #     msg3 = oscbuildparse.OSCMessage("/ping", None, '1')
+    #     osc_send(msg3, "chataigne")
+    #     temps=time.time()
+
     osc_process()
 
 osc_terminate()

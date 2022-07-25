@@ -37,15 +37,6 @@
               "enabled": false
             },
             {
-              "value": [
-                0.168627455830574,
-                0.4392156898975372,
-                0.5254902243614197,
-                0.0
-              ],
-              "controlAddress": "/backgroundColor"
-            },
-            {
               "value": 1.0,
               "controlAddress": "/backgroundImageScale"
             },
@@ -168,10 +159,10 @@
                 },
                 {
                   "value": [
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0
+                    1,
+                    1,
+                    1,
+                    1
                   ],
                   "controlAddress": "/borderColor",
                   "enabled": true
@@ -244,26 +235,26 @@
   "layout": {
     "mainLayout": {
       "type": 1,
-      "width": 1920,
-      "height": 1037,
+      "width": 1922,
+      "height": 1039,
       "direction": 2,
       "shifters": [
         {
           "type": 1,
-          "width": 1920,
-          "height": 1037,
+          "width": 1922,
+          "height": 1039,
           "direction": 1,
           "shifters": [
             {
               "type": 1,
               "width": 361,
-              "height": 1037,
+              "height": 1039,
               "direction": 2,
               "shifters": [
                 {
                   "type": 0,
                   "width": 361,
-                  "height": 351,
+                  "height": 352,
                   "currentContent": "Modules",
                   "tabs": [
                     {
@@ -274,7 +265,7 @@
                 {
                   "type": 0,
                   "width": 361,
-                  "height": 410,
+                  "height": 411,
                   "currentContent": "Custom Variables",
                   "tabs": [
                     {
@@ -303,9 +294,9 @@
             },
             {
               "type": 0,
-              "width": 1032,
-              "height": 1037,
-              "currentContent": "Dashboard",
+              "width": 1034,
+              "height": 1039,
+              "currentContent": "State Machine",
               "tabs": [
                 {
                   "name": "State Machine"
@@ -324,7 +315,7 @@
             {
               "type": 0,
               "width": 515,
-              "height": 1037,
+              "height": 1039,
               "currentContent": "Inspector",
               "tabs": [
                 {
@@ -562,6 +553,30 @@
         "values": {
           "parameters": [
             {
+              "hexMode": false,
+              "controlAddress": "/_brightness",
+              "type": "Integer",
+              "niceName": "/brightness",
+              "customizable": true,
+              "removable": true,
+              "description": "",
+              "hideInEditor": false,
+              "feedbackOnly": false,
+              "shortName": "_brightness"
+            },
+            {
+              "hexMode": false,
+              "controlAddress": "/_contrast",
+              "type": "Integer",
+              "niceName": "/contrast",
+              "customizable": true,
+              "removable": true,
+              "description": "",
+              "hideInEditor": false,
+              "feedbackOnly": false,
+              "shortName": "_contrast"
+            },
+            {
               "value": 0,
               "hexMode": false,
               "controlAddress": "/_dir",
@@ -573,11 +588,53 @@
               "hideInEditor": false,
               "feedbackOnly": false,
               "shortName": "_dir"
+            },
+            {
+              "value": "1",
+              "controlAddress": "/_ping",
+              "type": "String",
+              "niceName": "/ping",
+              "customizable": true,
+              "removable": true,
+              "description": "",
+              "hideInEditor": false,
+              "feedbackOnly": false,
+              "shortName": "_ping"
+            },
+            {
+              "hexMode": false,
+              "controlAddress": "/_reverse",
+              "type": "Integer",
+              "niceName": "/reverse",
+              "customizable": true,
+              "removable": true,
+              "description": "",
+              "hideInEditor": false,
+              "feedbackOnly": false,
+              "shortName": "_reverse"
+            },
+            {
+              "hexMode": false,
+              "controlAddress": "/_thresh",
+              "type": "Integer",
+              "niceName": "/thresh",
+              "customizable": true,
+              "removable": true,
+              "description": "",
+              "hideInEditor": false,
+              "feedbackOnly": false,
+              "shortName": "_thresh"
             }
           ]
         }
       },
       {
+        "parameters": [
+          {
+            "value": true,
+            "controlAddress": "/logOutgoing"
+          }
+        ],
         "niceName": "OSC camera",
         "type": "OSC",
         "scripts": {
@@ -665,7 +722,7 @@
             {
               "parameters": [
                 {
-                  "value": 20,
+                  "value": 201,
                   "hexMode": false,
                   "controlAddress": "/dir",
                   "feedbackOnly": false,
@@ -725,7 +782,7 @@
             {
               "parameters": [
                 {
-                  "value": 21,
+                  "value": 70,
                   "hexMode": false,
                   "controlAddress": "/brigthness",
                   "feedbackOnly": false,
@@ -744,7 +801,7 @@
             {
               "parameters": [
                 {
-                  "value": 23,
+                  "value": 30,
                   "hexMode": false,
                   "controlAddress": "/contrast",
                   "feedbackOnly": false,
@@ -763,7 +820,7 @@
             {
               "parameters": [
                 {
-                  "value": 44,
+                  "value": 60,
                   "hexMode": false,
                   "controlAddress": "/thresh",
                   "feedbackOnly": false,
@@ -801,7 +858,7 @@
             {
               "parameters": [
                 {
-                  "value": true,
+                  "value": false,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": false,
@@ -839,6 +896,27 @@
               "niceName": "image",
               "editorIsCollapsed": true,
               "type": "Bool Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "value": false,
+                  "minValue": 0,
+                  "maxValue": 1,
+                  "default": false,
+                  "controlAddress": "/save",
+                  "feedbackOnly": false,
+                  "type": "Boolean",
+                  "niceName": "save",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Boolean",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "save",
+              "editorIsCollapsed": true,
+              "type": "Bool Parameter"
             }
           ],
           "viewOffset": [
@@ -848,91 +926,6 @@
           "viewZoom": 1.0
         },
         "presets": {
-          "items": [
-            {
-              "parameters": [
-                {
-                  "value": [
-                    0.6470588445663452,
-                    1.0,
-                    0.0,
-                    1.0
-                  ],
-                  "controlAddress": "/color"
-                }
-              ],
-              "niceName": "Preset",
-              "type": "MorphTarget",
-              "values": {
-                "containers": {
-                  "brigthness": {
-                    "parameters": [
-                      {
-                        "value": 21,
-                        "hexMode": false,
-                        "controlAddress": "/brigthness"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "brigthness"
-                  },
-                  "contrast": {
-                    "parameters": [
-                      {
-                        "value": 23,
-                        "hexMode": false,
-                        "controlAddress": "/contrast"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "contrast"
-                  },
-                  "thresh": {
-                    "parameters": [
-                      {
-                        "value": 44,
-                        "hexMode": false,
-                        "controlAddress": "/thresh"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "thresh"
-                  },
-                  "selcontrol": {
-                    "parameters": [
-                      {
-                        "value": 3,
-                        "hexMode": false,
-                        "controlAddress": "/selcontrol"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "selcontrol"
-                  },
-                  "reverse": {
-                    "parameters": [
-                      {
-                        "value": true,
-                        "controlAddress": "/reverse"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "reverse"
-                  },
-                  "image": {
-                    "parameters": [
-                      {
-                        "value": true,
-                        "controlAddress": "/image"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "image"
-                  }
-                }
-              }
-            }
-          ],
           "viewOffset": [
             0,
             0
@@ -2783,6 +2776,10 @@
                         "controlAddress": "/inputValue"
                       },
                       {
+                        "value": false,
+                        "controlAddress": "/toggleMode"
+                      },
+                      {
                         "value": true,
                         "controlAddress": "/alwaysTrigger"
                       }
@@ -2809,6 +2806,10 @@
                       {
                         "value": "/customVariables/customVariables/values/image/contrast",
                         "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": false,
+                        "controlAddress": "/toggleMode"
                       },
                       {
                         "value": true,
@@ -2839,6 +2840,10 @@
                         "controlAddress": "/inputValue"
                       },
                       {
+                        "value": false,
+                        "controlAddress": "/toggleMode"
+                      },
+                      {
                         "value": true,
                         "controlAddress": "/alwaysTrigger"
                       }
@@ -2865,6 +2870,10 @@
                       {
                         "value": "/customVariables/customVariables/values/image/reverse",
                         "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": false,
+                        "controlAddress": "/toggleMode"
                       },
                       {
                         "value": true,
@@ -2894,6 +2903,10 @@
                         "controlAddress": "/inputValue"
                       },
                       {
+                        "value": false,
+                        "controlAddress": "/toggleMode"
+                      },
+                      {
                         "value": true,
                         "controlAddress": "/alwaysTrigger"
                       }
@@ -2913,6 +2926,37 @@
                       ],
                       "hideInEditor": true
                     }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/save",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": false,
+                        "controlAddress": "/toggleMode"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 5",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
                   }
                 ],
                 "viewOffset": [
@@ -2922,6 +2966,12 @@
                 "viewZoom": 1.0
               },
               "consequences": {
+                "parameters": [
+                  {
+                    "value": 0.009999999776482582,
+                    "controlAddress": "/delay"
+                  }
+                ],
                 "items": [
                   {
                     "niceName": "Consequence",
@@ -2969,7 +3019,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 21,
+                                "value": 70,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/brigthness/brigthness",
@@ -2982,7 +3032,7 @@
                             "niceName": "#2",
                             "type": "Integer",
                             "param": {
-                              "value": 21,
+                              "value": 70,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/brigthness/brigthness",
@@ -2995,7 +3045,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 23,
+                                "value": 30,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/contrast/contrast",
@@ -3008,7 +3058,7 @@
                             "niceName": "#3",
                             "type": "Integer",
                             "param": {
-                              "value": 23,
+                              "value": 30,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/contrast/contrast",
@@ -3021,7 +3071,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 44,
+                                "value": 60,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/thresh/thresh",
@@ -3034,7 +3084,7 @@
                             "niceName": "#4",
                             "type": "Integer",
                             "param": {
-                              "value": 44,
+                              "value": 60,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/thresh/thresh",
@@ -3047,7 +3097,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 1,
+                                "value": 0,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/reverse/reverse",
@@ -3060,7 +3110,7 @@
                             "niceName": "#5",
                             "type": "Integer",
                             "param": {
-                              "value": 1,
+                              "value": 0,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/reverse/reverse",
@@ -3094,6 +3144,32 @@
                               },
                               "hexMode": false,
                               "controlAddress": "/states/game_padToCamera/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#6/#6"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "controlMode": 2,
+                                "reference": {
+                                  "value": "/customVariables/image/variables/save/save",
+                                  "controlAddress": "/reference"
+                                },
+                                "hexMode": false,
+                                "controlAddress": "/#7"
+                              }
+                            ],
+                            "niceName": "#7",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "controlMode": 2,
+                              "reference": {
+                                "value": "/customVariables/image/variables/save/save",
+                                "controlAddress": "/reference"
+                              },
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToCamera/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#7/#7"
                             }
                           }
                         ],
@@ -4857,10 +4933,10 @@
                         },
                         {
                           "value": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
+                            1,
+                            1,
+                            1,
+                            1
                           ],
                           "controlAddress": "/value"
                         }
@@ -4968,10 +5044,10 @@
                         },
                         {
                           "value": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
+                            1,
+                            1,
+                            1,
+                            1
                           ],
                           "controlAddress": "/value"
                         }
@@ -5079,10 +5155,10 @@
                         },
                         {
                           "value": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
+                            1,
+                            1,
+                            1,
+                            1
                           ],
                           "controlAddress": "/value"
                         }
@@ -5415,7 +5491,7 @@
                   {
                     "parameters": [
                       {
-                        "value": false,
+                        "value": true,
                         "controlAddress": "/enabled"
                       }
                     ],
@@ -5423,43 +5499,24 @@
                     "type": "Consequence",
                     "commandModule": "customVariables",
                     "commandPath": "",
-                    "commandType": "Save Preset to file",
+                    "commandType": "Set Value",
                     "command": {
                       "parameters": [
                         {
-                          "value": "/image/presets/preset",
-                          "controlAddress": "/targetPreset"
+                          "value": "/image/save",
+                          "controlAddress": "/target"
                         },
                         {
-                          "value": "reglage_camera.json",
-                          "controlAddress": "/file"
-                        }
-                      ],
-                      "paramLinks": {
-                      }
-                    }
-                  },
-                  {
-                    "parameters": [
-                      {
-                        "value": true,
-                        "controlAddress": "/enabled"
-                      }
-                    ],
-                    "niceName": "Consequence 1",
-                    "type": "Consequence",
-                    "commandModule": "customVariables",
-                    "commandPath": "",
-                    "commandType": "Load Preset from file",
-                    "command": {
-                      "parameters": [
-                        {
-                          "value": "/image/presets/preset",
-                          "controlAddress": "/targetPreset"
+                          "value": "All",
+                          "controlAddress": "/component"
                         },
                         {
-                          "value": "reglage_camera.json",
-                          "controlAddress": "/file"
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/value"
                         }
                       ],
                       "paramLinks": {
@@ -5474,6 +5531,33 @@
                 "viewZoom": 1.0
               },
               "consequencesOff": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/save",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
                 "viewOffset": [
                   0,
                   0
@@ -5615,7 +5699,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 20,
+                                "value": 201,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/customVariables/values/control/dir",
@@ -5632,7 +5716,7 @@
                             "niceName": "#3",
                             "type": "Integer",
                             "param": {
-                              "value": 20,
+                              "value": 201,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/customVariables/values/control/dir",
@@ -5732,15 +5816,15 @@
           },
           {
             "value": [
-              -4.0,
+              7.0,
               -1934.0
             ],
             "controlAddress": "/viewUIPosition"
           },
           {
             "value": [
-              204.0,
-              401.0
+              267.0,
+              485.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -6627,6 +6711,289 @@
                 ],
                 "viewZoom": 1.0
               }
+            },
+            {
+              "niceName": "reglage camera",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "parameters": [
+                  {
+                    "value": "OR",
+                    "controlAddress": "/operator"
+                  }
+                ],
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscMain/values/_brightness",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscMain/values/_contrast",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscMain/values/_thresh",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscMain/values/_reverse",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 3",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/brigthness",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "controlMode": 2,
+                          "reference": {
+                            "value": "/modules/oscMain/values/_brightness",
+                            "controlAddress": "/reference"
+                          },
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  },
+                  {
+                    "niceName": "Consequence 1",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/contrast",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "controlMode": 2,
+                          "reference": {
+                            "value": "/modules/oscMain/values/_contrast",
+                            "controlAddress": "/reference"
+                          },
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  },
+                  {
+                    "niceName": "Consequence 2",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/thresh",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "controlMode": 2,
+                          "reference": {
+                            "value": "/modules/oscMain/values/_thresh",
+                            "controlAddress": "/reference"
+                          },
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  },
+                  {
+                    "niceName": "Consequence 3",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/image/reverse",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "controlMode": 2,
+                          "reference": {
+                            "value": "/modules/oscMain/values/_reverse",
+                            "controlAddress": "/reference"
+                          },
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
             }
           ],
           "viewOffset": [
@@ -6639,7 +7006,7 @@
     ],
     "viewOffset": [
       99,
-      1507
+      1624
     ],
     "viewZoom": 1.0,
     "transitions": {
@@ -6654,7 +7021,7 @@
       "hideInEditor": true,
       "viewOffset": [
         99,
-        1507
+        1624
       ],
       "viewZoom": 1.0
     }
