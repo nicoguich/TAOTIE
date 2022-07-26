@@ -132,12 +132,12 @@ switch (int(dir)) {
 
  
       case 9 :
-      rotateLeft();
+      rotateRight();
       break;
 
 
       case 10 :
-      rotateRight();
+      rotateLeft();
       break;
 
 

@@ -235,26 +235,26 @@
   "layout": {
     "mainLayout": {
       "type": 1,
-      "width": 1922,
-      "height": 1039,
+      "width": 1920,
+      "height": 1037,
       "direction": 2,
       "shifters": [
         {
           "type": 1,
-          "width": 1922,
-          "height": 1039,
+          "width": 1920,
+          "height": 1037,
           "direction": 1,
           "shifters": [
             {
               "type": 1,
               "width": 361,
-              "height": 1039,
+              "height": 1037,
               "direction": 2,
               "shifters": [
                 {
                   "type": 0,
                   "width": 361,
-                  "height": 352,
+                  "height": 351,
                   "currentContent": "Modules",
                   "tabs": [
                     {
@@ -265,18 +265,21 @@
                 {
                   "type": 0,
                   "width": 361,
-                  "height": 411,
-                  "currentContent": "Custom Variables",
+                  "height": 410,
+                  "currentContent": "Sequences",
                   "tabs": [
                     {
                       "name": "Custom Variables"
+                    },
+                    {
+                      "name": "Sequences"
                     }
                   ]
                 },
                 {
                   "type": 0,
                   "width": 361,
-                  "height": 263,
+                  "height": 262,
                   "currentContent": "Logger",
                   "tabs": [
                     {
@@ -294,8 +297,8 @@
             },
             {
               "type": 0,
-              "width": 1034,
-              "height": 1039,
+              "width": 1032,
+              "height": 1037,
               "currentContent": "State Machine",
               "tabs": [
                 {
@@ -309,13 +312,16 @@
                 },
                 {
                   "name": "Morpher"
+                },
+                {
+                  "name": "Sequence Editor"
                 }
               ]
             },
             {
               "type": 0,
               "width": 515,
-              "height": 1039,
+              "height": 1037,
               "currentContent": "Inspector",
               "tabs": [
                 {
@@ -455,7 +461,7 @@
       {
         "parameters": [
           {
-            "value": true,
+            "value": false,
             "controlAddress": "/logIncoming"
           }
         ],
@@ -553,6 +559,7 @@
         "values": {
           "parameters": [
             {
+              "value": 70,
               "hexMode": false,
               "controlAddress": "/_brightness",
               "type": "Integer",
@@ -565,6 +572,7 @@
               "shortName": "_brightness"
             },
             {
+              "value": 30,
               "hexMode": false,
               "controlAddress": "/_contrast",
               "type": "Integer",
@@ -590,18 +598,6 @@
               "shortName": "_dir"
             },
             {
-              "value": "1",
-              "controlAddress": "/_ping",
-              "type": "String",
-              "niceName": "/ping",
-              "customizable": true,
-              "removable": true,
-              "description": "",
-              "hideInEditor": false,
-              "feedbackOnly": false,
-              "shortName": "_ping"
-            },
-            {
               "hexMode": false,
               "controlAddress": "/_reverse",
               "type": "Integer",
@@ -614,6 +610,7 @@
               "shortName": "_reverse"
             },
             {
+              "value": 167,
               "hexMode": false,
               "controlAddress": "/_thresh",
               "type": "Integer",
@@ -624,6 +621,29 @@
               "hideInEditor": false,
               "feedbackOnly": false,
               "shortName": "_thresh"
+            },
+            {
+              "value": 1,
+              "hexMode": false,
+              "controlAddress": "/_ping_cam",
+              "type": "Integer",
+              "niceName": "/ping_cam",
+              "customizable": true,
+              "removable": true,
+              "description": "",
+              "hideInEditor": false,
+              "feedbackOnly": false
+            },
+            {
+              "hexMode": false,
+              "controlAddress": "/_ping_main",
+              "type": "Integer",
+              "niceName": "/ping_main",
+              "customizable": true,
+              "removable": true,
+              "description": "",
+              "hideInEditor": false,
+              "feedbackOnly": false
             }
           ]
         }
@@ -701,6 +721,30 @@
         },
         "values": {
           "hideInEditor": true
+        }
+      },
+      {
+        "niceName": "OS",
+        "type": "OS",
+        "scripts": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "params": {
+          "containers": {
+            "appControl": {
+            }
+          }
+        },
+        "templates": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
         }
       }
     ],
@@ -820,7 +864,7 @@
             {
               "parameters": [
                 {
-                  "value": 60,
+                  "value": 167,
                   "hexMode": false,
                   "controlAddress": "/thresh",
                   "feedbackOnly": false,
@@ -2138,7 +2182,7 @@
               }
             },
             {
-              "niceName": "9_rotate left",
+              "niceName": "9_rotate right",
               "editorIsCollapsed": true,
               "type": "Action",
               "conditions": {
@@ -2155,7 +2199,7 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": ">",
+                          "value": "<",
                           "controlAddress": "/comparisonFunction"
                         },
                         {
@@ -2178,11 +2222,11 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "<",
+                          "value": ">",
                           "controlAddress": "/comparisonFunction"
                         },
                         {
-                          "value": -0.5,
+                          "value": 0.5,
                           "controlAddress": "/reference"
                         }
                       ],
@@ -2244,7 +2288,7 @@
               }
             },
             {
-              "niceName": "10_rotate right",
+              "niceName": "10_rotate left",
               "editorIsCollapsed": true,
               "type": "Action",
               "conditions": {
@@ -2261,7 +2305,7 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "<",
+                          "value": ">",
                           "controlAddress": "/comparisonFunction"
                         },
                         {
@@ -2284,11 +2328,11 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": ">",
+                          "value": "<",
                           "controlAddress": "/comparisonFunction"
                         },
                         {
-                          "value": 0.5,
+                          "value": -0.5,
                           "controlAddress": "/reference"
                         }
                       ],
@@ -2585,7 +2629,7 @@
           {
             "value": [
               314.0,
-              91.0
+              114.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -2698,6 +2742,164 @@
                               "value": 1,
                               "hexMode": false,
                               "controlAddress": "/states/game_padToMain/processors/home/consequencesTRUE/consequence/command/arguments/#1/#1"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "hexMode": false,
+                                "controlAddress": "/#2"
+                              }
+                            ],
+                            "niceName": "#2",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToMain/processors/home/consequencesTRUE/consequence/command/arguments/#2/#2"
+                            }
+                          }
+                        ],
+                        "viewOffset": [
+                          0,
+                          0
+                        ],
+                        "viewZoom": 1.0
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "start",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button7",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "<",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "oscMain",
+                    "commandPath": "",
+                    "commandType": "Custom Message",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/game_pad",
+                          "controlAddress": "/address"
+                        }
+                      ],
+                      "paramLinks": {
+                      },
+                      "argManager": {
+                        "items": [
+                          {
+                            "parameters": [
+                              {
+                                "value": 2,
+                                "hexMode": false,
+                                "controlAddress": "/#1"
+                              }
+                            ],
+                            "niceName": "#1",
+                            "type": "Integer",
+                            "param": {
+                              "value": 2,
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToMain/processors/start/consequencesTRUE/consequence/command/arguments/#1/#1"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 1,
+                                "hexMode": false,
+                                "controlAddress": "/#2"
+                              }
+                            ],
+                            "niceName": "#2",
+                            "type": "Integer",
+                            "param": {
+                              "value": 1,
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToMain/processors/start/consequencesTRUE/consequence/command/arguments/#2/#2"
                             }
                           }
                         ],
@@ -3071,7 +3273,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 60,
+                                "value": 167,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/thresh/thresh",
@@ -3084,7 +3286,7 @@
                             "niceName": "#4",
                             "type": "Integer",
                             "param": {
-                              "value": 60,
+                              "value": 167,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/thresh/thresh",
@@ -5582,7 +5784,7 @@
           {
             "value": [
               -596.0,
-              -1422.0
+              -1399.0
             ],
             "controlAddress": "/viewUIPosition"
           },
@@ -6488,7 +6690,7 @@
                     "command": {
                       "parameters": [
                         {
-                          "value": "/states/game_padToTeensy/processors/9_rotateLeft",
+                          "value": "/states/game_padToTeensy/processors/9_rotateRight",
                           "controlAddress": "/target"
                         }
                       ],
@@ -6555,7 +6757,7 @@
                     "command": {
                       "parameters": [
                         {
-                          "value": "/states/game_padToTeensy/processors/10_rotateRight",
+                          "value": "/states/game_padToTeensy/processors/10_rotateLeft",
                           "controlAddress": "/target"
                         }
                       ],
@@ -6866,6 +7068,7 @@
                           "controlAddress": "/operator"
                         },
                         {
+                          "value": 70,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_brightness",
@@ -6900,6 +7103,7 @@
                           "controlAddress": "/operator"
                         },
                         {
+                          "value": 30,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_contrast",
@@ -6934,6 +7138,7 @@
                           "controlAddress": "/operator"
                         },
                         {
+                          "value": 167,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_thresh",
@@ -6994,6 +7199,148 @@
                 ],
                 "viewZoom": 1.0
               }
+            },
+            {
+              "niceName": "ping cam",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscMain/values/_ping_cam",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "sequences",
+                    "commandPath": "Playback",
+                    "commandType": "Play Sequence",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/sequences/check_pingCam",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/playFromStart"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "ping main",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscMain/values/_ping_main",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "sequences",
+                    "commandPath": "Playback",
+                    "commandType": "Play Sequence",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/sequences/check_pingMain",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/playFromStart"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
             }
           ],
           "viewOffset": [
@@ -7027,6 +7374,211 @@
     }
   },
   "sequences": {
+    "items": [
+      {
+        "parameters": [
+          {
+            "value": true,
+            "controlAddress": "/playAtLoad"
+          },
+          {
+            "value": 2.0,
+            "controlAddress": "/totalTime"
+          },
+          {
+            "value": 2.0,
+            "controlAddress": "/viewEndTime"
+          }
+        ],
+        "niceName": "check_ping cam",
+        "type": "Sequence",
+        "layers": {
+          "hideInEditor": true,
+          "items": [
+            {
+              "parameters": [
+                {
+                  "value": 60.0,
+                  "controlAddress": "/listSize"
+                },
+                {
+                  "value": 60,
+                  "hexMode": false,
+                  "controlAddress": "/uiHeight"
+                }
+              ],
+              "niceName": "Trigger",
+              "type": "Trigger",
+              "triggers": {
+                "hideInEditor": true,
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": 1.960000038146973,
+                        "controlAddress": "/time"
+                      },
+                      {
+                        "value": 0.4833333194255829,
+                        "controlAddress": "/flagY"
+                      }
+                    ],
+                    "niceName": "start cam",
+                    "type": "BaseItem",
+                    "consequences": {
+                      "items": [
+                        {
+                          "niceName": "Consequence",
+                          "type": "Consequence",
+                          "commandModule": "os",
+                          "commandPath": "Process",
+                          "commandType": "Launch Command",
+                          "command": {
+                            "parameters": [
+                              {
+                                "value": "unset PYTHONHOME\nbash /home/pi/Desktop/start_cam.sh",
+                                "controlAddress": "/command"
+                              }
+                            ],
+                            "paramLinks": {
+                            }
+                          }
+                        }
+                      ],
+                      "viewOffset": [
+                        0,
+                        0
+                      ],
+                      "viewZoom": 1.0
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            }
+          ],
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "cues": {
+          "hideInEditor": true,
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        }
+      },
+      {
+        "parameters": [
+          {
+            "value": true,
+            "controlAddress": "/playAtLoad"
+          },
+          {
+            "value": 2.0,
+            "controlAddress": "/totalTime"
+          },
+          {
+            "value": 2.0,
+            "controlAddress": "/viewEndTime"
+          }
+        ],
+        "niceName": "check_ping main",
+        "type": "Sequence",
+        "layers": {
+          "hideInEditor": true,
+          "items": [
+            {
+              "parameters": [
+                {
+                  "value": 60.0,
+                  "controlAddress": "/listSize"
+                },
+                {
+                  "value": 60,
+                  "hexMode": false,
+                  "controlAddress": "/uiHeight"
+                }
+              ],
+              "niceName": "Trigger",
+              "type": "Trigger",
+              "triggers": {
+                "hideInEditor": true,
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": 1.960000038146973,
+                        "controlAddress": "/time"
+                      },
+                      {
+                        "value": 0.4833333194255829,
+                        "controlAddress": "/flagY"
+                      }
+                    ],
+                    "niceName": "start main",
+                    "type": "BaseItem",
+                    "consequences": {
+                      "items": [
+                        {
+                          "niceName": "Consequence",
+                          "type": "Consequence",
+                          "commandModule": "os",
+                          "commandPath": "Process",
+                          "commandType": "Launch Command",
+                          "command": {
+                            "parameters": [
+                              {
+                                "value": "unset PYTHONHOME\nbash /home/pi/Desktop/start_main.sh",
+                                "controlAddress": "/command"
+                              }
+                            ],
+                            "paramLinks": {
+                            }
+                          }
+                        }
+                      ],
+                      "viewOffset": [
+                        0,
+                        0
+                      ],
+                      "viewZoom": 1.0
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            }
+          ],
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "cues": {
+          "hideInEditor": true,
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "editing": true
+      }
+    ],
     "viewOffset": [
       0,
       0
