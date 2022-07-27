@@ -235,26 +235,26 @@
   "layout": {
     "mainLayout": {
       "type": 1,
-      "width": 1920,
-      "height": 1037,
+      "width": 1534,
+      "height": 867,
       "direction": 2,
       "shifters": [
         {
           "type": 1,
-          "width": 1920,
-          "height": 1037,
+          "width": 1534,
+          "height": 867,
           "direction": 1,
           "shifters": [
             {
               "type": 1,
               "width": 361,
-              "height": 1037,
+              "height": 867,
               "direction": 2,
               "shifters": [
                 {
                   "type": 0,
                   "width": 361,
-                  "height": 351,
+                  "height": 295,
                   "currentContent": "Modules",
                   "tabs": [
                     {
@@ -265,7 +265,7 @@
                 {
                   "type": 0,
                   "width": 361,
-                  "height": 410,
+                  "height": 354,
                   "currentContent": "Sequences",
                   "tabs": [
                     {
@@ -279,7 +279,7 @@
                 {
                   "type": 0,
                   "width": 361,
-                  "height": 262,
+                  "height": 206,
                   "currentContent": "Logger",
                   "tabs": [
                     {
@@ -297,8 +297,8 @@
             },
             {
               "type": 0,
-              "width": 1032,
-              "height": 1037,
+              "width": 646,
+              "height": 867,
               "currentContent": "State Machine",
               "tabs": [
                 {
@@ -321,7 +321,7 @@
             {
               "type": 0,
               "width": 515,
-              "height": 1037,
+              "height": 867,
               "currentContent": "Inspector",
               "tabs": [
                 {
@@ -461,6 +461,10 @@
       {
         "parameters": [
           {
+            "value": true,
+            "controlAddress": "/enabled"
+          },
+          {
             "value": false,
             "controlAddress": "/logIncoming"
           }
@@ -559,7 +563,7 @@
         "values": {
           "parameters": [
             {
-              "value": 70,
+              "value": 61,
               "hexMode": false,
               "controlAddress": "/_brightness",
               "type": "Integer",
@@ -572,7 +576,7 @@
               "shortName": "_brightness"
             },
             {
-              "value": 30,
+              "value": 55,
               "hexMode": false,
               "controlAddress": "/_contrast",
               "type": "Integer",
@@ -598,6 +602,7 @@
               "shortName": "_dir"
             },
             {
+              "value": 1,
               "hexMode": false,
               "controlAddress": "/_reverse",
               "type": "Integer",
@@ -610,7 +615,7 @@
               "shortName": "_reverse"
             },
             {
-              "value": 167,
+              "value": 195,
               "hexMode": false,
               "controlAddress": "/_thresh",
               "type": "Integer",
@@ -845,7 +850,7 @@
             {
               "parameters": [
                 {
-                  "value": 30,
+                  "value": 0,
                   "hexMode": false,
                   "controlAddress": "/contrast",
                   "feedbackOnly": false,
@@ -864,7 +869,7 @@
             {
               "parameters": [
                 {
-                  "value": 167,
+                  "value": 160,
                   "hexMode": false,
                   "controlAddress": "/thresh",
                   "feedbackOnly": false,
@@ -1002,14 +1007,14 @@
           {
             "value": [
               -596.0,
-              -1934.0
+              -1996.0
             ],
             "controlAddress": "/viewUIPosition"
           },
           {
             "value": [
-              314.0,
-              401.0
+              340.0,
+              439.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -1485,64 +1490,6 @@
                         }
                       ],
                       "paramLinks": {
-                      }
-                    }
-                  },
-                  {
-                    "niceName": "Consequence 1",
-                    "type": "Consequence",
-                    "commandModule": "oscMain",
-                    "commandPath": "",
-                    "commandType": "Custom Message",
-                    "command": {
-                      "parameters": [
-                        {
-                          "value": "/game_pad",
-                          "controlAddress": "/address"
-                        }
-                      ],
-                      "paramLinks": {
-                      },
-                      "argManager": {
-                        "items": [
-                          {
-                            "parameters": [
-                              {
-                                "value": 0,
-                                "hexMode": false,
-                                "controlAddress": "/#1"
-                              }
-                            ],
-                            "niceName": "#1",
-                            "type": "Integer",
-                            "param": {
-                              "value": 0,
-                              "hexMode": false,
-                              "controlAddress": "/states/game_padToTeensy/processors/2_forward/consequencesTRUE/consequence1/command/arguments/#1/#1"
-                            }
-                          },
-                          {
-                            "parameters": [
-                              {
-                                "value": 0,
-                                "hexMode": false,
-                                "controlAddress": "/#2"
-                              }
-                            ],
-                            "niceName": "#2",
-                            "type": "Integer",
-                            "param": {
-                              "value": 0,
-                              "hexMode": false,
-                              "controlAddress": "/states/game_padToTeensy/processors/2_forward/consequencesTRUE/consequence1/command/arguments/#2/#2"
-                            }
-                          }
-                        ],
-                        "viewOffset": [
-                          0,
-                          0
-                        ],
-                        "viewZoom": 1.0
                       }
                     }
                   }
@@ -2638,14 +2585,14 @@
           {
             "value": [
               -596.0,
-              -1523.0
+              -1547.0
             ],
             "controlAddress": "/viewUIPosition"
           },
           {
             "value": [
-              314.0,
-              114.0
+              340.0,
+              143.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -2836,6 +2783,33 @@
                   {
                     "parameters": [
                       {
+                        "value": "/modules/gamepad/values/buttons/button5",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
                         "value": "/modules/gamepad/values/axes/axis6",
                         "controlAddress": "/inputValue"
                       },
@@ -2941,6 +2915,132 @@
                 ],
                 "viewZoom": 1.0
               }
+            },
+            {
+              "niceName": "mode manuel",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button5",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button7",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "oscMain",
+                    "commandPath": "",
+                    "commandType": "Custom Message",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/game_pad",
+                          "controlAddress": "/address"
+                        }
+                      ],
+                      "paramLinks": {
+                      },
+                      "argManager": {
+                        "items": [
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "hexMode": false,
+                                "controlAddress": "/#1"
+                              }
+                            ],
+                            "niceName": "#1",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToMain/processors/modeManuel/consequencesTRUE/consequence/command/arguments/#1/#1"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "hexMode": false,
+                                "controlAddress": "/#2"
+                              }
+                            ],
+                            "niceName": "#2",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToMain/processors/modeManuel/consequencesTRUE/consequence/command/arguments/#2/#2"
+                            }
+                          }
+                        ],
+                        "viewOffset": [
+                          0,
+                          0
+                        ],
+                        "viewZoom": 1.0
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
             }
           ],
           "viewOffset": [
@@ -2954,8 +3054,8 @@
         "parameters": [
           {
             "value": [
-              -272.0,
-              -1934.0
+              -246.0,
+              -1996.0
             ],
             "controlAddress": "/viewUIPosition"
           },
@@ -3263,7 +3363,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 30,
+                                "value": 0,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/contrast/contrast",
@@ -3276,7 +3376,7 @@
                             "niceName": "#3",
                             "type": "Integer",
                             "param": {
-                              "value": 30,
+                              "value": 0,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/contrast/contrast",
@@ -3289,7 +3389,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 167,
+                                "value": 160,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/thresh/thresh",
@@ -3302,7 +3402,7 @@
                             "niceName": "#4",
                             "type": "Integer",
                             "param": {
-                              "value": 167,
+                              "value": 160,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/thresh/thresh",
@@ -5800,14 +5900,14 @@
           {
             "value": [
               -596.0,
-              -1399.0
+              -1373.0
             ],
             "controlAddress": "/viewUIPosition"
           },
           {
             "value": [
-              314.0,
-              92.0
+              340.0,
+              94.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -6034,8 +6134,8 @@
           },
           {
             "value": [
-              7.0,
-              -1934.0
+              22.0,
+              -1996.0
             ],
             "controlAddress": "/viewUIPosition"
           },
@@ -7084,7 +7184,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 70,
+                          "value": 61,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_brightness",
@@ -7119,7 +7219,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 30,
+                          "value": 55,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_contrast",
@@ -7154,7 +7254,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 167,
+                          "value": 195,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_thresh",
@@ -7189,6 +7289,7 @@
                           "controlAddress": "/operator"
                         },
                         {
+                          "value": true,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_reverse",
@@ -7393,6 +7494,10 @@
     "items": [
       {
         "parameters": [
+          {
+            "value": true,
+            "controlAddress": "/enabled"
+          },
           {
             "value": true,
             "controlAddress": "/playAtLoad"
