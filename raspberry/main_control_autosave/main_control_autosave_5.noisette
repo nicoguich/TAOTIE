@@ -1007,7 +1007,7 @@
           {
             "value": [
               -596.0,
-              -1996.0
+              -1934.0
             ],
             "controlAddress": "/viewUIPosition"
           },
@@ -2585,13 +2585,13 @@
           {
             "value": [
               -596.0,
-              -1547.0
+              -1523.0
             ],
             "controlAddress": "/viewUIPosition"
           },
           {
             "value": [
-              340.0,
+              314.0,
               143.0
             ],
             "controlAddress": "/viewUISize"
@@ -3054,8 +3054,8 @@
         "parameters": [
           {
             "value": [
-              -246.0,
-              -1996.0
+              -272.0,
+              -1934.0
             ],
             "controlAddress": "/viewUIPosition"
           },
@@ -5900,14 +5900,14 @@
           {
             "value": [
               -596.0,
-              -1373.0
+              -1370.0
             ],
             "controlAddress": "/viewUIPosition"
           },
           {
             "value": [
-              340.0,
-              94.0
+              314.0,
+              92.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -6134,8 +6134,8 @@
           },
           {
             "value": [
-              22.0,
-              -1996.0
+              7.0,
+              -1934.0
             ],
             "controlAddress": "/viewUIPosition"
           },

@@ -68,7 +68,7 @@ go_to=0
 go_toX=-1
 go_toY=-1
 max_X=3
-max_Y=1
+max_Y=3
 
 
 
@@ -194,11 +194,10 @@ def reste_sur_ligne():
                 dir_ligne=2
 
         if (go_toX==coordX and go_toY==coordY):
+
             go_to=0
             dir_ligne=0
             dir=0
-
-
 
     elif play==1:
         time.sleep(2)
@@ -213,31 +212,31 @@ def reste_sur_ligne():
 
     if (on_ligne_H==1 and (dir_ligne==4 or dir_ligne==5)):
         dir = dir_ligne
-        if sensor[11]>1 and sensor[11]<45:
+        if sensor[11]>1 and sensor[11]<45  and sensor[10]==0:
             speed=speed_perdu
             dir=9
 
-        if sensor[11]>45 and sensor[11]<99:
+        if sensor[11]>45 and sensor[11]<99  and sensor[10]==0:
             speed=speed_perdu
             dir=10
 
-        if (sensor[0]==1 or sensor[1]==1 or sensor[2]==1) and dir_ligne==4 and sensor[10]==0:
+        if sensor[9]<200 and dir_ligne==4 and sensor[10]==0:
             speed=speed_perdu
             dir=1
-        if (sensor[0]==1 or sensor[1]==1 or sensor[2]==1) and dir_ligne==5 and sensor[10]==0:
+        if sensor[9]<200 and dir_ligne==5 and sensor[10]==0:
             speed=speed_perdu
             dir=3
 
-        if (sensor[3]==1 or sensor[4]==1 or sensor[5]==1)  and dir_ligne==4 and sensor[10]==0:
+        if sensor[9]>250  and dir_ligne==4 and sensor[10]==0:
             speed=speed_perdu
             dir=6
 
 
-        if (sensor[3]==1 or sensor[4]==1 or sensor[5]==1)  and dir_ligne==5 and sensor[10]==0:
+        if sensor[9]>250 and dir_ligne==5 and sensor[10]==0:
             speed=speed_perdu
 
             dir=8
-        if sensor[1]==1 and sensor[4]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!= 4:
+        if dir_ligne==4 and (sensor[0]==0 or sensor[3]==0) and sensor[1]==1 and sensor[4]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!= 4:
 
             if (dir_ligne==4):
                 coordX += -1
@@ -251,6 +250,22 @@ def reste_sur_ligne():
         if check_croix==1 and (sensor[10]==0 or sensor[10]==1):
             check_croix=0
             print ("check croix 0")
+
+        if dir_ligne==5 and (sensor[2]==0 or sensor[5]==0) and sensor[1]==1 and sensor[4]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!= 4:
+
+            if (dir_ligne==4):
+                coordX += -1
+            else:
+                coordX += 1
+            dir=0
+            dir_ligne=0
+            check_croix=1
+            print("croix")
+            print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
+        if check_croix==1 and (sensor[10]==0 or sensor[10]==1):
+            check_croix=0
+            print ("check croix 0")
+
 
 
 
@@ -278,7 +293,9 @@ def reste_sur_ligne():
             print("T EST")
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
 
-        if sensor[1]==1 and sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and (dir_ligne==4 or dir_ligne==5) and sensor[10]==3 and check_bord==0 and check_croix==0 and coordY==0:
+
+
+        if sensor[1]==1 and (dir_ligne==4 or dir_ligne==5) and sensor[10]==3 and check_bord==0 and check_croix==0 and coordY==0:
 
             if (dir_ligne==4):
                 coordX += -1
@@ -294,7 +311,7 @@ def reste_sur_ligne():
             on_ligne_H=1
             print("T SUD")
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
-        if sensor[4]==1 and sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and (dir_ligne==4 or dir_ligne==5) and sensor[10]==3 and check_bord==0 and check_croix==0 and coordY==max_Y:
+        if sensor[4]==1 and (dir_ligne==4 or dir_ligne==5) and sensor[10]==3 and check_bord==0 and check_croix==0 and coordY==max_Y:
 
             if (dir_ligne==4):
                 coordX += -1
@@ -361,27 +378,43 @@ def reste_sur_ligne():
 
 
         dir = dir_ligne
-        if sensor[11]>1 and sensor[11]<45:
+        if sensor[11]>1 and sensor[11]<45  and sensor[10]==1:
             speed=speed_perdu
             dir=9
 
-        if sensor[11]>45 and sensor[11]<99:
+        if sensor[11]>45 and sensor[11]<99  and sensor[10]==1:
             speed=speed_perdu
             dir=10
 
-        if (sensor[0]==1 or sensor[6]==1 or sensor[3]==1) and dir_ligne==2 and sensor[10]==1:
+        if sensor[8] <280 and dir_ligne==2 and sensor[10]==1:
             speed=speed_perdu
             dir=1
-        if (sensor[0]==1 or sensor[6]==1 or sensor[3]==1) and dir_ligne==7 and sensor[10]==1:
+        if sensor[8] <280 and dir_ligne==7 and sensor[10]==1:
             speed=speed_perdu
             dir=6
-        if (sensor[2]==1 or sensor[7]==1 or sensor[5]==1)and dir_ligne==2 and sensor[10]==1:
+        if sensor[8] >360 and dir_ligne==2 and sensor[10]==1:
             speed=speed_perdu
             dir=3
-        if (sensor[2]==1 or sensor[7]==1 or sensor[5]==1) and dir_ligne==7 and sensor[10]==1:
+        if sensor[8] >360 and dir_ligne==7 and sensor[10]==1:
             speed=speed_perdu
             dir=8
-        if sensor[6]==1 and sensor[7]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!=4 :
+        if  dir_ligne==2 and (sensor[0]==0 or sensor[2]==0) and sensor[6]==1 and sensor[7]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!=4 :
+            print("croix")
+
+            if (dir_ligne==7):
+                coordY += -1
+            else:
+                coordY += 1
+            dir=0
+            dir_ligne=0
+            check_croix=1
+            print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
+
+        if check_croix==1 and (sensor[10]==0 or sensor[10]==1):
+            check_croix=0
+            print ("check croix 0")
+
+        if  dir_ligne==7 and (sensor[3]==0 or sensor[5]==0) and sensor[6]==1 and sensor[7]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!=4 :
             print("croix")
 
             if (dir_ligne==7):
@@ -417,7 +450,7 @@ def reste_sur_ligne():
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
 
 
-        if sensor[7]==1 and sensor[0]==0 and sensor[3]==0 and sensor[6]==0 and (dir_ligne==2 or dir_ligne==7) and sensor[10]==3 and check_bord==0 and etape_perdu!=4 and check_croix==0 and coordX==0:
+        if sensor[7]==1  and (dir_ligne==2 or dir_ligne==7) and sensor[10]==3 and check_bord==0 and etape_perdu!=4 and check_croix==0 and coordX==0:
 
             if (dir_ligne==7):
                 coordY += -1
@@ -433,7 +466,7 @@ def reste_sur_ligne():
             print("T OUEST")
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
 
-        if sensor[6]==1 and sensor[2]==0 and sensor[5]==0 and sensor[7]==0 and (dir_ligne==2 or dir_ligne==7) and sensor[10]==3 and check_bord==0 and etape_perdu!=4 and check_croix==0 and coordX==0s:
+        if sensor[6]==1 and (dir_ligne==2 or dir_ligne==7) and sensor[10]==3 and check_bord==0 and etape_perdu!=4 and check_croix==0 and coordX==max_X:
 
             if (dir_ligne==7):
                 coordY += -1

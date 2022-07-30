@@ -235,26 +235,26 @@
   "layout": {
     "mainLayout": {
       "type": 1,
-      "width": 1534,
-      "height": 867,
+      "width": 1920,
+      "height": 1037,
       "direction": 2,
       "shifters": [
         {
           "type": 1,
-          "width": 1534,
-          "height": 867,
+          "width": 1920,
+          "height": 1037,
           "direction": 1,
           "shifters": [
             {
               "type": 1,
               "width": 361,
-              "height": 867,
+              "height": 1037,
               "direction": 2,
               "shifters": [
                 {
                   "type": 0,
                   "width": 361,
-                  "height": 295,
+                  "height": 351,
                   "currentContent": "Modules",
                   "tabs": [
                     {
@@ -265,7 +265,7 @@
                 {
                   "type": 0,
                   "width": 361,
-                  "height": 354,
+                  "height": 410,
                   "currentContent": "Sequences",
                   "tabs": [
                     {
@@ -279,7 +279,7 @@
                 {
                   "type": 0,
                   "width": 361,
-                  "height": 206,
+                  "height": 262,
                   "currentContent": "Logger",
                   "tabs": [
                     {
@@ -297,8 +297,8 @@
             },
             {
               "type": 0,
-              "width": 646,
-              "height": 867,
+              "width": 1032,
+              "height": 1037,
               "currentContent": "State Machine",
               "tabs": [
                 {
@@ -321,7 +321,7 @@
             {
               "type": 0,
               "width": 515,
-              "height": 867,
+              "height": 1037,
               "currentContent": "Inspector",
               "tabs": [
                 {

@@ -235,26 +235,26 @@
   "layout": {
     "mainLayout": {
       "type": 1,
-      "width": 1534,
-      "height": 867,
+      "width": 1920,
+      "height": 1037,
       "direction": 2,
       "shifters": [
         {
           "type": 1,
-          "width": 1534,
-          "height": 867,
+          "width": 1920,
+          "height": 1037,
           "direction": 1,
           "shifters": [
             {
               "type": 1,
               "width": 361,
-              "height": 867,
+              "height": 1037,
               "direction": 2,
               "shifters": [
                 {
                   "type": 0,
                   "width": 361,
-                  "height": 295,
+                  "height": 351,
                   "currentContent": "Modules",
                   "tabs": [
                     {
@@ -265,7 +265,7 @@
                 {
                   "type": 0,
                   "width": 361,
-                  "height": 354,
+                  "height": 410,
                   "currentContent": "Sequences",
                   "tabs": [
                     {
@@ -279,7 +279,7 @@
                 {
                   "type": 0,
                   "width": 361,
-                  "height": 206,
+                  "height": 262,
                   "currentContent": "Logger",
                   "tabs": [
                     {
@@ -297,8 +297,8 @@
             },
             {
               "type": 0,
-              "width": 646,
-              "height": 867,
+              "width": 1032,
+              "height": 1037,
               "currentContent": "State Machine",
               "tabs": [
                 {
@@ -321,7 +321,7 @@
             {
               "type": 0,
               "width": 515,
-              "height": 867,
+              "height": 1037,
               "currentContent": "Inspector",
               "tabs": [
                 {
@@ -1007,7 +1007,7 @@
           {
             "value": [
               -596.0,
-              -1996.0
+              -1934.0
             ],
             "controlAddress": "/viewUIPosition"
           },
@@ -2585,13 +2585,13 @@
           {
             "value": [
               -596.0,
-              -1547.0
+              -1523.0
             ],
             "controlAddress": "/viewUIPosition"
           },
           {
             "value": [
-              340.0,
+              314.0,
               143.0
             ],
             "controlAddress": "/viewUISize"
@@ -3054,8 +3054,8 @@
         "parameters": [
           {
             "value": [
-              -246.0,
-              -1996.0
+              -272.0,
+              -1934.0
             ],
             "controlAddress": "/viewUIPosition"
           },
@@ -5900,14 +5900,14 @@
           {
             "value": [
               -596.0,
-              -1373.0
+              -1370.0
             ],
             "controlAddress": "/viewUIPosition"
           },
           {
             "value": [
-              340.0,
-              94.0
+              314.0,
+              92.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -6134,8 +6134,8 @@
           },
           {
             "value": [
-              22.0,
-              -1996.0
+              7.0,
+              -1934.0
             ],
             "controlAddress": "/viewUIPosition"
           },

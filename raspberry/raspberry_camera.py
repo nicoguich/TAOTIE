@@ -159,38 +159,38 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     contours, hierarchy = cv2.findContours( blackAndWhiteImage, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     blackAndWhiteImage = cv2.cvtColor(blackAndWhiteImage,cv2.COLOR_GRAY2BGR)
 
-    value_sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
+    value_sensor=[1,1,1,1,1,1,1,1,1,1,1,1]
     array=np.array(blackAndWhiteImage)
     sensor_1 = array[ 50:80,130:160]
-    result_1 = np.all((sensor_1 == 0))
+    result_1 = np.all((sensor_1 == 255))
 
     sensor_2 = array[ 50:80,305:335]
-    result_2 = np.all((sensor_2 == 0))
+    result_2 = np.all((sensor_2 == 255))
 
     sensor_3 = array[ 50:80,480:510]
-    result_3 = np.all((sensor_3 == 0))
+    result_3 = np.all((sensor_3 == 255))
 
     sensor_4 = array[ 400:430,130:160]
-    result_4 = np.all((sensor_4 == 0))
+    result_4 = np.all((sensor_4 == 255))
 
     sensor_5 = array[ 400:430,305:335]
-    result_5 = np.all((sensor_5 ==0))
+    result_5 = np.all((sensor_5 ==255))
 
     sensor_6 = array[ 400:430,480:510]
-    result_6 = np.all((sensor_6 ==0))
+    result_6 = np.all((sensor_6 ==255))
 
     sensor_7 = array[ 225:255,130:160]
-    result_7 = np.all((sensor_7 == 0))
+    result_7 = np.all((sensor_7 == 255))
 
     sensor_8 = array[ 225:255,480:510]
-    result_8 = np.all((sensor_8 == 0))
+    result_8 = np.all((sensor_8 == 255))
 
 
 
     if result_1:
         cv2.rectangle(blackAndWhiteImage,(130,50),(160,80),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"0",(130,80),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[0]=1
+        value_sensor[0]=0
 
     else:
         cv2.rectangle(blackAndWhiteImage,(130,50),(160,80),(0,0,255),1)
@@ -199,7 +199,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     if result_2:
         cv2.rectangle(blackAndWhiteImage,(305,50),(335,80),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"1",(305,80),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[1]=1
+        value_sensor[1]=0
     else:
         cv2.rectangle(blackAndWhiteImage,(305,50),(335,80),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"1",(305,80),font,1,(0,0,255),2,cv2.LINE_AA)
@@ -207,7 +207,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     if result_3:
         cv2.rectangle(blackAndWhiteImage,(480,50),(510,80),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"2",(480,80),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[2]=1
+        value_sensor[2]=0
     else:
         cv2.rectangle(blackAndWhiteImage,(480,50),(510,80),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"2",(480,80),font,1,(0,0,255),2,cv2.LINE_AA)
@@ -215,7 +215,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     if result_4:
         cv2.rectangle(blackAndWhiteImage,(130,400),(160,430),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"3",(130,430),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[3]=1
+        value_sensor[3]=0
     else:
         cv2.rectangle(blackAndWhiteImage,(130,400),(160,400),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"3",(130,430),font,1,(0,0,255),2,cv2.LINE_AA)
@@ -224,7 +224,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     if result_5:
         cv2.rectangle(blackAndWhiteImage,(305,400),(335,430),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"4",(305,430),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[4]=1
+        value_sensor[4]=0
     else:
         cv2.rectangle(blackAndWhiteImage,(305,400),(335,400),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"4",(305,430),font,1,(0,0,255),2,cv2.LINE_AA)
@@ -233,7 +233,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     if result_6:
         cv2.rectangle(blackAndWhiteImage,(480,400),(510,430),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"5",(480,430),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[5]=1
+        value_sensor[5]=0
     else:
         cv2.rectangle(blackAndWhiteImage,(480,400),(510,430),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"5",(480,430),font,1,(0,0,255),2,cv2.LINE_AA)
@@ -242,7 +242,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     if result_7:
         cv2.rectangle(blackAndWhiteImage,(130,225),(160,255),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"6",(130,255),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[6]=1
+        value_sensor[6]=0
     else:
         cv2.rectangle(blackAndWhiteImage,(130,225),(160,255),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"6",(130,255),font,1,(0,0,255),2,cv2.LINE_AA)
@@ -250,7 +250,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     if result_8:
         cv2.rectangle(blackAndWhiteImage,(480,225),(510,255),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"7",(480,255),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[7]=1
+        value_sensor[7]=0
     else:
         cv2.rectangle(blackAndWhiteImage,(480,225),(510,255),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"7",(480,255),font,1,(0,0,255),2,cv2.LINE_AA)
@@ -279,28 +279,33 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
         if i == 0 or area < 200:
             i = 1
             continue
+
+
+        value_sensor[8]=x
+        value_sensor[9]=y
+        value_sensor[11]=int(rect[2])
+        
         if len(approx) == 4 :
 
+
             (width, height)= rect[1]
-            if ((width > height) and (rect[2]>0) and (rect[2]<45)):
+            if ((width > height) and (rect[2]>=0) and (rect[2]<45)):
                 cv2.putText(blackAndWhiteImage, 'ligne_H', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
                 value_sensor[10]=0
-            if ((width > height) and (rect[2]>45) and (rect[2]<90)):
+            if ((width > height) and (rect[2]>45) and (rect[2]<=90)):
                 cv2.putText(blackAndWhiteImage, 'ligne_V', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
                 value_sensor[10]=1
-            if ((width < height) and (rect[2]>0) and (rect[2]<45)):
+            if ((width < height) and (rect[2]>=0) and (rect[2]<45)):
                 cv2.putText(blackAndWhiteImage, 'ligne_V', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
                 value_sensor[10]=1
-            if ((width < height) and (rect[2]>45) and (rect[2]<90)):
+            if ((width < height) and (rect[2]>45) and (rect[2]<=90)):
                 cv2.putText(blackAndWhiteImage, 'ligne_H', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
                 value_sensor[10]=0
 
             cv2.drawContours(blackAndWhiteImage,[box],0,(0,0,255),2)
-            cv2.putText(blackAndWhiteImage, str(int(rect[2])), (x, y+20),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+            cv2.putText(blackAndWhiteImage, str(int(rect[0][0])), (x, y+20),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
 
-            value_sensor[8]=x
-            value_sensor[9]=y
-            value_sensor[11]=int(rect[2])
+
 
         if len(approx) == 6 :
             cv2.putText(blackAndWhiteImage, 'coin', (x, y),cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
