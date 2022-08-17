@@ -1,0 +1,8 @@
+void afficher_table(){
+  
+  
+  
+  
+  
+  
+}

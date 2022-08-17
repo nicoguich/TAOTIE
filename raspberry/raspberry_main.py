@@ -609,6 +609,19 @@ def sensor_osc(*args):
 
 
 
+#################################
+def grille(*args):
+    global max_X
+    global max_Y
+
+    max_X=args[0]
+    max_Y=args[1]
+
+
+#######################################
+
+
+
 #######################################
 def game_pad(*args):
 
@@ -677,6 +690,8 @@ def send_osc_chataigne(*args):
 osc_method("/coordonate", coordonate)
 osc_method("/game_pad", game_pad)
 osc_method("/sensor", sensor_osc)
+osc_method("/grille", grille)
+
 
 
 

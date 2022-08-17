@@ -118,10 +118,10 @@
                 },
                 {
                   "value": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    1.0
+                    0,
+                    0,
+                    0,
+                    1
                   ],
                   "controlAddress": "/borderColor",
                   "enabled": true
@@ -159,10 +159,10 @@
                 },
                 {
                   "value": [
-                    1,
-                    1,
-                    1,
-                    1
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
                   ],
                   "controlAddress": "/borderColor",
                   "enabled": true
@@ -208,6 +208,88 @@
               "type": "DashboardParameterItem",
               "ghostAddress": "/customVariables/control/variables/dir/dir",
               "controllable": "/customVariables/control/variables/dir/dir"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -390.0,
+                    156.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    213.0,
+                    25.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "controlAddress": "/borderColor",
+                  "enabled": true
+                },
+                {
+                  "value": true,
+                  "controlAddress": "/readOnly"
+                },
+                {
+                  "value": "Text",
+                  "controlAddress": "/style"
+                }
+              ],
+              "niceName": "taille_grille_X",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
+              "controllable": "/customVariables/grille/variables/taille_grille_X/taille_grille_X"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -1.0,
+                    156.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    213.0,
+                    20.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": [
+                    1,
+                    1,
+                    1,
+                    1
+                  ],
+                  "controlAddress": "/borderColor",
+                  "enabled": true
+                },
+                {
+                  "value": true,
+                  "controlAddress": "/readOnly"
+                },
+                {
+                  "value": "Text",
+                  "controlAddress": "/style"
+                }
+              ],
+              "niceName": "taille_grille_Y",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
+              "controllable": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y"
             }
           ],
           "viewOffset": [
@@ -235,26 +317,26 @@
   "layout": {
     "mainLayout": {
       "type": 1,
-      "width": 1920,
-      "height": 1037,
+      "width": 1536,
+      "height": 869,
       "direction": 2,
       "shifters": [
         {
           "type": 1,
-          "width": 1920,
-          "height": 1037,
+          "width": 1536,
+          "height": 869,
           "direction": 1,
           "shifters": [
             {
               "type": 1,
-              "width": 361,
-              "height": 1037,
+              "width": 262,
+              "height": 869,
               "direction": 2,
               "shifters": [
                 {
                   "type": 0,
-                  "width": 361,
-                  "height": 351,
+                  "width": 262,
+                  "height": 296,
                   "currentContent": "Modules",
                   "tabs": [
                     {
@@ -264,9 +346,9 @@
                 },
                 {
                   "type": 0,
-                  "width": 361,
-                  "height": 410,
-                  "currentContent": "Sequences",
+                  "width": 262,
+                  "height": 355,
+                  "currentContent": "Custom Variables",
                   "tabs": [
                     {
                       "name": "Custom Variables"
@@ -278,8 +360,8 @@
                 },
                 {
                   "type": 0,
-                  "width": 361,
-                  "height": 262,
+                  "width": 262,
+                  "height": 206,
                   "currentContent": "Logger",
                   "tabs": [
                     {
@@ -297,8 +379,8 @@
             },
             {
               "type": 0,
-              "width": 1032,
-              "height": 1037,
+              "width": 903,
+              "height": 869,
               "currentContent": "State Machine",
               "tabs": [
                 {
@@ -320,8 +402,8 @@
             },
             {
               "type": 0,
-              "width": 515,
-              "height": 1037,
+              "width": 359,
+              "height": 869,
               "currentContent": "Inspector",
               "tabs": [
                 {
@@ -649,6 +731,28 @@
               "description": "",
               "hideInEditor": false,
               "feedbackOnly": false
+            },
+            {
+              "hexMode": false,
+              "controlAddress": "/_taille_grille_X",
+              "type": "Integer",
+              "niceName": "/taille_grille_X",
+              "customizable": true,
+              "removable": true,
+              "description": "",
+              "hideInEditor": false,
+              "feedbackOnly": false
+            },
+            {
+              "hexMode": false,
+              "controlAddress": "/_taille_grille_Y",
+              "type": "Integer",
+              "niceName": "/taille_grille_Y",
+              "customizable": true,
+              "removable": true,
+              "description": "",
+              "hideInEditor": false,
+              "feedbackOnly": false
             }
           ]
         }
@@ -888,7 +992,7 @@
             {
               "parameters": [
                 {
-                  "value": 3,
+                  "value": 5,
                   "hexMode": false,
                   "controlAddress": "/selcontrol",
                   "feedbackOnly": false,
@@ -981,6 +1085,64 @@
           ],
           "viewZoom": 1.0
         }
+      },
+      {
+        "niceName": "grille",
+        "type": "BaseItem",
+        "params": {
+        },
+        "variables": {
+          "items": [
+            {
+              "parameters": [
+                {
+                  "hexMode": false,
+                  "controlAddress": "/taille_grille_X",
+                  "feedbackOnly": false,
+                  "type": "Integer",
+                  "niceName": "taille_grille_X",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Integer",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "taille_grille_X",
+              "editorIsCollapsed": true,
+              "type": "Int Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "hexMode": false,
+                  "controlAddress": "/taille_grille_Y",
+                  "feedbackOnly": false,
+                  "type": "Integer",
+                  "niceName": "taille_grille_Y",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Integer",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "taille_grille_Y",
+              "editorIsCollapsed": true,
+              "type": "Int Parameter"
+            }
+          ],
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "presets": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        }
       }
     ],
     "viewOffset": [
@@ -1007,7 +1169,7 @@
           {
             "value": [
               -596.0,
-              -1996.0
+              -1934.0
             ],
             "controlAddress": "/viewUIPosition"
           },
@@ -2585,14 +2747,14 @@
           {
             "value": [
               -596.0,
-              -1547.0
+              -1485.0
             ],
             "controlAddress": "/viewUIPosition"
           },
           {
             "value": [
               340.0,
-              143.0
+              340.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -2605,6 +2767,190 @@
         "type": "State",
         "processors": {
           "items": [
+            {
+              "niceName": "send osc",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "parameters": [
+                  {
+                    "value": "OR",
+                    "controlAddress": "/operator"
+                  }
+                ],
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/grille/taille_grille_X",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": false,
+                        "controlAddress": "/toggleMode"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/grille/taille_grille_Y",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": false,
+                        "controlAddress": "/toggleMode"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "parameters": [
+                  {
+                    "value": 0.009999999776482582,
+                    "controlAddress": "/delay"
+                  }
+                ],
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "oscMain",
+                    "commandPath": "",
+                    "commandType": "Custom Message",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/grille",
+                          "controlAddress": "/address"
+                        }
+                      ],
+                      "paramLinks": {
+                      },
+                      "argManager": {
+                        "items": [
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "controlMode": 2,
+                                "reference": {
+                                  "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
+                                  "controlAddress": "/reference"
+                                },
+                                "hexMode": false,
+                                "controlAddress": "/#1"
+                              }
+                            ],
+                            "niceName": "#1",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "controlMode": 2,
+                              "reference": {
+                                "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
+                                "controlAddress": "/reference"
+                              },
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToMain/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#1/#1"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "controlMode": 2,
+                                "reference": {
+                                  "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
+                                  "controlAddress": "/reference"
+                                },
+                                "hexMode": false,
+                                "controlAddress": "/#2"
+                              }
+                            ],
+                            "niceName": "#2",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "controlMode": 2,
+                              "reference": {
+                                "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
+                                "controlAddress": "/reference"
+                              },
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToMain/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#2/#2"
+                            }
+                          }
+                        ],
+                        "viewOffset": [
+                          0,
+                          0
+                        ],
+                        "viewZoom": 1.0
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
             {
               "niceName": "home",
               "editorIsCollapsed": true,
@@ -3041,6 +3387,748 @@
                 ],
                 "viewZoom": 1.0
               }
+            },
+            {
+              "niceName": "grille_size_X -",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button13",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 3",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 3,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/grille/taille_grille_X",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Subtract",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "grille_size_X +",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button12",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 3",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 3,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/grille/taille_grille_X",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Add",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "grille_size_Y - ",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button13",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 3",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 3,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/grille/taille_grille_Y",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Subtract",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "grille_size_Y +",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button12",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 3",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 3,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/grille/taille_grille_Y",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Add",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "grille_size_X",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 4,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/dashboards/cameraSettings/dashboard/taille_grille_X/borderColor",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": [
+                            1,
+                            1,
+                            1,
+                            1
+                          ],
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/dashboards/cameraSettings/dashboard/taille_grille_X/borderColor",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "grille_size_Y",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 5,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/dashboards/cameraSettings/dashboard/taille_grille_Y/borderColor",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": [
+                            1,
+                            1,
+                            1,
+                            1
+                          ],
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/dashboards/cameraSettings/dashboard/taille_grille_Y/borderColor",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
             }
           ],
           "viewOffset": [
@@ -3055,14 +4143,14 @@
           {
             "value": [
               -246.0,
-              -1996.0
+              -1934.0
             ],
             "controlAddress": "/viewUIPosition"
           },
           {
             "value": [
-              258.0,
-              687.0
+              299.0,
+              677.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -3311,7 +4399,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 3,
+                                "value": 5,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/selcontrol/selcontrol",
@@ -3324,7 +4412,7 @@
                             "niceName": "#1",
                             "type": "Integer",
                             "param": {
-                              "value": 3,
+                              "value": 5,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/selcontrol/selcontrol",
@@ -3488,6 +4576,58 @@
                               },
                               "hexMode": false,
                               "controlAddress": "/states/game_padToCamera/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#7/#7"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "controlMode": 2,
+                                "reference": {
+                                  "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
+                                  "controlAddress": "/reference"
+                                },
+                                "hexMode": false,
+                                "controlAddress": "/#8"
+                              }
+                            ],
+                            "niceName": "#8",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "controlMode": 2,
+                              "reference": {
+                                "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
+                                "controlAddress": "/reference"
+                              },
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToCamera/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#8/#8"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "controlMode": 2,
+                                "reference": {
+                                  "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
+                                  "controlAddress": "/reference"
+                                },
+                                "hexMode": false,
+                                "controlAddress": "/#9"
+                              }
+                            ],
+                            "niceName": "#9",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "controlMode": 2,
+                              "reference": {
+                                "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
+                                "controlAddress": "/reference"
+                              },
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToCamera/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#9/#9"
                             }
                           }
                         ],
@@ -3764,7 +4904,7 @@
                           "controlAddress": "/comparisonFunction"
                         },
                         {
-                          "value": 3,
+                          "value": 5,
                           "hexMode": false,
                           "controlAddress": "/reference"
                         }
@@ -3886,7 +5026,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 3,
+                          "value": 5,
                           "hexMode": false,
                           "controlAddress": "/value"
                         }
@@ -5899,15 +7039,15 @@
           },
           {
             "value": [
-              -596.0,
-              -1373.0
+              63.0,
+              -1439.0
             ],
             "controlAddress": "/viewUIPosition"
           },
           {
             "value": [
-              340.0,
-              94.0
+              267.0,
+              100.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -6134,8 +7274,8 @@
           },
           {
             "value": [
-              22.0,
-              -1996.0
+              63.0,
+              -1934.0
             ],
             "controlAddress": "/viewUIPosition"
           },
@@ -7153,6 +8293,62 @@
                       ],
                       "hideInEditor": true
                     }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscMain/values/_taille_grille_X",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 4",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscMain/values/_taille_grille_Y",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 5",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
                   }
                 ],
                 "viewOffset": [
@@ -7258,6 +8454,76 @@
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_thresh",
+                            "controlAddress": "/reference"
+                          },
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  },
+                  {
+                    "niceName": "Consequence 4",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/grille/taille_grille_X",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 0,
+                          "controlMode": 2,
+                          "reference": {
+                            "value": "/modules/oscMain/values/_taille_grille_X",
+                            "controlAddress": "/reference"
+                          },
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  },
+                  {
+                    "niceName": "Consequence 5",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/grille/taille_grille_Y",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 0,
+                          "controlMode": 2,
+                          "reference": {
+                            "value": "/modules/oscMain/values/_taille_grille_Y",
                             "controlAddress": "/reference"
                           },
                           "hexMode": false,
@@ -7469,8 +8735,8 @@
       }
     ],
     "viewOffset": [
-      99,
-      1624
+      160,
+      1544
     ],
     "viewZoom": 1.0,
     "transitions": {
@@ -7484,8 +8750,8 @@
     "comments": {
       "hideInEditor": true,
       "viewOffset": [
-        99,
-        1624
+        160,
+        1544
       ],
       "viewZoom": 1.0
     }

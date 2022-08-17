@@ -23,6 +23,8 @@ brightness_osc=[0]
 contrast_osc=[0]
 thresh_osc=[0]
 reverse_osc=[0]
+taille_grille_X_osc=[0]
+taille_grille_Y_osc=[0]
 value_sensor_temp=[1,1,1,1,1,1,1,1,1,1,1,1]
 
 temps= time.time()
@@ -56,16 +58,24 @@ thresh=int(reglage_lines[2])
 thresh_osc[0]=int (reglage_lines[2])
 reverse=int(reglage_lines[3])
 reverse_osc[0]=int (reglage_lines[3])
+taille_grille_X_osc[0]= int (reglage_lines[4])
+taille_grille_Y_osc[0]= int (reglage_lines[5])
+
+
 print("brightness:" ,brightness, "/contrast: ",contrast,"tresh: ",thresh,"reverse: ",reverse)
 msg0 = oscbuildparse.OSCMessage("/brightness", None, brightness_osc)
 msg1 = oscbuildparse.OSCMessage("/contrast", None, contrast_osc)
 msg2 = oscbuildparse.OSCMessage("/thresh", None, thresh_osc)
 msg3 = oscbuildparse.OSCMessage("/reverse", None, reverse_osc)
+msg4 = oscbuildparse.OSCMessage("/taille_grille_X", None, taille_grille_X_osc)
+msg5 = oscbuildparse.OSCMessage("/taille_grille_Y", None, taille_grille_Y_osc)
 
 osc_send(msg0, "chataigne")
 osc_send(msg1, "chataigne")
 osc_send(msg2, "chataigne")
 osc_send(msg3, "chataigne")
+osc_send(msg4, "chataigne")
+osc_send(msg5, "chataigne")
 
 
 def control_image(*args):
@@ -84,6 +94,8 @@ def control_image(*args):
     reverse = args[4]
     image = args[5]
     save = args[6]
+    taille_grille_X= args[7]
+    taille_grille_Y= args[8]
     camera.contrast = contrast
     camera.brightness = brightness
     if (save==1) :
@@ -97,6 +109,10 @@ def control_image(*args):
         reglage_camera.write(str(int(thresh))+"\n")
         print("...")
         reglage_camera.write(str(int(reverse))+"\n")
+        print("...")
+        reglage_camera.write(str(int(taille_grille_X))+"\n")
+        print("...")
+        reglage_camera.write(str(int(taille_grille_Y))+"\n")
         reglage_camera.close()
         print("reglage enregistré")
 
@@ -284,7 +300,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
         value_sensor[8]=x
         value_sensor[9]=y
         value_sensor[11]=int(rect[2])
-        
+
         if len(approx) == 4 :
 
 
