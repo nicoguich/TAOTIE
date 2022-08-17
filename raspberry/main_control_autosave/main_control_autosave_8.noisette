@@ -118,10 +118,10 @@
                 },
                 {
                   "value": [
-                    0,
-                    0,
-                    0,
-                    1
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
                   ],
                   "controlAddress": "/borderColor",
                   "enabled": true
@@ -187,7 +187,7 @@
                 {
                   "value": [
                     -186.0,
-                    125.0
+                    172.0
                   ],
                   "controlAddress": "/viewUIPosition"
                 },
@@ -214,23 +214,23 @@
                 {
                   "value": [
                     -390.0,
-                    156.0
+                    132.0
                   ],
                   "controlAddress": "/viewUIPosition"
                 },
                 {
                   "value": [
-                    213.0,
-                    25.0
+                    194.0,
+                    30.0
                   ],
                   "controlAddress": "/viewUISize"
                 },
                 {
                   "value": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    1.0
+                    1,
+                    1,
+                    1,
+                    1
                   ],
                   "controlAddress": "/borderColor",
                   "enabled": true
@@ -254,24 +254,24 @@
               "parameters": [
                 {
                   "value": [
-                    -1.0,
-                    156.0
+                    -186.0,
+                    132.0
                   ],
                   "controlAddress": "/viewUIPosition"
                 },
                 {
                   "value": [
-                    213.0,
-                    20.0
+                    194.0,
+                    30.0
                   ],
                   "controlAddress": "/viewUISize"
                 },
                 {
                   "value": [
-                    1,
-                    1,
-                    1,
-                    1
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
                   ],
                   "controlAddress": "/borderColor",
                   "enabled": true
@@ -290,6 +290,47 @@
               "type": "DashboardParameterItem",
               "ghostAddress": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
               "controllable": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    18.0,
+                    132.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    194.0,
+                    30.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "controlAddress": "/borderColor",
+                  "enabled": true
+                },
+                {
+                  "value": true,
+                  "controlAddress": "/readOnly"
+                },
+                {
+                  "value": "Text",
+                  "controlAddress": "/style"
+                }
+              ],
+              "niceName": "nb_table",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/customVariables/grille/variables/nb_table/nb_table",
+              "controllable": "/customVariables/grille/variables/nb_table/nb_table"
             }
           ],
           "viewOffset": [
@@ -379,7 +420,7 @@
             },
             {
               "type": 0,
-              "width": 903,
+              "width": 889,
               "height": 869,
               "currentContent": "State Machine",
               "tabs": [
@@ -402,7 +443,7 @@
             },
             {
               "type": 0,
-              "width": 359,
+              "width": 373,
               "height": 869,
               "currentContent": "Inspector",
               "tabs": [
@@ -645,7 +686,7 @@
         "values": {
           "parameters": [
             {
-              "value": 61,
+              "value": 69,
               "hexMode": false,
               "controlAddress": "/_brightness",
               "type": "Integer",
@@ -658,7 +699,7 @@
               "shortName": "_brightness"
             },
             {
-              "value": 55,
+              "value": 59,
               "hexMode": false,
               "controlAddress": "/_contrast",
               "type": "Integer",
@@ -684,7 +725,7 @@
               "shortName": "_dir"
             },
             {
-              "value": 1,
+              "value": 0,
               "hexMode": false,
               "controlAddress": "/_reverse",
               "type": "Integer",
@@ -697,7 +738,7 @@
               "shortName": "_reverse"
             },
             {
-              "value": 195,
+              "value": 92,
               "hexMode": false,
               "controlAddress": "/_thresh",
               "type": "Integer",
@@ -733,6 +774,7 @@
               "feedbackOnly": false
             },
             {
+              "value": 14,
               "hexMode": false,
               "controlAddress": "/_taille_grille_X",
               "type": "Integer",
@@ -744,10 +786,22 @@
               "feedbackOnly": false
             },
             {
+              "value": 7,
               "hexMode": false,
               "controlAddress": "/_taille_grille_Y",
               "type": "Integer",
               "niceName": "/taille_grille_Y",
+              "customizable": true,
+              "removable": true,
+              "description": "",
+              "hideInEditor": false,
+              "feedbackOnly": false
+            },
+            {
+              "hexMode": false,
+              "controlAddress": "/_verin",
+              "type": "Integer",
+              "niceName": "/verin",
               "customizable": true,
               "removable": true,
               "description": "",
@@ -875,7 +929,7 @@
             {
               "parameters": [
                 {
-                  "value": 201,
+                  "value": 21,
                   "hexMode": false,
                   "controlAddress": "/dir",
                   "feedbackOnly": false,
@@ -935,7 +989,7 @@
             {
               "parameters": [
                 {
-                  "value": 70,
+                  "value": 69,
                   "hexMode": false,
                   "controlAddress": "/brigthness",
                   "feedbackOnly": false,
@@ -954,7 +1008,7 @@
             {
               "parameters": [
                 {
-                  "value": 0,
+                  "value": 59,
                   "hexMode": false,
                   "controlAddress": "/contrast",
                   "feedbackOnly": false,
@@ -973,7 +1027,7 @@
             {
               "parameters": [
                 {
-                  "value": 160,
+                  "value": 92,
                   "hexMode": false,
                   "controlAddress": "/thresh",
                   "feedbackOnly": false,
@@ -992,7 +1046,7 @@
             {
               "parameters": [
                 {
-                  "value": 5,
+                  "value": 4,
                   "hexMode": false,
                   "controlAddress": "/selcontrol",
                   "feedbackOnly": false,
@@ -1096,6 +1150,7 @@
             {
               "parameters": [
                 {
+                  "value": 14,
                   "hexMode": false,
                   "controlAddress": "/taille_grille_X",
                   "feedbackOnly": false,
@@ -1114,6 +1169,7 @@
             {
               "parameters": [
                 {
+                  "value": 7,
                   "hexMode": false,
                   "controlAddress": "/taille_grille_Y",
                   "feedbackOnly": false,
@@ -1126,6 +1182,25 @@
                 }
               ],
               "niceName": "taille_grille_Y",
+              "editorIsCollapsed": true,
+              "type": "Int Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "value": 7,
+                  "hexMode": false,
+                  "controlAddress": "/nb_table",
+                  "feedbackOnly": false,
+                  "type": "Integer",
+                  "niceName": "nb_table",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Integer",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "nb_table",
               "editorIsCollapsed": true,
               "type": "Int Parameter"
             }
@@ -2754,7 +2829,7 @@
           {
             "value": [
               340.0,
-              340.0
+              408.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -2842,6 +2917,38 @@
                       ],
                       "hideInEditor": true
                     }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/grille/nb_table",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": false,
+                        "controlAddress": "/toggleMode"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
                   }
                 ],
                 "viewOffset": [
@@ -2878,7 +2985,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 0,
+                                "value": 14,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -2891,7 +2998,7 @@
                             "niceName": "#1",
                             "type": "Integer",
                             "param": {
-                              "value": 0,
+                              "value": 14,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -2904,7 +3011,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 0,
+                                "value": 7,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -2917,7 +3024,7 @@
                             "niceName": "#2",
                             "type": "Integer",
                             "param": {
-                              "value": 0,
+                              "value": 7,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -2925,6 +3032,32 @@
                               },
                               "hexMode": false,
                               "controlAddress": "/states/game_padToMain/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#2/#2"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 7,
+                                "controlMode": 2,
+                                "reference": {
+                                  "value": "/customVariables/grille/variables/nb_table/nb_table",
+                                  "controlAddress": "/reference"
+                                },
+                                "hexMode": false,
+                                "controlAddress": "/#3"
+                              }
+                            ],
+                            "niceName": "#3",
+                            "type": "Integer",
+                            "param": {
+                              "value": 7,
+                              "controlMode": 2,
+                              "reference": {
+                                "value": "/customVariables/grille/variables/nb_table/nb_table",
+                                "controlAddress": "/reference"
+                              },
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToMain/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#3/#3"
                             }
                           }
                         ],
@@ -3456,7 +3589,7 @@
                           "controlAddress": "/comparisonFunction"
                         },
                         {
-                          "value": 3,
+                          "value": 4,
                           "hexMode": false,
                           "controlAddress": "/reference"
                         }
@@ -3586,7 +3719,7 @@
                           "controlAddress": "/comparisonFunction"
                         },
                         {
-                          "value": 3,
+                          "value": 4,
                           "hexMode": false,
                           "controlAddress": "/reference"
                         }
@@ -3716,7 +3849,7 @@
                           "controlAddress": "/comparisonFunction"
                         },
                         {
-                          "value": 3,
+                          "value": 5,
                           "hexMode": false,
                           "controlAddress": "/reference"
                         }
@@ -3846,7 +3979,7 @@
                           "controlAddress": "/comparisonFunction"
                         },
                         {
-                          "value": 3,
+                          "value": 5,
                           "hexMode": false,
                           "controlAddress": "/reference"
                         }
@@ -3873,6 +4006,266 @@
                       "parameters": [
                         {
                           "value": "/grille/taille_grille_Y",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Add",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "nb_table -",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button13",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 3",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 6,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/grille/nb_table",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Subtract",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "nb_table +",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/axes/axis6",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": ">",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0.5,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button12",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 2",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 3",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 6,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/grille/nb_table",
                           "controlAddress": "/target"
                         },
                         {
@@ -4107,6 +4500,117 @@
                       "parameters": [
                         {
                           "value": "/dashboards/cameraSettings/dashboard/taille_grille_Y/borderColor",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "nb_table",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/image/selcontrol",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 6,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/dashboards/cameraSettings/dashboard/nb_table/borderColor",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": [
+                            1,
+                            1,
+                            1,
+                            1
+                          ],
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/dashboards/cameraSettings/dashboard/nb_table/borderColor",
                           "controlAddress": "/target"
                         },
                         {
@@ -4399,7 +4903,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 5,
+                                "value": 4,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/selcontrol/selcontrol",
@@ -4412,7 +4916,7 @@
                             "niceName": "#1",
                             "type": "Integer",
                             "param": {
-                              "value": 5,
+                              "value": 4,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/selcontrol/selcontrol",
@@ -4425,7 +4929,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 70,
+                                "value": 69,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/brigthness/brigthness",
@@ -4438,7 +4942,7 @@
                             "niceName": "#2",
                             "type": "Integer",
                             "param": {
-                              "value": 70,
+                              "value": 69,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/brigthness/brigthness",
@@ -4451,7 +4955,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 0,
+                                "value": 59,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/contrast/contrast",
@@ -4464,7 +4968,7 @@
                             "niceName": "#3",
                             "type": "Integer",
                             "param": {
-                              "value": 0,
+                              "value": 59,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/contrast/contrast",
@@ -4477,7 +4981,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 160,
+                                "value": 92,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/thresh/thresh",
@@ -4490,7 +4994,7 @@
                             "niceName": "#4",
                             "type": "Integer",
                             "param": {
-                              "value": 160,
+                              "value": 92,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/thresh/thresh",
@@ -4581,7 +5085,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 0,
+                                "value": 14,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -4594,7 +5098,7 @@
                             "niceName": "#8",
                             "type": "Integer",
                             "param": {
-                              "value": 0,
+                              "value": 14,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -4607,7 +5111,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 0,
+                                "value": 7,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -4620,7 +5124,7 @@
                             "niceName": "#9",
                             "type": "Integer",
                             "param": {
-                              "value": 0,
+                              "value": 7,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -4628,6 +5132,32 @@
                               },
                               "hexMode": false,
                               "controlAddress": "/states/game_padToCamera/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#9/#9"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 7,
+                                "controlMode": 2,
+                                "reference": {
+                                  "value": "/customVariables/customVariables/values/grille/nb_table",
+                                  "controlAddress": "/reference"
+                                },
+                                "hexMode": false,
+                                "controlAddress": "/#10"
+                              }
+                            ],
+                            "niceName": "#10",
+                            "type": "Integer",
+                            "param": {
+                              "value": 7,
+                              "controlMode": 2,
+                              "reference": {
+                                "value": "/customVariables/customVariables/values/grille/nb_table",
+                                "controlAddress": "/reference"
+                              },
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToCamera/processors/sendOsc/consequencesTRUE/consequence/command/arguments/#10/#10"
                             }
                           }
                         ],
@@ -7040,7 +7570,7 @@
           {
             "value": [
               63.0,
-              -1439.0
+              -1357.0
             ],
             "controlAddress": "/viewUIPosition"
           },
@@ -7157,7 +7687,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 201,
+                                "value": 21,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/customVariables/values/control/dir",
@@ -7174,7 +7704,7 @@
                             "niceName": "#3",
                             "type": "Integer",
                             "param": {
-                              "value": 201,
+                              "value": 21,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/customVariables/values/control/dir",
@@ -7282,7 +7812,7 @@
           {
             "value": [
               267.0,
-              485.0
+              546.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -8171,6 +8701,140 @@
               }
             },
             {
+              "niceName": "verin 0",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscMain/values/_verin",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/20_verin_position_basse",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "verin 1",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscMain/values/_verin",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/21_verin_position_haute",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
               "niceName": "reglage camera",
               "editorIsCollapsed": true,
               "type": "Action",
@@ -8380,7 +9044,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 61,
+                          "value": 69,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_brightness",
@@ -8415,7 +9079,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 55,
+                          "value": 59,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_contrast",
@@ -8450,7 +9114,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 195,
+                          "value": 92,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_thresh",
@@ -8485,7 +9149,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 0,
+                          "value": 14,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_taille_grille_X",
@@ -8520,7 +9184,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 0,
+                          "value": 7,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_taille_grille_Y",
@@ -8555,7 +9219,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": true,
+                          "value": false,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_reverse",
@@ -8735,8 +9399,8 @@
       }
     ],
     "viewOffset": [
-      160,
-      1544
+      97,
+      1541
     ],
     "viewZoom": 1.0,
     "transitions": {
@@ -8750,8 +9414,8 @@
     "comments": {
       "hideInEditor": true,
       "viewOffset": [
-        160,
-        1544
+        97,
+        1541
       ],
       "viewZoom": 1.0
     }

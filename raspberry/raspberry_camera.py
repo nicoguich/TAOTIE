@@ -25,6 +25,7 @@ thresh_osc=[0]
 reverse_osc=[0]
 taille_grille_X_osc=[0]
 taille_grille_Y_osc=[0]
+nb_table_osc=[0]
 value_sensor_temp=[1,1,1,1,1,1,1,1,1,1,1,1]
 
 temps= time.time()
@@ -60,6 +61,7 @@ reverse=int(reglage_lines[3])
 reverse_osc[0]=int (reglage_lines[3])
 taille_grille_X_osc[0]= int (reglage_lines[4])
 taille_grille_Y_osc[0]= int (reglage_lines[5])
+nb_table_osc[0]= int (reglage_lines[6])
 
 
 print("brightness:" ,brightness, "/contrast: ",contrast,"tresh: ",thresh,"reverse: ",reverse)
@@ -69,6 +71,7 @@ msg2 = oscbuildparse.OSCMessage("/thresh", None, thresh_osc)
 msg3 = oscbuildparse.OSCMessage("/reverse", None, reverse_osc)
 msg4 = oscbuildparse.OSCMessage("/taille_grille_X", None, taille_grille_X_osc)
 msg5 = oscbuildparse.OSCMessage("/taille_grille_Y", None, taille_grille_Y_osc)
+msg6 = oscbuildparse.OSCMessage("/nb_table", None, nb_table_osc)
 
 osc_send(msg0, "chataigne")
 osc_send(msg1, "chataigne")
@@ -76,6 +79,7 @@ osc_send(msg2, "chataigne")
 osc_send(msg3, "chataigne")
 osc_send(msg4, "chataigne")
 osc_send(msg5, "chataigne")
+osc_send(msg6, "chataigne")
 
 
 def control_image(*args):
@@ -96,6 +100,7 @@ def control_image(*args):
     save = args[6]
     taille_grille_X= args[7]
     taille_grille_Y= args[8]
+    nb_table= args[9]
     camera.contrast = contrast
     camera.brightness = brightness
     if (save==1) :
@@ -113,6 +118,8 @@ def control_image(*args):
         reglage_camera.write(str(int(taille_grille_X))+"\n")
         print("...")
         reglage_camera.write(str(int(taille_grille_Y))+"\n")
+        print("...")
+        reglage_camera.write(str(int(nb_table))+"\n")
         reglage_camera.close()
         print("reglage enregistré")
 

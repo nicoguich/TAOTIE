@@ -52,6 +52,10 @@ home_temp = 0
 lines = []
 etape_perdu=0
 speed_perdu=400
+verin=0
+verin_temp=0
+nb_table=0
+
 
 
 on_ligne_H=0
@@ -613,9 +617,11 @@ def sensor_osc(*args):
 def grille(*args):
     global max_X
     global max_Y
+    global nb_table
 
     max_X=args[0]
     max_Y=args[1]
+    nb_table=args[2]
 
 
 #######################################
@@ -672,15 +678,6 @@ def game_pad(*args):
 
 
 
-#################################################################
-
-#################################################################
-def send_osc_chataigne(*args):
-    msg = oscbuildparse.OSCMessage("/dir", None, args)
-
-    osc_send(msg, "chataigne")
-
-
 
 ###########################################################
 #############################################################
@@ -702,7 +699,13 @@ while True:
     if on_ligne_H==1 or on_ligne_V==1:
         reste_sur_ligne()
     if dir != dir_temp :
-        send_osc_chataigne(dir)
+    msg = oscbuildparse.OSCMessage("/dir", None, dir)
+    osc_send(msg, "chataigne")
         dir_temp=dir
+
+    if verin != verin_temp :
+    msg = oscbuildparse.OSCMessage("/verin", None, verin)
+    osc_send(msg, "chataigne")
+        verin_temp=verin
 
 osc_terminate()
