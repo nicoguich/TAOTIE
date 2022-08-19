@@ -358,26 +358,26 @@
   "layout": {
     "mainLayout": {
       "type": 1,
-      "width": 1536,
-      "height": 869,
+      "width": 1920,
+      "height": 1109,
       "direction": 2,
       "shifters": [
         {
           "type": 1,
-          "width": 1536,
-          "height": 869,
+          "width": 1920,
+          "height": 1109,
           "direction": 1,
           "shifters": [
             {
               "type": 1,
-              "width": 262,
-              "height": 869,
+              "width": 273,
+              "height": 1109,
               "direction": 2,
               "shifters": [
                 {
                   "type": 0,
-                  "width": 262,
-                  "height": 296,
+                  "width": 273,
+                  "height": 376,
                   "currentContent": "Modules",
                   "tabs": [
                     {
@@ -387,9 +387,9 @@
                 },
                 {
                   "type": 0,
-                  "width": 262,
-                  "height": 355,
-                  "currentContent": "Custom Variables",
+                  "width": 273,
+                  "height": 435,
+                  "currentContent": "Sequences",
                   "tabs": [
                     {
                       "name": "Custom Variables"
@@ -401,8 +401,8 @@
                 },
                 {
                   "type": 0,
-                  "width": 262,
-                  "height": 206,
+                  "width": 273,
+                  "height": 284,
                   "currentContent": "Logger",
                   "tabs": [
                     {
@@ -420,8 +420,8 @@
             },
             {
               "type": 0,
-              "width": 1002,
-              "height": 869,
+              "width": 966,
+              "height": 1109,
               "currentContent": "State Machine",
               "tabs": [
                 {
@@ -443,8 +443,8 @@
             },
             {
               "type": 0,
-              "width": 260,
-              "height": 869,
+              "width": 669,
+              "height": 1109,
               "currentContent": "Inspector",
               "tabs": [
                 {
@@ -774,7 +774,7 @@
               "feedbackOnly": false
             },
             {
-              "value": 14,
+              "value": 4,
               "hexMode": false,
               "controlAddress": "/_taille_grille_X",
               "type": "Integer",
@@ -786,7 +786,7 @@
               "feedbackOnly": false
             },
             {
-              "value": 7,
+              "value": 6,
               "hexMode": false,
               "controlAddress": "/_taille_grille_Y",
               "type": "Integer",
@@ -802,6 +802,18 @@
               "controlAddress": "/_verin",
               "type": "Integer",
               "niceName": "/verin",
+              "customizable": true,
+              "removable": true,
+              "description": "",
+              "hideInEditor": false,
+              "feedbackOnly": false
+            },
+            {
+              "value": 12,
+              "hexMode": false,
+              "controlAddress": "/_nb_table",
+              "type": "Integer",
+              "niceName": "/nb_table",
               "customizable": true,
               "removable": true,
               "description": "",
@@ -1150,7 +1162,7 @@
             {
               "parameters": [
                 {
-                  "value": 14,
+                  "value": 4,
                   "hexMode": false,
                   "controlAddress": "/taille_grille_X",
                   "feedbackOnly": false,
@@ -1169,7 +1181,7 @@
             {
               "parameters": [
                 {
-                  "value": 7,
+                  "value": 6,
                   "hexMode": false,
                   "controlAddress": "/taille_grille_Y",
                   "feedbackOnly": false,
@@ -1188,7 +1200,7 @@
             {
               "parameters": [
                 {
-                  "value": 7,
+                  "value": 12,
                   "hexMode": false,
                   "controlAddress": "/nb_table",
                   "feedbackOnly": false,
@@ -2985,7 +2997,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 14,
+                                "value": 4,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -2998,7 +3010,7 @@
                             "niceName": "#1",
                             "type": "Integer",
                             "param": {
-                              "value": 14,
+                              "value": 4,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -3011,7 +3023,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 7,
+                                "value": 6,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -3024,7 +3036,7 @@
                             "niceName": "#2",
                             "type": "Integer",
                             "param": {
-                              "value": 7,
+                              "value": 6,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -3037,7 +3049,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 7,
+                                "value": 12,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/nb_table/nb_table",
@@ -3050,7 +3062,7 @@
                             "niceName": "#3",
                             "type": "Integer",
                             "param": {
-                              "value": 7,
+                              "value": 12,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/nb_table/nb_table",
@@ -5085,7 +5097,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 14,
+                                "value": 4,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -5098,7 +5110,7 @@
                             "niceName": "#8",
                             "type": "Integer",
                             "param": {
-                              "value": 14,
+                              "value": 4,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -5111,7 +5123,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 7,
+                                "value": 6,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -5124,7 +5136,7 @@
                             "niceName": "#9",
                             "type": "Integer",
                             "param": {
-                              "value": 7,
+                              "value": 6,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -5137,7 +5149,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 7,
+                                "value": 12,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/customVariables/values/grille/nb_table",
@@ -5150,7 +5162,7 @@
                             "niceName": "#10",
                             "type": "Integer",
                             "param": {
-                              "value": 7,
+                              "value": 12,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/customVariables/values/grille/nb_table",
@@ -5434,7 +5446,7 @@
                           "controlAddress": "/comparisonFunction"
                         },
                         {
-                          "value": 5,
+                          "value": 6,
                           "hexMode": false,
                           "controlAddress": "/reference"
                         }
@@ -9013,6 +9025,34 @@
                       ],
                       "hideInEditor": true
                     }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscMain/values/_nb_table",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 6",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
                   }
                 ],
                 "viewOffset": [
@@ -9149,7 +9189,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 14,
+                          "value": 4,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_taille_grille_X",
@@ -9184,10 +9224,45 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 7,
+                          "value": 6,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_taille_grille_Y",
+                            "controlAddress": "/reference"
+                          },
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  },
+                  {
+                    "niceName": "Consequence 6",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/grille/nb_table",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 12,
+                          "controlMode": 2,
+                          "reference": {
+                            "value": "/modules/oscMain/values/_nb_table",
                             "controlAddress": "/reference"
                           },
                           "hexMode": false,
@@ -9400,7 +9475,7 @@
     ],
     "viewOffset": [
       97,
-      1541
+      1424
     ],
     "viewZoom": 1.0,
     "transitions": {
@@ -9415,7 +9490,7 @@
       "hideInEditor": true,
       "viewOffset": [
         97,
-        1541
+        1424
       ],
       "viewZoom": 1.0
     }
@@ -9494,6 +9569,24 @@
                             "paramLinks": {
                             }
                           }
+                        },
+                        {
+                          "niceName": "Consequence 1",
+                          "type": "Consequence",
+                          "ghostCommandData": {
+                            "parameters": [
+                              {
+                                "value": 10,
+                                "hexMode": false,
+                                "controlAddress": "/gpioNumber"
+                              }
+                            ],
+                            "paramLinks": {
+                            }
+                          },
+                          "ghostModuleName": "gpio",
+                          "ghostCommandMenuPath": "",
+                          "ghostCommandName": "Set Digital"
                         }
                       ],
                       "viewOffset": [
@@ -9525,7 +9618,8 @@
             0
           ],
           "viewZoom": 1.0
-        }
+        },
+        "editing": true
       },
       {
         "parameters": [
@@ -9626,8 +9720,7 @@
             0
           ],
           "viewZoom": 1.0
-        },
-        "editing": true
+        }
       }
     ],
     "viewOffset": [

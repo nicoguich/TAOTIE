@@ -39,11 +39,13 @@ ip="192.168.100.180"
 port=5005
 osc_udp_server(ip, port, "raspberry")
 osc_udp_client("192.168.100.180", 5007, "chataigne")
+osc_udp_client("192.168.100.117", 5008, "all")
 
 
 
 dir=0
 play=0
+bot_state=0
 speed=1000
 speed_control=1000
 speed_temp=1000
@@ -65,6 +67,7 @@ check_croix=0
 check_bord=0
 
 sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
+sensor2=[0,0,0,0,0,0,0,0,0,0,0,0]
 dataMotor=[0,0,0,0,0,0]
 coordX=-1
 coordY=-1
@@ -73,6 +76,23 @@ go_toX=-1
 go_toY=-1
 max_X=3
 max_Y=3
+
+
+
+coordonate_table_lines = []
+coordonate_table = [[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1]]
+
+with open("/home/pi/Desktop/coordonate_table.txt") as f:
+    coordonate_table_lines = f.readlines()
+
+
+for x in range (0 , len(coordonate_table_lines)):
+    temp_coordonate="".join(coordonate_table_lines[x])
+    temp_coordonate_list = temp_coordonate.split(' ')
+    coordonate_table[x][0]=int(temp_coordonate_list[0])
+    coordonate_table[x][1]=int(temp_coordonate_list[1])
+
+
 
 
 
@@ -169,6 +189,7 @@ def reste_sur_ligne():
     global on_ligne_H
     global on_ligne_V
     global sensor
+    global sensor2
     global speed
     global speed_control
     global check_croix
@@ -182,6 +203,9 @@ def reste_sur_ligne():
     global play
     global max_X
     global max_Y
+    global bot_state
+
+
 
 
     if (go_to==1):
@@ -202,14 +226,38 @@ def reste_sur_ligne():
             go_to=0
             dir_ligne=0
             dir=0
+            if bot_state==0:
+                time.sleep(2)
+            elif bot_state==1:
+                verin=1
+                bot_state=2
+            elif bot_state==2:
+                verin=0
+                bot_state=1
 
     elif play==1:
-        time.sleep(2)
+
         go_to=1
-        go_toX=random.randint(0, max_X)
-        go_toY=random.randint(0,max_Y)
+
+        if bot_state==0:
+            go_toX=random.randint(0, max_X)
+            go_toY=random.randint(0,max_Y)
+
+        elif bot_state==1:
+            table_random= random.randint(0,nb_table)
+            go_toX=coordonate_table[table_random][0]
+            go_toY=coordonate_table[table_random][1]
+
         print ("new go_toX :", go_toX)
         print ("new go_toY :", go_toY)
+        new_coordonate=[go_toX,go_toY]
+        msg = oscbuildparse.OSCMessage("/new_coordonate", None, new_coordonate)
+        osc_send(msg, "all")
+
+
+
+
+
 
 
     speed=speed_control
@@ -614,6 +662,20 @@ def sensor_osc(*args):
 
 
 #################################
+def sensor2_osc(*args):
+    global sensor2
+    sensor2=args
+
+
+#######################################
+
+
+
+
+
+
+
+#################################
 def grille(*args):
     global max_X
     global max_Y
@@ -622,6 +684,7 @@ def grille(*args):
     max_X=args[0]
     max_Y=args[1]
     nb_table=args[2]
+    print("max_X : ", max_X, "max_Y : ", max_Y)
 
 
 #######################################
@@ -687,6 +750,7 @@ def game_pad(*args):
 osc_method("/coordonate", coordonate)
 osc_method("/game_pad", game_pad)
 osc_method("/sensor", sensor_osc)
+osc_method("/sensor2", sensor2_osc)
 osc_method("/grille", grille)
 
 
@@ -699,13 +763,18 @@ while True:
     if on_ligne_H==1 or on_ligne_V==1:
         reste_sur_ligne()
     if dir != dir_temp :
-    msg = oscbuildparse.OSCMessage("/dir", None, dir)
-    osc_send(msg, "chataigne")
+
+        dir_osc=[dir]
+        msg = oscbuildparse.OSCMessage("/dir", None, dir_osc)
+        osc_send(msg, "chataigne")
         dir_temp=dir
 
     if verin != verin_temp :
-    msg = oscbuildparse.OSCMessage("/verin", None, verin)
-    osc_send(msg, "chataigne")
+        verin_osc=[verin]
+        msg = oscbuildparse.OSCMessage("/verin", None, verin_osc)
+        osc_send(msg, "chataigne")
+        osc_process()
+        time.sleep(5)
         verin_temp=verin
 
 osc_terminate()

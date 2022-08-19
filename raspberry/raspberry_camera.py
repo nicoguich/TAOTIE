@@ -27,6 +27,7 @@ taille_grille_X_osc=[0]
 taille_grille_Y_osc=[0]
 nb_table_osc=[0]
 value_sensor_temp=[1,1,1,1,1,1,1,1,1,1,1,1]
+value_sensor2_temp=[1,1,1,1,1,1,1,1,1,1,1,1]
 
 temps= time.time()
 
@@ -36,13 +37,15 @@ osc_udp_client("192.168.100.180", 5005, "raspberry")
 osc_udp_server("192.168.100.180", 5006, "camera")
 osc_udp_client("192.168.100.180", 5007, "chataigne")
 
+
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(17, GPIO.OUT)
+GPIO.setup(10, GPIO.OUT)
+
 
 def handler(signum, frame):
     print("prout")
-    GPIO.output(17, GPIO.LOW)
+    GPIO.output(10, GPIO.LOW)
 
     exit(1)
 
@@ -160,6 +163,7 @@ time.sleep(1)
 
 
 osc_method("/image", control_image)
+GPIO.output(10, GPIO.HIGH)
 
 
 for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port=True):
@@ -182,38 +186,47 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     contours, hierarchy = cv2.findContours( blackAndWhiteImage, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     blackAndWhiteImage = cv2.cvtColor(blackAndWhiteImage,cv2.COLOR_GRAY2BGR)
 
-    value_sensor=[1,1,1,1,1,1,1,1,1,1,1,1]
+    value_sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
+    value_sensor2=[1,1,1,1,1,1,1,1,1,1,1,1]
     array=np.array(blackAndWhiteImage)
     sensor_1 = array[ 50:80,130:160]
-    result_1 = np.all((sensor_1 == 255))
+    result_1 = np.all((sensor_1 == 0))
+    result2_1 = np.all((sensor_1 == 255))
 
     sensor_2 = array[ 50:80,305:335]
-    result_2 = np.all((sensor_2 == 255))
+    result_2 = np.all((sensor_2 == 0))
+    result2_2 = np.all((sensor_2 == 255))
 
     sensor_3 = array[ 50:80,480:510]
-    result_3 = np.all((sensor_3 == 255))
+    result_3 = np.all((sensor_3 == 0))
+    result2_3 = np.all((sensor_3 == 255))
 
     sensor_4 = array[ 400:430,130:160]
-    result_4 = np.all((sensor_4 == 255))
+    result_4 = np.all((sensor_4 == 0))
+    result2_4 = np.all((sensor_4 == 255))
 
     sensor_5 = array[ 400:430,305:335]
-    result_5 = np.all((sensor_5 ==255))
+    result_5 = np.all((sensor_5 ==0))
+    result2_5 = np.all((sensor_5 == 255))
 
     sensor_6 = array[ 400:430,480:510]
-    result_6 = np.all((sensor_6 ==255))
+    result_6 = np.all((sensor_6 ==0))
+    result2_6 = np.all((sensor_6 == 255))
 
     sensor_7 = array[ 225:255,130:160]
-    result_7 = np.all((sensor_7 == 255))
+    result_7 = np.all((sensor_7 == 0))
+    result2_7 = np.all((sensor_7 == 255))
 
     sensor_8 = array[ 225:255,480:510]
-    result_8 = np.all((sensor_8 == 255))
+    result_8 = np.all((sensor_8 == 0))
+    result2_8 = np.all((sensor_8 == 255))
 
 
 
     if result_1:
         cv2.rectangle(blackAndWhiteImage,(130,50),(160,80),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"0",(130,80),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[0]=0
+        value_sensor[0]=1
 
     else:
         cv2.rectangle(blackAndWhiteImage,(130,50),(160,80),(0,0,255),1)
@@ -222,7 +235,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     if result_2:
         cv2.rectangle(blackAndWhiteImage,(305,50),(335,80),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"1",(305,80),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[1]=0
+        value_sensor[1]=1
     else:
         cv2.rectangle(blackAndWhiteImage,(305,50),(335,80),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"1",(305,80),font,1,(0,0,255),2,cv2.LINE_AA)
@@ -230,7 +243,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     if result_3:
         cv2.rectangle(blackAndWhiteImage,(480,50),(510,80),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"2",(480,80),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[2]=0
+        value_sensor[2]=1
     else:
         cv2.rectangle(blackAndWhiteImage,(480,50),(510,80),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"2",(480,80),font,1,(0,0,255),2,cv2.LINE_AA)
@@ -238,7 +251,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     if result_4:
         cv2.rectangle(blackAndWhiteImage,(130,400),(160,430),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"3",(130,430),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[3]=0
+        value_sensor[3]=1
     else:
         cv2.rectangle(blackAndWhiteImage,(130,400),(160,400),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"3",(130,430),font,1,(0,0,255),2,cv2.LINE_AA)
@@ -247,7 +260,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     if result_5:
         cv2.rectangle(blackAndWhiteImage,(305,400),(335,430),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"4",(305,430),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[4]=0
+        value_sensor[4]=1
     else:
         cv2.rectangle(blackAndWhiteImage,(305,400),(335,400),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"4",(305,430),font,1,(0,0,255),2,cv2.LINE_AA)
@@ -256,7 +269,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     if result_6:
         cv2.rectangle(blackAndWhiteImage,(480,400),(510,430),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"5",(480,430),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[5]=0
+        value_sensor[5]=1
     else:
         cv2.rectangle(blackAndWhiteImage,(480,400),(510,430),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"5",(480,430),font,1,(0,0,255),2,cv2.LINE_AA)
@@ -265,7 +278,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     if result_7:
         cv2.rectangle(blackAndWhiteImage,(130,225),(160,255),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"6",(130,255),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[6]=0
+        value_sensor[6]=1
     else:
         cv2.rectangle(blackAndWhiteImage,(130,225),(160,255),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"6",(130,255),font,1,(0,0,255),2,cv2.LINE_AA)
@@ -273,10 +286,49 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     if result_8:
         cv2.rectangle(blackAndWhiteImage,(480,225),(510,255),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"7",(480,255),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[7]=0
+        value_sensor[7]=1
     else:
         cv2.rectangle(blackAndWhiteImage,(480,225),(510,255),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"7",(480,255),font,1,(0,0,255),2,cv2.LINE_AA)
+
+
+
+
+
+
+
+    if result2_1:
+
+        value_sensor2[0]=0
+
+    if result2_2:
+
+        value_sensor2[1]=0
+
+    if result2_3:
+
+        value_sensor2[2]=0
+
+    if result2_4:
+
+        value_sensor2[3]=0
+
+    if result2_5:
+
+        value_sensor2[4]=0
+
+    if result2_6:
+
+        value_sensor2[5]=0
+
+    if result2_7:
+
+        value_sensor2[6]=0
+
+    if result2_8:
+
+        value_sensor2[7]=0
+
 
 
 
@@ -299,7 +351,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
 
 
         #if area >100:
-        if i == 0 or area < 200:
+        if i == 0 or area < 1000:
             i = 1
             continue
 
@@ -375,6 +427,12 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
         msg = oscbuildparse.OSCMessage("/sensor", None, value_sensor)
         osc_send(msg, "raspberry")
         value_sensor_temp = value_sensor
+
+    if value_sensor2 != value_sensor2_temp:
+        msg4 = oscbuildparse.OSCMessage("/sensor2", None, value_sensor2)
+        osc_send(msg4, "raspberry")
+        value_sensor2_temp = value_sensor2
+
 
 
     if time.time()-temps > 1 :
