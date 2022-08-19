@@ -27,7 +27,7 @@ taille_grille_X_osc=[0]
 taille_grille_Y_osc=[0]
 nb_table_osc=[0]
 value_sensor_temp=[1,1,1,1,1,1,1,1,1,1,1,1]
-value_sensor2_temp=[1,1,1,1,1,1,1,1,1,1,1,1]
+
 
 temps= time.time()
 
@@ -187,39 +187,39 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     blackAndWhiteImage = cv2.cvtColor(blackAndWhiteImage,cv2.COLOR_GRAY2BGR)
 
     value_sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
-    value_sensor2=[1,1,1,1,1,1,1,1,1,1,1,1]
+
     array=np.array(blackAndWhiteImage)
     sensor_1 = array[ 50:80,130:160]
     result_1 = np.all((sensor_1 == 0))
-    result2_1 = np.all((sensor_1 == 255))
+
 
     sensor_2 = array[ 50:80,305:335]
     result_2 = np.all((sensor_2 == 0))
-    result2_2 = np.all((sensor_2 == 255))
+
 
     sensor_3 = array[ 50:80,480:510]
     result_3 = np.all((sensor_3 == 0))
-    result2_3 = np.all((sensor_3 == 255))
+
 
     sensor_4 = array[ 400:430,130:160]
     result_4 = np.all((sensor_4 == 0))
-    result2_4 = np.all((sensor_4 == 255))
+
 
     sensor_5 = array[ 400:430,305:335]
     result_5 = np.all((sensor_5 ==0))
-    result2_5 = np.all((sensor_5 == 255))
+
 
     sensor_6 = array[ 400:430,480:510]
     result_6 = np.all((sensor_6 ==0))
-    result2_6 = np.all((sensor_6 == 255))
+
 
     sensor_7 = array[ 225:255,130:160]
     result_7 = np.all((sensor_7 == 0))
-    result2_7 = np.all((sensor_7 == 255))
+
 
     sensor_8 = array[ 225:255,480:510]
     result_8 = np.all((sensor_8 == 0))
-    result2_8 = np.all((sensor_8 == 255))
+
 
 
 
@@ -292,42 +292,6 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
         cv2.putText(blackAndWhiteImage,"7",(480,255),font,1,(0,0,255),2,cv2.LINE_AA)
 
 
-
-
-
-
-
-    if result2_1:
-
-        value_sensor2[0]=0
-
-    if result2_2:
-
-        value_sensor2[1]=0
-
-    if result2_3:
-
-        value_sensor2[2]=0
-
-    if result2_4:
-
-        value_sensor2[3]=0
-
-    if result2_5:
-
-        value_sensor2[4]=0
-
-    if result2_6:
-
-        value_sensor2[5]=0
-
-    if result2_7:
-
-        value_sensor2[6]=0
-
-    if result2_8:
-
-        value_sensor2[7]=0
 
 
 
@@ -428,10 +392,6 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
         osc_send(msg, "raspberry")
         value_sensor_temp = value_sensor
 
-    if value_sensor2 != value_sensor2_temp:
-        msg4 = oscbuildparse.OSCMessage("/sensor2", None, value_sensor2)
-        osc_send(msg4, "raspberry")
-        value_sensor2_temp = value_sensor2
 
 
 

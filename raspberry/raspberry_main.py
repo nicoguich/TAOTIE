@@ -45,7 +45,7 @@ osc_udp_client("192.168.100.117", 5008, "all")
 
 dir=0
 play=0
-bot_state=0
+bot_state=1
 speed=1000
 speed_control=1000
 speed_temp=1000
@@ -57,6 +57,7 @@ speed_perdu=400
 verin=0
 verin_temp=0
 nb_table=0
+table_random=0
 
 
 
@@ -67,7 +68,7 @@ check_croix=0
 check_bord=0
 
 sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
-sensor2=[0,0,0,0,0,0,0,0,0,0,0,0]
+
 dataMotor=[0,0,0,0,0,0]
 coordX=-1
 coordY=-1
@@ -189,7 +190,6 @@ def reste_sur_ligne():
     global on_ligne_H
     global on_ligne_V
     global sensor
-    global sensor2
     global speed
     global speed_control
     global check_croix
@@ -204,6 +204,9 @@ def reste_sur_ligne():
     global max_X
     global max_Y
     global bot_state
+    global coordonate_table
+    global table_random
+    global verin
 
 
 
@@ -228,12 +231,21 @@ def reste_sur_ligne():
             dir=0
             if bot_state==0:
                 time.sleep(2)
+                bot_state=1
             elif bot_state==1:
                 verin=1
                 bot_state=2
             elif bot_state==2:
+                coordonate_table[table_random][0]=coordX
+                coordonate_table[table_random][1]=coordY
+                rec_coordonate = open("/home/pi/Desktop/coordonate_table.txt","w")
+                for x in range (0 , len(coordonate_table)):
+                    print("rec table...",x)
+                    rec_coordonate.write(str(int(coordonate_table[x][0]))+" "+str(int(coordonate_table[x][1]))+"\n")
+
+                rec_coordonate.close()
                 verin=0
-                bot_state=1
+                bot_state=0
 
     elif play==1:
 
@@ -244,16 +256,21 @@ def reste_sur_ligne():
             go_toY=random.randint(0,max_Y)
 
         elif bot_state==1:
-            table_random= random.randint(0,nb_table)
+
+            table_random= random.randint(0,nb_table-1)
             go_toX=coordonate_table[table_random][0]
             go_toY=coordonate_table[table_random][1]
+
+        elif bot_state==2:
+            go_toX=random.randint(0, max_X)
+            go_toY=random.randint(0,max_Y)
 
         print ("new go_toX :", go_toX)
         print ("new go_toY :", go_toY)
         new_coordonate=[go_toX,go_toY]
         msg = oscbuildparse.OSCMessage("/new_coordonate", None, new_coordonate)
         osc_send(msg, "all")
-
+        print("bot_state: ", bot_state)
 
 
 
@@ -624,6 +641,7 @@ def reste_sur_ligne():
 
 
 
+
     if (check_bord==2 and dir_ligne==7):
 
         on_ligne_V=1
@@ -658,17 +676,6 @@ def sensor_osc(*args):
 
 
 #######################################
-
-
-
-#################################
-def sensor2_osc(*args):
-    global sensor2
-    sensor2=args
-
-
-#######################################
-
 
 
 
@@ -750,7 +757,7 @@ def game_pad(*args):
 osc_method("/coordonate", coordonate)
 osc_method("/game_pad", game_pad)
 osc_method("/sensor", sensor_osc)
-osc_method("/sensor2", sensor2_osc)
+
 osc_method("/grille", grille)
 
 
