@@ -273,6 +273,13 @@ def reste_sur_ligne():
             coordX_temp=coordX
             coordY_temp=coordY
 
+            if coordX==0 or coordX==max_X:
+                bloque+=1
+            if coordY==1 or coordY==max_Y:
+                bloque+=1
+
+
+
             for x in range (0,nb_table+1):
                 if (coordonate_table[x][0]==coordX-1 and coordonate_table[x][1]==coordY):
                     bloque+=1
