@@ -358,26 +358,26 @@
   "layout": {
     "mainLayout": {
       "type": 1,
-      "width": 1920,
-      "height": 1109,
+      "width": 1904,
+      "height": 1093,
       "direction": 2,
       "shifters": [
         {
           "type": 1,
-          "width": 1920,
-          "height": 1109,
+          "width": 1904,
+          "height": 1093,
           "direction": 1,
           "shifters": [
             {
               "type": 1,
               "width": 273,
-              "height": 1109,
+              "height": 1093,
               "direction": 2,
               "shifters": [
                 {
                   "type": 0,
                   "width": 273,
-                  "height": 376,
+                  "height": 371,
                   "currentContent": "Modules",
                   "tabs": [
                     {
@@ -388,8 +388,8 @@
                 {
                   "type": 0,
                   "width": 273,
-                  "height": 435,
-                  "currentContent": "Sequences",
+                  "height": 430,
+                  "currentContent": "Custom Variables",
                   "tabs": [
                     {
                       "name": "Custom Variables"
@@ -402,7 +402,7 @@
                 {
                   "type": 0,
                   "width": 273,
-                  "height": 284,
+                  "height": 279,
                   "currentContent": "Logger",
                   "tabs": [
                     {
@@ -420,8 +420,8 @@
             },
             {
               "type": 0,
-              "width": 966,
-              "height": 1109,
+              "width": 950,
+              "height": 1093,
               "currentContent": "State Machine",
               "tabs": [
                 {
@@ -444,7 +444,7 @@
             {
               "type": 0,
               "width": 669,
-              "height": 1109,
+              "height": 1093,
               "currentContent": "Inspector",
               "tabs": [
                 {
@@ -686,7 +686,7 @@
         "values": {
           "parameters": [
             {
-              "value": 69,
+              "value": 55,
               "hexMode": false,
               "controlAddress": "/_brightness",
               "type": "Integer",
@@ -738,7 +738,7 @@
               "shortName": "_reverse"
             },
             {
-              "value": 92,
+              "value": 17,
               "hexMode": false,
               "controlAddress": "/_thresh",
               "type": "Integer",
@@ -774,7 +774,7 @@
               "feedbackOnly": false
             },
             {
-              "value": 4,
+              "value": 6,
               "hexMode": false,
               "controlAddress": "/_taille_grille_X",
               "type": "Integer",
@@ -786,7 +786,7 @@
               "feedbackOnly": false
             },
             {
-              "value": 6,
+              "value": 4,
               "hexMode": false,
               "controlAddress": "/_taille_grille_Y",
               "type": "Integer",
@@ -798,6 +798,7 @@
               "feedbackOnly": false
             },
             {
+              "value": 0,
               "hexMode": false,
               "controlAddress": "/_verin",
               "type": "Integer",
@@ -809,7 +810,7 @@
               "feedbackOnly": false
             },
             {
-              "value": 12,
+              "value": 6,
               "hexMode": false,
               "controlAddress": "/_nb_table",
               "type": "Integer",
@@ -941,7 +942,7 @@
             {
               "parameters": [
                 {
-                  "value": 21,
+                  "value": 201,
                   "hexMode": false,
                   "controlAddress": "/dir",
                   "feedbackOnly": false,
@@ -960,7 +961,7 @@
             {
               "parameters": [
                 {
-                  "value": 500,
+                  "value": 700,
                   "hexMode": false,
                   "controlAddress": "/vitesse",
                   "feedbackOnly": false,
@@ -1001,7 +1002,7 @@
             {
               "parameters": [
                 {
-                  "value": 69,
+                  "value": 55,
                   "hexMode": false,
                   "controlAddress": "/brigthness",
                   "feedbackOnly": false,
@@ -1039,7 +1040,7 @@
             {
               "parameters": [
                 {
-                  "value": 92,
+                  "value": 17,
                   "hexMode": false,
                   "controlAddress": "/thresh",
                   "feedbackOnly": false,
@@ -1162,7 +1163,7 @@
             {
               "parameters": [
                 {
-                  "value": 4,
+                  "value": 6,
                   "hexMode": false,
                   "controlAddress": "/taille_grille_X",
                   "feedbackOnly": false,
@@ -1181,7 +1182,7 @@
             {
               "parameters": [
                 {
-                  "value": 6,
+                  "value": 4,
                   "hexMode": false,
                   "controlAddress": "/taille_grille_Y",
                   "feedbackOnly": false,
@@ -1200,7 +1201,7 @@
             {
               "parameters": [
                 {
-                  "value": 12,
+                  "value": 6,
                   "hexMode": false,
                   "controlAddress": "/nb_table",
                   "feedbackOnly": false,
@@ -2997,7 +2998,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 4,
+                                "value": 6,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -3010,7 +3011,7 @@
                             "niceName": "#1",
                             "type": "Integer",
                             "param": {
-                              "value": 4,
+                              "value": 6,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -3023,7 +3024,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 6,
+                                "value": 4,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -3036,7 +3037,7 @@
                             "niceName": "#2",
                             "type": "Integer",
                             "param": {
-                              "value": 6,
+                              "value": 4,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -3049,7 +3050,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 12,
+                                "value": 6,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/nb_table/nb_table",
@@ -3062,7 +3063,7 @@
                             "niceName": "#3",
                             "type": "Integer",
                             "param": {
-                              "value": 12,
+                              "value": 6,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/nb_table/nb_table",
@@ -4941,7 +4942,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 69,
+                                "value": 55,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/brigthness/brigthness",
@@ -4954,7 +4955,7 @@
                             "niceName": "#2",
                             "type": "Integer",
                             "param": {
-                              "value": 69,
+                              "value": 55,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/brigthness/brigthness",
@@ -4993,7 +4994,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 92,
+                                "value": 17,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/thresh/thresh",
@@ -5006,7 +5007,7 @@
                             "niceName": "#4",
                             "type": "Integer",
                             "param": {
-                              "value": 92,
+                              "value": 17,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/thresh/thresh",
@@ -5097,7 +5098,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 4,
+                                "value": 6,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -5110,7 +5111,7 @@
                             "niceName": "#8",
                             "type": "Integer",
                             "param": {
-                              "value": 4,
+                              "value": 6,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -5123,7 +5124,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 6,
+                                "value": 4,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -5136,7 +5137,7 @@
                             "niceName": "#9",
                             "type": "Integer",
                             "param": {
-                              "value": 6,
+                              "value": 4,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -5149,7 +5150,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 12,
+                                "value": 6,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/customVariables/values/grille/nb_table",
@@ -5162,7 +5163,7 @@
                             "niceName": "#10",
                             "type": "Integer",
                             "param": {
-                              "value": 12,
+                              "value": 6,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/customVariables/values/grille/nb_table",
@@ -7699,7 +7700,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 21,
+                                "value": 201,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/customVariables/values/control/dir",
@@ -7716,7 +7717,7 @@
                             "niceName": "#3",
                             "type": "Integer",
                             "param": {
-                              "value": 21,
+                              "value": 201,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/customVariables/values/control/dir",
@@ -7729,7 +7730,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 500,
+                                "value": 700,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/customVariables/values/control/vitesse",
@@ -7746,7 +7747,7 @@
                             "niceName": "#4",
                             "type": "Integer",
                             "param": {
-                              "value": 500,
+                              "value": 700,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/customVariables/values/control/vitesse",
@@ -9084,7 +9085,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 69,
+                          "value": 55,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_brightness",
@@ -9154,7 +9155,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 92,
+                          "value": 17,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_thresh",
@@ -9189,7 +9190,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 4,
+                          "value": 6,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_taille_grille_X",
@@ -9224,7 +9225,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 6,
+                          "value": 4,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_taille_grille_Y",
@@ -9259,7 +9260,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 12,
+                          "value": 6,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_nb_table",
@@ -9474,7 +9475,7 @@
       }
     ],
     "viewOffset": [
-      97,
+      132,
       1424
     ],
     "viewZoom": 1.0,
@@ -9489,7 +9490,7 @@
     "comments": {
       "hideInEditor": true,
       "viewOffset": [
-        97,
+        132,
         1424
       ],
       "viewZoom": 1.0

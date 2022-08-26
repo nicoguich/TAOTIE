@@ -143,11 +143,20 @@ switch (int(dir)) {
 
 
       case 20 :
-      verin.write(45);;
+      verin.write(45);
       break;
 
       case 21 :
-      verin.write(135);;
+      verin.write(135);
+      break;
+
+
+      case 30 :
+      analogWrite(led,0);
+      break;
+
+      case 31 :
+      analogWrite(led,255);
       break;
   
       case 201 :
