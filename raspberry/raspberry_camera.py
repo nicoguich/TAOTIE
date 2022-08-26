@@ -76,6 +76,8 @@ msg4 = oscbuildparse.OSCMessage("/taille_grille_X", None, taille_grille_X_osc)
 msg5 = oscbuildparse.OSCMessage("/taille_grille_Y", None, taille_grille_Y_osc)
 msg6 = oscbuildparse.OSCMessage("/nb_table", None, nb_table_osc)
 
+msg7 = oscbuildparse.OSCMessage("/demarrage", None, nb_table_osc)
+
 osc_send(msg0, "chataigne")
 osc_send(msg1, "chataigne")
 osc_send(msg2, "chataigne")
@@ -83,6 +85,7 @@ osc_send(msg3, "chataigne")
 osc_send(msg4, "chataigne")
 osc_send(msg5, "chataigne")
 osc_send(msg6, "chataigne")
+osc_send(msg7, "raspberry")
 
 
 def control_image(*args):
@@ -315,7 +318,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
 
 
         #if area >100:
-        if i == 0 or area < 1000:
+        if i == 0 or area < 3000:
             i = 1
             continue
 
