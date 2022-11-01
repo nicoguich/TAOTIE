@@ -1,7 +1,7 @@
 {
   "metaData": {
-    "version": "1.9.7",
-    "versionNumber": 67847
+    "version": "1.9.8",
+    "versionNumber": 67848
   },
   "projectSettings": {
     "containers": {
@@ -12,16 +12,6 @@
     }
   },
   "dashboardManager": {
-    "parameters": [
-      {
-        "value": true,
-        "controlAddress": "/editMode"
-      },
-      {
-        "value": true,
-        "controlAddress": "/snapping"
-      }
-    ],
     "items": [
       {
         "niceName": "camera settings",
@@ -35,19 +25,6 @@
               ],
               "controlAddress": "/canvasSize",
               "enabled": false
-            },
-            {
-              "value": 1.0,
-              "controlAddress": "/backgroundImageScale"
-            },
-            {
-              "value": 1.0,
-              "controlAddress": "/backgroundImageAlpha"
-            },
-            {
-              "value": 20,
-              "hexMode": false,
-              "controlAddress": "/snapGridSize"
             }
           ],
           "items": [
@@ -68,8 +45,25 @@
                   "controlAddress": "/viewUISize"
                 },
                 {
-                  "value": true,
-                  "controlAddress": "/showLabel"
+                  "value": "",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "controlAddress": "/textColor",
+                  "enabled": true
+                },
+                {
+                  "value": 44,
+                  "hexMode": false,
+                  "controlAddress": "/textSize",
+                  "enabled": true
                 },
                 {
                   "value": [
@@ -80,14 +74,6 @@
                   ],
                   "controlAddress": "/borderColor",
                   "enabled": true
-                },
-                {
-                  "value": true,
-                  "controlAddress": "/readOnly"
-                },
-                {
-                  "value": true,
-                  "controlAddress": "/showValue"
                 },
                 {
                   "value": "Text",
@@ -118,6 +104,16 @@
                 },
                 {
                   "value": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "controlAddress": "/textColor",
+                  "enabled": true
+                },
+                {
+                  "value": [
                     0.0,
                     0.0,
                     0.0,
@@ -127,8 +123,8 @@
                   "enabled": true
                 },
                 {
-                  "value": true,
-                  "controlAddress": "/readOnly"
+                  "value": false,
+                  "controlAddress": "/showValue"
                 },
                 {
                   "value": "Text",
@@ -159,17 +155,23 @@
                 },
                 {
                   "value": [
-                    0.0,
-                    0.0,
-                    0.0,
+                    1.0,
+                    1.0,
+                    1.0,
                     1.0
                   ],
-                  "controlAddress": "/borderColor",
+                  "controlAddress": "/textColor",
                   "enabled": true
                 },
                 {
-                  "value": true,
-                  "controlAddress": "/readOnly"
+                  "value": [
+                    1,
+                    1,
+                    1,
+                    1
+                  ],
+                  "controlAddress": "/borderColor",
+                  "enabled": true
                 },
                 {
                   "value": "Text",
@@ -227,6 +229,16 @@
                 },
                 {
                   "value": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "controlAddress": "/textColor",
+                  "enabled": true
+                },
+                {
+                  "value": [
                     1,
                     1,
                     1,
@@ -234,10 +246,6 @@
                   ],
                   "controlAddress": "/borderColor",
                   "enabled": true
-                },
-                {
-                  "value": true,
-                  "controlAddress": "/readOnly"
                 },
                 {
                   "value": "Text",
@@ -268,6 +276,16 @@
                 },
                 {
                   "value": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "controlAddress": "/textColor",
+                  "enabled": true
+                },
+                {
+                  "value": [
                     0.0,
                     0.0,
                     0.0,
@@ -275,10 +293,6 @@
                   ],
                   "controlAddress": "/borderColor",
                   "enabled": true
-                },
-                {
-                  "value": true,
-                  "controlAddress": "/readOnly"
                 },
                 {
                   "value": "Text",
@@ -309,6 +323,16 @@
                 },
                 {
                   "value": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "controlAddress": "/textColor",
+                  "enabled": true
+                },
+                {
+                  "value": [
                     0.0,
                     0.0,
                     0.0,
@@ -316,10 +340,6 @@
                   ],
                   "controlAddress": "/borderColor",
                   "enabled": true
-                },
-                {
-                  "value": true,
-                  "controlAddress": "/readOnly"
                 },
                 {
                   "value": "Text",
@@ -358,26 +378,26 @@
   "layout": {
     "mainLayout": {
       "type": 1,
-      "width": 1904,
-      "height": 1093,
+      "width": 1920,
+      "height": 1109,
       "direction": 2,
       "shifters": [
         {
           "type": 1,
-          "width": 1904,
-          "height": 1093,
+          "width": 1920,
+          "height": 1109,
           "direction": 1,
           "shifters": [
             {
               "type": 1,
               "width": 273,
-              "height": 1093,
+              "height": 1109,
               "direction": 2,
               "shifters": [
                 {
                   "type": 0,
                   "width": 273,
-                  "height": 371,
+                  "height": 377,
                   "currentContent": "Modules",
                   "tabs": [
                     {
@@ -388,8 +408,8 @@
                 {
                   "type": 0,
                   "width": 273,
-                  "height": 430,
-                  "currentContent": "Custom Variables",
+                  "height": 436,
+                  "currentContent": "Sequences",
                   "tabs": [
                     {
                       "name": "Custom Variables"
@@ -402,7 +422,7 @@
                 {
                   "type": 0,
                   "width": 273,
-                  "height": 279,
+                  "height": 282,
                   "currentContent": "Logger",
                   "tabs": [
                     {
@@ -420,8 +440,8 @@
             },
             {
               "type": 0,
-              "width": 950,
-              "height": 1093,
+              "width": 1110,
+              "height": 1109,
               "currentContent": "State Machine",
               "tabs": [
                 {
@@ -443,8 +463,8 @@
             },
             {
               "type": 0,
-              "width": 669,
-              "height": 1093,
+              "width": 525,
+              "height": 1109,
               "currentContent": "Inspector",
               "tabs": [
                 {
@@ -465,10 +485,6 @@
           {
             "value": true,
             "controlAddress": "/logIncoming"
-          },
-          {
-            "value": false,
-            "controlAddress": "/logOutgoing"
           }
         ],
         "niceName": "Serial",
@@ -483,7 +499,7 @@
         "params": {
           "parameters": [
             {
-              "value": "Teensyduino USB Serial 9943410(SN : 9943410)",
+              "value": "Teensyduino USB Serial 8353210(SN : 8353210)",
               "controlAddress": "/port"
             },
             {
@@ -540,15 +556,9 @@
             }
           ]
         },
-        "portID": "USB VID:PID=16c0:0483 SNR=9943410"
+        "portID": "USB VID:PID=16c0:0483 SNR=8353210"
       },
       {
-        "parameters": [
-          {
-            "value": true,
-            "controlAddress": "/enabled"
-          }
-        ],
         "niceName": "Gamepad",
         "type": "Gamepad",
         "scripts": {
@@ -582,16 +592,6 @@
         }
       },
       {
-        "parameters": [
-          {
-            "value": true,
-            "controlAddress": "/enabled"
-          },
-          {
-            "value": false,
-            "controlAddress": "/logIncoming"
-          }
-        ],
         "niceName": "OSC main",
         "type": "OSC",
         "scripts": {
@@ -655,10 +655,6 @@
                       "value": 5006,
                       "hexMode": false,
                       "controlAddress": "/remotePort"
-                    },
-                    {
-                      "value": false,
-                      "controlAddress": "/listenToFeedback"
                     }
                   ],
                   "niceName": "python_camera",
@@ -686,7 +682,7 @@
         "values": {
           "parameters": [
             {
-              "value": 55,
+              "value": 75,
               "hexMode": false,
               "controlAddress": "/_brightness",
               "type": "Integer",
@@ -712,7 +708,6 @@
               "shortName": "_contrast"
             },
             {
-              "value": 0,
               "hexMode": false,
               "controlAddress": "/_dir",
               "type": "Integer",
@@ -725,7 +720,6 @@
               "shortName": "_dir"
             },
             {
-              "value": 0,
               "hexMode": false,
               "controlAddress": "/_reverse",
               "type": "Integer",
@@ -738,7 +732,7 @@
               "shortName": "_reverse"
             },
             {
-              "value": 17,
+              "value": 162,
               "hexMode": false,
               "controlAddress": "/_thresh",
               "type": "Integer",
@@ -763,6 +757,7 @@
               "feedbackOnly": false
             },
             {
+              "value": 1,
               "hexMode": false,
               "controlAddress": "/_ping_main",
               "type": "Integer",
@@ -774,7 +769,7 @@
               "feedbackOnly": false
             },
             {
-              "value": 6,
+              "value": 5,
               "hexMode": false,
               "controlAddress": "/_taille_grille_X",
               "type": "Integer",
@@ -786,7 +781,7 @@
               "feedbackOnly": false
             },
             {
-              "value": 4,
+              "value": 3,
               "hexMode": false,
               "controlAddress": "/_taille_grille_Y",
               "type": "Integer",
@@ -798,7 +793,6 @@
               "feedbackOnly": false
             },
             {
-              "value": 0,
               "hexMode": false,
               "controlAddress": "/_verin",
               "type": "Integer",
@@ -912,10 +906,120 @@
         "params": {
           "containers": {
             "appControl": {
+            },
+            "pingIPs": {
             }
           }
         },
         "templates": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        }
+      },
+      {
+        "niceName": "GPIO",
+        "type": "GPIO",
+        "scripts": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "params": {
+          "containers": {
+            "gpioModes": {
+            }
+          }
+        },
+        "templates": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        }
+      },
+      {
+        "niceName": "OSC tablette",
+        "type": "OSC",
+        "scripts": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "params": {
+          "containers": {
+            "oscInput": {
+              "parameters": [
+                {
+                  "value": 5008,
+                  "hexMode": false,
+                  "controlAddress": "/localPort"
+                }
+              ]
+            },
+            "oscOutputs": {
+              "items": [
+                {
+                  "parameters": [
+                    {
+                      "value": false,
+                      "controlAddress": "/local"
+                    },
+                    {
+                      "value": "192.168.100.187",
+                      "controlAddress": "/remoteHost"
+                    },
+                    {
+                      "value": 5009,
+                      "hexMode": false,
+                      "controlAddress": "/remotePort"
+                    }
+                  ],
+                  "niceName": "OSC Output",
+                  "type": "BaseItem"
+                }
+              ],
+              "viewOffset": [
+                0,
+                0
+              ],
+              "viewZoom": 1.0
+            },
+            "pass_through": {
+            }
+          }
+        },
+        "templates": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "values": {
+        }
+      },
+      {
+        "niceName": "Metro tablette",
+        "type": "Metronome",
+        "scripts": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "params": {
+        },
+        "templates": {
+          "hideInEditor": true,
           "viewOffset": [
             0,
             0
@@ -934,7 +1038,7 @@
     "items": [
       {
         "niceName": "control",
-        "type": "BaseItem",
+        "type": "CVGroup",
         "params": {
         },
         "variables": {
@@ -976,6 +1080,26 @@
               "niceName": "vitesse",
               "editorIsCollapsed": true,
               "type": "Int Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "minValue": 0,
+                  "maxValue": 1,
+                  "default": false,
+                  "controlAddress": "/led_fat",
+                  "feedbackOnly": false,
+                  "type": "Boolean",
+                  "niceName": "led_fat",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Boolean",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "led_fat",
+              "editorIsCollapsed": true,
+              "type": "Bool Parameter"
             }
           ],
           "viewOffset": [
@@ -994,7 +1118,7 @@
       },
       {
         "niceName": "image",
-        "type": "BaseItem",
+        "type": "CVGroup",
         "params": {
         },
         "variables": {
@@ -1002,7 +1126,7 @@
             {
               "parameters": [
                 {
-                  "value": 55,
+                  "value": 75,
                   "hexMode": false,
                   "controlAddress": "/brigthness",
                   "feedbackOnly": false,
@@ -1040,7 +1164,7 @@
             {
               "parameters": [
                 {
-                  "value": 17,
+                  "value": 162,
                   "hexMode": false,
                   "controlAddress": "/thresh",
                   "feedbackOnly": false,
@@ -1059,7 +1183,7 @@
             {
               "parameters": [
                 {
-                  "value": 4,
+                  "value": 3,
                   "hexMode": false,
                   "controlAddress": "/selcontrol",
                   "feedbackOnly": false,
@@ -1078,7 +1202,6 @@
             {
               "parameters": [
                 {
-                  "value": false,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": false,
@@ -1099,7 +1222,6 @@
             {
               "parameters": [
                 {
-                  "value": false,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": false,
@@ -1120,7 +1242,6 @@
             {
               "parameters": [
                 {
-                  "value": false,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": false,
@@ -1155,7 +1276,7 @@
       },
       {
         "niceName": "grille",
-        "type": "BaseItem",
+        "type": "CVGroup",
         "params": {
         },
         "variables": {
@@ -1163,7 +1284,7 @@
             {
               "parameters": [
                 {
-                  "value": 6,
+                  "value": 5,
                   "hexMode": false,
                   "controlAddress": "/taille_grille_X",
                   "feedbackOnly": false,
@@ -1182,7 +1303,7 @@
             {
               "parameters": [
                 {
-                  "value": 4,
+                  "value": 3,
                   "hexMode": false,
                   "controlAddress": "/taille_grille_Y",
                   "feedbackOnly": false,
@@ -1240,20 +1361,9 @@
     "viewZoom": 1.0
   },
   "states": {
-    "parameters": [
-      {
-        "value": 20,
-        "hexMode": false,
-        "controlAddress": "/snapGridSize"
-      }
-    ],
     "items": [
       {
         "parameters": [
-          {
-            "value": true,
-            "controlAddress": "/enabled"
-          },
           {
             "value": [
               -596.0,
@@ -1264,7 +1374,7 @@
           {
             "value": [
               340.0,
-              439.0
+              461.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -1288,10 +1398,6 @@
                       {
                         "value": "/modules/gamepad/values/axes/axis2",
                         "controlAddress": "/inputValue"
-                      },
-                      {
-                        "value": false,
-                        "controlAddress": "/alwaysTrigger"
                       }
                     ],
                     "niceName": "From Input Value",
@@ -1315,10 +1421,6 @@
                       {
                         "value": "/modules/gamepad/values/axes/axis1",
                         "controlAddress": "/inputValue"
-                      },
-                      {
-                        "value": false,
-                        "controlAddress": "/alwaysTrigger"
                       }
                     ],
                     "niceName": "From Input Value 15",
@@ -1342,10 +1444,6 @@
                       {
                         "value": "/modules/gamepad/values/axes/axis2",
                         "controlAddress": "/inputValue"
-                      },
-                      {
-                        "value": false,
-                        "controlAddress": "/alwaysTrigger"
                       }
                     ],
                     "niceName": "From Input Value 13",
@@ -1369,10 +1467,6 @@
                       {
                         "value": "/modules/gamepad/values/axes/axis1",
                         "controlAddress": "/inputValue"
-                      },
-                      {
-                        "value": false,
-                        "controlAddress": "/alwaysTrigger"
                       }
                     ],
                     "niceName": "From Input Value 14",
@@ -1587,10 +1681,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -1692,10 +1782,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": true,
                           "controlAddress": "/reference"
@@ -1799,10 +1885,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -1904,10 +1986,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": true,
                           "controlAddress": "/reference"
@@ -2011,10 +2089,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -2116,10 +2190,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": true,
                           "controlAddress": "/reference"
@@ -2223,10 +2293,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -2328,10 +2394,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": true,
                           "controlAddress": "/reference"
@@ -2624,10 +2686,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -2640,10 +2698,6 @@
                       {
                         "value": "/modules/gamepad/values/axes/axis6",
                         "controlAddress": "/inputValue"
-                      },
-                      {
-                        "value": false,
-                        "controlAddress": "/alwaysTrigger"
                       }
                     ],
                     "niceName": "From Input Value 2",
@@ -2734,10 +2788,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -2821,6 +2871,218 @@
                 ],
                 "viewZoom": 1.0
               }
+            },
+            {
+              "niceName": "30_led fat_ off",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button8",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/control/dir",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 30,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  },
+                  {
+                    "niceName": "Consequence 1",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/control/led_fat",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "31_led fat on",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/gamepad/values/buttons/button9",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/control/dir",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": 31,
+                          "hexMode": false,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  },
+                  {
+                    "niceName": "Consequence 1",
+                    "type": "Consequence",
+                    "commandModule": "customVariables",
+                    "commandPath": "",
+                    "commandType": "Set Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/control/led_fat",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
             }
           ],
           "viewOffset": [
@@ -2835,14 +3097,14 @@
           {
             "value": [
               -596.0,
-              -1485.0
+              -1448.0
             ],
             "controlAddress": "/viewUIPosition"
           },
           {
             "value": [
               340.0,
-              408.0
+              431.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -2874,10 +3136,6 @@
                         "controlAddress": "/inputValue"
                       },
                       {
-                        "value": false,
-                        "controlAddress": "/toggleMode"
-                      },
-                      {
                         "value": true,
                         "controlAddress": "/alwaysTrigger"
                       }
@@ -2906,10 +3164,6 @@
                         "controlAddress": "/inputValue"
                       },
                       {
-                        "value": false,
-                        "controlAddress": "/toggleMode"
-                      },
-                      {
                         "value": true,
                         "controlAddress": "/alwaysTrigger"
                       }
@@ -2936,10 +3190,6 @@
                       {
                         "value": "/customVariables/customVariables/values/grille/nb_table",
                         "controlAddress": "/inputValue"
-                      },
-                      {
-                        "value": false,
-                        "controlAddress": "/toggleMode"
                       },
                       {
                         "value": true,
@@ -2998,7 +3248,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 6,
+                                "value": 5,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -3011,7 +3261,7 @@
                             "niceName": "#1",
                             "type": "Integer",
                             "param": {
-                              "value": 6,
+                              "value": 5,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -3024,7 +3274,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 4,
+                                "value": 3,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -3037,7 +3287,7 @@
                             "niceName": "#2",
                             "type": "Integer",
                             "param": {
-                              "value": 4,
+                              "value": 3,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -3118,10 +3368,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": true,
                           "controlAddress": "/reference"
@@ -3261,10 +3507,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -3287,10 +3529,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": false,
                           "controlAddress": "/reference"
@@ -3575,10 +3813,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -3597,10 +3831,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": 4,
                           "hexMode": false,
@@ -3705,10 +3935,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -3727,10 +3953,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": 4,
                           "hexMode": false,
@@ -3835,10 +4057,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -3857,10 +4075,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": 5,
                           "hexMode": false,
@@ -3965,10 +4179,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -3987,10 +4197,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": 5,
                           "hexMode": false,
@@ -4095,10 +4301,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -4117,10 +4319,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": 6,
                           "hexMode": false,
@@ -4225,10 +4423,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -4247,10 +4441,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": 6,
                           "hexMode": false,
@@ -4646,6 +4836,76 @@
                 ],
                 "viewZoom": 1.0
               }
+            },
+            {
+              "niceName": "reset_table",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "oscMain",
+                    "commandPath": "",
+                    "commandType": "Custom Message",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/reset_table",
+                          "controlAddress": "/address"
+                        }
+                      ],
+                      "paramLinks": {
+                      },
+                      "argManager": {
+                        "items": [
+                          {
+                            "parameters": [
+                              {
+                                "value": 1,
+                                "hexMode": false,
+                                "controlAddress": "/#1"
+                              }
+                            ],
+                            "niceName": "#1",
+                            "type": "Integer",
+                            "param": {
+                              "value": 1,
+                              "hexMode": false,
+                              "controlAddress": "/states/game_padToMain/processors/reset_table/consequencesTRUE/consequence/command/arguments/#1/#1"
+                            }
+                          }
+                        ],
+                        "viewOffset": [
+                          0,
+                          0
+                        ],
+                        "viewZoom": 1.0
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
             }
           ],
           "viewOffset": [
@@ -4699,10 +4959,6 @@
                         "controlAddress": "/inputValue"
                       },
                       {
-                        "value": false,
-                        "controlAddress": "/toggleMode"
-                      },
-                      {
                         "value": true,
                         "controlAddress": "/alwaysTrigger"
                       }
@@ -4729,10 +4985,6 @@
                       {
                         "value": "/customVariables/customVariables/values/image/contrast",
                         "controlAddress": "/inputValue"
-                      },
-                      {
-                        "value": false,
-                        "controlAddress": "/toggleMode"
                       },
                       {
                         "value": true,
@@ -4763,10 +5015,6 @@
                         "controlAddress": "/inputValue"
                       },
                       {
-                        "value": false,
-                        "controlAddress": "/toggleMode"
-                      },
-                      {
                         "value": true,
                         "controlAddress": "/alwaysTrigger"
                       }
@@ -4793,10 +5041,6 @@
                       {
                         "value": "/customVariables/customVariables/values/image/reverse",
                         "controlAddress": "/inputValue"
-                      },
-                      {
-                        "value": false,
-                        "controlAddress": "/toggleMode"
                       },
                       {
                         "value": true,
@@ -4826,10 +5070,6 @@
                         "controlAddress": "/inputValue"
                       },
                       {
-                        "value": false,
-                        "controlAddress": "/toggleMode"
-                      },
-                      {
                         "value": true,
                         "controlAddress": "/alwaysTrigger"
                       }
@@ -4857,10 +5097,6 @@
                         "controlAddress": "/inputValue"
                       },
                       {
-                        "value": false,
-                        "controlAddress": "/toggleMode"
-                      },
-                      {
                         "value": true,
                         "controlAddress": "/alwaysTrigger"
                       }
@@ -4869,10 +5105,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": true,
                           "controlAddress": "/reference"
@@ -4916,7 +5148,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 4,
+                                "value": 3,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/selcontrol/selcontrol",
@@ -4929,7 +5161,7 @@
                             "niceName": "#1",
                             "type": "Integer",
                             "param": {
-                              "value": 4,
+                              "value": 3,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/selcontrol/selcontrol",
@@ -4942,7 +5174,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 55,
+                                "value": 75,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/brigthness/brigthness",
@@ -4955,7 +5187,7 @@
                             "niceName": "#2",
                             "type": "Integer",
                             "param": {
-                              "value": 55,
+                              "value": 75,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/brigthness/brigthness",
@@ -4994,7 +5226,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 17,
+                                "value": 162,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/image/variables/thresh/thresh",
@@ -5007,7 +5239,7 @@
                             "niceName": "#4",
                             "type": "Integer",
                             "param": {
-                              "value": 17,
+                              "value": 162,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/image/variables/thresh/thresh",
@@ -5098,7 +5330,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 6,
+                                "value": 5,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -5111,7 +5343,7 @@
                             "niceName": "#8",
                             "type": "Integer",
                             "param": {
-                              "value": 6,
+                              "value": 5,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -5124,7 +5356,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 4,
+                                "value": 3,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -5137,7 +5369,7 @@
                             "niceName": "#9",
                             "type": "Integer",
                             "param": {
-                              "value": 4,
+                              "value": 3,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -5235,20 +5467,12 @@
                       {
                         "value": "/modules/gamepad/values/buttons/button15",
                         "controlAddress": "/inputValue"
-                      },
-                      {
-                        "value": false,
-                        "controlAddress": "/alwaysTrigger"
                       }
                     ],
                     "niceName": "From Input Value 1",
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": true,
                           "controlAddress": "/reference"
@@ -5349,20 +5573,12 @@
                       {
                         "value": "/modules/gamepad/values/buttons/button14",
                         "controlAddress": "/inputValue"
-                      },
-                      {
-                        "value": false,
-                        "controlAddress": "/alwaysTrigger"
                       }
                     ],
                     "niceName": "From Input Value 1",
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": true,
                           "controlAddress": "/reference"
@@ -5569,7 +5785,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 5,
+                          "value": 6,
                           "hexMode": false,
                           "controlAddress": "/value"
                         }
@@ -5634,10 +5850,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -5656,10 +5868,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": 1,
                           "hexMode": false,
@@ -5764,10 +5972,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -5786,10 +5990,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": 1,
                           "hexMode": false,
@@ -5995,11 +6195,6 @@
                         {
                           "value": "Equals",
                           "controlAddress": "/operator"
-                        },
-                        {
-                          "value": 0,
-                          "hexMode": false,
-                          "controlAddress": "/value"
                         }
                       ],
                       "paramLinks": {
@@ -6062,10 +6257,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -6084,10 +6275,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": 2,
                           "hexMode": false,
@@ -6192,10 +6379,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -6214,10 +6397,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": 2,
                           "hexMode": false,
@@ -6423,11 +6602,6 @@
                         {
                           "value": "Equals",
                           "controlAddress": "/operator"
-                        },
-                        {
-                          "value": 0,
-                          "hexMode": false,
-                          "controlAddress": "/value"
                         }
                       ],
                       "paramLinks": {
@@ -6490,10 +6664,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -6512,10 +6682,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": 3,
                           "hexMode": false,
@@ -6620,10 +6786,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -6642,10 +6804,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": 3,
                           "hexMode": false,
@@ -6851,11 +7009,6 @@
                         {
                           "value": "Equals",
                           "controlAddress": "/operator"
-                        },
-                        {
-                          "value": 0,
-                          "hexMode": false,
-                          "controlAddress": "/value"
                         }
                       ],
                       "paramLinks": {
@@ -7251,10 +7404,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -7355,10 +7504,6 @@
                     "type": "From Input Value",
                     "comparator": {
                       "parameters": [
-                        {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
                         {
                           "value": true,
                           "controlAddress": "/reference"
@@ -7469,10 +7614,6 @@
                     "comparator": {
                       "parameters": [
                         {
-                          "value": "=",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
                           "value": true,
                           "controlAddress": "/reference"
                         }
@@ -7490,12 +7631,6 @@
               "consequences": {
                 "items": [
                   {
-                    "parameters": [
-                      {
-                        "value": true,
-                        "controlAddress": "/enabled"
-                      }
-                    ],
                     "niceName": "Consequence",
                     "type": "Consequence",
                     "commandModule": "customVariables",
@@ -7576,10 +7711,6 @@
       },
       {
         "parameters": [
-          {
-            "value": true,
-            "controlAddress": "/enabled"
-          },
           {
             "value": [
               63.0,
@@ -7812,9 +7943,236 @@
       {
         "parameters": [
           {
-            "value": true,
-            "controlAddress": "/enabled"
+            "value": [
+              63.0,
+              -1357.0
+            ],
+            "controlAddress": "/viewUIPosition"
           },
+          {
+            "value": [
+              267.0,
+              100.0
+            ],
+            "controlAddress": "/viewUISize"
+          },
+          {
+            "value": true,
+            "controlAddress": "/active"
+          }
+        ],
+        "niceName": "send serial 1",
+        "type": "State",
+        "processors": {
+          "items": [
+            {
+              "niceName": "Action",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/customVariables/customVariables/values/control/dir",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "Change",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "serial",
+                    "commandPath": "",
+                    "commandType": "Send custom values",
+                    "command": {
+                      "paramLinks": {
+                      },
+                      "argManager": {
+                        "items": [
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "hexMode": false,
+                                "controlAddress": "/#1"
+                              },
+                              {
+                                "value": "2 bytes (Int16)",
+                                "controlAddress": "/precision"
+                              }
+                            ],
+                            "niceName": "#1",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "hexMode": false,
+                              "controlAddress": "/states/sendSerial1/processors/action/consequencesTRUE/consequence/command/arguments/#1/#1"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "hexMode": false,
+                                "controlAddress": "/#2"
+                              },
+                              {
+                                "value": "1 byte",
+                                "controlAddress": "/precision"
+                              }
+                            ],
+                            "niceName": "#2",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "hexMode": false,
+                              "controlAddress": "/states/sendSerial1/processors/action/consequencesTRUE/consequence/command/arguments/#2/#2"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 201,
+                                "controlMode": 2,
+                                "reference": {
+                                  "value": "/customVariables/customVariables/values/control/dir",
+                                  "controlAddress": "/reference"
+                                },
+                                "hexMode": false,
+                                "controlAddress": "/#3"
+                              },
+                              {
+                                "value": "1 byte",
+                                "controlAddress": "/precision"
+                              }
+                            ],
+                            "niceName": "#3",
+                            "type": "Integer",
+                            "param": {
+                              "value": 201,
+                              "controlMode": 2,
+                              "reference": {
+                                "value": "/customVariables/customVariables/values/control/dir",
+                                "controlAddress": "/reference"
+                              },
+                              "hexMode": false,
+                              "controlAddress": "/states/sendSerial1/processors/action/consequencesTRUE/consequence/command/arguments/#3/#3"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 700,
+                                "controlMode": 2,
+                                "reference": {
+                                  "value": "/customVariables/customVariables/values/control/vitesse",
+                                  "controlAddress": "/reference"
+                                },
+                                "hexMode": false,
+                                "controlAddress": "/#4"
+                              },
+                              {
+                                "value": "2 bytes (Int16)",
+                                "controlAddress": "/precision"
+                              }
+                            ],
+                            "niceName": "#4",
+                            "type": "Integer",
+                            "param": {
+                              "value": 700,
+                              "controlMode": 2,
+                              "reference": {
+                                "value": "/customVariables/customVariables/values/control/vitesse",
+                                "controlAddress": "/reference"
+                              },
+                              "hexMode": false,
+                              "controlAddress": "/states/sendSerial1/processors/action/consequencesTRUE/consequence/command/arguments/#4/#4"
+                            }
+                          },
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "hexMode": false,
+                                "controlAddress": "/#5"
+                              },
+                              {
+                                "value": "1 byte",
+                                "controlAddress": "/precision"
+                              }
+                            ],
+                            "niceName": "#5",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "hexMode": false,
+                              "controlAddress": "/states/sendSerial1/processors/action/consequencesTRUE/consequence/command/arguments/#5/#5"
+                            }
+                          }
+                        ],
+                        "viewOffset": [
+                          0,
+                          0
+                        ],
+                        "viewZoom": 1.0
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            }
+          ],
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        }
+      },
+      {
+        "parameters": [
           {
             "value": [
               63.0,
@@ -7825,7 +8183,7 @@
           {
             "value": [
               267.0,
-              546.0
+              567.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -9085,7 +9443,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 55,
+                          "value": 75,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_brightness",
@@ -9155,7 +9513,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 17,
+                          "value": 162,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_thresh",
@@ -9190,7 +9548,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 6,
+                          "value": 5,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_taille_grille_X",
@@ -9225,7 +9583,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 4,
+                          "value": 3,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_taille_grille_Y",
@@ -9295,7 +9653,6 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": false,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_reverse",
@@ -9378,6 +9735,28 @@
                       "paramLinks": {
                       }
                     }
+                  },
+                  {
+                    "niceName": "Consequence 1",
+                    "type": "Consequence",
+                    "commandModule": "gpio",
+                    "commandPath": "",
+                    "commandType": "Set Digital",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": 10,
+                          "hexMode": false,
+                          "controlAddress": "/gpioNumber"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
                   }
                 ],
                 "viewOffset": [
@@ -9449,8 +9828,183 @@
                       "paramLinks": {
                       }
                     }
+                  },
+                  {
+                    "niceName": "Consequence 1",
+                    "type": "Consequence",
+                    "commandModule": "gpio",
+                    "commandPath": "",
+                    "commandType": "Set Digital",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": 22,
+                          "hexMode": false,
+                          "controlAddress": "/gpioNumber"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
                   }
                 ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "serial connected",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/serial/parameters/isConnected",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "gpio",
+                    "commandPath": "",
+                    "commandType": "Set Digital",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": 27,
+                          "hexMode": false,
+                          "controlAddress": "/gpioNumber"
+                        },
+                        {
+                          "value": true,
+                          "controlAddress": "/value"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "gpio",
+                    "commandPath": "",
+                    "commandType": "Set Digital",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": 27,
+                          "hexMode": false,
+                          "controlAddress": "/gpioNumber"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            }
+          ],
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        }
+      },
+      {
+        "parameters": [
+          {
+            "value": [
+              -246.0,
+              -1217.0
+            ],
+            "controlAddress": "/viewUIPosition"
+          },
+          {
+            "value": true,
+            "controlAddress": "/active"
+          }
+        ],
+        "niceName": "from tablette",
+        "type": "State",
+        "processors": {
+          "items": [
+            {
+              "niceName": "home",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "niceName": "From Input Value",
+                    "type": "From Input Value"
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
                 "viewOffset": [
                   0,
                   0
@@ -9475,8 +10029,8 @@
       }
     ],
     "viewOffset": [
-      132,
-      1424
+      135,
+      1624
     ],
     "viewZoom": 1.0,
     "transitions": {
@@ -9490,8 +10044,8 @@
     "comments": {
       "hideInEditor": true,
       "viewOffset": [
-        132,
-        1424
+        135,
+        1624
       ],
       "viewZoom": 1.0
     }
@@ -9500,10 +10054,6 @@
     "items": [
       {
         "parameters": [
-          {
-            "value": true,
-            "controlAddress": "/enabled"
-          },
           {
             "value": true,
             "controlAddress": "/playAtLoad"
@@ -9527,11 +10077,6 @@
                 {
                   "value": 60.0,
                   "controlAddress": "/listSize"
-                },
-                {
-                  "value": 60,
-                  "hexMode": false,
-                  "controlAddress": "/uiHeight"
                 }
               ],
               "niceName": "Trigger",
@@ -9539,6 +10084,47 @@
               "triggers": {
                 "hideInEditor": true,
                 "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": 1.539999961853027,
+                        "controlAddress": "/time"
+                      },
+                      {
+                        "value": 0.5,
+                        "controlAddress": "/flagY"
+                      }
+                    ],
+                    "niceName": "led off",
+                    "type": "BaseItem",
+                    "consequences": {
+                      "items": [
+                        {
+                          "niceName": "Consequence",
+                          "type": "Consequence",
+                          "commandModule": "gpio",
+                          "commandPath": "",
+                          "commandType": "Set Digital",
+                          "command": {
+                            "parameters": [
+                              {
+                                "value": 10,
+                                "hexMode": false,
+                                "controlAddress": "/gpioNumber"
+                              }
+                            ],
+                            "paramLinks": {
+                            }
+                          }
+                        }
+                      ],
+                      "viewOffset": [
+                        0,
+                        0
+                      ],
+                      "viewZoom": 1.0
+                    }
+                  },
                   {
                     "parameters": [
                       {
@@ -9574,7 +10160,10 @@
                         {
                           "niceName": "Consequence 1",
                           "type": "Consequence",
-                          "ghostCommandData": {
+                          "commandModule": "gpio",
+                          "commandPath": "",
+                          "commandType": "Set Digital",
+                          "command": {
                             "parameters": [
                               {
                                 "value": 10,
@@ -9584,10 +10173,7 @@
                             ],
                             "paramLinks": {
                             }
-                          },
-                          "ghostModuleName": "gpio",
-                          "ghostCommandMenuPath": "",
-                          "ghostCommandName": "Set Digital"
+                          }
                         }
                       ],
                       "viewOffset": [
@@ -9619,8 +10205,7 @@
             0
           ],
           "viewZoom": 1.0
-        },
-        "editing": true
+        }
       },
       {
         "parameters": [
@@ -9647,11 +10232,6 @@
                 {
                   "value": 60.0,
                   "controlAddress": "/listSize"
-                },
-                {
-                  "value": 60,
-                  "hexMode": false,
-                  "controlAddress": "/uiHeight"
                 }
               ],
               "niceName": "Trigger",
@@ -9690,6 +10270,24 @@
                             "paramLinks": {
                             }
                           }
+                        },
+                        {
+                          "niceName": "Consequence 1",
+                          "type": "Consequence",
+                          "commandModule": "gpio",
+                          "commandPath": "",
+                          "commandType": "Set Digital",
+                          "command": {
+                            "parameters": [
+                              {
+                                "value": 22,
+                                "hexMode": false,
+                                "controlAddress": "/gpioNumber"
+                              }
+                            ],
+                            "paramLinks": {
+                            }
+                          }
                         }
                       ],
                       "viewOffset": [
@@ -9721,7 +10319,8 @@
             0
           ],
           "viewZoom": 1.0
-        }
+        },
+        "editing": true
       }
     ],
     "viewOffset": [

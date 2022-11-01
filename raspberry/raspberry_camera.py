@@ -26,6 +26,7 @@ reverse_osc=[0]
 taille_grille_X_osc=[0]
 taille_grille_Y_osc=[0]
 nb_table_osc=[0]
+main_osc=[0,0,0]
 value_sensor_temp=[1,1,1,1,1,1,1,1,1,1,1,1]
 
 
@@ -38,14 +39,14 @@ osc_udp_server("192.168.100.180", 5006, "camera")
 osc_udp_client("192.168.100.180", 5007, "chataigne")
 
 
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(10, GPIO.OUT)
+#GPIO.setwarnings(False)
+#GPIO.setmode(GPIO.BCM)
+#GPIO.setup(10, GPIO.OUT)
 
 
 def handler(signum, frame):
     print("prout")
-    GPIO.output(10, GPIO.LOW)
+#    GPIO.output(10, GPIO.LOW)
 
     exit(1)
 
@@ -65,6 +66,9 @@ reverse_osc[0]=int (reglage_lines[3])
 taille_grille_X_osc[0]= int (reglage_lines[4])
 taille_grille_Y_osc[0]= int (reglage_lines[5])
 nb_table_osc[0]= int (reglage_lines[6])
+main_osc[0]=int (reglage_lines[4])
+main_osc[1]=int (reglage_lines[5])
+main_osc[2]=int (reglage_lines[6])
 
 
 print("brightness:" ,brightness, "/contrast: ",contrast,"tresh: ",thresh,"reverse: ",reverse)
@@ -76,7 +80,7 @@ msg4 = oscbuildparse.OSCMessage("/taille_grille_X", None, taille_grille_X_osc)
 msg5 = oscbuildparse.OSCMessage("/taille_grille_Y", None, taille_grille_Y_osc)
 msg6 = oscbuildparse.OSCMessage("/nb_table", None, nb_table_osc)
 
-msg7 = oscbuildparse.OSCMessage("/demarrage", None, nb_table_osc)
+msg7 = oscbuildparse.OSCMessage("/grille", None, main_osc)
 
 osc_send(msg0, "chataigne")
 osc_send(msg1, "chataigne")
@@ -166,7 +170,7 @@ time.sleep(1)
 
 
 osc_method("/image", control_image)
-GPIO.output(10, GPIO.HIGH)
+#GPIO.output(10, GPIO.HIGH)
 
 
 for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port=True):

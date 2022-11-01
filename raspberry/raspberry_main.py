@@ -5,33 +5,33 @@ from osc4py3 import oscbuildparse
 import time
 import random
 
-
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(10, GPIO.OUT)
-GPIO.output(10, GPIO.LOW)
-GPIO.setup(27, GPIO.OUT)
-GPIO.output(27, GPIO.LOW)
-GPIO.setup(22, GPIO.OUT)
-GPIO.output(22, GPIO.LOW)
-
-
-time.sleep(2)
-GPIO.output(10, GPIO.HIGH)
-GPIO.output(27, GPIO.HIGH)
-GPIO.output(22, GPIO.HIGH)
-time.sleep(1)
-GPIO.output(10, GPIO.LOW)
-GPIO.output(27, GPIO.LOW)
-GPIO.output(22, GPIO.LOW)
-time.sleep(1)
-GPIO.output(10, GPIO.HIGH)
-GPIO.output(27, GPIO.HIGH)
-GPIO.output(22, GPIO.HIGH)
-time.sleep(1)
-GPIO.output(10, GPIO.LOW)
-GPIO.output(27, GPIO.LOW)
-GPIO.output(22, GPIO.LOW)
+#
+# GPIO.setwarnings(False)
+# GPIO.setmode(GPIO.BCM)
+# GPIO.setup(10, GPIO.OUT)
+# GPIO.output(10, GPIO.LOW)
+# GPIO.setup(27, GPIO.OUT)
+# GPIO.output(27, GPIO.LOW)
+# GPIO.setup(22, GPIO.OUT)
+# GPIO.output(22, GPIO.LOW)
+#
+#
+# time.sleep(2)
+# GPIO.output(10, GPIO.HIGH)
+# GPIO.output(27, GPIO.HIGH)
+# GPIO.output(22, GPIO.HIGH)
+# time.sleep(1)
+# GPIO.output(10, GPIO.LOW)
+# GPIO.output(27, GPIO.LOW)
+# GPIO.output(22, GPIO.LOW)
+# time.sleep(1)
+# GPIO.output(10, GPIO.HIGH)
+# GPIO.output(27, GPIO.HIGH)
+# GPIO.output(22, GPIO.HIGH)
+# time.sleep(1)
+# GPIO.output(10, GPIO.LOW)
+# GPIO.output(27, GPIO.LOW)
+# GPIO.output(22, GPIO.LOW)
 
 
 osc_startup()
@@ -39,7 +39,7 @@ ip="192.168.100.180"
 port=5005
 osc_udp_server(ip, port, "raspberry")
 osc_udp_client("192.168.100.180", 5007, "chataigne")
-osc_udp_client("192.168.100.117", 5008, "all")
+osc_udp_client("192.168.100.187", 5009, "tablette")
 
 
 
@@ -73,17 +73,19 @@ sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
 dataMotor=[0,0,0,0,0,0]
 coordX=-1
 coordY=-1
+coordonate_bot =[-1,-1]
 go_to=0
 go_toX=-1
 go_toY=-1
 max_X=6
-max_Y=4
+max_Y=3
 
 
 
 coordonate_table_lines = []
 coordonate_table = [[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1]]
-
+coordonate_table_osc = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+taille_grille_osc=[0,0]
 with open("/home/pi/Desktop/coordonate_table.txt") as f:
     coordonate_table_lines = f.readlines()
 
@@ -93,7 +95,13 @@ for x in range (0 , len(coordonate_table_lines)):
     temp_coordonate_list = temp_coordonate.split(' ')
     coordonate_table[x][0]=int(temp_coordonate_list[0])
     coordonate_table[x][1]=int(temp_coordonate_list[1])
+    coordonate_table_osc[x*2] =coordonate_table[x][0]
+    coordonate_table_osc[(x*2)+1] =coordonate_table[x][1]
 
+
+msg = oscbuildparse.OSCMessage("/coord_table", None, coordonate_table_osc)
+osc_send(msg, "tablette")
+temps=time.time()
 
 
 
@@ -232,7 +240,6 @@ def reste_sur_ligne():
             dir_ligne=0
             dir=0
             if bot_state==0:
-                time.sleep(2)
                 bot_state=1
             elif bot_state==1:
                 verin=1
@@ -249,7 +256,20 @@ def reste_sur_ligne():
 
                 rec_coordonate.close()
                 verin=0
-                bot_state=1
+
+                if (coordY==max_Y):
+                    go_to=1
+                    go_toX=coordX
+                    go_toY=0
+                    bot_state=0
+                else :
+                    bot_state=random.randint(0,1)
+                    if bot_state==0:
+                        go_to=1
+                        go_toX=coordX
+                        go_toY=0
+                        bot_state=0
+
 
     elif play==1:
 
@@ -277,6 +297,8 @@ def reste_sur_ligne():
                 bloque+=1
             if coordY==1 or coordY==max_Y:
                 bloque+=1
+            if (coordX==2 and coordY==3) or (coordX==4 and coordY==3) or (coordX==3 and coordY==2):
+                bloque+=1
 
 
 
@@ -291,7 +313,7 @@ def reste_sur_ligne():
                     bloque+=1
             print ("bloque : ", bloque)
             if bloque<4:
-                while coordonate_exist<nb_table :
+                while coordonate_exist<nb_table+1 :
                     coordonate_exist=0
                     go_toX=coordX_temp
                     go_toY=coordY_temp
@@ -308,9 +330,12 @@ def reste_sur_ligne():
                         go_toY=random.randint(coordY-1,coordY + 1)
                         if (go_toY>max_Y):
                             go_toY=max_Y
-                        if (go_toY<0):
-                            go_toY=0
+                        if (go_toY<1):
+                            go_toY=1
                     print ("goto random: ", go_toX, go_toY)
+                    if go_toX==3 and go_toY==3:
+                        print("position interdite")
+                        coordonate_exist=-1
                     for x in range (0 , nb_table+1):
 
                         if (coordonate_table[x][0]==go_toX and coordonate_table[x][1]==go_toY) or (go_toX==coordX and go_toY==coordY):
@@ -334,8 +359,15 @@ def reste_sur_ligne():
         print ("new go_toY :", go_toY)
         new_coordonate=[go_toX,go_toY]
         msg = oscbuildparse.OSCMessage("/new_coordonate", None, new_coordonate)
-        osc_send(msg, "all")
+        osc_send(msg, "tablette")
         print("bot_state: ", bot_state)
+
+        for x in range (0,nb_table+1):
+            coordonate_table_osc[x*2] =coordonate_table[x][0]
+            coordonate_table_osc[(x*2)+1] =coordonate_table[x][1]
+        msg = oscbuildparse.OSCMessage("/coord_table", None, coordonate_table_osc)
+        osc_send(msg, "tablette")
+
 
 
 
@@ -384,7 +416,7 @@ def reste_sur_ligne():
         if check_croix==1 and (sensor[10]==0 or sensor[10]==1):
             check_croix=0
             print ("check croix 0")
-            time.sleep(1)
+            time.sleep(2)
 
         if dir_ligne==5 and (sensor[2]==0 or sensor[5]==0) and sensor[1]==1 and sensor[4]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!= 4:
 
@@ -400,7 +432,7 @@ def reste_sur_ligne():
         if check_croix==1 and (sensor[10]==0 or sensor[10]==1):
             check_croix=0
             print ("check croix 0")
-            time.sleep(1)
+            time.sleep(2)
 
 
 
@@ -549,7 +581,7 @@ def reste_sur_ligne():
         if check_croix==1 and (sensor[10]==0 or sensor[10]==1):
             check_croix=0
             print ("check croix 0")
-            time.sleep(1)
+            time.sleep(2)
 
         if  dir_ligne==7 and (sensor[3]==0 or sensor[5]==0) and sensor[6]==1 and sensor[7]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!=4 :
             print("croix")
@@ -565,7 +597,7 @@ def reste_sur_ligne():
 
         if check_croix==1 and (sensor[10]==0 or sensor[10]==1):
             check_croix=0
-            time.sleep(1)
+            time.sleep(2)
             print ("check croix 0")
 
         if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and sensor[1]==1 and dir_ligne==7 and sensor[10]==3 and check_bord==0 and etape_perdu!=4 and check_croix==0:
@@ -766,10 +798,6 @@ def grille(*args):
 #######################################
 
 
-def demarrage_cam(*args):
-    print( "demarrage camera...")
-
-
 
 #######################################
 def game_pad(*args):
@@ -782,6 +810,7 @@ def game_pad(*args):
     global go_to
     global go_toX
     global go_toY
+    global dir
 
 
     home=args[0]
@@ -797,6 +826,7 @@ def game_pad(*args):
         go_to=0
         go_toX=-1
         go_toY=-1
+        dir = 0
         print("mode manuel")
 
 
@@ -820,6 +850,39 @@ def game_pad(*args):
 
 
 ###########################################################
+
+
+
+#######################################
+def reset_table(*args):
+
+
+    with open("/home/pi/Desktop/reset_table.txt") as f:
+        coordonate_table_lines = f.readlines()
+
+
+    for x in range (0 , len(coordonate_table_lines)):
+        temp_coordonate="".join(coordonate_table_lines[x])
+        temp_coordonate_list = temp_coordonate.split(' ')
+        coordonate_table[x][0]=int(temp_coordonate_list[0])
+        coordonate_table[x][1]=int(temp_coordonate_list[1])
+        coordonate_table_osc[x*2] =coordonate_table[x][0]
+        coordonate_table_osc[(x*2)+1] =coordonate_table[x][1]
+
+
+    msg = oscbuildparse.OSCMessage("/coord_table", None, coordonate_table_osc)
+    osc_send(msg, "tablette")
+
+    rec_coordonate = open("/home/pi/Desktop/coordonate_table.txt","w")
+    print("rec table...")
+    for x in range (0 , len(coordonate_table)):
+
+        rec_coordonate.write(str(int(coordonate_table[x][0]))+" "+str(int(coordonate_table[x][1]))+"\n")
+
+    rec_coordonate.close()
+
+
+
 #############################################################
 #################################################################
 
@@ -829,7 +892,7 @@ osc_method("/game_pad", game_pad)
 osc_method("/sensor", sensor_osc)
 
 osc_method("/grille", grille)
-osc_method("/demarrage", demarrage_cam)
+osc_method("/reset_table", reset_table)
 
 
 
@@ -855,5 +918,23 @@ while True:
         osc_process()
         time.sleep(5)
         verin=2
+
+    if time.time()-temps > 1 :
+        msg = oscbuildparse.OSCMessage("/coord_table", None, coordonate_table_osc)
+        osc_send(msg, "tablette")
+        coordonate_bot[0]=coordX
+        coordonate_bot[1]=coordY
+        msg1 = oscbuildparse.OSCMessage("/coord_bot", None, coordonate_bot)
+        osc_send(msg1, "tablette")
+        msg2 = oscbuildparse.OSCMessage("/ping_main", None, '0')
+        osc_send(msg2, "chataigne")
+        msg3 = oscbuildparse.OSCMessage("/ping_main", None, '1')
+        osc_send(msg3, "chataigne")
+        taille_grille_osc[0]=max_X
+        taille_grille_osc[1]=max_Y
+        msg4 = oscbuildparse.OSCMessage("/grille", None, taille_grille_osc)
+        osc_send(msg4, "tablette")
+
+        temps=time.time()
 
 osc_terminate()
