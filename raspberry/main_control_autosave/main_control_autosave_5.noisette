@@ -397,7 +397,7 @@
                 {
                   "type": 0,
                   "width": 273,
-                  "height": 377,
+                  "height": 379,
                   "currentContent": "Modules",
                   "tabs": [
                     {
@@ -408,7 +408,7 @@
                 {
                   "type": 0,
                   "width": 273,
-                  "height": 436,
+                  "height": 438,
                   "currentContent": "Sequences",
                   "tabs": [
                     {
@@ -422,7 +422,7 @@
                 {
                   "type": 0,
                   "width": 273,
-                  "height": 282,
+                  "height": 280,
                   "currentContent": "Logger",
                   "tabs": [
                     {
@@ -440,7 +440,7 @@
             },
             {
               "type": 0,
-              "width": 1110,
+              "width": 1293,
               "height": 1109,
               "currentContent": "State Machine",
               "tabs": [
@@ -463,7 +463,7 @@
             },
             {
               "type": 0,
-              "width": 525,
+              "width": 342,
               "height": 1109,
               "currentContent": "Inspector",
               "tabs": [
@@ -769,7 +769,7 @@
               "feedbackOnly": false
             },
             {
-              "value": 5,
+              "value": 6,
               "hexMode": false,
               "controlAddress": "/_taille_grille_X",
               "type": "Integer",
@@ -781,7 +781,7 @@
               "feedbackOnly": false
             },
             {
-              "value": 3,
+              "value": 5,
               "hexMode": false,
               "controlAddress": "/_taille_grille_Y",
               "type": "Integer",
@@ -944,6 +944,12 @@
         }
       },
       {
+        "parameters": [
+          {
+            "value": false,
+            "controlAddress": "/enabled"
+          }
+        ],
         "niceName": "OSC tablette",
         "type": "OSC",
         "scripts": {
@@ -1021,6 +1027,29 @@
               "controlAddress": "/_reset_table",
               "type": "Integer",
               "niceName": "/reset_table",
+              "customizable": true,
+              "removable": true,
+              "description": "",
+              "hideInEditor": false,
+              "feedbackOnly": false
+            },
+            {
+              "hexMode": false,
+              "controlAddress": "/_stop",
+              "type": "Integer",
+              "niceName": "/stop",
+              "customizable": true,
+              "removable": true,
+              "description": "",
+              "hideInEditor": false,
+              "feedbackOnly": false,
+              "shortName": "_stop"
+            },
+            {
+              "hexMode": false,
+              "controlAddress": "/_dir",
+              "type": "Integer",
+              "niceName": "/dir",
               "customizable": true,
               "removable": true,
               "description": "",
@@ -1308,7 +1337,7 @@
             {
               "parameters": [
                 {
-                  "value": 5,
+                  "value": 6,
                   "hexMode": false,
                   "controlAddress": "/taille_grille_X",
                   "feedbackOnly": false,
@@ -1327,7 +1356,7 @@
             {
               "parameters": [
                 {
-                  "value": 3,
+                  "value": 5,
                   "hexMode": false,
                   "controlAddress": "/taille_grille_Y",
                   "feedbackOnly": false,
@@ -1359,6 +1388,64 @@
                 }
               ],
               "niceName": "nb_table",
+              "editorIsCollapsed": true,
+              "type": "Int Parameter"
+            }
+          ],
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "presets": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        }
+      },
+      {
+        "niceName": "connected",
+        "type": "CVGroup",
+        "params": {
+        },
+        "variables": {
+          "items": [
+            {
+              "parameters": [
+                {
+                  "hexMode": false,
+                  "controlAddress": "/serial_connected",
+                  "feedbackOnly": false,
+                  "type": "Integer",
+                  "niceName": "serial_connected",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Integer",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "serial_connected",
+              "editorIsCollapsed": true,
+              "type": "Int Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "hexMode": false,
+                  "controlAddress": "/gamepad_connected",
+                  "feedbackOnly": false,
+                  "type": "Integer",
+                  "niceName": "gamepad_connected",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Integer",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "gamepad_connected",
               "editorIsCollapsed": true,
               "type": "Int Parameter"
             }
@@ -3272,7 +3359,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 5,
+                                "value": 6,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -3285,7 +3372,7 @@
                             "niceName": "#1",
                             "type": "Integer",
                             "param": {
-                              "value": 5,
+                              "value": 6,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -3298,7 +3385,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 3,
+                                "value": 5,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -3311,7 +3398,7 @@
                             "niceName": "#2",
                             "type": "Integer",
                             "param": {
-                              "value": 3,
+                              "value": 5,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -5354,7 +5441,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 5,
+                                "value": 6,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -5367,7 +5454,7 @@
                             "niceName": "#8",
                             "type": "Integer",
                             "param": {
-                              "value": 5,
+                              "value": 6,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_X/taille_grille_X",
@@ -5380,7 +5467,7 @@
                           {
                             "parameters": [
                               {
-                                "value": 3,
+                                "value": 5,
                                 "controlMode": 2,
                                 "reference": {
                                   "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -5393,7 +5480,7 @@
                             "niceName": "#9",
                             "type": "Integer",
                             "param": {
-                              "value": 3,
+                              "value": 5,
                               "controlMode": 2,
                               "reference": {
                                 "value": "/customVariables/grille/variables/taille_grille_Y/taille_grille_Y",
@@ -7737,15 +7824,15 @@
         "parameters": [
           {
             "value": [
-              63.0,
-              -1357.0
+              -246.0,
+              -1247.0
             ],
             "controlAddress": "/viewUIPosition"
           },
           {
             "value": [
-              267.0,
-              100.0
+              299.0,
+              98.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -7969,237 +8056,6 @@
           {
             "value": [
               63.0,
-              -1357.0
-            ],
-            "controlAddress": "/viewUIPosition"
-          },
-          {
-            "value": [
-              267.0,
-              100.0
-            ],
-            "controlAddress": "/viewUISize"
-          },
-          {
-            "value": true,
-            "controlAddress": "/active"
-          }
-        ],
-        "niceName": "send serial 1",
-        "type": "State",
-        "processors": {
-          "items": [
-            {
-              "niceName": "Action",
-              "editorIsCollapsed": true,
-              "type": "Action",
-              "conditions": {
-                "items": [
-                  {
-                    "parameters": [
-                      {
-                        "value": "/customVariables/customVariables/values/control/dir",
-                        "controlAddress": "/inputValue"
-                      },
-                      {
-                        "value": true,
-                        "controlAddress": "/alwaysTrigger"
-                      }
-                    ],
-                    "niceName": "From Input Value",
-                    "type": "From Input Value",
-                    "comparator": {
-                      "parameters": [
-                        {
-                          "value": "Change",
-                          "controlAddress": "/comparisonFunction"
-                        },
-                        {
-                          "value": 0,
-                          "hexMode": false,
-                          "controlAddress": "/reference"
-                        }
-                      ],
-                      "hideInEditor": true
-                    }
-                  }
-                ],
-                "viewOffset": [
-                  0,
-                  0
-                ],
-                "viewZoom": 1.0
-              },
-              "consequences": {
-                "items": [
-                  {
-                    "niceName": "Consequence",
-                    "type": "Consequence",
-                    "commandModule": "serial",
-                    "commandPath": "",
-                    "commandType": "Send custom values",
-                    "command": {
-                      "paramLinks": {
-                      },
-                      "argManager": {
-                        "items": [
-                          {
-                            "parameters": [
-                              {
-                                "value": 0,
-                                "hexMode": false,
-                                "controlAddress": "/#1"
-                              },
-                              {
-                                "value": "2 bytes (Int16)",
-                                "controlAddress": "/precision"
-                              }
-                            ],
-                            "niceName": "#1",
-                            "type": "Integer",
-                            "param": {
-                              "value": 0,
-                              "hexMode": false,
-                              "controlAddress": "/states/sendSerial1/processors/action/consequencesTRUE/consequence/command/arguments/#1/#1"
-                            }
-                          },
-                          {
-                            "parameters": [
-                              {
-                                "value": 0,
-                                "hexMode": false,
-                                "controlAddress": "/#2"
-                              },
-                              {
-                                "value": "1 byte",
-                                "controlAddress": "/precision"
-                              }
-                            ],
-                            "niceName": "#2",
-                            "type": "Integer",
-                            "param": {
-                              "value": 0,
-                              "hexMode": false,
-                              "controlAddress": "/states/sendSerial1/processors/action/consequencesTRUE/consequence/command/arguments/#2/#2"
-                            }
-                          },
-                          {
-                            "parameters": [
-                              {
-                                "value": 201,
-                                "controlMode": 2,
-                                "reference": {
-                                  "value": "/customVariables/customVariables/values/control/dir",
-                                  "controlAddress": "/reference"
-                                },
-                                "hexMode": false,
-                                "controlAddress": "/#3"
-                              },
-                              {
-                                "value": "1 byte",
-                                "controlAddress": "/precision"
-                              }
-                            ],
-                            "niceName": "#3",
-                            "type": "Integer",
-                            "param": {
-                              "value": 201,
-                              "controlMode": 2,
-                              "reference": {
-                                "value": "/customVariables/customVariables/values/control/dir",
-                                "controlAddress": "/reference"
-                              },
-                              "hexMode": false,
-                              "controlAddress": "/states/sendSerial1/processors/action/consequencesTRUE/consequence/command/arguments/#3/#3"
-                            }
-                          },
-                          {
-                            "parameters": [
-                              {
-                                "value": 700,
-                                "controlMode": 2,
-                                "reference": {
-                                  "value": "/customVariables/customVariables/values/control/vitesse",
-                                  "controlAddress": "/reference"
-                                },
-                                "hexMode": false,
-                                "controlAddress": "/#4"
-                              },
-                              {
-                                "value": "2 bytes (Int16)",
-                                "controlAddress": "/precision"
-                              }
-                            ],
-                            "niceName": "#4",
-                            "type": "Integer",
-                            "param": {
-                              "value": 700,
-                              "controlMode": 2,
-                              "reference": {
-                                "value": "/customVariables/customVariables/values/control/vitesse",
-                                "controlAddress": "/reference"
-                              },
-                              "hexMode": false,
-                              "controlAddress": "/states/sendSerial1/processors/action/consequencesTRUE/consequence/command/arguments/#4/#4"
-                            }
-                          },
-                          {
-                            "parameters": [
-                              {
-                                "value": 0,
-                                "hexMode": false,
-                                "controlAddress": "/#5"
-                              },
-                              {
-                                "value": "1 byte",
-                                "controlAddress": "/precision"
-                              }
-                            ],
-                            "niceName": "#5",
-                            "type": "Integer",
-                            "param": {
-                              "value": 0,
-                              "hexMode": false,
-                              "controlAddress": "/states/sendSerial1/processors/action/consequencesTRUE/consequence/command/arguments/#5/#5"
-                            }
-                          }
-                        ],
-                        "viewOffset": [
-                          0,
-                          0
-                        ],
-                        "viewZoom": 1.0
-                      }
-                    }
-                  }
-                ],
-                "viewOffset": [
-                  0,
-                  0
-                ],
-                "viewZoom": 1.0
-              },
-              "consequencesOff": {
-                "viewOffset": [
-                  0,
-                  0
-                ],
-                "viewZoom": 1.0
-              }
-            }
-          ],
-          "viewOffset": [
-            0,
-            0
-          ],
-          "viewZoom": 1.0
-        }
-      },
-      {
-        "parameters": [
-          {
-            "value": [
-              63.0,
               -1934.0
             ],
             "controlAddress": "/viewUIPosition"
@@ -8207,7 +8063,7 @@
           {
             "value": [
               267.0,
-              567.0
+              721.0
             ],
             "controlAddress": "/viewUISize"
           },
@@ -9572,7 +9428,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 5,
+                          "value": 6,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_taille_grille_X",
@@ -9607,7 +9463,7 @@
                           "controlAddress": "/operator"
                         },
                         {
-                          "value": 3,
+                          "value": 5,
                           "controlMode": 2,
                           "reference": {
                             "value": "/modules/oscMain/values/_taille_grille_Y",
@@ -9781,6 +9637,48 @@
                       "paramLinks": {
                       }
                     }
+                  },
+                  {
+                    "niceName": "Consequence 2",
+                    "type": "Consequence",
+                    "commandModule": "oscTablette",
+                    "commandPath": "",
+                    "commandType": "Custom Message",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/camera",
+                          "controlAddress": "/address"
+                        }
+                      ],
+                      "paramLinks": {
+                      },
+                      "argManager": {
+                        "items": [
+                          {
+                            "parameters": [
+                              {
+                                "value": 1,
+                                "hexMode": false,
+                                "controlAddress": "/#1"
+                              }
+                            ],
+                            "niceName": "#1",
+                            "type": "Integer",
+                            "param": {
+                              "value": 1,
+                              "hexMode": false,
+                              "controlAddress": "/states/oscReceive/processors/pingCam/consequencesTRUE/consequence2/command/arguments/#1/#1"
+                            }
+                          }
+                        ],
+                        "viewOffset": [
+                          0,
+                          0
+                        ],
+                        "viewZoom": 1.0
+                      }
+                    }
                   }
                 ],
                 "viewOffset": [
@@ -9833,27 +9731,6 @@
               "consequences": {
                 "items": [
                   {
-                    "niceName": "Consequence",
-                    "type": "Consequence",
-                    "commandModule": "sequences",
-                    "commandPath": "Playback",
-                    "commandType": "Play Sequence",
-                    "command": {
-                      "parameters": [
-                        {
-                          "value": "/sequences/check_pingMain",
-                          "controlAddress": "/target"
-                        },
-                        {
-                          "value": true,
-                          "controlAddress": "/playFromStart"
-                        }
-                      ],
-                      "paramLinks": {
-                      }
-                    }
-                  },
-                  {
                     "niceName": "Consequence 1",
                     "type": "Consequence",
                     "commandModule": "gpio",
@@ -9872,6 +9749,48 @@
                         }
                       ],
                       "paramLinks": {
+                      }
+                    }
+                  },
+                  {
+                    "niceName": "Consequence 2",
+                    "type": "Consequence",
+                    "commandModule": "oscTablette",
+                    "commandPath": "",
+                    "commandType": "Custom Message",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/main",
+                          "controlAddress": "/address"
+                        }
+                      ],
+                      "paramLinks": {
+                      },
+                      "argManager": {
+                        "items": [
+                          {
+                            "parameters": [
+                              {
+                                "value": 1,
+                                "hexMode": false,
+                                "controlAddress": "/#1"
+                              }
+                            ],
+                            "niceName": "#1",
+                            "type": "Integer",
+                            "param": {
+                              "value": 1,
+                              "hexMode": false,
+                              "controlAddress": "/states/oscReceive/processors/pingMain/consequencesTRUE/consequence2/command/arguments/#1/#1"
+                            }
+                          }
+                        ],
+                        "viewOffset": [
+                          0,
+                          0
+                        ],
+                        "viewZoom": 1.0
                       }
                     }
                   }
@@ -9918,6 +9837,29 @@
                       ],
                       "hideInEditor": true
                     }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/metroTablette/values/tick",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
                   }
                 ],
                 "viewOffset": [
@@ -9949,6 +9891,48 @@
                       "paramLinks": {
                       }
                     }
+                  },
+                  {
+                    "niceName": "Consequence 1",
+                    "type": "Consequence",
+                    "commandModule": "oscTablette",
+                    "commandPath": "",
+                    "commandType": "Custom Message",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/serial",
+                          "controlAddress": "/address"
+                        }
+                      ],
+                      "paramLinks": {
+                      },
+                      "argManager": {
+                        "items": [
+                          {
+                            "parameters": [
+                              {
+                                "value": 1,
+                                "hexMode": false,
+                                "controlAddress": "/#1"
+                              }
+                            ],
+                            "niceName": "#1",
+                            "type": "Integer",
+                            "param": {
+                              "value": 1,
+                              "hexMode": false,
+                              "controlAddress": "/states/oscReceive/processors/serialConnected/consequencesTRUE/consequence1/command/arguments/#1/#1"
+                            }
+                          }
+                        ],
+                        "viewOffset": [
+                          0,
+                          0
+                        ],
+                        "viewZoom": 1.0
+                      }
+                    }
                   }
                 ],
                 "viewOffset": [
@@ -9958,6 +9942,73 @@
                 "viewZoom": 1.0
               },
               "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "serial notconnected",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/serial/parameters/isConnected",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/metroTablette/values/tick",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
                 "items": [
                   {
                     "niceName": "Consequence",
@@ -9976,8 +10027,297 @@
                       "paramLinks": {
                       }
                     }
+                  },
+                  {
+                    "niceName": "Consequence 1",
+                    "type": "Consequence",
+                    "commandModule": "oscTablette",
+                    "commandPath": "",
+                    "commandType": "Custom Message",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/serial",
+                          "controlAddress": "/address"
+                        }
+                      ],
+                      "paramLinks": {
+                      },
+                      "argManager": {
+                        "items": [
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "hexMode": false,
+                                "controlAddress": "/#1"
+                              }
+                            ],
+                            "niceName": "#1",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "hexMode": false,
+                              "controlAddress": "/states/oscReceive/processors/serialNotconnected/consequencesTRUE/consequence1/command/arguments/#1/#1"
+                            }
+                          }
+                        ],
+                        "viewOffset": [
+                          0,
+                          0
+                        ],
+                        "viewZoom": 1.0
+                      }
+                    }
                   }
                 ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "wifi notconnected",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/os/values/ip",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "!=",
+                          "controlAddress": "/comparisonFunction"
+                        },
+                        {
+                          "value": "192.168.100.180",
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/metroTablette/values/tick",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "oscTablette",
+                    "commandPath": "",
+                    "commandType": "Custom Message",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/wifi",
+                          "controlAddress": "/address"
+                        }
+                      ],
+                      "paramLinks": {
+                      },
+                      "argManager": {
+                        "items": [
+                          {
+                            "parameters": [
+                              {
+                                "value": 0,
+                                "hexMode": false,
+                                "controlAddress": "/#1"
+                              }
+                            ],
+                            "niceName": "#1",
+                            "type": "Integer",
+                            "param": {
+                              "value": 0,
+                              "hexMode": false,
+                              "controlAddress": "/states/oscReceive/processors/wifiNotconnected/consequencesTRUE/consequence/command/arguments/#1/#1"
+                            }
+                          }
+                        ],
+                        "viewOffset": [
+                          0,
+                          0
+                        ],
+                        "viewZoom": 1.0
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "wifi connected",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/os/values/ip",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": "192.168.100.180",
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/metroTablette/values/tick",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value 1",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "oscTablette",
+                    "commandPath": "",
+                    "commandType": "Custom Message",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/wifi",
+                          "controlAddress": "/address"
+                        }
+                      ],
+                      "paramLinks": {
+                      },
+                      "argManager": {
+                        "items": [
+                          {
+                            "parameters": [
+                              {
+                                "value": 1,
+                                "hexMode": false,
+                                "controlAddress": "/#1"
+                              }
+                            ],
+                            "niceName": "#1",
+                            "type": "Integer",
+                            "param": {
+                              "value": 1,
+                              "hexMode": false,
+                              "controlAddress": "/states/oscReceive/processors/wifiConnected/consequencesTRUE/consequence/command/arguments/#1/#1"
+                            }
+                          }
+                        ],
+                        "viewOffset": [
+                          0,
+                          0
+                        ],
+                        "viewZoom": 1.0
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
                 "viewOffset": [
                   0,
                   0
@@ -9997,20 +10337,902 @@
         "parameters": [
           {
             "value": [
-              -246.0,
-              -1247.0
+              340.0,
+              -1934.0
             ],
             "controlAddress": "/viewUIPosition"
+          },
+          {
+            "value": [
+              263.0,
+              515.0
+            ],
+            "controlAddress": "/viewUISize"
           },
           {
             "value": true,
             "controlAddress": "/active"
           }
         ],
-        "niceName": "from tablette",
+        "niceName": "osc receive from processing",
         "type": "State",
         "processors": {
           "items": [
+            {
+              "niceName": "dir 0",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscTablette/values/_dir",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 0,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/0_stop",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "dir 1",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscTablette/values/_dir",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/1_leftForward",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "dir 2",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscTablette/values/_dir",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 2,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/2_forward",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "dir 3",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscTablette/values/_dir",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 3,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/3_rightForward",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "dir 4",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscTablette/values/_dir",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 4,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/4_left",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "dir 5",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscTablette/values/_dir",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 5,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/5_droite",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "dir 6",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscTablette/values/_dir",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 6,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/6_leftbackward",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "dir 7",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscTablette/values/_dir",
+                        "controlAddress": "/inputValue"
+                      },
+                      {
+                        "value": true,
+                        "controlAddress": "/alwaysTrigger"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 7,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/7_backward",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "dir 8",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscTablette/values/_dir",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 8,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/8_right_backward",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "dir 9",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscTablette/values/_dir",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 9,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/9_rotateRight",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "dir 10",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscTablette/values/_dir",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 10,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/10_rotateLeft",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "dir 20",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscTablette/values/_dir",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 20,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/20_verin_position_basse",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "dir 21",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscTablette/values/_dir",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 21,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToTeensy/processors/21_verin_position_haute",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
             {
               "niceName": "home",
               "editorIsCollapsed": true,
@@ -10056,6 +11278,73 @@
                       "parameters": [
                         {
                           "value": "/states/game_padToMain/processors/home",
+                          "controlAddress": "/target"
+                        }
+                      ],
+                      "paramLinks": {
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequencesOff": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            },
+            {
+              "niceName": "stop",
+              "editorIsCollapsed": true,
+              "type": "Action",
+              "conditions": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/oscTablette/values/_stop",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "From Input Value",
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": 1,
+                          "hexMode": false,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "consequences": {
+                "items": [
+                  {
+                    "niceName": "Consequence",
+                    "type": "Consequence",
+                    "commandModule": "stateMachine",
+                    "commandPath": "Action",
+                    "commandType": "Trigger Action",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/states/game_padToMain/processors/modeManuel",
                           "controlAddress": "/target"
                         }
                       ],
@@ -10155,8 +11444,8 @@
       }
     ],
     "viewOffset": [
-      135,
-      1273
+      27,
+      1471
     ],
     "viewZoom": 1.0,
     "transitions": {
@@ -10170,8 +11459,8 @@
     "comments": {
       "hideInEditor": true,
       "viewOffset": [
-        135,
-        1273
+        27,
+        1471
       ],
       "viewZoom": 1.0
     }
@@ -10185,11 +11474,11 @@
             "controlAddress": "/playAtLoad"
           },
           {
-            "value": 2.0,
+            "value": 5.0,
             "controlAddress": "/totalTime"
           },
           {
-            "value": 2.0,
+            "value": 1.864088535308838,
             "controlAddress": "/viewEndTime"
           }
         ],
@@ -10213,48 +11502,7 @@
                   {
                     "parameters": [
                       {
-                        "value": 1.539999961853027,
-                        "controlAddress": "/time"
-                      },
-                      {
-                        "value": 0.5,
-                        "controlAddress": "/flagY"
-                      }
-                    ],
-                    "niceName": "led off",
-                    "type": "BaseItem",
-                    "consequences": {
-                      "items": [
-                        {
-                          "niceName": "Consequence",
-                          "type": "Consequence",
-                          "commandModule": "gpio",
-                          "commandPath": "",
-                          "commandType": "Set Digital",
-                          "command": {
-                            "parameters": [
-                              {
-                                "value": 10,
-                                "hexMode": false,
-                                "controlAddress": "/gpioNumber"
-                              }
-                            ],
-                            "paramLinks": {
-                            }
-                          }
-                        }
-                      ],
-                      "viewOffset": [
-                        0,
-                        0
-                      ],
-                      "viewZoom": 1.0
-                    }
-                  },
-                  {
-                    "parameters": [
-                      {
-                        "value": 1.960000038146973,
+                        "value": 4.0,
                         "controlAddress": "/time"
                       },
                       {
@@ -10300,6 +11548,48 @@
                             "paramLinks": {
                             }
                           }
+                        },
+                        {
+                          "niceName": "Consequence 2",
+                          "type": "Consequence",
+                          "commandModule": "oscTablette",
+                          "commandPath": "",
+                          "commandType": "Custom Message",
+                          "command": {
+                            "parameters": [
+                              {
+                                "value": "/camera",
+                                "controlAddress": "/address"
+                              }
+                            ],
+                            "paramLinks": {
+                            },
+                            "argManager": {
+                              "items": [
+                                {
+                                  "parameters": [
+                                    {
+                                      "value": 0,
+                                      "hexMode": false,
+                                      "controlAddress": "/#1"
+                                    }
+                                  ],
+                                  "niceName": "#1",
+                                  "type": "Integer",
+                                  "param": {
+                                    "value": 0,
+                                    "hexMode": false,
+                                    "controlAddress": "/sequences/check_pingCam/layers/trigger/triggers/startCam/consequences/consequence2/command/arguments/#1/#1"
+                                  }
+                                }
+                              ],
+                              "viewOffset": [
+                                0,
+                                0
+                              ],
+                              "viewZoom": 1.0
+                            }
+                          }
                         }
                       ],
                       "viewOffset": [
@@ -10331,7 +11621,8 @@
             0
           ],
           "viewZoom": 1.0
-        }
+        },
+        "editing": true
       },
       {
         "parameters": [
@@ -10344,7 +11635,11 @@
             "controlAddress": "/totalTime"
           },
           {
-            "value": 2.0,
+            "value": 0.04368501901626587,
+            "controlAddress": "/viewStartTime"
+          },
+          {
+            "value": 1.179685115814209,
             "controlAddress": "/viewEndTime"
           }
         ],
@@ -10368,7 +11663,7 @@
                   {
                     "parameters": [
                       {
-                        "value": 1.960000038146973,
+                        "value": 1.0,
                         "controlAddress": "/time"
                       },
                       {
@@ -10414,6 +11709,48 @@
                             "paramLinks": {
                             }
                           }
+                        },
+                        {
+                          "niceName": "Consequence 2",
+                          "type": "Consequence",
+                          "commandModule": "oscMain",
+                          "commandPath": "",
+                          "commandType": "Custom Message",
+                          "command": {
+                            "parameters": [
+                              {
+                                "value": "/main",
+                                "controlAddress": "/address"
+                              }
+                            ],
+                            "paramLinks": {
+                            },
+                            "argManager": {
+                              "items": [
+                                {
+                                  "parameters": [
+                                    {
+                                      "value": 0,
+                                      "hexMode": false,
+                                      "controlAddress": "/#1"
+                                    }
+                                  ],
+                                  "niceName": "#1",
+                                  "type": "Integer",
+                                  "param": {
+                                    "value": 0,
+                                    "hexMode": false,
+                                    "controlAddress": "/sequences/check_pingMain/layers/trigger/triggers/startMain/consequences/consequence2/command/arguments/#1/#1"
+                                  }
+                                }
+                              ],
+                              "viewOffset": [
+                                0,
+                                0
+                              ],
+                              "viewZoom": 1.0
+                            }
+                          }
                         }
                       ],
                       "viewOffset": [
@@ -10445,8 +11782,7 @@
             0
           ],
           "viewZoom": 1.0
-        },
-        "editing": true
+        }
       }
     ],
     "viewOffset": [
