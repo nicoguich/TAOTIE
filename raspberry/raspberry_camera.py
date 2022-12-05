@@ -193,110 +193,126 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
     contours, hierarchy = cv2.findContours( blackAndWhiteImage, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     blackAndWhiteImage = cv2.cvtColor(blackAndWhiteImage,cv2.COLOR_GRAY2BGR)
 
-    value_sensor=[0,0,0,0,0,0,0,0,0,0,0,0]
+    value_sensor=[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
 
     array=np.array(blackAndWhiteImage)
     sensor_1 = array[ 50:80,130:160]
-    result_1 = np.all((sensor_1 == 0))
+    result_1w = np.all((sensor_1 == 255))
+    result_1b = np.all((sensor_1 == 0))
 
 
     sensor_2 = array[ 50:80,305:335]
-    result_2 = np.all((sensor_2 == 0))
+    result_2w = np.all((sensor_2 == 255))
+    result_2b = np.all((sensor_2 == 0))
 
 
     sensor_3 = array[ 50:80,480:510]
-    result_3 = np.all((sensor_3 == 0))
+    result_3w = np.all((sensor_3 == 255))
+    result_3b = np.all((sensor_3 == 0))
 
 
     sensor_4 = array[ 400:430,130:160]
-    result_4 = np.all((sensor_4 == 0))
+    result_4w = np.all((sensor_4 == 255))
+    result_4b = np.all((sensor_4 == 0))
 
 
     sensor_5 = array[ 400:430,305:335]
-    result_5 = np.all((sensor_5 ==0))
+    result_5w = np.all((sensor_5 ==255))
+    result_5b = np.all((sensor_5 ==0))
 
 
     sensor_6 = array[ 400:430,480:510]
-    result_6 = np.all((sensor_6 ==0))
+    result_6w = np.all((sensor_6 ==255))
+    result_6b = np.all((sensor_6 ==0))
 
 
     sensor_7 = array[ 225:255,130:160]
-    result_7 = np.all((sensor_7 == 0))
+    result_7w = np.all((sensor_7 == 255))
+    result_7b = np.all((sensor_7 == 0))
 
 
     sensor_8 = array[ 225:255,480:510]
-    result_8 = np.all((sensor_8 == 0))
+    result_8w = np.all((sensor_8 == 255))
+    result_8b = np.all((sensor_8 == 0))
 
 
 
 
-    if result_1:
+    if result_1w:
         cv2.rectangle(blackAndWhiteImage,(130,50),(160,80),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"0",(130,80),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[0]=1
+        value_sensor[0]=0
 
-    else:
+    if result_1b:
         cv2.rectangle(blackAndWhiteImage,(130,50),(160,80),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"0",(130,80),font,1,(0,0,255),2,cv2.LINE_AA)
+        value_sensor[0]=1
 
-    if result_2:
+    if result_2w:
         cv2.rectangle(blackAndWhiteImage,(305,50),(335,80),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"1",(305,80),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[1]=1
-    else:
+        value_sensor[1]=0
+    if result_2b:
         cv2.rectangle(blackAndWhiteImage,(305,50),(335,80),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"1",(305,80),font,1,(0,0,255),2,cv2.LINE_AA)
+        value_sensor[1]=1
 
-    if result_3:
+    if result_3w:
         cv2.rectangle(blackAndWhiteImage,(480,50),(510,80),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"2",(480,80),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[2]=1
-    else:
+        value_sensor[2]=0
+    if result_3b:
         cv2.rectangle(blackAndWhiteImage,(480,50),(510,80),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"2",(480,80),font,1,(0,0,255),2,cv2.LINE_AA)
+        value_sensor[2]=1
 
-    if result_4:
+    if result_4w:
         cv2.rectangle(blackAndWhiteImage,(130,400),(160,430),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"3",(130,430),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[3]=1
-    else:
+        value_sensor[3]=0
+    if result_4b:
         cv2.rectangle(blackAndWhiteImage,(130,400),(160,400),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"3",(130,430),font,1,(0,0,255),2,cv2.LINE_AA)
+        value_sensor[3]=1
 
 
-    if result_5:
+    if result_5w:
         cv2.rectangle(blackAndWhiteImage,(305,400),(335,430),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"4",(305,430),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[4]=1
-    else:
+        value_sensor[4]=0
+    if result_5b:
         cv2.rectangle(blackAndWhiteImage,(305,400),(335,400),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"4",(305,430),font,1,(0,0,255),2,cv2.LINE_AA)
+        value_sensor[4]=1
 
 
-    if result_6:
+    if result_6w:
         cv2.rectangle(blackAndWhiteImage,(480,400),(510,430),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"5",(480,430),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[5]=1
-    else:
+        value_sensor[5]=0
+    if result_6b:
         cv2.rectangle(blackAndWhiteImage,(480,400),(510,430),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"5",(480,430),font,1,(0,0,255),2,cv2.LINE_AA)
+        value_sensor[5]=1
 
 
-    if result_7:
+    if result_7w:
         cv2.rectangle(blackAndWhiteImage,(130,225),(160,255),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"6",(130,255),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[6]=1
-    else:
+        value_sensor[6]=0
+    if result_7b:
         cv2.rectangle(blackAndWhiteImage,(130,225),(160,255),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"6",(130,255),font,1,(0,0,255),2,cv2.LINE_AA)
+        value_sensor[6]=1
 
-    if result_8:
+    if result_8w:
         cv2.rectangle(blackAndWhiteImage,(480,225),(510,255),(0,255,0),1)
         cv2.putText(blackAndWhiteImage,"7",(480,255),font,1,(0,255,0),2,cv2.LINE_AA)
-        value_sensor[7]=1
-    else:
+        value_sensor[7]=0
+    if result_8b:
         cv2.rectangle(blackAndWhiteImage,(480,225),(510,255),(0,0,255),1)
         cv2.putText(blackAndWhiteImage,"7",(480,255),font,1,(0,0,255),2,cv2.LINE_AA)
+        value_sensor[7]=1
 
 
 

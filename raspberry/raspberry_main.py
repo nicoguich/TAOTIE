@@ -55,7 +55,6 @@ lines = []
 etape_perdu=0
 speed_perdu=400
 verin=0
-verin_temp=0
 nb_table=0
 table_random=0
 table_random_temp=0
@@ -217,6 +216,8 @@ def reste_sur_ligne():
     global table_random
     global table_random_temp
     global verin
+    global home
+    global home_temp
 
 
 
@@ -255,7 +256,14 @@ def reste_sur_ligne():
                     rec_coordonate.write(str(int(coordonate_table[x][0]))+" "+str(int(coordonate_table[x][1]))+"\n")
 
                 rec_coordonate.close()
+
                 verin=0
+                for x in range (nb_table):
+                    coordonate_table_osc[x*2] =coordonate_table[x][0]
+                    coordonate_table_osc[(x*2)+1] =coordonate_table[x][1]
+
+                msg1 = oscbuildparse.OSCMessage("/coord_table", None, coordonate_table_osc)
+                osc_send(msg1, "tablette")
 
                 if (coordY==max_Y-1):
                     go_to=1
@@ -276,12 +284,14 @@ def reste_sur_ligne():
         go_to=1
 
         if bot_state==0:
-            go_toX=random.randint(0, max_X)
-            go_toY=random.randint(0,max_Y)
+            go_toX=coordX
+            go_toY=0
 
         elif bot_state==1:
             while table_random==table_random_temp :
                 table_random= random.randint(0,nb_table-1)
+
+
             table_random_temp=table_random
             go_toX=coordonate_table[table_random][0]
             go_toY=coordonate_table[table_random][1]
@@ -347,10 +357,10 @@ def reste_sur_ligne():
                             print ("ok", x)
                             coordonate_exist+=1
             else :
-                go_to=1
-                go_toX=coordX
-                go_toY=coordY
-                bot_state=2
+                verin=0
+                dir=0
+                go_to=0
+                bot_state=0
 
 
 
@@ -361,8 +371,8 @@ def reste_sur_ligne():
         print ("new go_toX :", go_toX)
         print ("new go_toY :", go_toY)
         new_coordonate=[go_toX,go_toY]
-        msg0 = oscbuildparse.OSCMessage("/new_coordonate", None, new_coordonate)
-        osc_send(msg0, "tablette")
+#        msg0 = oscbuildparse.OSCMessage("/new_coordonate", None, new_coordonate)
+#        osc_send(msg0, "tablette")
         print("bot_state: ", bot_state)
 
         for x in range (nb_table):
@@ -387,6 +397,11 @@ def reste_sur_ligne():
 
 
     speed=speed_control
+
+
+
+
+
 
     if (on_ligne_H==1 and (dir_ligne==4 or dir_ligne==5)):
         dir = dir_ligne
@@ -781,6 +796,22 @@ def reste_sur_ligne():
 
 
 
+    if (sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and sensor[6]==0 and sensor[7]==0 ):
+        home_temp=0
+        home=0
+        etape_perdu=0
+        on_ligne_H=0
+        on_ligne_V=0
+        play=0
+        coordX=-1
+        coordY=-1
+        go_to=0
+        go_toX=-1
+        go_toY=-1
+        dir = 0
+        dir_ligne = 0
+        print("mode manuel")
+
 ##########################################################################
 
 
@@ -912,30 +943,43 @@ osc_method("/reset_table", reset_table)
 
 
 while True:
-    osc_process()
-    if home_temp==1:
-        alignement()
-    if on_ligne_H==1 or on_ligne_V==1:
-        reste_sur_ligne()
-    if dir != dir_temp :
 
-        dir_osc=[dir]
-        msg = oscbuildparse.OSCMessage("/dir", None, dir_osc)
-        osc_send(msg, "chataigne")
-        dir_temp=dir
+
+
 
     if verin != 2 :
         print("verin", verin)
         verin_osc=[verin]
-        msg = oscbuildparse.OSCMessage("/verin", None, verin_osc)
-        osc_send(msg, "chataigne")
-        osc_process()
-        time.sleep(5)
+        msgverin = oscbuildparse.OSCMessage("/verin", None, verin_osc)
+        osc_send(msgverin, "chataigne")
+
+        for x in range(0,50):
+            osc_process()
+            time.sleep(0.1)
+
+        #time.sleep(5)
         verin=2
+        print("verin", verin)
+
+
+    if home_temp==1:
+        alignement()
+    if on_ligne_H==1 or on_ligne_V==1:
+        reste_sur_ligne()
+
+
+
+    if dir != dir_temp  :
+        dir_osc=[dir]
+        msgdir = oscbuildparse.OSCMessage("/dir", None, dir_osc)
+        osc_send(msgdir, "chataigne")
+        dir_temp=dir
+
+
 
     if time.time()-temps > 1 :
-        msg = oscbuildparse.OSCMessage("/coord_table", None, coordonate_table_osc)
-        osc_send(msg, "tablette")
+        msg0 = oscbuildparse.OSCMessage("/coord_table", None, coordonate_table_osc)
+        osc_send(msg0, "tablette")
         coordonate_bot[0]=coordX
         coordonate_bot[1]=coordY
         msg1 = oscbuildparse.OSCMessage("/coord_bot", None, coordonate_bot)
@@ -951,5 +995,8 @@ while True:
         osc_send(msg4, "tablette")
 
         temps=time.time()
+
+
+    osc_process()
 
 osc_terminate()
