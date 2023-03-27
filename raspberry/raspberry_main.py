@@ -39,7 +39,7 @@ ip="192.168.100.180"
 port=5005
 osc_udp_server(ip, port, "raspberry")
 osc_udp_client("192.168.100.180", 5007, "chataigne")
-osc_udp_client("192.168.100.187", 5009, "tablette")
+osc_udp_client("192.168.100.100", 5009, "tablette")
 
 
 
@@ -84,7 +84,7 @@ max_Y=1
 coordonate_table_lines = []
 coordonate_table = [[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1]]
 coordonate_table_osc = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
-taille_grille_osc=[0,0]
+taille_grille_osc=[0,0,0]
 with open("/home/pi/Desktop/coordonate_table.txt") as f:
     coordonate_table_lines = f.readlines()
 
@@ -371,8 +371,8 @@ def reste_sur_ligne():
         print ("new go_toX :", go_toX)
         print ("new go_toY :", go_toY)
         new_coordonate=[go_toX,go_toY]
-#        msg0 = oscbuildparse.OSCMessage("/new_coordonate", None, new_coordonate)
-#        osc_send(msg0, "tablette")
+        msg0 = oscbuildparse.OSCMessage("/new_coordonate", None, new_coordonate)
+        osc_send(msg0, "tablette")
         print("bot_state: ", bot_state)
 
         for x in range (nb_table):
@@ -990,6 +990,7 @@ while True:
         osc_send(msg3, "chataigne")
         taille_grille_osc[0]=max_X
         taille_grille_osc[1]=max_Y
+        taille_grille_osc[2]=nb_table
 
         msg4 = oscbuildparse.OSCMessage("/grille", None, taille_grille_osc)
         osc_send(msg4, "tablette")

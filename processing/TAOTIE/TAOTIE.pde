@@ -24,14 +24,14 @@ int reset=0;
 
 int avance=0,recul=0,droite=0,gauche=0,checkzero=0;;
 
-
+int xmoins=0,xplus=0,ymoins=0,yplus=0,tablemoins=0,tableplus=0,led_on=0,led_off=0,verin_down,verin_up;
 
 void setup(){
   
   size(1920,1200);
   
     oscP5 = new OscP5(this,5009);
-    chataigne = new NetAddress("192.168.100.255",5008);
+    chataigne = new NetAddress("192.168.100.180",5008);
 
 }
 
@@ -65,6 +65,7 @@ void oscEvent(OscMessage theOscMessage) {
     if (theOscMessage.checkAddrPattern("/grille")==true) {
      grille_size_x= theOscMessage.get(0).intValue();
      grille_size_y= theOscMessage.get(1).intValue();
+     nb_table=theOscMessage.get(2).intValue();
     }
     
     /////TABLE

@@ -113,25 +113,25 @@ def control_image(*args):
     nb_table= args[9]
     camera.contrast = contrast
     camera.brightness = brightness
-    if (save==1) :
-        print("enregistrement reglage camera...")
-        reglage_camera = open("/home/pi/Desktop/reglage_camera.txt","w")
-        print("...")
-        reglage_camera.write(str(int(brightness))+"\n")
-        print("...")
-        reglage_camera.write(str(int(contrast))+"\n")
-        print("...")
-        reglage_camera.write(str(int(thresh))+"\n")
-        print("...")
-        reglage_camera.write(str(int(reverse))+"\n")
-        print("...")
-        reglage_camera.write(str(int(taille_grille_X))+"\n")
-        print("...")
-        reglage_camera.write(str(int(taille_grille_Y))+"\n")
-        print("...")
-        reglage_camera.write(str(int(nb_table))+"\n")
-        reglage_camera.close()
-        print("reglage enregistré")
+
+    print("enregistrement reglage camera...")
+    reglage_camera = open("/home/pi/Desktop/reglage_camera.txt","w")
+    print("...")
+    reglage_camera.write(str(int(brightness))+"\n")
+    print("...")
+    reglage_camera.write(str(int(contrast))+"\n")
+    print("...")
+    reglage_camera.write(str(int(thresh))+"\n")
+    print("...")
+    reglage_camera.write(str(int(reverse))+"\n")
+    print("...")
+    reglage_camera.write(str(int(taille_grille_X))+"\n")
+    print("...")
+    reglage_camera.write(str(int(taille_grille_Y))+"\n")
+    print("...")
+    reglage_camera.write(str(int(nb_table))+"\n")
+    reglage_camera.close()
+    print("reglage enregistré")
 
 image=0
 
@@ -402,7 +402,7 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
         cv2.imshow('opencv', img)
 
 
-    cv2.moveWindow("opencv", 800, 10)
+    cv2.moveWindow("opencv", 700, 100)
 
 
     raw_capture.truncate(0)

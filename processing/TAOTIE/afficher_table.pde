@@ -4,7 +4,7 @@ void afficher_table(){
               
               if ((table[x][0]!=0) ||(table[x][1]!=0)){
                 fill(100);
-              rect(10 + table[x][0]*(ecartX),10 + ((grille_size_y-1)-table[x][1])*(ecartY), 100,100);
+              rect(100 + table[x][0]*(ecartX),100 + ((grille_size_y-1)-table[x][1])*(ecartY), 100,100);
               }
 
           }
