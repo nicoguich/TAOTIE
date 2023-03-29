@@ -35,11 +35,11 @@ import random
 
 
 osc_startup()
-ip="192.168.100.180"
-port=5005
-osc_udp_server(ip, port, "raspberry")
-osc_udp_client("192.168.100.180", 5007, "chataigne")
-osc_udp_client("192.168.100.100", 5009, "tablette")
+ip="127.0.0.1"
+
+osc_udp_server(ip, 5005, "raspberry")
+osc_udp_client(ip, 5007, "chataigne")
+osc_udp_client("192.168.100.187", 5009, "tablette")
 
 
 

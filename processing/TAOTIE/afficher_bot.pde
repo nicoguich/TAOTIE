@@ -7,6 +7,9 @@ void afficher_bot(){
   rotate(PI/4);
 rect(0,0, 50,50);
 popMatrix();
-  
+
+  fill(200,0,0);
+
+  circle(100 + new_coord[0]*(ecartX),100 + ((grille_size_y-1)-new_coord[1])*(ecartY),30);
   
 }

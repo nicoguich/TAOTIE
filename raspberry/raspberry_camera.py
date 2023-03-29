@@ -32,11 +32,11 @@ value_sensor_temp=[1,1,1,1,1,1,1,1,1,1,1,1]
 
 temps= time.time()
 
-
+ip="127.0.0.1"
 osc_startup()
-osc_udp_client("192.168.100.180", 5005, "raspberry")
-osc_udp_server("192.168.100.180", 5006, "camera")
-osc_udp_client("192.168.100.180", 5007, "chataigne")
+osc_udp_client(ip, 5005, "raspberry")
+osc_udp_server(ip, 5006, "camera")
+osc_udp_client(ip, 5007, "chataigne")
 
 
 #GPIO.setwarnings(False)

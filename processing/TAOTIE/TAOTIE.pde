@@ -8,13 +8,14 @@ NetAddress chataigne;
 ControlP5 cp5;
 
 
-int grille_size_x, grille_size_y;
+int grille_size_x = 10, grille_size_y=8;
 
 float ecartX, ecartY;
 
 int nb_table=15;
 int table[][] = new int[nb_table][2];
 int bot[] = new int[2];
+int new_coord[] = new int[2];
 int home=0,stop=0;
 int main=0,camera=0,serial=0,wifi=0;
 
@@ -49,6 +50,7 @@ void draw(){
   afficher_grille(grille_size_x,grille_size_y);
   afficher_table();
   afficher_bot();
+  pos_curseur();
   
   message();
   }
@@ -81,6 +83,12 @@ void oscEvent(OscMessage theOscMessage) {
           if (theOscMessage.checkAddrPattern("/coord_bot")==true) {
           bot[0]= theOscMessage.get(0).intValue();
           bot[1]= theOscMessage.get(1).intValue();
+        }
+        
+             //////NEW COORD   
+          if (theOscMessage.checkAddrPattern("/new_coordonate")==true) {
+          new_coord[0]= theOscMessage.get(0).intValue();
+          new_coord[1]= theOscMessage.get(1).intValue();
         }
         
      ///////MESSAGE
