@@ -39,7 +39,8 @@ ip="127.0.0.1"
 
 osc_udp_server(ip, 5005, "raspberry")
 osc_udp_client(ip, 5007, "chataigne")
-osc_udp_client("192.168.100.187", 5009, "tablette")
+#osc_udp_client("192.168.100.187", 5009, "tablette")#nidbot
+osc_udp_client("192.168.100.187", 5010, "tablette")#hoggbot
 
 
 

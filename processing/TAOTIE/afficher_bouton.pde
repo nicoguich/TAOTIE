@@ -419,6 +419,60 @@ reset=1;}
   fill(255);
   textSize(30);
   text("RESET POS",320,height-200);
+  
+  
+            /////////hoggbot/////////
+  if ((mousePressed == true)&&(mouseX>300)&&(mouseX<500)&&(mouseY>height-380)&&(mouseY<height-280)) {
+  fill(0,200,0);
+  if (hogg_bot_clic==0){
+    hogg_bot_clic=1;
+    hogg_bot=1;
+    nid_bot=0;
+    
+chataigne = new NetAddress("192.168.100.102",5008);
+
+}
+  }
+  else{
+    if (hogg_bot==0){
+    fill(0,0,200);}
+    else{
+      fill(0,200,200);}
+    hogg_bot_clic=0;
+   
+  }
+  rect (300,height-380,200,100);
+  fill(255);
+  textSize(30);
+  text("HOGGBOT",320,height-330);
+  
+  
+  
+              /////////nidbot/////////
+  if ((mousePressed == true)&&(mouseX>50)&&(mouseX<250)&&(mouseY>height-380)&&(mouseY<height-280)) {
+  fill(0,200,0);
+  if (nid_bot_clic==0){
+    nid_bot_clic=1;
+    nid_bot=1;
+    hogg_bot=0;
+    
+chataigne = new NetAddress("192.168.100.101",5008);
+
+}
+  }
+  else{
+    if (nid_bot==0){
+    fill(0,0,200);}
+    else{
+      fill(0,200,200);}
+    nid_bot_clic=0;
+ 
+  }
+  rect (50,height-380,200,100);
+  fill(255);
+  textSize(30);
+  text("NIDBOT",70,height-330);
+
 
 
 
