@@ -2,7 +2,7 @@ import controlP5.*;
 import oscP5.*;
 import netP5.*;
   
-OscP5 oscP5;
+OscP5 tablette;
 NetAddress chataigne;
 
 ControlP5 cp5;
@@ -32,7 +32,7 @@ void setup(){
   
   size(1920,1200);
   
-    oscP5 = new OscP5(this,5009);
+    tablette = new OscP5(this,5009);
     chataigne = new NetAddress("192.168.100.101",5008);
 
 }

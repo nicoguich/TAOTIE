@@ -11,7 +11,7 @@ void afficher_bouton(){
   if (home==0){
   OscMessage myMessage = new OscMessage("/home");
   myMessage.add(1); 
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
   }
   
 home=1;}
@@ -20,7 +20,7 @@ home=1;}
   if (home==1){
   OscMessage myMessage = new OscMessage("/home");
   myMessage.add(0); 
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
   }
     home=0;
   }
@@ -38,7 +38,7 @@ home=1;}
   if (stop==0){
   OscMessage myMessagestop = new OscMessage("/stop");
   myMessagestop.add(1); 
-  oscP5.send(myMessagestop, chataigne); 
+  tablette.send(myMessagestop, chataigne); 
   }
   
 stop=1;}
@@ -47,7 +47,7 @@ stop=1;}
   if (stop==1){
   OscMessage myMessagestop = new OscMessage("/stop");
   myMessagestop.add(0); 
-  oscP5.send(myMessagestop, chataigne); 
+  tablette.send(myMessagestop, chataigne); 
   }
     stop=0;
   }
@@ -123,7 +123,7 @@ checkpage=1;}
   fill(0,200,0);
   if(xmoins==0){
           OscMessage myMessage = new OscMessage("/grille_size_x_moins");
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
 xmoins=1;}
 
   }
@@ -146,7 +146,7 @@ xmoins=1;}
   if (xplus==0){
   
             OscMessage myMessage = new OscMessage("/grille_size_x_plus");
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
   xplus=1;
   }
   }
@@ -177,7 +177,7 @@ xmoins=1;}
     if (ymoins==0){
   
             OscMessage myMessage = new OscMessage("/grille_size_y_moins");
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
 
   ymoins=1;
   }
@@ -202,7 +202,7 @@ xmoins=1;}
     if (yplus==0){
   
             OscMessage myMessage = new OscMessage("/grille_size_y_plus");
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
 
   yplus=1;
   }
@@ -230,7 +230,7 @@ yplus=0;
     if (tablemoins==0){
   
             OscMessage myMessage = new OscMessage("/table_moins");
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
 
   tablemoins=1;
   }
@@ -255,7 +255,7 @@ yplus=0;
     if (tableplus==0){
   
             OscMessage myMessage = new OscMessage("/table_plus");
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
 
   tableplus=1;
   }
@@ -302,7 +302,7 @@ tableplus=0;
   fill(0,200,0);
   if(led_on==0){
           OscMessage myMessage = new OscMessage("/led_on");
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
 led_on=1;}
 
   }
@@ -325,7 +325,7 @@ led_on=1;}
   fill(0,200,0);
   if(led_off==0){
           OscMessage myMessage = new OscMessage("/led_off");
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
 led_on=1;}
 
   }
@@ -349,7 +349,7 @@ led_on=1;}
   fill(0,200,0);
   if(verin_up==0){
           OscMessage myMessage = new OscMessage("/verin_up");
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
 verin_up=1;}
 
   }
@@ -372,7 +372,7 @@ verin_up=1;}
   fill(0,200,0);
   if(verin_down==0){
           OscMessage myMessage = new OscMessage("/verin_down");
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
 verin_down=1;}
 
   }
@@ -401,12 +401,12 @@ verin_down=1;}
     
       OscMessage myMessage = new OscMessage("/reset_table");
   myMessage.add(0); 
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
   delay(50);
   
   myMessage = new OscMessage("/reset_table");
   myMessage.add(1); 
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
 
 reset=1;}
   }
@@ -430,7 +430,8 @@ reset=1;}
     nid_bot=0;
     
 chataigne = new NetAddress("192.168.100.102",5008);
-
+tablette.stop();
+ tablette = new OscP5(this,5010);
 }
   }
   else{
@@ -457,6 +458,8 @@ chataigne = new NetAddress("192.168.100.102",5008);
     hogg_bot=0;
     
 chataigne = new NetAddress("192.168.100.101",5008);
+ tablette.stop();
+ tablette = new OscP5(this,5009);
 
 }
   }
@@ -487,7 +490,7 @@ chataigne = new NetAddress("192.168.100.101",5008);
     
   OscMessage myMessage = new OscMessage("/dir");
   myMessage.add(2); 
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
     
     
 }
@@ -509,7 +512,7 @@ chataigne = new NetAddress("192.168.100.101",5008);
     recul=1;
   OscMessage myMessage = new OscMessage("/dir");
   myMessage.add(7); 
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
     
     
 }
@@ -530,7 +533,7 @@ chataigne = new NetAddress("192.168.100.101",5008);
     gauche=1;
       OscMessage myMessage = new OscMessage("/dir");
   myMessage.add(4); 
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
 }
   }
   else{
@@ -551,7 +554,7 @@ chataigne = new NetAddress("192.168.100.101",5008);
     droite=1;
       OscMessage myMessage = new OscMessage("/dir");
   myMessage.add(5); 
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
 }
   }
   else{
@@ -574,7 +577,7 @@ if ((avance==0) &&(recul==0) &&(gauche==0)&&(droite==0)){
    
          OscMessage myMessage = new OscMessage("/dir");
   myMessage.add(0); 
-  oscP5.send(myMessage, chataigne); 
+  tablette.send(myMessage, chataigne); 
     
     
   }
