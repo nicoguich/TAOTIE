@@ -309,10 +309,10 @@ def reste_sur_ligne():
 
             if coordX==0 or coordX==max_X-1:
                 bloque+=1
-            if coordY==1 or coordY==max_Y-1:
+            if coordY==nb_ligne_interdite or coordY==max_Y-1:
                 bloque+=1
-            if (coordX==2 and coordY==4) or (coordX==4 and coordY==4) or (coordX==3 and coordY==3):
-                bloque+=1
+#            if (coordX==2 and coordY==4) or (coordX==4 and coordY==4) or (coordX==3 and coordY==3):
+#                bloque+=1
 
 
 
@@ -347,9 +347,9 @@ def reste_sur_ligne():
                         if (go_toY<nb_ligne_interdite):
                             go_toY=nb_ligne_interdite
                     print ("goto random: ", go_toX, go_toY)
-                    if go_toX==3 and go_toY==4:
-                        print("position interdite")
-                        coordonate_exist=-1
+#                    if go_toX==3 and go_toY==4:
+#                        print("position interdite")
+#                        coordonate_exist=-1
                     for x in range (nb_table):
 
                         if (coordonate_table[x][0]==go_toX and coordonate_table[x][1]==go_toY) or (go_toX==coordX and go_toY==coordY):
