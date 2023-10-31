@@ -60,6 +60,9 @@ nb_table=0
 table_random=0
 table_random_temp=0
 
+nb_table_interdite=5
+nb_ligne_interdite=3
+
 
 
 on_ligne_H=0
@@ -290,7 +293,7 @@ def reste_sur_ligne():
 
         elif bot_state==1:
             while table_random==table_random_temp :
-                table_random= random.randint(0,nb_table-1)
+                table_random= random.randint(0,nb_table-1-nb_table_interdite)
 
 
             table_random_temp=table_random
@@ -341,8 +344,8 @@ def reste_sur_ligne():
                         go_toY=random.randint(coordY-1,coordY + 1)
                         if (go_toY>max_Y-1):
                             go_toY=max_Y-1
-                        if (go_toY<1):
-                            go_toY=1
+                        if (go_toY<nb_ligne_interdite):
+                            go_toY=nb_ligne_interdite
                     print ("goto random: ", go_toX, go_toY)
                     if go_toX==3 and go_toY==4:
                         print("position interdite")
