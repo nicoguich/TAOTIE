@@ -1,6 +1,5 @@
 
 
-
 void moveMotor() {
 
   arriere_droitWheel.setSpeed(arriere_droitSpeed);

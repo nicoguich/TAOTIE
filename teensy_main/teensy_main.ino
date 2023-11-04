@@ -71,7 +71,7 @@ verin.attach(verin_pin);
 verin.write(45);
 
 
-Serial.setTimeout(100);
+//Serial.setTimeout(100);
 
 
 
@@ -156,11 +156,13 @@ switch (int(dir)) {
 
 
       case 30 :
-      analogWrite(led,0);
+      for (int x=255;x>=0;x-0.2){
+      analogWrite(led,x);}
       break;
 
       case 31 :
-     analogWrite(led,255);
+      for (int x=0;x<=255;x+0.2){
+      analogWrite(led,x);}
       break;
   
       case 201 :
