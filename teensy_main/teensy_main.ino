@@ -14,6 +14,7 @@ char data[BUFFER_SIZE];
 
 Servo verin;
 
+float led_value=255, led_factor=0;
 int wheelSpeed = 5000;
 int avant_gaucheSpeed, arriere_droitSpeed, arriere_gaucheSpeed, avant_droitSpeed;
 
@@ -43,7 +44,7 @@ void setup() {
 
 
  
-  analogWrite(led,200);
+  analogWrite(led,led_value);
   digitalWrite(led_ir,HIGH);
   digitalWrite(enable_arriere_droit,HIGH);
   digitalWrite(enable_avant_gauche,HIGH);
@@ -156,13 +157,13 @@ switch (int(dir)) {
 
 
       case 30 :
-      for (int x=255;x>=0;x-0.2){
-      analogWrite(led,x);}
+      led_factor=-0.005;
+
       break;
 
       case 31 :
-      for (int x=0;x<=255;x+0.2){
-      analogWrite(led,x);}
+      led_factor=0.005;
+
       break;
   
       case 201 :
@@ -180,6 +181,7 @@ switch (int(dir)) {
 
 
   moveMotor();
+  led_change();
 
 
 }

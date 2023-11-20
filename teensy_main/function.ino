@@ -15,6 +15,24 @@ void moveMotor() {
 
 }
 
+void led_change(){
+
+if ((led_value>-1)&&(led_value<256)){
+led_value=led_value+led_factor;
+if (led_value<0){
+  led_value=0;
+}
+
+if (led_value>255){
+  led_value=255;
+}
+analogWrite(led,int(led_value));
+  
+  
+}
+  
+}
+
 
 
 
