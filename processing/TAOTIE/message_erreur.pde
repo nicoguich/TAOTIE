@@ -1,8 +1,8 @@
 void message(){
    textSize(20);
-  if (wifi==0){
+/*  if (wifi==0){
     fill(255,0,0);
-    text("bot not connected",700,height-250);}
+    text("bot not connected",700,height-250);}*/
     
       if (serial==0){
     fill(255,0,0);

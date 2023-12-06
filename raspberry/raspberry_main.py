@@ -39,11 +39,12 @@ ip="127.0.0.1"
 
 osc_udp_server(ip, 5005, "raspberry")
 osc_udp_client(ip, 5007, "chataigne")
-#osc_udp_client("192.168.100.187", 5009, "tablette")#nidbot
-osc_udp_client("192.168.100.187", 5010, "tablette")#hoggbot
+
+osc_udp_client("192.168.186.103", 5009, "tablette")
 
 
-
+id=-1
+id_osc=[-1]
 dir=0
 play=0
 bot_state=1
@@ -83,6 +84,9 @@ go_toY=-1
 max_X=1
 max_Y=1
 
+valid_ping=[1]
+
+
 
 
 coordonate_table_lines = []
@@ -100,6 +104,24 @@ for x in range (0 , len(coordonate_table_lines)):
     coordonate_table[x][1]=int(temp_coordonate_list[1])
     coordonate_table_osc[x*2] =coordonate_table[x][0]
     coordonate_table_osc[(x*2)+1] =coordonate_table[x][1]
+    
+
+
+coordonate_pos_interdite_lines = []
+coordonate_pos_interdite = [[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1],[-1,-1]]
+coordonate_pos_interdite_osc = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+
+with open("/home/pi/Desktop/coordonate_pos_interdite.txt") as f:
+    coordonate_pos_interdite_lines = f.readlines()
+
+
+for x in range (0 , len(coordonate_pos_interdite_lines)):
+    temp_pos_interdite="".join(coordonate_pos_interdite_lines[x])
+    temp_pos_interdite_list = temp_pos_interdite.split(' ')
+    coordonate_pos_interdite[x][0]=int(temp_pos_interdite_list[0])
+    coordonate_pos_interdite[x][1]=int(temp_pos_interdite_list[1])
+    coordonate_pos_interdite_osc[x*2] =coordonate_pos_interdite[x][0]
+    coordonate_pos_interdite_osc[(x*2)+1] =coordonate_pos_interdite[x][1]
 
 
 msg = oscbuildparse.OSCMessage("/coord_table", None, coordonate_table_osc)
@@ -847,6 +869,21 @@ def grille(*args):
 #######################################
 
 
+#################################
+def void_id(*args):
+    global id
+    global id_osc
+
+    id=args[0]
+    id_osc[0]=args[0]
+
+    print("id: ",id)
+
+
+#######################################
+
+
+
 
 #######################################
 def game_pad(*args):
@@ -942,6 +979,7 @@ osc_method("/sensor", sensor_osc)
 
 osc_method("/grille", grille)
 osc_method("/reset_table", reset_table)
+osc_method("/id", void_id)
 
 
 
@@ -998,6 +1036,12 @@ while True:
 
         msg4 = oscbuildparse.OSCMessage("/grille", None, taille_grille_osc)
         osc_send(msg4, "tablette")
+        msg5 = oscbuildparse.OSCMessage("/id",None , id_osc)
+        osc_send(msg5, "tablette")
+        msg6 = oscbuildparse.OSCMessage("/ping_main", None, valid_ping)
+        osc_send(msg6, "tablette")
+        
+
 
         temps=time.time()
 

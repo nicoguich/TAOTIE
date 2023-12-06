@@ -26,6 +26,7 @@ reverse_osc=[0]
 taille_grille_X_osc=[0]
 taille_grille_Y_osc=[0]
 nb_table_osc=[0]
+id_osc=[0]
 main_osc=[0,0,0]
 value_sensor_temp=[1,1,1,1,1,1,1,1,1,1,1,1]
 
@@ -66,12 +67,13 @@ reverse_osc[0]=int (reglage_lines[3])
 taille_grille_X_osc[0]= int (reglage_lines[4])
 taille_grille_Y_osc[0]= int (reglage_lines[5])
 nb_table_osc[0]= int (reglage_lines[6])
+id_osc[0]=int (reglage_lines[7])
 main_osc[0]=int (reglage_lines[4])
 main_osc[1]=int (reglage_lines[5])
 main_osc[2]=int (reglage_lines[6])
 
 
-print("brightness:" ,brightness, "/contrast: ",contrast,"tresh: ",thresh,"reverse: ",reverse)
+print("brightness:" ,brightness, "/contrast: ",contrast,"tresh: ",thresh,"reverse: ",reverse, "id: ",id_osc)
 msg0 = oscbuildparse.OSCMessage("/brightness", None, brightness_osc)
 msg1 = oscbuildparse.OSCMessage("/contrast", None, contrast_osc)
 msg2 = oscbuildparse.OSCMessage("/thresh", None, thresh_osc)
@@ -79,8 +81,8 @@ msg3 = oscbuildparse.OSCMessage("/reverse", None, reverse_osc)
 msg4 = oscbuildparse.OSCMessage("/taille_grille_X", None, taille_grille_X_osc)
 msg5 = oscbuildparse.OSCMessage("/taille_grille_Y", None, taille_grille_Y_osc)
 msg6 = oscbuildparse.OSCMessage("/nb_table", None, nb_table_osc)
-
 msg7 = oscbuildparse.OSCMessage("/grille", None, main_osc)
+msg8 = oscbuildparse.OSCMessage("/id",None, id_osc)
 
 osc_send(msg0, "chataigne")
 osc_send(msg1, "chataigne")
@@ -90,6 +92,7 @@ osc_send(msg4, "chataigne")
 osc_send(msg5, "chataigne")
 osc_send(msg6, "chataigne")
 osc_send(msg7, "raspberry")
+osc_send(msg8, "raspberry")
 
 
 def control_image(*args):
@@ -99,6 +102,7 @@ def control_image(*args):
     global thresh
     global reverse
     global image
+    global id
     sel_control=args[0]
 
 
@@ -111,6 +115,7 @@ def control_image(*args):
     taille_grille_X= args[7]
     taille_grille_Y= args[8]
     nb_table= args[9]
+    id = args[10]
     camera.contrast = contrast
     camera.brightness = brightness
 
@@ -118,18 +123,21 @@ def control_image(*args):
     reglage_camera = open("/home/pi/Desktop/reglage_camera.txt","w")
     print("...")
     reglage_camera.write(str(int(brightness))+"\n")
-    print("...")
+    print("...bright")
     reglage_camera.write(str(int(contrast))+"\n")
-    print("...")
+    print("...cont")
     reglage_camera.write(str(int(thresh))+"\n")
-    print("...")
+    print("...thresh")
     reglage_camera.write(str(int(reverse))+"\n")
-    print("...")
+    print("...reserse")
     reglage_camera.write(str(int(taille_grille_X))+"\n")
-    print("...")
+    print("...taille grille X")
     reglage_camera.write(str(int(taille_grille_Y))+"\n")
-    print("...")
+    print("...taille grille Y")
     reglage_camera.write(str(int(nb_table))+"\n")
+    print("...nb table")
+    reglage_camera.write(str(int(id))+"\n")
+    print("...id")
     reglage_camera.close()
     print("reglage enregistré")
 

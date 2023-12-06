@@ -1,9 +1,11 @@
 void afficher_grille(int sizeX,int sizeY){
   rectMode(CORNERS);
   noFill();
-  
+    stroke(0); 
   rect(100,100,width-100,height-380);
   
+  if (bot_select!=0){
+ 
   ecartX = (float(width -200))/(sizeX-1);
   ecartY = (float(height -480))/(sizeY-1);
 
@@ -18,5 +20,5 @@ void afficher_grille(int sizeX,int sizeY){
   }
   
   
-  
+  }
 }

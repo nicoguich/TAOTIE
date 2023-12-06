@@ -1,7 +1,40 @@
 void afficher_bouton(){
   rectMode(CORNER);
   
-  
+ /////////////////////////////////bouton bot/////////////////////////////////// 
+  for(int x=0; x<nb_bot_max; x++){
+    noStroke();
+    fill(255);
+   if (bot_ip[x]!=ip_null){
+    fill(160);
+    if (bot_select==x){
+     fill(0,0,255); 
+    }
+     rect(((width/10) *x)+30, 5,100,50);
+     fill(255);
+     textSize(30);
+     text("bot"+str(x),((width/10) *x)+50,50);
+     fill(0);
+     textSize(15);
+     text(bot_ip[x],((width/10) *x)+30,70);
+    
+   }
+
+   
+    
+    
+   
+ if ((mousePressed == true)&&(mouseX>((width/10) *x)+30)&&(mouseX<((width/10) *x)+130)&&(mouseY>5)&&(mouseY<55)) {
+       bot_select=x;
+       String[] list_ip = split(bot_ip[x], '/');
+       chataigne = new NetAddress(list_ip[1],5008);
+     }
+     
+
+
+  }
+    
+    
   
   ////////////////////////////PAGE 1/////////////////////////////////////////////////
   if (page==1){
@@ -421,62 +454,6 @@ reset=1;}
   text("RESET POS",320,height-200);
   
   
-            /////////hoggbot/////////
-  if ((mousePressed == true)&&(mouseX>300)&&(mouseX<500)&&(mouseY>height-380)&&(mouseY<height-280)) {
-  fill(0,200,0);
-  if (hogg_bot_clic==0){
-    hogg_bot_clic=1;
-    hogg_bot=1;
-    nid_bot=0;
-    
-chataigne = new NetAddress("192.168.100.102",5008);
-tablette.stop();
- tablette = new OscP5(this,5010);
-}
-  }
-  else{
-    if (hogg_bot==0){
-    fill(0,0,200);}
-    else{
-      fill(0,200,200);}
-    hogg_bot_clic=0;
-   
-  }
-  rect (300,height-380,200,100);
-  fill(255);
-  textSize(30);
-  text("HOGGBOT",320,height-330);
-  
-  
-  
-              /////////nidbot/////////
-  if ((mousePressed == true)&&(mouseX>50)&&(mouseX<250)&&(mouseY>height-380)&&(mouseY<height-280)) {
-  fill(0,200,0);
-  if (nid_bot_clic==0){
-    nid_bot_clic=1;
-    nid_bot=1;
-    hogg_bot=0;
-    
-chataigne = new NetAddress("192.168.100.101",5008);
- tablette.stop();
- tablette = new OscP5(this,5009);
-
-}
-  }
-  else{
-    if (nid_bot==0){
-    fill(0,0,200);}
-    else{
-      fill(0,200,200);}
-    nid_bot_clic=0;
- 
-  }
-  rect (50,height-380,200,100);
-  fill(255);
-  textSize(30);
-  text("NIDBOT",70,height-330);
-
-
 
 
 
