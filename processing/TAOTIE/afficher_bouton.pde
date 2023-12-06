@@ -92,6 +92,61 @@ stop=1;}
   
   
   
+  
+      /////////PLAY LED/////////
+  if ((mousePressed == true)&&(mouseX>490)&&(mouseX<690)&&(mouseY>height-250)&&(mouseY<height-150)) {
+  fill(0,200,0);
+  if (play_led==0){
+  OscMessage myMessagestop = new OscMessage("/play_led");
+  myMessagestop.add(1); 
+  tablette.send(myMessagestop, router); 
+  }
+  
+play_led=1;}
+  else{
+    fill(200,0,0);
+  if (play_led==1){
+  OscMessage myMessagestop = new OscMessage("/play_led");
+  myMessagestop.add(0); 
+  tablette.send(myMessagestop, router); 
+  }
+    play_led=0;
+  }
+  rect (490,height-250,200,100);
+  fill(255);
+  textSize(30);
+  text("PLAY LED",530,height-200);
+  
+  
+  
+  
+        /////////STOP LED/////////
+  if ((mousePressed == true)&&(mouseX>730)&&(mouseX<930)&&(mouseY>height-250)&&(mouseY<height-150)) {
+  fill(0,200,0);
+  if (stop_led==0){
+  OscMessage myMessagestop = new OscMessage("/stop_led");
+  myMessagestop.add(1); 
+  tablette.send(myMessagestop, router); 
+  }
+  
+stop_led=1;}
+  else{
+    fill(200,0,0);
+  if (stop_led==1){
+  OscMessage myMessagestop = new OscMessage("/stop_led");
+  myMessagestop.add(0); 
+  tablette.send(myMessagestop, router); 
+  }
+    stop_led=0;
+  }
+  rect (730,height-250,200,100);
+  fill(255);
+  textSize(30);
+  text("STOP LED",770,height-200);
+  
+  
+  
+  
       /////////PAGE/////////
   if ((mousePressed == true)&&(mouseX>1500)&&(mouseX<1700)&&(mouseY>height-250)&&(mouseY<height-150)) {
   fill(0,200,0);

@@ -1038,6 +1038,7 @@ while True:
         osc_send(msg4, "tablette")
         msg5 = oscbuildparse.OSCMessage("/id",None , id_osc)
         osc_send(msg5, "tablette")
+        osc_send(msg5, "chataigne")
         msg6 = oscbuildparse.OSCMessage("/ping_main", None, valid_ping)
         osc_send(msg6, "tablette")
         
