@@ -40,7 +40,7 @@ ip="127.0.0.1"
 osc_udp_server(ip, 5005, "raspberry")
 osc_udp_client(ip, 5007, "chataigne")
 
-osc_udp_client("192.168.186.103", 5009, "tablette")
+osc_udp_client("192.168.100.9", 5009, "tablette")
 
 
 id=-1
@@ -61,8 +61,8 @@ nb_table=0
 table_random=0
 table_random_temp=0
 
-nb_table_interdite=5
-nb_ligne_interdite=3
+nb_table_interdite=0
+nb_ligne_interdite=0
 
 
 
@@ -331,18 +331,21 @@ def reste_sur_ligne():
 
             if coordX==0 or coordX==max_X-1:
                 bloque+=1
-            if coordY==nb_ligne_interdite or coordY==max_Y-1:
+            if coordY==nb_ligne_interdite :
                 bloque+=1
+            if coordY==max_Y-1:
+                bloque+=3
 #            if (coordX==2 and coordY==4) or (coordX==4 and coordY==4) or (coordX==3 and coordY==3):
 #                bloque+=1
 
 
 
             for x in range (nb_table):
-                if (coordonate_table[x][0]==coordX-1 and coordonate_table[x][1]==coordY):
-                    bloque+=1
-                if (coordonate_table[x][0]==coordX+1 and coordonate_table[x][1]==coordY):
-                    bloque+=1
+                if coordY!=max_Y-1:
+                    if (coordonate_table[x][0]==coordX-1 and coordonate_table[x][1]==coordY):
+                        bloque+=1
+                    if (coordonate_table[x][0]==coordX+1 and coordonate_table[x][1]==coordY):
+                        bloque+=1
                 if (coordonate_table[x][0]==coordX and coordonate_table[x][1]==coordY-1):
                     bloque+=1
                 if (coordonate_table[x][0]==coordX and coordonate_table[x][1]==coordY+1):
@@ -356,7 +359,7 @@ def reste_sur_ligne():
                     print ("coord : ", coordX, coordY)
 
                     random_axe = random.randint(0,1)
-                    if random_axe==0:
+                    if random_axe==0 and coordY!=max_Y-1:
                         go_toX=random.randint(coordX-1,coordX + 1)
                         if (go_toX>max_X-1):
                             go_toX=max_X-1
