@@ -36,7 +36,7 @@ int bot[][] = new int[nb_bot_max][2];
 String bot_ip[]= new String[nb_bot_max];
 int new_coord[] = new int[2];
 int new_coord_bot[][]= new int [nb_bot_max][2];
-int home=0,stop=0, play_led=0,stop_led=0;
+int home=0,stop=0, play_led=0,stop_led=0,save=0;
 int main=0,camera=0,serial=0,wifi=0;
 
 int page=1;
@@ -55,7 +55,7 @@ void setup(){
     tablette = new OscP5(this,5009);
     ip_null = ("-1");
     chataigne = new NetAddress("192.168.4.190",5008);
-    router = new NetAddress("192.168.186.103",5010);
+    router = new NetAddress("192.168.100.15",5010);
    for (int x=0; x< bot_ip.length;x++){
      bot_ip[x]=ip_null;
    }

@@ -337,7 +337,7 @@ yplus=0;
   
   
   
-            /////////GRILLE Y +/////////
+            /////////NB TABLE +/////////
   if ((mousePressed == true)&&(mouseX>350)&&(mouseX<550)&&(mouseY>420)&&(mouseY<520)) {
   fill(0,200,0);
     if (tableplus==0){
@@ -375,7 +375,33 @@ tableplus=0;
     
     
     
-    
+                /////////SAVE/////////
+  if ((mousePressed == true)&&(mouseX>200)&&(mouseX<400)&&(mouseY>630)&&(mouseY<730)) {
+  fill(0,200,0);
+    if (save==0){
+  
+            OscMessage myMessage = new OscMessage("/save");
+  tablette.send(myMessage, chataigne); 
+
+  save=1;
+  }
+
+
+  }
+  else{
+    fill(0,0,200);
+save=0;
+
+  }
+  rect (200,630,200,100,30);
+  fill(255);
+  textSize(30);
+  text("SAVE",240,680); 
+  
+  
+  
+  
+ 
     
     
     
