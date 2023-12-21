@@ -40,7 +40,7 @@ ip="127.0.0.1"
 osc_udp_server(ip, 5005, "raspberry")
 osc_udp_client(ip, 5007, "chataigne")
 
-osc_udp_client("192.168.100.9", 5009, "tablette")
+osc_udp_client("192.168.50.10", 5009, "tablette")
 
 
 id=-1
@@ -62,7 +62,7 @@ table_random=0
 table_random_temp=0
 
 nb_table_interdite=0
-nb_ligne_interdite=0
+nb_ligne_interdite=1
 
 
 
@@ -126,6 +126,9 @@ for x in range (0 , len(coordonate_pos_interdite_lines)):
 
 msg = oscbuildparse.OSCMessage("/coord_table", None, coordonate_table_osc)
 osc_send(msg, "tablette")
+
+msg1 = oscbuildparse.OSCMessage("/coordonate_pos_interdite", None, coordonate_pos_interdite_osc)
+osc_send(msg1, "tablette")
 temps=time.time()
 
 
@@ -292,17 +295,40 @@ def reste_sur_ligne():
                 osc_send(msg1, "tablette")
 
                 if (coordY==max_Y-1):
-                    go_to=1
-                    go_toX=coordX
-                    go_toY=0
-                    bot_state=0
-                else :
-                    bot_state=random.randint(0,1)
-                    if bot_state==0:
+                    if coordX>coordonate_pos_interdite[0][0] and coordX<coordonate_pos_interdite[1][0] :
+                        go_to=1
+                        go_toX=coordX
+                        go_toY=coordonate_pos_interdite[0][1]
+                        bot_state=0
+                    else:
                         go_to=1
                         go_toX=coordX
                         go_toY=0
                         bot_state=0
+                else :
+                    bot_state=random.randint(0,1)
+                    if bot_state==0:
+                        if coordX>coordonate_pos_interdite[0][0] and coordX<coordonate_pos_interdite[1][0] :
+                            go_to=1
+                            go_toX=coordX
+                            go_toY=coordonate_pos_interdite[0][1]
+                            bot_state=0
+                        else:
+                            go_to=1
+                            go_toX=coordX
+                            go_toY=0
+                            bot_state=0
+            elif bot_state == 3:
+                go_to=1
+                bot_state=1
+                go_toX=coordonate_table[table_random][0]
+                go_toY=coordonate_table[table_random][1]
+                print ("new go_toX :", go_toX)
+            print ("new go_toY :", go_toY)
+            new_coordonate=[go_toX,go_toY]
+            msg0 = oscbuildparse.OSCMessage("/new_coordonate", None, new_coordonate)
+            osc_send(msg0, "tablette")
+                
 
 
     elif play==1:
@@ -310,8 +336,15 @@ def reste_sur_ligne():
         go_to=1
 
         if bot_state==0:
-            go_toX=coordX
-            go_toY=0
+
+            if coordX>coordonate_pos_interdite[0][0] and coordX<coordonate_pos_interdite[1][0] :
+                go_toX=coordX
+                go_toY=coordonate_pos_interdite[0][1]
+            else:
+                go_toX=coordX
+                go_toY=0
+                
+
 
         elif bot_state==1:
             while table_random==table_random_temp :
@@ -319,8 +352,13 @@ def reste_sur_ligne():
 
 
             table_random_temp=table_random
-            go_toX=coordonate_table[table_random][0]
-            go_toY=coordonate_table[table_random][1]
+            if (coordX<= coordonate_pos_interdite[0][0] and coordonate_table[table_random][0] > coordonate_pos_interdite[0][0] and coordY< coordonate_pos_interdite[0][1]) or (coordX>= coordonate_pos_interdite[1][0] and coordonate_table[table_random][0]< coordonate_pos_interdite[1][0] and coordY< coordonate_pos_interdite[0][1]) :
+                go_toX=coordX
+                go_toY=coordonate_pos_interdite[0][1]
+                bot_state=3
+            else :
+                go_toX=coordonate_table[table_random][0]
+                go_toY=coordonate_table[table_random][1]
             print ("table choisie : ",table_random," ///// max : ", nb_table)
 
         elif bot_state==2:
@@ -334,9 +372,14 @@ def reste_sur_ligne():
             if coordY==nb_ligne_interdite :
                 bloque+=1
             if coordY==max_Y-1:
-                bloque+=3
-#            if (coordX==2 and coordY==4) or (coordX==4 and coordY==4) or (coordX==3 and coordY==3):
-#                bloque+=1
+                bloque+=1
+            if coordX==coordonate_pos_interdite[0][0] and coordY<coordonate_pos_interdite[0][1] :
+                bloque+=1
+            if coordX==coordonate_pos_interdite[1][0] and coordY<coordonate_pos_interdite[0][1] :
+                bloque+=1
+            if coordY==coordonate_pos_interdite[0][1] and coordX>coordonate_pos_interdite[0][0] and coordX<coordonate_pos_interdite[1][0] :
+                bloque+=1
+
 
 
 
@@ -365,16 +408,20 @@ def reste_sur_ligne():
                             go_toX=max_X-1
                         if (go_toX<0):
                             go_toX=0
+                        if (go_toX>coordonate_pos_interdite[0][0] and coordY<coordonate_pos_interdite[0][1] and coordX==coordonate_pos_interdite[0][0]) :
+                            go_toX=coordonate_pos_interdite[0][0]
+                        if (go_toX<coordonate_pos_interdite[1][0] and coordY<coordonate_pos_interdite[0][1]and coordX== coordonate_pos_interdite[1][0]) :
+                            go_toX = coordonate_pos_interdite[1][0]
                     else:
                         go_toY=random.randint(coordY-1,coordY + 1)
                         if (go_toY>max_Y-1):
                             go_toY=max_Y-1
                         if (go_toY<nb_ligne_interdite):
                             go_toY=nb_ligne_interdite
+                        if (go_toY<coordonate_pos_interdite[0][1] and coordX>coordonate_pos_interdite[0][0] and coordX<coordonate_pos_interdite[1][0]) : 
+                            go_toY=coordonate_pos_interdite[0][1]
                     print ("goto random: ", go_toX, go_toY)
-#                    if go_toX==3 and go_toY==4:
-#                        print("position interdite")
-#                        coordonate_exist=-1
+
                     for x in range (nb_table):
 
                         if (coordonate_table[x][0]==go_toX and coordonate_table[x][1]==go_toY) or (go_toX==coordX and go_toY==coordY):
@@ -391,6 +438,7 @@ def reste_sur_ligne():
                 go_to=0
                 bot_state=0
 
+            
 
 
 
@@ -495,8 +543,13 @@ def reste_sur_ligne():
 
         if sensor[0]==0 and sensor[3]==0 and sensor[6]==0 and sensor[7]==1 and dir_ligne==4 and sensor[10]==3 and check_bord==0 and check_croix==0:
 
-            print("T OUEST")
-            coordX = 0
+            
+            if coordX< coordonate_pos_interdite[1][0]:
+                coordX = 0
+                print("T OUEST")
+            else :
+                coordX = coordonate_pos_interdite[1][0]
+                print("T OUEST U")
 
             dir=0
             dir_ligne=0
@@ -513,13 +566,20 @@ def reste_sur_ligne():
             check_bord=4
             on_ligne_V=1
             on_ligne_H=0
-            coordX = max_X-1
-            print("T EST")
+            
+
+            if coordX>coordonate_pos_interdite[0][0]:
+                coordX = max_X-1
+                print("T EST")
+            else :
+                coordX = coordonate_pos_interdite[0][0]
+                print("T EST U")       
+                
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
 
 
 
-        if sensor[1]==1 and (dir_ligne==4 or dir_ligne==5) and sensor[10]==3 and check_bord==0 and check_croix==0 and coordY==0:
+        if sensor[1]==1 and sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and (dir_ligne==4 or dir_ligne==5) and sensor[10]==3 and check_bord==0 and check_croix==0 :
 
             if (dir_ligne==4):
                 coordX += -1
@@ -528,14 +588,20 @@ def reste_sur_ligne():
             if etape_perdu != 4:
                 dir=0
                 dir_ligne=0
-            coordY=0
+                
+            if coordX>coordonate_pos_interdite[0][0] and coordX<coordonate_pos_interdite[1][0]:
+                coordY=coordonate_pos_interdite[0][1] 
+                print("T SUD U")
+            else:
+                print("T SUD")
+                coordY=0
 
             check_bord=1
             on_ligne_V=0
             on_ligne_H=1
-            print("T SUD")
+            
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
-        if sensor[4]==1 and (dir_ligne==4 or dir_ligne==5) and sensor[10]==3 and check_bord==0 and check_croix==0 and coordY==max_Y-1:
+        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[4]==1 and (dir_ligne==4 or dir_ligne==5) and sensor[10]==3 and check_bord==0 and check_croix==0 :
 
             if (dir_ligne==4):
                 coordX += -1
@@ -566,12 +632,18 @@ def reste_sur_ligne():
             check_bord=6
             on_ligne_V=1
             on_ligne_H=0
-            coordX=0
+            
+            if coordX>= coordonate_pos_interdite[1][0] and coordX!=-1:
+                coordX= coordonate_pos_interdite[1][0]
+                print("COIN SUD OUEST U")
+            else:
+                coordX=0
+                print("COIN SUD OUEST")
             coordY= 0
             etape_perdu=5
             play=1
             home_temp=0
-            print("COIN SUD OUEST")
+            
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
         if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[4]==1 and dir_ligne==5  and sensor[10]==4 and check_bord==0 and check_croix==0:
             dir=0
@@ -589,9 +661,16 @@ def reste_sur_ligne():
             check_bord=8
             on_ligne_V=1
             on_ligne_H=0
-            coordX =max_X-1
+            
+            if coordX<=coordonate_pos_interdite[0][0] :
+                coordX=coordonate_pos_interdite[1][0]
+                print("COIN SUD EST U")
+            else:
+                coordX =max_X-1
+                print("COIN SUD EST")
+
             coordY = 0
-            print("COIN SUD EST")
+            
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
 
 
@@ -663,8 +742,14 @@ def reste_sur_ligne():
             check_bord=1
             on_ligne_V=0
             on_ligne_H=1
-            coordY=0
-            print("T SUD")
+
+            if coordX>coordonate_pos_interdite[0][0] and coordX<coordonate_pos_interdite[1][0]:
+                coordY=coordonate_pos_interdite[0][1] 
+                print("T SUD U")
+            else:
+                print("T SUD")
+                coordY=0
+
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
         if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[4]==1 and dir_ligne==2 and sensor[10]==3 and check_bord==0 and etape_perdu!=4 and check_croix==0:
             dir=0
@@ -677,7 +762,7 @@ def reste_sur_ligne():
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
 
 
-        if sensor[7]==1  and (dir_ligne==2 or dir_ligne==7) and sensor[10]==3 and check_bord==0 and etape_perdu!=4 and check_croix==0 and coordX==0:
+        if sensor[0]==0  and sensor[3]==0  and sensor[6]==0  and sensor[7]==1  and (dir_ligne==2 or dir_ligne==7) and sensor[10]==3 and check_bord==0 and etape_perdu!=4 and check_croix==0 :
 
             if (dir_ligne==7):
                 coordY += -1
@@ -688,12 +773,16 @@ def reste_sur_ligne():
             check_bord=3
             on_ligne_V=1
             on_ligne_H=0
-            coordX = 0
-
-            print("T OUEST")
+ 
+            if coordX< coordonate_pos_interdite[1][0]:
+                coordX = 0
+                print("T OUEST")
+            else :
+                coordX = coordonate_pos_interdite[1][0]
+                print("T OUEST U")
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
 
-        if sensor[6]==1 and (dir_ligne==2 or dir_ligne==7) and sensor[10]==3 and check_bord==0 and etape_perdu!=4 and check_croix==0 and coordX==max_X-1:
+        if sensor[2]==0 and sensor[5]==0 and sensor[7]==0 and sensor[6]==1 and (dir_ligne==2 or dir_ligne==7) and sensor[10]==3 and check_bord==0 and etape_perdu!=4 and check_croix==0 :
 
             if (dir_ligne==7):
                 coordY += -1
@@ -705,8 +794,12 @@ def reste_sur_ligne():
             check_bord=4
             on_ligne_V=1
             on_ligne_H=0
-            coordX = max_X-1
-            print("T EST")
+            if coordX>coordonate_pos_interdite[0][0]:
+                coordX = max_X-1
+                print("T EST")
+            else :
+                coordX = coordonate_pos_interdite[0][0]
+                print("T EST U") 
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
 
         if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[6]==1 and dir_ligne==2  and sensor[10]==4 and check_bord==0 and check_croix==0:
@@ -715,6 +808,7 @@ def reste_sur_ligne():
             check_bord=7
             on_ligne_V=0
             on_ligne_H=1
+            
             coordY =max_Y-1
             coordX = max_X-1
             print("COIN NORD EST")
@@ -726,9 +820,17 @@ def reste_sur_ligne():
             check_bord=8
             on_ligne_V=0
             on_ligne_H=1
+            
+
+            if coordX<=coordonate_pos_interdite[0][0] :
+                coordX=coordonate_pos_interdite[0][0]
+                print("COIN SUD EST U")
+            else:
+                coordX =max_X-1
+                print("COIN SUD EST")           
             coordY=0
-            coordX = max_X-1
-            print("COIN SUD EST")
+
+
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
 
         if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[7]==1 and dir_ligne==2  and sensor[10]==4 and check_bord==0 and check_croix==0:
@@ -753,9 +855,15 @@ def reste_sur_ligne():
             on_ligne_H=1
             etape_perdu=5
             play=1
-            coordX=0
-            coordY=0
-            print("COIN SUD OUEST")
+            
+            if coordX>= coordonate_pos_interdite[1][0] :
+                coordX= coordonate_pos_interdite[1][0]
+                print("COIN SUD OUEST U")
+            else:
+                coordX=0
+                print("COIN SUD OUEST")
+            coordY= 0
+
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
 
 
@@ -1044,6 +1152,9 @@ while True:
         osc_send(msg5, "chataigne")
         msg6 = oscbuildparse.OSCMessage("/ping_main", None, valid_ping)
         osc_send(msg6, "tablette")
+        
+        msg7 = oscbuildparse.OSCMessage("/coordonate_pos_interdite", None, coordonate_pos_interdite_osc)
+        osc_send(msg7, "tablette")
         
 
 

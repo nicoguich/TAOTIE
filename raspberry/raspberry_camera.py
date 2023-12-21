@@ -103,9 +103,9 @@ def control_image(*args):
     global reverse
     global image
     global id
+    
+
     sel_control=args[0]
-
-
     brightness=args[1]
     contrast=args[2]
     thresh=args[3]
