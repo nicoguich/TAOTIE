@@ -11,6 +11,7 @@ ControlP5 cp5;
 
 int grille_size_x = 10, grille_size_y=8;
 
+boolean anim_led=false;
 
 float ecartX, ecartY;
 int nb_bot_max=10;
@@ -32,6 +33,9 @@ int table_7[][] = new int[nb_table][2];
 int table_8[][] = new int[nb_table][2];
 int table_9[][] = new int[nb_table][2];
 int table_10[][] = new int[nb_table][2];
+int pos_interdite[][] = new int[nb_bot_max][4];
+
+
 int bot[][] = new int[nb_bot_max][2];
 String bot_ip[]= new String[nb_bot_max];
 int new_coord[] = new int[2];
@@ -46,6 +50,10 @@ int reset=0;
 int avance=0,recul=0,droite=0,gauche=0,checkzero=0;;
 
 int xmoins=0,xplus=0,ymoins=0,yplus=0,tablemoins=0,tableplus=0,led_on=0,led_off=0,verin_down=0,verin_up=0;
+int coordrectX_left,coordrectX_right,coordrectY_up,coordrectY_down,coordrectX_left_temp,coordrectY_up_temp,dragged=0;
+int [] pos_interditeX=new int [2];
+int [] pos_interditeY=new int [2];
+int pos_interditeX_temp,pos_interditeY_temp;
 
 
 void setup(){
@@ -69,6 +77,7 @@ void setup(){
 void draw(){
   
   background(255);
+ 
   
 
   
@@ -85,7 +94,7 @@ void draw(){
   
   afficher_table();
   afficher_bot();
-  pos_curseur();
+//  pos_curseur();
   
   message();
   }
@@ -217,6 +226,23 @@ void oscEvent(OscMessage theOscMessage) {
 
             if (theOscMessage.checkAddrPattern("/wifi")==true) {
       wifi= theOscMessage.get(0).intValue();}
+      
+      
+      
+      
+      
+        ///////POSITION INTERDITE
+        
+    if (theOscMessage.checkAddrPattern("/coordonate_pos_interdite")==true) {
+              for (int y=0;y<nb_bot_max;y++){
+        if (theOscMessage.address().equals( bot_ip[y])){
+            pos_interdite[y][0]=theOscMessage.get(0).intValue();
+            pos_interdite[y][1]=theOscMessage.get(1).intValue();
+            pos_interdite[y][2]=theOscMessage.get(2).intValue();
+            pos_interdite[y][3]=theOscMessage.get(3).intValue();
+        }
+              }
+    }
       
       
       /////ID

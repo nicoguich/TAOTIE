@@ -20,5 +20,12 @@ void afficher_grille(int sizeX,int sizeY){
   }
   
   
+  
+  
+  noStroke();
+    fill(255);
+  rectMode(CORNER);
+  rect((pos_interdite[bot_select][0]*ecartX)+101,((grille_size_y-1)-pos_interdite[bot_select][1])*(ecartY)+101,((pos_interdite[bot_select][2]*ecartX)+100)-((pos_interdite[bot_select][0]*ecartX)+100)-2,((grille_size_y-1)-pos_interdite[bot_select][3])*(ecartY)-((grille_size_y-1)-pos_interdite[bot_select][1])*(ecartY));
+  
   }
 }

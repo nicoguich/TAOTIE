@@ -94,6 +94,7 @@ stop=1;}
   
   
       /////////PLAY LED/////////
+   if (anim_led){
   if ((mousePressed == true)&&(mouseX>490)&&(mouseX<690)&&(mouseY>height-250)&&(mouseY<height-150)) {
   fill(0,200,0);
   if (play_led==0){
@@ -117,7 +118,7 @@ play_led=1;}
   textSize(30);
   text("PLAY LED",530,height-200);
   
-  
+   }
   
   
         /////////STOP LED/////////
@@ -539,7 +540,7 @@ reset=1;}
 
 
         /////////AVANCE/////////
-  if ((mousePressed == true)&&(mouseX>1010)&&(mouseX<1110)&&(mouseY>100)&&(mouseY<200)) {
+  if ((mousePressed == true)&&(mouseX>985)&&(mouseX<1350)&&(mouseY>75)&&(mouseY<225)) {
   fill(0,200,0);
   if (avance==0){
     
@@ -558,12 +559,12 @@ reset=1;}
 
     avance=0;
   }
-  circle (1060,150,100);
+  circle (1060,150,150);
   
   
   
           /////////RECUL/////////
-  if ((mousePressed == true)&&(mouseX>1010)&&(mouseX<1110)&&(mouseY>400)&&(mouseY<500)) {
+  if ((mousePressed == true)&&(mouseX>985)&&(mouseX<1135)&&(mouseY>375)&&(mouseY<525)) {
   fill(0,200,0);
   if (recul==0){
     
@@ -580,11 +581,11 @@ reset=1;}
 
     recul=0;
   }
-  circle (1060,450,100);
+  circle (1060,450,150);
   
   
             /////////GAUCHE/////////
-  if ((mousePressed == true)&&(mouseX>860)&&(mouseX<960)&&(mouseY>250)&&(mouseY<350)) {
+  if ((mousePressed == true)&&(mouseX>835)&&(mouseX<985)&&(mouseY>225)&&(mouseY<375)) {
   fill(0,200,0);
   if (gauche==0){
     
@@ -599,13 +600,13 @@ reset=1;}
 
     gauche=0;
   }
-  circle (910,300,100);
+  circle (910,300,150);
   
   
   
   
               /////////DROITE/////////
-  if ((mousePressed == true)&&(mouseX>1160)&&(mouseX<1260)&&(mouseY>250)&&(mouseY<350)) {
+  if ((mousePressed == true)&&(mouseX>1135)&&(mouseX<1285)&&(mouseY>225)&&(mouseY<375)) {
   fill(0,200,0);
   if (droite==0){
     
@@ -620,7 +621,7 @@ reset=1;}
 
     droite=0;
   }
-  circle (1210,300,100);
+  circle (1210,300,150);
   
 }
 
