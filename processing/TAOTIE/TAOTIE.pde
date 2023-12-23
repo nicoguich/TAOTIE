@@ -21,7 +21,7 @@ int bot_select=0;
 int grille_size[][]=new int [nb_bot_max][3];
 
 
-int nb_table=15;
+int nb_table=20;
 int table[][] = new int[nb_table][2];
 int table_1[][] = new int[nb_table][2];
 int table_2[][] = new int[nb_table][2];

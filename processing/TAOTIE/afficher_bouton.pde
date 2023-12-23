@@ -118,7 +118,7 @@ play_led=1;}
   textSize(30);
   text("PLAY LED",530,height-200);
   
-   }
+  
   
   
         /////////STOP LED/////////
@@ -145,7 +145,7 @@ stop_led=1;}
   textSize(30);
   text("STOP LED",770,height-200);
   
-  
+   }
   
   
       /////////PAGE/////////
@@ -199,7 +199,7 @@ checkpage=1;}
   rect (1500,height-250,200,100);
   fill(255);
   textSize(30);
-  text("GRILLE",1550,height-200);
+  text("GRID",1550,height-200);
   
   
   
@@ -225,7 +225,7 @@ xmoins=1;}
   rect (100,200,200,100,30);
   fill(255);
   textSize(30);
-  text("GRILLE X -",140,250);
+  text("GRID X -",140,250);
   
   
   
@@ -248,7 +248,7 @@ xmoins=1;}
   rect (350,200,200,100,30);
   fill(255);
   textSize(30);
-  text("GRILLE X +",390,250);
+  text("GRID X +",390,250);
   
   
   
@@ -281,7 +281,7 @@ xmoins=1;}
   rect (100,310,200,100,30);
   fill(255);
   textSize(30);
-  text("GRILLE Y -",140,360);
+  text("GRID Y -",140,360);
   
   
   
@@ -306,7 +306,7 @@ yplus=0;
   rect (350,310,200,100,30);
   fill(255);
   textSize(30);
-  text("GRILLE Y +",390,360);
+  text("GRID Y +",390,360);
   
   
   
