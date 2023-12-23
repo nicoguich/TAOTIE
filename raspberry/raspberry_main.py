@@ -48,14 +48,14 @@ id_osc=[-1]
 dir=0
 play=0
 bot_state=1
-speed=1000
-speed_control=1000
-speed_temp=1000
+speed=700
+speed_control=700
+speed_temp=700
 dir_temp=0
 home_temp = 0
 lines = []
 etape_perdu=0
-speed_perdu=400
+speed_perdu=200
 verin=0
 nb_table=0
 table_random=0
@@ -149,7 +149,7 @@ def alignement():
     if etape_perdu == 0 :
         etape_perdu=1
     if etape_perdu==1:
-        speed=speed_perdu
+        speed=speed_control
         dir=7
         if sensor[7]==1 and sensor[6]==0 :
             dir=10
@@ -160,7 +160,7 @@ def alignement():
             dir=7
 
     if etape_perdu==2:
-        speed=speed_perdu
+        speed=speed_control
         dir=7
         if sensor[11]>0 and sensor[11]<45:
             dir=9
@@ -402,7 +402,7 @@ def reste_sur_ligne():
                     print ("coord : ", coordX, coordY)
 
                     random_axe = random.randint(0,1)
-                    if random_axe==0 and coordY!=max_Y-1:
+                    if random_axe==0 :
                         go_toX=random.randint(coordX-1,coordX + 1)
                         if (go_toX>max_X-1):
                             go_toX=max_X-1
@@ -490,22 +490,21 @@ def reste_sur_ligne():
             speed=speed_perdu
             dir=10
 
-        if sensor[9]<200 and dir_ligne==4 and sensor[10]==0:
+        if sensor[9]<230 and dir_ligne==4 and (sensor[10]==0 or sensor[10]==2):
             speed=speed_perdu
-            dir=1
-        if sensor[9]<200 and dir_ligne==5 and sensor[10]==0:
+            dir=2
+        if sensor[9]<230 and dir_ligne==5 and  (sensor[10]==0 or sensor[10]==2):
             speed=speed_perdu
-            dir=3
+            dir=2
 
-        if sensor[9]>250  and dir_ligne==4 and sensor[10]==0:
+        if sensor[9]>250  and dir_ligne==4 and  (sensor[10]==0 or sensor[10]==2):
             speed=speed_perdu
-            dir=6
+            dir=7
 
-
-        if sensor[9]>250 and dir_ligne==5 and sensor[10]==0:
+        if sensor[9]>250 and dir_ligne==5 and  (sensor[10]==0 or sensor[10]==2):
             speed=speed_perdu
 
-            dir=8
+            dir=7
         if dir_ligne==4 and (sensor[0]==0 or sensor[3]==0) and sensor[1]==1 and sensor[4]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!= 4:
 
             if (dir_ligne==4):
@@ -616,7 +615,7 @@ def reste_sur_ligne():
             on_ligne_H=1
             print("T NORD")
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
-        if  sensor[4]==1 and sensor[3]==0 and sensor[6]==0  and dir_ligne==4  and sensor[10]==4 and check_bord==0 and check_croix==0:
+        if  sensor[4]==1 and sensor[3]==0 and sensor[6]==0  and dir_ligne==4  and sensor[10]==4 and check_bord==0 and check_croix==0 and (coordY== max_Y-1 or coordY==-1):
             dir=0
             dir_ligne=0
             check_bord=5
@@ -626,7 +625,7 @@ def reste_sur_ligne():
             coordY= max_Y-1
             print("COIN NORD OUEST")
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
-        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and sensor[1]==1 and dir_ligne==4  and sensor[10]==4 and check_bord==0 and check_croix==0:
+        if sensor[0]==0 and sensor[6]==0 and sensor[3]==0 and sensor[1]==1 and dir_ligne==4  and sensor[10]==4 and check_bord==0 and check_croix==0 and (coordY== 0 or coordY==-1):
             dir=0
             dir_ligne=0
             check_bord=6
@@ -645,7 +644,7 @@ def reste_sur_ligne():
             home_temp=0
             
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
-        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[4]==1 and dir_ligne==5  and sensor[10]==4 and check_bord==0 and check_croix==0:
+        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[4]==1 and dir_ligne==5  and sensor[10]==4 and check_bord==0 and check_croix==0 and (coordY== max_Y-1 or coordY==-1):
             dir=0
             dir_ligne=0
             check_bord=7
@@ -655,7 +654,7 @@ def reste_sur_ligne():
             coordY= max_Y-1
             print("COIN NORD EST")
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
-        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[1]==1 and dir_ligne==5  and sensor[10]==4 and check_bord==0 and check_croix==0:
+        if sensor[2]==0 and sensor[7]==0 and sensor[5]==0 and sensor[1]==1 and dir_ligne==5  and sensor[10]==4 and check_bord==0 and check_croix==0 and coordY==0:
             dir=0
             dir_ligne=0
             check_bord=8
@@ -663,7 +662,7 @@ def reste_sur_ligne():
             on_ligne_H=0
             
             if coordX<=coordonate_pos_interdite[0][0] :
-                coordX=coordonate_pos_interdite[1][0]
+                coordX=coordonate_pos_interdite[0][0]
                 print("COIN SUD EST U")
             else:
                 coordX =max_X-1
@@ -690,18 +689,18 @@ def reste_sur_ligne():
             speed=speed_perdu
             dir=10
 
-        if sensor[8] <280 and dir_ligne==2 and sensor[10]==1:
+        if sensor[8] <310 and dir_ligne==2 and (sensor[10]==1 or sensor[10]==2):
             speed=speed_perdu
-            dir=1
-        if sensor[8] <280 and dir_ligne==7 and sensor[10]==1:
+            dir=4
+        if sensor[8] <310 and dir_ligne==7 and (sensor[10]==1 or sensor[10]==2):
             speed=speed_perdu
-            dir=6
-        if sensor[8] >360 and dir_ligne==2 and sensor[10]==1:
+            dir=4
+        if sensor[8] >330 and dir_ligne==2 and (sensor[10]==1 or sensor[10]==2):
             speed=speed_perdu
-            dir=3
-        if sensor[8] >360 and dir_ligne==7 and sensor[10]==1:
+            dir=5
+        if sensor[8] >330 and dir_ligne==7 and (sensor[10]==1 or sensor[10]==2):
             speed=speed_perdu
-            dir=8
+            dir=5
         if  dir_ligne==2 and (sensor[0]==0 or sensor[2]==0) and sensor[6]==1 and sensor[7]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!=4 :
             print("croix")
 
@@ -802,7 +801,7 @@ def reste_sur_ligne():
                 print("T EST U") 
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
 
-        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[6]==1 and dir_ligne==2  and sensor[10]==4 and check_bord==0 and check_croix==0:
+        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[6]==1 and dir_ligne==2  and sensor[10]==4 and check_bord==0 and check_croix==0 and coordX ==max_X-1 :
             dir=0
             dir_ligne=0
             check_bord=7
@@ -833,7 +832,7 @@ def reste_sur_ligne():
 
             print("gotoX:",go_toX," /gotoY:",go_toY," /X:",coordX," /Y:",coordY)
 
-        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[7]==1 and dir_ligne==2  and sensor[10]==4 and check_bord==0 and check_croix==0:
+        if sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[7]==1 and dir_ligne==2  and sensor[10]==4 and check_bord==0 and check_croix==0 and coordX==0:
             dir=0
             dir_ligne=0
             check_bord=5
@@ -1008,6 +1007,9 @@ def game_pad(*args):
     global go_toX
     global go_toY
     global dir
+    global coordX
+    global coordY
+    global bot_state
 
 
     home=args[0]
@@ -1025,6 +1027,7 @@ def game_pad(*args):
         go_toY=-1
         dir = 0
         print("mode manuel")
+        bot_state=0
 
 
     if play==1:
@@ -1039,6 +1042,9 @@ def game_pad(*args):
         etape_perdu=0
         on_ligne_H=0
         on_ligne_V=0
+        coordX=-1
+        coordY=-1
+        bot_state=0
 
 
 
@@ -1052,6 +1058,7 @@ def game_pad(*args):
 
 #######################################
 def reset_table(*args):
+    global coordonate_table
 
 
     with open("/home/pi/Desktop/reset_table.txt") as f:
@@ -1123,10 +1130,15 @@ while True:
 
 
     if dir != dir_temp  :
+        speed_osc=[speed]
+        msgspeed = oscbuildparse.OSCMessage("/speed", None, speed_osc)
+        osc_send(msgspeed,"chataigne")
+        
         dir_osc=[dir]
         msgdir = oscbuildparse.OSCMessage("/dir", None, dir_osc)
         osc_send(msgdir, "chataigne")
         dir_temp=dir
+
 
 
 
