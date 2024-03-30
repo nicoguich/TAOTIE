@@ -536,6 +536,35 @@ reset=1;}
   text("RESET POS",320,height-200);
   
   
+  
+  
+            /////////reboot soft/////////
+  if ((mousePressed == true)&&(mouseX>600)&&(mouseX<800)&&(mouseY>height-250)&&(mouseY<height-150)) {
+  fill(0,200,0);
+  if (reboot_soft==0){
+    
+    reboot_soft=1;
+    
+      OscMessage myMessage = new OscMessage("/reboot_soft");
+  myMessage.add(0); 
+  tablette.send(myMessage, chataigne); 
+  delay(50);
+  
+  myMessage = new OscMessage("/reboot_soft");
+  myMessage.add(1); 
+  tablette.send(myMessage, chataigne); 
+
+reboot_soft=1;}
+  }
+  else{
+    fill(0,0,200);
+
+    reboot_soft=0;
+  }
+  rect (600,height-250,200,100);
+  fill(255);
+  textSize(30);
+  text("REBOOT SOFT",610,height-200);
 
 
 
