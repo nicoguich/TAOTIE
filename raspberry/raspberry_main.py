@@ -5,33 +5,6 @@ from osc4py3 import oscbuildparse
 import time
 import random
 
-#
-# GPIO.setwarnings(False)
-# GPIO.setmode(GPIO.BCM)
-# GPIO.setup(10, GPIO.OUT)
-# GPIO.output(10, GPIO.LOW)
-# GPIO.setup(27, GPIO.OUT)
-# GPIO.output(27, GPIO.LOW)
-# GPIO.setup(22, GPIO.OUT)
-# GPIO.output(22, GPIO.LOW)
-#
-#
-# time.sleep(2)
-# GPIO.output(10, GPIO.HIGH)
-# GPIO.output(27, GPIO.HIGH)
-# GPIO.output(22, GPIO.HIGH)
-# time.sleep(1)
-# GPIO.output(10, GPIO.LOW)
-# GPIO.output(27, GPIO.LOW)
-# GPIO.output(22, GPIO.LOW)
-# time.sleep(1)
-# GPIO.output(10, GPIO.HIGH)
-# GPIO.output(27, GPIO.HIGH)
-# GPIO.output(22, GPIO.HIGH)
-# time.sleep(1)
-# GPIO.output(10, GPIO.LOW)
-# GPIO.output(27, GPIO.LOW)
-# GPIO.output(22, GPIO.LOW)
 
 
 osc_startup()
@@ -40,7 +13,7 @@ ip="127.0.0.1"
 osc_udp_server(ip, 5005, "raspberry")
 osc_udp_client(ip, 5007, "chataigne")
 
-osc_udp_client("192.168.50.10", 5009, "tablette")
+osc_udp_client("192.168.100.9", 5009, "tablette")
 
 
 id=-1
@@ -55,7 +28,7 @@ dir_temp=0
 home_temp = 0
 lines = []
 etape_perdu=0
-speed_perdu=200
+speed_perdu=700
 verin=0
 nb_table=0
 table_random=0
@@ -102,6 +75,7 @@ for x in range (0 , len(coordonate_table_lines)):
     temp_coordonate_list = temp_coordonate.split(' ')
     coordonate_table[x][0]=int(temp_coordonate_list[0])
     coordonate_table[x][1]=int(temp_coordonate_list[1])
+    print("table",x," ",coordonate_table[x][0]," ",coordonate_table[x][1])
     coordonate_table_osc[x*2] =coordonate_table[x][0]
     coordonate_table_osc[(x*2)+1] =coordonate_table[x][1]
     
@@ -369,10 +343,13 @@ def reste_sur_ligne():
 
             if coordX==0 or coordX==max_X-1:
                 bloque+=1
+                print("bloque X")
             if coordY==nb_ligne_interdite :
                 bloque+=1
+                print("bloque minY")
             if coordY==max_Y-1:
                 bloque+=1
+                print("bloque maxY")
             if coordX==coordonate_pos_interdite[0][0] and coordY<coordonate_pos_interdite[0][1] :
                 bloque+=1
             if coordX==coordonate_pos_interdite[1][0] and coordY<coordonate_pos_interdite[0][1] :
@@ -384,22 +361,27 @@ def reste_sur_ligne():
 
 
             for x in range (nb_table):
-                if coordY!=max_Y-1:
-                    if (coordonate_table[x][0]==coordX-1 and coordonate_table[x][1]==coordY):
-                        bloque+=1
-                    if (coordonate_table[x][0]==coordX+1 and coordonate_table[x][1]==coordY):
-                        bloque+=1
+
+                if (coordonate_table[x][0]==coordX-1 and coordonate_table[x][1]==coordY):
+                    bloque+=1
+                    print("bloque table X-1")
+                if (coordonate_table[x][0]==coordX+1 and coordonate_table[x][1]==coordY):
+                    bloque+=1
+                    print("bloque table X+1")
                 if (coordonate_table[x][0]==coordX and coordonate_table[x][1]==coordY-1):
                     bloque+=1
+                    print("bloque table Y-1")
                 if (coordonate_table[x][0]==coordX and coordonate_table[x][1]==coordY+1):
                     bloque+=1
+                    print("bloque table Y+1")
             print ("bloque : ", bloque)
+            print ("coord : ", coordX, coordY)
             if bloque<4:
                 while coordonate_exist<nb_table :
                     coordonate_exist=0
                     go_toX=coordX_temp
                     go_toY=coordY_temp
-                    print ("coord : ", coordX, coordY)
+                   # print ("coord : ", coordX, coordY)
 
                     random_axe = random.randint(0,1)
                     if random_axe==0 :
@@ -420,17 +402,17 @@ def reste_sur_ligne():
                             go_toY=nb_ligne_interdite
                         if (go_toY<coordonate_pos_interdite[0][1] and coordX>coordonate_pos_interdite[0][0] and coordX<coordonate_pos_interdite[1][0]) : 
                             go_toY=coordonate_pos_interdite[0][1]
-                    print ("goto random: ", go_toX, go_toY)
+                   # print ("goto random: ", go_toX, go_toY)
 
                     for x in range (nb_table):
 
                         if (coordonate_table[x][0]==go_toX and coordonate_table[x][1]==go_toY) or (go_toX==coordX and go_toY==coordY):
                             coordonate_exist=0
-                            print ("same coordonate table", x)
+                          #  print ("same coordonate table", x)
 
 
                         else:
-                            print ("ok", x)
+                           # print ("ok", x)
                             coordonate_exist+=1
             else :
                 verin=0
@@ -483,28 +465,28 @@ def reste_sur_ligne():
     if (on_ligne_H==1 and (dir_ligne==4 or dir_ligne==5)):
         dir = dir_ligne
         if sensor[11]>1 and sensor[11]<45  and sensor[10]==0:
-            speed=speed_perdu
+            speed=speed_perdu-100
             dir=9
 
         if sensor[11]>45 and sensor[11]<99  and sensor[10]==0:
-            speed=speed_perdu
+            speed=speed_perdu-100
             dir=10
 
-        if sensor[9]<230 and dir_ligne==4 and (sensor[10]==0 or sensor[10]==2):
+        if sensor[9]<220 and dir_ligne==4 and (sensor[10]==0 or sensor[10]==2):
             speed=speed_perdu
-            dir=2
-        if sensor[9]<230 and dir_ligne==5 and  (sensor[10]==0 or sensor[10]==2):
+            dir=1
+        if sensor[9]<220 and dir_ligne==5 and  (sensor[10]==0 or sensor[10]==2):
             speed=speed_perdu
-            dir=2
+            dir=3
 
-        if sensor[9]>250  and dir_ligne==4 and  (sensor[10]==0 or sensor[10]==2):
+        if sensor[9]>260  and dir_ligne==4 and  (sensor[10]==0 or sensor[10]==2):
             speed=speed_perdu
-            dir=7
+            dir=6
 
-        if sensor[9]>250 and dir_ligne==5 and  (sensor[10]==0 or sensor[10]==2):
+        if sensor[9]>260 and dir_ligne==5 and  (sensor[10]==0 or sensor[10]==2):
             speed=speed_perdu
 
-            dir=7
+            dir=8
         if dir_ligne==4 and (sensor[0]==0 or sensor[3]==0) and sensor[1]==1 and sensor[4]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!= 4:
 
             if (dir_ligne==4):
@@ -682,25 +664,25 @@ def reste_sur_ligne():
 
         dir = dir_ligne
         if sensor[11]>1 and sensor[11]<45  and sensor[10]==1:
-            speed=speed_perdu
+            speed=speed_perdu-100
             dir=9
 
         if sensor[11]>45 and sensor[11]<99  and sensor[10]==1:
-            speed=speed_perdu
+            speed=speed_perdu-100
             dir=10
 
-        if sensor[8] <310 and dir_ligne==2 and (sensor[10]==1 or sensor[10]==2):
+        if sensor[8] <300 and dir_ligne==2 and (sensor[10]==1 or sensor[10]==2):
             speed=speed_perdu
-            dir=4
-        if sensor[8] <310 and dir_ligne==7 and (sensor[10]==1 or sensor[10]==2):
+            dir=1
+        if sensor[8] <300 and dir_ligne==7 and (sensor[10]==1 or sensor[10]==2):
             speed=speed_perdu
-            dir=4
-        if sensor[8] >330 and dir_ligne==2 and (sensor[10]==1 or sensor[10]==2):
+            dir=6
+        if sensor[8] >340 and dir_ligne==2 and (sensor[10]==1 or sensor[10]==2):
             speed=speed_perdu
-            dir=5
-        if sensor[8] >330 and dir_ligne==7 and (sensor[10]==1 or sensor[10]==2):
+            dir=3
+        if sensor[8] >340 and dir_ligne==7 and (sensor[10]==1 or sensor[10]==2):
             speed=speed_perdu
-            dir=5
+            dir=8
         if  dir_ligne==2 and (sensor[0]==0 or sensor[2]==0) and sensor[6]==1 and sensor[7]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!=4 :
             print("croix")
 
@@ -1048,10 +1030,6 @@ def game_pad(*args):
 
 
 
-
-
-
-
 ###########################################################
 
 
@@ -1149,9 +1127,9 @@ while True:
         coordonate_bot[1]=coordY
         msg1 = oscbuildparse.OSCMessage("/coord_bot", None, coordonate_bot)
         osc_send(msg1, "tablette")
-        msg2 = oscbuildparse.OSCMessage("/ping_main", None, '0')
+        msg2 = oscbuildparse.OSCMessage("/ping_main", None, '1')
         osc_send(msg2, "chataigne")
-        msg3 = oscbuildparse.OSCMessage("/ping_main", None, '1')
+        msg3 = oscbuildparse.OSCMessage("/ping_main", None, '0')
         osc_send(msg3, "chataigne")
         taille_grille_osc[0]=max_X
         taille_grille_osc[1]=max_Y
