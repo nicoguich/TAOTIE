@@ -28,7 +28,7 @@ taille_grille_Y_osc=[0]
 nb_table_osc=[0]
 id_osc=[0]
 main_osc=[0,0,0]
-value_sensor_temp=[1,1,1,1,1,1,1,1,1,1,1,1]
+value_sensor_temp=[1,1,1,1,1,1,1,1,1,1,1,1] # [1 for i in range(10)]
 
 
 temps= time.time()
@@ -50,6 +50,14 @@ def handler(signum, frame):
 #    GPIO.output(10, GPIO.LOW)
 
     exit(1)
+    
+#def fct(params):
+# 
+# return val1, val2, val3
+
+
+#...
+# a, b, c = fct(parametres)
 
 
 reglage_lines = []
@@ -57,7 +65,7 @@ reglage_lines = []
 with open("/home/pi/Desktop/reglage_camera.txt") as f:
     reglage_lines = f.readlines()
 brightness=int (reglage_lines[0])
-brightness_osc[0]=int (reglage_lines[0])
+brightness_osc[0]=int (reglage_lines[0]) # brightness_osc = [int (reglage_lines[0])]
 contrast=int (reglage_lines[1])
 contrast_osc[0]=int (reglage_lines[1])
 thresh=int(reglage_lines[2])
@@ -427,9 +435,9 @@ for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port
 
 
     if time.time()-temps > 1 :
-        msg2 = oscbuildparse.OSCMessage("/ping_cam", None, '0')
+        msg2 = oscbuildparse.OSCMessage("/ping_cam", None, '1')
         osc_send(msg2, "chataigne")
-        msg3 = oscbuildparse.OSCMessage("/ping_cam", None, '1')
+        msg3 = oscbuildparse.OSCMessage("/ping_cam", None, '0')
         osc_send(msg3, "chataigne")
         temps=time.time()
 
