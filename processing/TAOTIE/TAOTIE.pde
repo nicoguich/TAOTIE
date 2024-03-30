@@ -46,6 +46,7 @@ int main=0,camera=0,serial=0,wifi=0;
 int page=1;
 int checkpage=0;
 int reset=0;
+int reboot_soft=0;
 
 int avance=0,recul=0,droite=0,gauche=0,checkzero=0;;
 
