@@ -19,6 +19,7 @@ int nb_bot=0;
 int bot_select=0;
 
 int grille_size[][]=new int [nb_bot_max][3];
+int taille_table=40;
 
 
 int nb_table=20;

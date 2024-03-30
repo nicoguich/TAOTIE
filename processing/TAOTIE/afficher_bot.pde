@@ -5,7 +5,7 @@ void afficher_bot(){
   pushMatrix();
   translate(100 + bot[bot_select][0]*(ecartX),100 + ((grille_size_y-1)-bot[bot_select][1])*(ecartY));
   rotate(PI/4);
-rect(0,0, 50,50);
+rect(0,0, 40,40);
 popMatrix();
 
   fill(200,0,0);
