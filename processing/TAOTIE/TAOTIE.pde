@@ -2,6 +2,9 @@ import controlP5.*;
 import oscP5.*;
 import netP5.*;
   
+int tablette_size=1; /// 0 for asus / 1 for lenovo  
+  
+  
 OscP5 tablette;
 String ip_null;
 NetAddress chataigne;
@@ -49,7 +52,7 @@ int checkpage=0;
 int reset=0;
 int reboot_soft=0;
 
-int avance=0,recul=0,droite=0,gauche=0,checkzero=0;;
+int avance=0,recul=0,droite=0,gauche=0,checkzero=0,rotate_left=0,rotate_right=0;
 
 int xmoins=0,xplus=0,ymoins=0,yplus=0,tablemoins=0,tableplus=0,led_on=0,led_off=0,verin_down=0,verin_up=0;
 int coordrectX_left,coordrectX_right,coordrectY_up,coordrectY_down,coordrectX_left_temp,coordrectY_up_temp,dragged=0;
@@ -60,7 +63,7 @@ int pos_interditeX_temp,pos_interditeY_temp;
 
 void setup(){
   
-  size(1920,1200);
+fullScreen();
   
     tablette = new OscP5(this,5009);
     ip_null = ("-1");

@@ -413,7 +413,7 @@ save=0;
     /////// led on ////////////
     
 
-  if ((mousePressed == true)&&(mouseX>1500)&&(mouseX<1600)&&(mouseY>200)&&(mouseY<300)) {
+  if ((mousePressed == true)&&(mouseX>800)&&(mouseX<900)&&(mouseY>200)&&(mouseY<300)) {
   fill(0,200,0);
   if(led_on==0){
           OscMessage myMessage = new OscMessage("/led_on");
@@ -427,16 +427,16 @@ led_on=1;}
 
 
   }
-  rect (1500,200,100,100,30);
+  rect (800,200,100,100,30);
   fill(255);
   textSize(30);
-  text("led on",1510,250);
+  text("led on",810,250);
     
     
         /////// led off ////////////
     
 
-  if ((mousePressed == true)&&(mouseX>1620)&&(mouseX<1720)&&(mouseY>200)&&(mouseY<300)) {
+  if ((mousePressed == true)&&(mouseX>920)&&(mouseX<1020)&&(mouseY>200)&&(mouseY<300)) {
   fill(0,200,0);
   if(led_off==0){
           OscMessage myMessage = new OscMessage("/led_off");
@@ -450,17 +450,17 @@ led_on=1;}
 
 
   }
-  rect (1620,200,100,100,30);
+  rect (920,200,100,100,30);
   fill(255);
   textSize(30);
-  text("led off",1630,250);
+  text("led off",930,250);
     
     
     
-        /////// led on ////////////
+        /////// verin up ////////////
     
 
-  if ((mousePressed == true)&&(mouseX>1500)&&(mouseX<1600)&&(mouseY>400)&&(mouseY<500)) {
+  if ((mousePressed == true)&&(mouseX>800)&&(mouseX<900)&&(mouseY>400)&&(mouseY<500)) {
   fill(0,200,0);
   if(verin_up==0){
           OscMessage myMessage = new OscMessage("/verin_up");
@@ -474,16 +474,16 @@ verin_up=1;}
 
 
   }
-  rect (1500,400,100,100,30);
+  rect (800,400,100,100,30);
   fill(255);
   textSize(30);
-  text("up",1510,450);
+  text("up",810,450);
     
     
-        /////// verin up ////////////
+        /////// verin down ////////////
     
 
-  if ((mousePressed == true)&&(mouseX>1620)&&(mouseX<1720)&&(mouseY>400)&&(mouseY<500)) {
+  if ((mousePressed == true)&&(mouseX>920)&&(mouseX<1020)&&(mouseY>400)&&(mouseY<500)) {
   fill(0,200,0);
   if(verin_down==0){
           OscMessage myMessage = new OscMessage("/verin_down");
@@ -497,10 +497,10 @@ verin_down=1;}
 
 
   }
-  rect (1620,400,100,100,30);
+  rect (920,400,100,100,30);
   fill(255);
   textSize(30);
-  text("down",1630,450);
+  text("down",930,450);
     
     
     
@@ -569,7 +569,7 @@ reboot_soft=1;}
 
 
         /////////AVANCE/////////
-  if ((mousePressed == true)&&(mouseX>985)&&(mouseX<1350)&&(mouseY>75)&&(mouseY<225)) {
+  if ((mousePressed == true)&&(mouseX>1485)&&(mouseX<1635)&&(mouseY>75)&&(mouseY<225)) {
   fill(0,200,0);
   if (avance==0){
     
@@ -588,12 +588,15 @@ reboot_soft=1;}
 
     avance=0;
   }
-  circle (1060,150,150);
+  circle (1560,150,150);
+  fill(255);
+  textSize(30);
+  text("forward",1510,150);
   
   
   
           /////////RECUL/////////
-  if ((mousePressed == true)&&(mouseX>985)&&(mouseX<1135)&&(mouseY>375)&&(mouseY<525)) {
+  if ((mousePressed == true)&&(mouseX>1485)&&(mouseX<1635)&&(mouseY>375)&&(mouseY<525)) {
   fill(0,200,0);
   if (recul==0){
     
@@ -610,11 +613,67 @@ reboot_soft=1;}
 
     recul=0;
   }
-  circle (1060,450,150);
+  circle (1560,450,150);
+  fill(255);
+  textSize(30);
+  text("backward",1500,450);
+  
+  
+  
+            /////////ROTATE LEFT/////////
+  if ((mousePressed == true)&&(mouseX>1335)&&(mouseX<1485)&&(mouseY>575)&&(mouseY<725)) {
+  fill(0,200,0);
+  if (rotate_left==0){
+    
+    rotate_left=1;
+  OscMessage myMessage = new OscMessage("/dir");
+  myMessage.add(10); 
+  tablette.send(myMessage, chataigne); 
+    
+    
+}
+  }
+  else{
+    fill(0,0,200);
+
+    rotate_left=0;
+  }
+  circle (1410,650,150);
+  fill(255);
+  textSize(30);
+  text("rot left",1360,650);
+  
+  
+              /////////ROTATE RIGHT/////////
+  if ((mousePressed == true)&&(mouseX>1635)&&(mouseX<1785)&&(mouseY>575)&&(mouseY<725)) {
+  fill(0,200,0);
+  if (rotate_right==0){
+    
+    rotate_right=1;
+  OscMessage myMessage = new OscMessage("/dir");
+  myMessage.add(9); 
+  tablette.send(myMessage, chataigne); 
+    
+    
+}
+  }
+  else{
+    fill(0,0,200);
+
+    rotate_right=0;
+  }
+  circle (1710,650,150);
+    fill(255);
+  textSize(30);
+  text("rot right",1660,650);
+  
+  
+  
+  
   
   
             /////////GAUCHE/////////
-  if ((mousePressed == true)&&(mouseX>835)&&(mouseX<985)&&(mouseY>225)&&(mouseY<375)) {
+  if ((mousePressed == true)&&(mouseX>1335)&&(mouseX<1485)&&(mouseY>225)&&(mouseY<375)) {
   fill(0,200,0);
   if (gauche==0){
     
@@ -629,13 +688,16 @@ reboot_soft=1;}
 
     gauche=0;
   }
-  circle (910,300,150);
+  circle (1410,300,150);
+    fill(255);
+  textSize(30);
+  text("left",1380,300);
   
   
   
   
               /////////DROITE/////////
-  if ((mousePressed == true)&&(mouseX>1135)&&(mouseX<1285)&&(mouseY>225)&&(mouseY<375)) {
+  if ((mousePressed == true)&&(mouseX>1635)&&(mouseX<1785)&&(mouseY>225)&&(mouseY<375)) {
   fill(0,200,0);
   if (droite==0){
     
@@ -650,8 +712,10 @@ reboot_soft=1;}
 
     droite=0;
   }
-  circle (1210,300,150);
-  
+  circle (1710,300,150);
+      fill(255);
+  textSize(30);
+  text("right",1680,300);
 }
 
 
