@@ -21,14 +21,14 @@ id_osc=[-1]
 dir=0
 play=0
 bot_state=1
-speed=700
+speed=600
 speed_control=700
-speed_temp=700
+speed_temp=600
 dir_temp=0
 home_temp = 0
 lines = []
 etape_perdu=0
-speed_perdu=700
+speed_perdu=400
 verin=0
 nb_table=0
 table_random=0
@@ -472,21 +472,21 @@ def reste_sur_ligne():
             speed=speed_perdu-100
             dir=10
 
-        if sensor[9]<220 and dir_ligne==4 and (sensor[10]==0 or sensor[10]==2):
+        if sensor[9]<215 and dir_ligne==4 and (sensor[10]==0 or sensor[10]==2):
             speed=speed_perdu
-            dir=1
-        if sensor[9]<220 and dir_ligne==5 and  (sensor[10]==0 or sensor[10]==2):
+            dir=2
+        if sensor[9]<215 and dir_ligne==5 and  (sensor[10]==0 or sensor[10]==2):
             speed=speed_perdu
-            dir=3
+            dir=2
 
-        if sensor[9]>260  and dir_ligne==4 and  (sensor[10]==0 or sensor[10]==2):
+        if sensor[9]>265  and dir_ligne==4 and  (sensor[10]==0 or sensor[10]==2):
             speed=speed_perdu
-            dir=6
+            dir=7
 
-        if sensor[9]>260 and dir_ligne==5 and  (sensor[10]==0 or sensor[10]==2):
+        if sensor[9]>265 and dir_ligne==5 and  (sensor[10]==0 or sensor[10]==2):
             speed=speed_perdu
 
-            dir=8
+            dir=7
         if dir_ligne==4 and (sensor[0]==0 or sensor[3]==0) and sensor[1]==1 and sensor[4]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!= 4:
 
             if (dir_ligne==4):
@@ -501,7 +501,7 @@ def reste_sur_ligne():
         if check_croix==1 and (sensor[10]==0 or sensor[10]==1):
             check_croix=0
             print ("check croix 0")
-            time.sleep(2)
+           # time.sleep(2)
 
         if dir_ligne==5 and (sensor[2]==0 or sensor[5]==0) and sensor[1]==1 and sensor[4]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!= 4:
 
@@ -517,7 +517,7 @@ def reste_sur_ligne():
         if check_croix==1 and (sensor[10]==0 or sensor[10]==1):
             check_croix=0
             print ("check croix 0")
-            time.sleep(2)
+           # time.sleep(2)
 
 
 
@@ -671,18 +671,18 @@ def reste_sur_ligne():
             speed=speed_perdu-100
             dir=10
 
-        if sensor[8] <300 and dir_ligne==2 and (sensor[10]==1 or sensor[10]==2):
+        if sensor[8] <295 and dir_ligne==2 and (sensor[10]==1 or sensor[10]==2):
             speed=speed_perdu
-            dir=1
-        if sensor[8] <300 and dir_ligne==7 and (sensor[10]==1 or sensor[10]==2):
+            dir=4
+        if sensor[8] <295 and dir_ligne==7 and (sensor[10]==1 or sensor[10]==2):
             speed=speed_perdu
-            dir=6
-        if sensor[8] >340 and dir_ligne==2 and (sensor[10]==1 or sensor[10]==2):
+            dir=4
+        if sensor[8] >345 and dir_ligne==2 and (sensor[10]==1 or sensor[10]==2):
             speed=speed_perdu
-            dir=3
-        if sensor[8] >340 and dir_ligne==7 and (sensor[10]==1 or sensor[10]==2):
+            dir=5
+        if sensor[8] >345 and dir_ligne==7 and (sensor[10]==1 or sensor[10]==2):
             speed=speed_perdu
-            dir=8
+            dir=5
         if  dir_ligne==2 and (sensor[0]==0 or sensor[2]==0) and sensor[6]==1 and sensor[7]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!=4 :
             print("croix")
 
@@ -698,7 +698,7 @@ def reste_sur_ligne():
         if check_croix==1 and (sensor[10]==0 or sensor[10]==1):
             check_croix=0
             print ("check croix 0")
-            time.sleep(2)
+            #time.sleep(2)
 
         if  dir_ligne==7 and (sensor[3]==0 or sensor[5]==0) and sensor[6]==1 and sensor[7]==1 and sensor[10]==2 and check_croix==0 and etape_perdu!=4 :
             print("croix")
@@ -714,7 +714,7 @@ def reste_sur_ligne():
 
         if check_croix==1 and (sensor[10]==0 or sensor[10]==1):
             check_croix=0
-            time.sleep(2)
+           # time.sleep(2)
             print ("check croix 0")
 
         if sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and sensor[1]==1 and dir_ligne==7 and sensor[10]==3 and check_bord==0 and etape_perdu!=4 and check_croix==0:
