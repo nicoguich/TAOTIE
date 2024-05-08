@@ -39,7 +39,7 @@ table_random_temp=0
 
 nb_table_interdite=0
 nb_ligne_interdite=1
-
+new_coordonate=[0,0]
 
 
 on_ligne_H=0
@@ -224,6 +224,7 @@ def reste_sur_ligne():
     global verin
     global home
     global home_temp
+    global new_coordonate
 
 
 
@@ -1148,6 +1149,9 @@ while True:
         
         msg7 = oscbuildparse.OSCMessage("/coordonate_pos_interdite", None, coordonate_pos_interdite_osc)
         osc_send(msg7, "tablette")
+        
+        msg8 = oscbuildparse.OSCMessage("/new_coordonate", None, new_coordonate)
+        osc_send(msg8, "tablette")
         
 
 
