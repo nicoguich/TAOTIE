@@ -16,6 +16,9 @@ import cv2 # OpenCV library
 import numpy as np
 from set_picamera_gain import set_analog_gain, set_digital_gain
 
+import netifaces
+
+
 sel_control=1
 control_value=0
 batterie=50
@@ -33,7 +36,8 @@ value_sensor_temp=[1,1,1,1,1,1,1,1,1,1,1,1] # [1 for i in range(10)]
 
 temps= time.time()
 
-ip="127.0.0.1"
+addrs = netifaces.ifaddresses('wlan0')
+ip = addrs[netifaces.AF_INET][0]['addr']
 osc_startup()
 osc_udp_client(ip, 5005, "raspberry")
 osc_udp_server(ip, 5006, "camera")

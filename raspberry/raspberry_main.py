@@ -4,16 +4,19 @@ from osc4py3 import oscmethod as osm
 from osc4py3 import oscbuildparse
 import time
 import random
-
+import netifaces
 
 
 osc_startup()
-ip="127.0.0.1"
+#ip="127.0.0.1"
+addrs = netifaces.ifaddresses('wlan0')
+ip = addrs[netifaces.AF_INET][0]['addr']
+print(ip)
 
 osc_udp_server(ip, 5005, "raspberry")
 osc_udp_client(ip, 5007, "chataigne")
 
-osc_udp_client("192.168.100.9", 5009, "tablette")
+osc_udp_client("192.168.50.10", 5009, "tablette")
 
 
 id=-1
