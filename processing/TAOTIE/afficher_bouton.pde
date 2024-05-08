@@ -28,6 +28,7 @@ void afficher_bouton(){
        bot_select=x;
        String[] list_ip = split(bot_ip[x], '/');
        chataigne = new NetAddress(list_ip[1],5008);
+       main_soft= new NetAddress(list_ip[1],5005);
      }
      
 
@@ -167,6 +168,74 @@ checkpage=1;}
   textSize(30);
   text("CONTROL",(width*0.78)+40,height-((height*0.2)-50));
   
+
+  
+
+
+
+
+
+      /////////SAVE POS/////////
+  if ((mousePressed == true)&&(mouseX>(width*0.5))&&(mouseX<(width*0.5)+200)&&(mouseY>height-(height*0.2))&&(mouseY<height-(height*0.2)+100)) {
+  fill(0,200,0);
+  if (save_pos==0){
+    
+    for (int x=0; x< nb_table;x++){
+      if (bot_select==1){  
+        table_saved[x][0]=table_1[x][0];
+        table_saved[x][1]=table_1[x][1];
+      }
+          if (bot_select==2){  
+        table_saved[x][0]=table_2[x][0];
+        table_saved[x][1]=table_2[x][1];
+      }
+            if (bot_select==3){  
+        table_saved[x][0]=table_3[x][0];
+        table_saved[x][1]=table_3[x][1];
+      }
+            if (bot_select==4){  
+        table_saved[x][0]=table_4[x][0];
+        table_saved[x][1]=table_4[x][1];
+      }
+            if (bot_select==5){  
+        table_saved[x][0]=table_5[x][0];
+        table_saved[x][1]=table_5[x][1];
+      }
+            if (bot_select==6){  
+        table_saved[x][0]=table_6[x][0];
+        table_saved[x][1]=table_6[x][1];
+      }
+            if (bot_select==7){  
+        table_saved[x][0]=table_7[x][0];
+        table_saved[x][1]=table_7[x][1];
+      }
+            if (bot_select==8){  
+        table_saved[x][0]=table_8[x][0];
+        table_saved[x][1]=table_8[x][1];
+      }
+            if (bot_select==9){  
+        table_saved[x][0]=table_9[x][0];
+        table_saved[x][1]=table_9[x][1];
+      }
+            if (bot_select==10){  
+        table_saved[x][0]=table_10[x][0];
+        table_saved[x][1]=table_10[x][1];
+      }
+      
+    }
+
+
+save_pos=1;}
+  }
+  else{
+    fill(100,0,200);
+
+    save_pos=0;
+  }
+  rect ((width*0.5),height-(height*0.2),200,100);
+  fill(255);
+  textSize(30);
+  text("SAVE POS",(width*0.5)+40,height-((height*0.2)-50));
   
 
   
@@ -746,10 +815,32 @@ else{
   
 }
 
+      /////////SEND POS/////////
+  if ((mousePressed == true)&&(mouseX>(width*0.5))&&(mouseX<(width*0.5)+200)&&(mouseY>height-(height*0.2))&&(mouseY<height-(height*0.2)+100)) {
+  fill(0,200,0);
+  if (send_pos==0){
+         OscMessage myMessage = new OscMessage("/coordonate_saved");
+         for (int x=0;x<nb_table;x++){
+  myMessage.add(table_saved[x][0]); 
+  myMessage.add(table_saved[x][1]); 
+         }
+  tablette.send(myMessage, main_soft);
 
 
+send_pos=1;}
+  }
+  else{
+    fill(100,0,200);
+
+    send_pos=0;
+  }
+  rect ((width*0.5),height-(height*0.2),200,100);
+  fill(255);
+  textSize(30);
+  text("SEND POS",(width*0.5)+40,height-((height*0.2)-50));
 
 
+}
 
 
 
