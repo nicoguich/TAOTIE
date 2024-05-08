@@ -1079,6 +1079,25 @@ def reset_table(*args):
 
 
 #############################################################
+
+
+#######################################
+def coordonate_saved(*args):
+    global coordonate_table
+    global coordonate_table_osc
+    global nb_table
+    
+
+    for x in range (0,nb_table) :
+        coordonate_table[x][0]=args[(x*2)]
+        coordonate_table[x][1]=args[(x*2)+1]
+        print("table",x," ",coordonate_table[x][0]," ",coordonate_table[x][1])
+        coordonate_table_osc[x*2] =coordonate_table[x][0]
+        coordonate_table_osc[(x*2)+1] =coordonate_table[x][1]
+
+#############################################################
+
+
 #################################################################
 
 
@@ -1089,6 +1108,7 @@ osc_method("/sensor", sensor_osc)
 osc_method("/grille", grille)
 osc_method("/reset_table", reset_table)
 osc_method("/id", void_id)
+osc_method("/coordonate_saved", coordonate_saved)
 
 
 
