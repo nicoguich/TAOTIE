@@ -39,7 +39,7 @@ void afficher_bouton(){
   ////////////////////////////PAGE 1/////////////////////////////////////////////////
   if (page==1){
   /////////HOME/////////
-  if ((mousePressed == true)&&(mouseX>10)&&(mouseX<210)&&(mouseY>height-250)&&(mouseY<height-150)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.005))&&(mouseX<(width*0.005)+200)&&(mouseY>height-(height*0.2))&&(mouseY<height-(height*0.2)+100)) {
   fill(0,200,0);
   if (home==0){
   OscMessage myMessage = new OscMessage("/home");
@@ -57,16 +57,16 @@ home=1;}
   }
     home=0;
   }
-  rect (10,height-250,200,100);
+  rect ((width*0.005),height-(height*0.2),200,100);
   fill(255);
   textSize(30);
-  text("START",50,height-200);
+  text("START",(width*0.005)+40,height-((height*0.2)-50));
   
   
   
   
     /////////STOP/////////
-  if ((mousePressed == true)&&(mouseX>250)&&(mouseX<450)&&(mouseY>height-250)&&(mouseY<height-150)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.17))&&(mouseX<(width*0.17)+200)&&(mouseY>height-(height*0.2))&&(mouseY<height-(height*0.2)+100)) {
   fill(0,200,0);
   if (stop==0){
   OscMessage myMessagestop = new OscMessage("/stop");
@@ -84,10 +84,10 @@ stop=1;}
   }
     stop=0;
   }
-  rect (250,height-250,200,100);
+  rect ((width*0.17),height-(height*0.2),200,100);
   fill(255);
   textSize(30);
-  text("STOP",290,height-200);
+  text("STOP",(width*0.17)+40,height-((height*0.2)-50));
   
   
   
@@ -149,7 +149,7 @@ stop_led=1;}
   
   
       /////////PAGE/////////
-  if ((mousePressed == true)&&(mouseX>1500)&&(mouseX<1700)&&(mouseY>height-250)&&(mouseY<height-150)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.78))&&(mouseX<(width*0.78)+200)&&(mouseY>height-(height*0.2))&&(mouseY<height-(height*0.2)+100)) {
   fill(0,200,0);
   if (checkpage==0){
     
@@ -162,10 +162,11 @@ checkpage=1;}
 
     checkpage=0;
   }
-  rect (1500,height-250,200,100);
+  rect ((width*0.78),height-(height*0.2),200,100);
   fill(255);
   textSize(30);
-  text("CONTROL",1540,height-200);
+  text("CONTROL",(width*0.78)+40,height-((height*0.2)-50));
+  
   
 
   
@@ -183,7 +184,7 @@ checkpage=1;}
 
 if (page==2){
         /////////PAGE/////////
-  if ((mousePressed == true)&&(mouseX>1500)&&(mouseX<1700)&&(mouseY>height-250)&&(mouseY<height-150)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.78))&&(mouseX<(width*0.78)+200)&&(mouseY>height-(height*0.2))&&(mouseY<height-(height*0.2)+100)) {
   fill(0,200,0);
   if (checkpage==0){
     
@@ -196,10 +197,10 @@ checkpage=1;}
 
     checkpage=0;
   }
-  rect (1500,height-250,200,100);
+  rect ((width*0.78),height-(height*0.2),200,100);
   fill(255);
   textSize(30);
-  text("GRID",1550,height-200);
+  text("GRID",(width*0.78)+40,height-((height*0.2)-50));
   
   
   
@@ -208,7 +209,7 @@ checkpage=1;}
   
   
             /////////GRILLE X -/////////
-  if ((mousePressed == true)&&(mouseX>100)&&(mouseX<300)&&(mouseY>200)&&(mouseY<300)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.05))&&(mouseX<(width*0.05)+200)&&(mouseY>(height*0.16))&&(mouseY<(height*0.16)+100)) {
   fill(0,200,0);
   if(xmoins==0){
           OscMessage myMessage = new OscMessage("/grille_size_x_moins");
@@ -222,15 +223,15 @@ xmoins=1;}
 
 
   }
-  rect (100,200,200,100,30);
+  rect ((width*0.05),(height*0.16),200,100,30);
   fill(255);
   textSize(30);
-  text("GRID X -",140,250);
+  text("GRID X -",(width*0.05)+40,(height*0.16)+50);
   
   
   
             /////////GRILLE X +/////////
-  if ((mousePressed == true)&&(mouseX>350)&&(mouseX<550)&&(mouseY>200)&&(mouseY<300)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.05)+250)&&(mouseX<(width*0.05)+450)&&(mouseY>(height*0.16))&&(mouseY<(height*0.16)+100)) {
   fill(0,200,0);
   if (xplus==0){
   
@@ -245,10 +246,10 @@ xmoins=1;}
 
 
   }
-  rect (350,200,200,100,30);
+  rect ((width*0.05)+250,(height*0.16),200,100,30);
   fill(255);
   textSize(30);
-  text("GRID X +",390,250);
+  text("GRID X +",(width*0.05)+290,(height*0.16)+50);
   
   
   
@@ -260,7 +261,7 @@ xmoins=1;}
   
   
           /////////GRILLE Y -/////////
-  if ((mousePressed == true)&&(mouseX>200)&&(mouseX<300)&&(mouseY>310)&&(mouseY<410)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.05))&&(mouseX<(width*0.05)+200)&&(mouseY>(height*0.16)+110)&&(mouseY<(height*0.16)+210)) {
   fill(0,200,0);
   
     if (ymoins==0){
@@ -278,15 +279,15 @@ xmoins=1;}
 
 
   }
-  rect (100,310,200,100,30);
+  rect ((width*0.05),(height*0.16)+110,200,100,30);
   fill(255);
   textSize(30);
-  text("GRID Y -",140,360);
+  text("GRID Y -",(width*0.05)+40,(height*0.16)+160);
   
   
   
             /////////GRILLE Y +/////////
-  if ((mousePressed == true)&&(mouseX>350)&&(mouseX<550)&&(mouseY>310)&&(mouseY<410)) {
+    if ((mousePressed == true)&&(mouseX>(width*0.05)+250)&&(mouseX<(width*0.05)+450)&&(mouseY>(height*0.16)+110)&&(mouseY<(height*0.16)+210)) {
   fill(0,200,0);
     if (yplus==0){
   
@@ -303,17 +304,17 @@ xmoins=1;}
 yplus=0;
 
   }
-  rect (350,310,200,100,30);
+  rect ((width*0.05)+250,(height*0.16)+110,200,100,30);
   fill(255);
   textSize(30);
-  text("GRID Y +",390,360);
+  text("GRID Y +",(width*0.05)+290,(height*0.16)+160);
   
   
   
   
   
            /////////NB TABLE -/////////
-  if ((mousePressed == true)&&(mouseX>200)&&(mouseX<300)&&(mouseY>420)&&(mouseY<520)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.05))&&(mouseX<(width*0.05)+200)&&(mouseY>(height*0.16)+220)&&(mouseY<(height*0.16)+320)) {
   fill(0,200,0);
   
     if (tablemoins==0){
@@ -331,15 +332,15 @@ yplus=0;
 
 
   }
-  rect (100,420,200,100,30);
+   rect ((width*0.05),(height*0.16)+220,200,100,30);
   fill(255);
   textSize(30);
-  text("NB TABLE -",140,470);
+  text("NB TABLE -",(width*0.05)+40,(height*0.16)+270);
   
   
   
             /////////NB TABLE +/////////
-  if ((mousePressed == true)&&(mouseX>350)&&(mouseX<550)&&(mouseY>420)&&(mouseY<520)) {
+    if ((mousePressed == true)&&(mouseX>(width*0.05)+250)&&(mouseX<(width*0.05)+450)&&(mouseY>(height*0.16)+220)&&(mouseY<(height*0.16)+320)) {
   fill(0,200,0);
     if (tableplus==0){
   
@@ -356,10 +357,10 @@ yplus=0;
 tableplus=0;
 
   }
-  rect (350,420,200,100,30);
+  rect ((width*0.05)+250,(height*0.16)+220,200,100,30);
   fill(255);
   textSize(30);
-  text("NB TABLE +",390,470); 
+  text("NB TABLE +",(width*0.05)+290,(height*0.16)+270); 
   
   
   
@@ -368,16 +369,16 @@ tableplus=0;
   
       fill(0);
   
-    text(grille_size_x,600,250);
+    text(grille_size_x,(width*0.05)+480,(height*0.16)+50);
     
-    text(grille_size_y,600,360);
+    text(grille_size_y,(width*0.05)+480,(height*0.16)+160);
   
-    text(nb_table,600,470);
+    text(nb_table,(width*0.05)+480,(height*0.16)+270);
     
     
     
                 /////////SAVE/////////
-  if ((mousePressed == true)&&(mouseX>200)&&(mouseX<400)&&(mouseY>630)&&(mouseY<730)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.05))&&(mouseX<(width*0.05)+200)&&(mouseY>(height*0.16)+330)&&(mouseY<(height*0.16)+430)) {
   fill(0,200,0);
     if (save==0){
   
@@ -394,10 +395,10 @@ tableplus=0;
 save=0;
 
   }
-  rect (200,630,200,100,30);
+  rect ((width*0.05),(height*0.16)+330,200,100,30);
   fill(255);
   textSize(30);
-  text("SAVE",240,680); 
+  text("SAVE",(width*0.05)+40,(height*0.16)+380); 
   
   
   
@@ -413,7 +414,7 @@ save=0;
     /////// led on ////////////
     
 
-  if ((mousePressed == true)&&(mouseX>800)&&(mouseX<900)&&(mouseY>200)&&(mouseY<300)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.05)+550)&&(mouseX<(width*0.05)+650)&&(mouseY>(height*0.16))&&(mouseY<(height*0.16)+100)) {
   fill(0,200,0);
   if(led_on==0){
           OscMessage myMessage = new OscMessage("/led_on");
@@ -427,16 +428,16 @@ led_on=1;}
 
 
   }
-  rect (800,200,100,100,30);
+  rect ((width*0.05)+550,(height*0.16),100,100,30);
   fill(255);
   textSize(30);
-  text("led on",810,250);
+  text("led on",(width*0.05)+560,(height*0.16)+50);
     
     
         /////// led off ////////////
     
 
-  if ((mousePressed == true)&&(mouseX>920)&&(mouseX<1020)&&(mouseY>200)&&(mouseY<300)) {
+ if ((mousePressed == true)&&(mouseX>(width*0.05)+700)&&(mouseX<(width*0.05)+800)&&(mouseY>(height*0.16))&&(mouseY<(height*0.16)+100)) {
   fill(0,200,0);
   if(led_off==0){
           OscMessage myMessage = new OscMessage("/led_off");
@@ -450,17 +451,17 @@ led_on=1;}
 
 
   }
-  rect (920,200,100,100,30);
+  rect ((width*0.05)+700,(height*0.16),100,100,30);
   fill(255);
   textSize(30);
-  text("led off",930,250);
+  text("led off",(width*0.05)+710,(height*0.16)+50);
     
     
     
         /////// verin up ////////////
     
 
-  if ((mousePressed == true)&&(mouseX>800)&&(mouseX<900)&&(mouseY>400)&&(mouseY<500)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.05)+550)&&(mouseX<(width*0.05)+650)&&(mouseY>(height*0.16)+110)&&(mouseY<(height*0.16)+210)) {
   fill(0,200,0);
   if(verin_up==0){
           OscMessage myMessage = new OscMessage("/verin_up");
@@ -474,16 +475,16 @@ verin_up=1;}
 
 
   }
-  rect (800,400,100,100,30);
+  rect ((width*0.05)+550,(height*0.16)+110,100,100,30);
   fill(255);
   textSize(30);
-  text("up",810,450);
+  text("up",(width*0.05)+580,(height*0.16)+160);
     
     
         /////// verin down ////////////
     
 
-  if ((mousePressed == true)&&(mouseX>920)&&(mouseX<1020)&&(mouseY>400)&&(mouseY<500)) {
+ if ((mousePressed == true)&&(mouseX>(width*0.05)+700)&&(mouseX<(width*0.05)+800)&&(mouseY>(height*0.16)+110)&&(mouseY<(height*0.16)+210)) {
   fill(0,200,0);
   if(verin_down==0){
           OscMessage myMessage = new OscMessage("/verin_down");
@@ -497,10 +498,10 @@ verin_down=1;}
 
 
   }
-  rect (920,400,100,100,30);
+  rect ((width*0.05)+700,(height*0.16)+110,100,100,30);
   fill(255);
   textSize(30);
-  text("down",930,450);
+  text("down",(width*0.05)+710,(height*0.16)+160);
     
     
     
@@ -508,7 +509,7 @@ verin_down=1;}
   
   
           /////////RESET/////////
-  if ((mousePressed == true)&&(mouseX>300)&&(mouseX<500)&&(mouseY>height-250)&&(mouseY<height-150)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.05))&&(mouseX<(width*0.05)+200)&&(mouseY>height-(height*0.2))&&(mouseY<height-(height*0.2)+100)) {
   fill(0,200,0);
   if (reset==0){
     
@@ -530,16 +531,16 @@ reset=1;}
 
     reset=0;
   }
-  rect (300,height-250,200,100);
+  rect ((width*0.05),height-(height*0.2),200,100);
   fill(255);
   textSize(30);
-  text("RESET POS",320,height-200);
+  text("RESET POS",(width*0.05)+20,height-(height*0.2)+50);
   
   
   
   
             /////////reboot soft/////////
-  if ((mousePressed == true)&&(mouseX>600)&&(mouseX<800)&&(mouseY>height-250)&&(mouseY<height-150)) {
+ if ((mousePressed == true)&&(mouseX>(width*0.05)+250)&&(mouseX<(width*0.05)+450)&&(mouseY>height-(height*0.2))&&(mouseY<height-(height*0.2)+100)) {
   fill(0,200,0);
   if (reboot_soft==0){
     
@@ -561,15 +562,15 @@ reboot_soft=1;}
 
     reboot_soft=0;
   }
-  rect (600,height-250,200,100);
+  rect ((width*0.05)+250,height-(height*0.2),200,100);
   fill(255);
   textSize(30);
-  text("REBOOT SOFT",610,height-200);
+  text("REBOOT SOFT",(width*0.05)+260,height-(height*0.2)+50);
 
 
 
         /////////AVANCE/////////
-  if ((mousePressed == true)&&(mouseX>1485)&&(mouseX<1635)&&(mouseY>75)&&(mouseY<225)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.8)-((width*0.08)/2))&&(mouseX<(width*0.8)+((width*0.08)/2))&&(mouseY>(height*0.125)-((width*0.08)/2))&&(mouseY<(height*0.125)+((width*0.08)/2))) {
   fill(0,200,0);
   if (avance==0){
     
@@ -588,15 +589,15 @@ reboot_soft=1;}
 
     avance=0;
   }
-  circle (1560,150,150);
+  circle (width*0.8,height*0.125,width*0.08);
   fill(255);
-  textSize(30);
-  text("forward",1510,150);
+  textSize(int(width*0.015));
+  text("forward",(width*0.8)-((width*0.06)/2),width*0.08);
   
   
   
           /////////RECUL/////////
-  if ((mousePressed == true)&&(mouseX>1485)&&(mouseX<1635)&&(mouseY>375)&&(mouseY<525)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.8)-((width*0.08)/2))&&(mouseX<(width*0.8)+((width*0.08)/2))&&(mouseY>(height*0.375)-((width*0.08)/2))&&(mouseY<(height*0.375)+((width*0.08)/2))) {
   fill(0,200,0);
   if (recul==0){
     
@@ -613,15 +614,15 @@ reboot_soft=1;}
 
     recul=0;
   }
-  circle (1560,450,150);
+  circle (width*0.8,height*0.375,width*0.08);
   fill(255);
-  textSize(30);
-  text("backward",1500,450);
+  textSize(int(width*0.015));
+  text("backward",(width*0.8)-((width*0.06)/2),height*0.375);
   
   
   
             /////////ROTATE LEFT/////////
-  if ((mousePressed == true)&&(mouseX>1335)&&(mouseX<1485)&&(mouseY>575)&&(mouseY<725)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.73)-((width*0.08)/2))&&(mouseX<(width*0.73)+((width*0.08)/2))&&(mouseY>(height *0.54)-((width*0.08)/2))&&(mouseY<(height *0.54)+((width*0.08)/2))) {
   fill(0,200,0);
   if (rotate_left==0){
     
@@ -638,14 +639,14 @@ reboot_soft=1;}
 
     rotate_left=0;
   }
-  circle (1410,650,150);
+  circle (width*0.73,height *0.54,width*0.08);
   fill(255);
-  textSize(30);
-  text("rot left",1360,650);
+  textSize(int(width*0.015));
+  text("rot left",(width*0.73)-((width*0.06)/2) ,height *0.54);
   
   
               /////////ROTATE RIGHT/////////
-  if ((mousePressed == true)&&(mouseX>1635)&&(mouseX<1785)&&(mouseY>575)&&(mouseY<725)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.89)-(width*0.08)/2)&&(mouseX<(width*0.89)+(width*0.08)/2)&&(mouseY>(height *0.54)-((width*0.08)/2))&&(mouseY<(height *0.54)+((width*0.08)/2))) {
   fill(0,200,0);
   if (rotate_right==0){
     
@@ -662,10 +663,10 @@ reboot_soft=1;}
 
     rotate_right=0;
   }
-  circle (1710,650,150);
+  circle (width*0.89,height *0.54,(width*0.08));
     fill(255);
-  textSize(30);
-  text("rot right",1660,650);
+  textSize(int(width*0.015));
+  text("rot right",(width*0.89)-((width*0.06)/2),height *0.54);
   
   
   
@@ -673,7 +674,7 @@ reboot_soft=1;}
   
   
             /////////GAUCHE/////////
-  if ((mousePressed == true)&&(mouseX>1335)&&(mouseX<1485)&&(mouseY>225)&&(mouseY<375)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.73)-((width*0.08)/2))&&(mouseX<(width*0.73)+((width*0.08)/2))&&(mouseY>(height*0.25)-((width*0.08)/2))&&(mouseY<(height*0.25)+((width*0.08)/2))) {
   fill(0,200,0);
   if (gauche==0){
     
@@ -688,16 +689,16 @@ reboot_soft=1;}
 
     gauche=0;
   }
-  circle (1410,300,150);
+  circle (width*0.73,height*0.25,(width*0.08));
     fill(255);
-  textSize(30);
-  text("left",1380,300);
+  textSize(int(width*0.015));
+  text("left",(width*0.73)-((width*0.06)/2),height*0.25);
   
   
   
   
               /////////DROITE/////////
-  if ((mousePressed == true)&&(mouseX>1635)&&(mouseX<1785)&&(mouseY>225)&&(mouseY<375)) {
+  if ((mousePressed == true)&&(mouseX>(width*0.89)-(width*0.08)/2)&&(mouseX<(width*0.89)+(width*0.08)/2)&&(mouseY>(height*0.25)-((width*0.08)/2))&&(mouseY<(height*0.25)+((width*0.08)/2))) {
   fill(0,200,0);
   if (droite==0){
     
@@ -712,16 +713,16 @@ reboot_soft=1;}
 
     droite=0;
   }
-  circle (1710,300,150);
+  circle (width*0.89,height*0.25,(width*0.08));
       fill(255);
-  textSize(30);
-  text("right",1680,300);
-}
+  textSize(int(width*0.015));
+  text("right",(width*0.89)-((width*0.06)/2),height*0.25);
+
 
 
 //////////////CHECK ZERO//////////////////
 
-if ((avance==0) &&(recul==0) &&(gauche==0)&&(droite==0)){
+if ((avance==0) &&(recul==0) &&(gauche==0)&&(droite==0)&&(rotate_right==0)&&(rotate_left==0)){
   
   
   if (checkzero==0){
