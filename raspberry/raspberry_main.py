@@ -1101,7 +1101,7 @@ def coordonate_saved(*args):
 #################################################################
 
 
-osc_method("/coordonate", coordonate)
+#osc_method("/coordonate", coordonate)
 osc_method("/game_pad", game_pad)
 osc_method("/sensor", sensor_osc)
 
