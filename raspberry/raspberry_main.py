@@ -121,7 +121,8 @@ def alignement():
     global home_temp
     global on_ligne_H
     global dir_ligne
-
+    global verin
+    
     #print("etape_perdu: ", etape_perdu)
     if etape_perdu == 0 :
         etape_perdu=1
@@ -921,6 +922,7 @@ def reste_sur_ligne():
     if (sensor[0]==0 and sensor[1]==0 and sensor[2]==0 and sensor[3]==0 and sensor[4]==0 and sensor[5]==0 and sensor[6]==0 and sensor[7]==0 ):
         home_temp=0
         home=0
+        verin=0
         etape_perdu=0
         on_ligne_H=0
         on_ligne_V=0
