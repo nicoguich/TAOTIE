@@ -2,12 +2,12 @@ import controlP5.*;
 import oscP5.*;
 import netP5.*;
   
-int tablette_size=1; /// 0 for asus / 1 for lenovo  
-  
+ 
   
 OscP5 tablette;
 String ip_null;
 NetAddress chataigne;
+NetAddress main_soft;
 NetAddress router;
 ControlP5 cp5;
 
@@ -38,6 +38,7 @@ int table_8[][] = new int[nb_table][2];
 int table_9[][] = new int[nb_table][2];
 int table_10[][] = new int[nb_table][2];
 int pos_interdite[][] = new int[nb_bot_max][4];
+int table_saved[][]=new int [nb_table][2];
 
 
 int bot[][] = new int[nb_bot_max][2];
@@ -51,6 +52,8 @@ int page=1;
 int checkpage=0;
 int reset=0;
 int reboot_soft=0;
+int save_pos=0;
+int send_pos=0;
 
 int avance=0,recul=0,droite=0,gauche=0,checkzero=0,rotate_left=0,rotate_right=0;
 
@@ -68,6 +71,7 @@ fullScreen();
     tablette = new OscP5(this,5009);
     ip_null = ("-1");
     chataigne = new NetAddress("192.168.4.190",5008);
+    main_soft = new NetAddress("192.168.4.190",5005);
     router = new NetAddress("192.168.100.15",5010);
    for (int x=0; x< bot_ip.length;x++){
      bot_ip[x]=ip_null;
