@@ -257,14 +257,6 @@ def reste_sur_ligne():
 
                 coordonate_table[table_random][0]=coordX
                 coordonate_table[table_random][1]=coordY
-                rec_coordonate = open("/home/pi/Desktop/coordonate_table.txt","w")
-                print("rec table...")
-                for x in range (0 , len(coordonate_table)):
-
-                    rec_coordonate.write(str(int(coordonate_table[x][0]))+" "+str(int(coordonate_table[x][1]))+"\n")
-
-                rec_coordonate.close()
-
                 verin=0
                 for x in range (nb_table):
                     coordonate_table_osc[x*2] =coordonate_table[x][0]
@@ -935,6 +927,13 @@ def reste_sur_ligne():
         dir = 0
         dir_ligne = 0
         print("mode manuel")
+        rec_coordonate = open("/home/pi/Desktop/coordonate_table.txt","w")
+        print("rec table...")
+        for x in range (0 , len(coordonate_table)):
+
+            rec_coordonate.write(str(int(coordonate_table[x][0]))+" "+str(int(coordonate_table[x][1]))+"\n")
+
+        rec_coordonate.close()
 
 ##########################################################################
 
@@ -998,6 +997,7 @@ def game_pad(*args):
     global coordX
     global coordY
     global bot_state
+    global coordonate_table
 
 
     home=args[0]
@@ -1016,6 +1016,13 @@ def game_pad(*args):
         dir = 0
         print("mode manuel")
         bot_state=0
+        rec_coordonate = open("/home/pi/Desktop/coordonate_table.txt","w")
+        print("rec table...")
+        for x in range (0 , len(coordonate_table)):
+
+            rec_coordonate.write(str(int(coordonate_table[x][0]))+" "+str(int(coordonate_table[x][1]))+"\n")
+
+        rec_coordonate.close()
 
 
     if play==1:
